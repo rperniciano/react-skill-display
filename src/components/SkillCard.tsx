@@ -22,6 +22,7 @@ interface SkillCardProps {
   icon: React.ReactNode;
   image?: string;
   detailedInfo?: string;
+  category?: string;
 }
 
 const SkillCard = ({ 
@@ -29,7 +30,8 @@ const SkillCard = ({
   description, 
   icon, 
   image = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=60",
-  detailedInfo = "Informazioni dettagliate su questa competenza saranno presto disponibili."
+  detailedInfo = "Informazioni dettagliate su questa competenza saranno presto disponibili.",
+  category = ""
 }: SkillCardProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -50,6 +52,12 @@ const SkillCard = ({
           />
         </div>
         <p className="text-portfolio-text">{description}</p>
+        
+        {category && (
+          <div className="text-xs text-portfolio-primary font-medium uppercase tracking-wider">
+            {category}
+          </div>
+        )}
         
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <TooltipProvider>
@@ -84,6 +92,11 @@ const SkillCard = ({
                 className="w-full h-48 object-cover rounded-md" 
               />
               <p className="text-md text-portfolio-text">{detailedInfo}</p>
+              {category && (
+                <div className="text-sm text-portfolio-primary font-medium uppercase tracking-wider">
+                  Categoria: {category}
+                </div>
+              )}
             </div>
           </DialogContent>
         </Dialog>
