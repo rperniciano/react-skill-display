@@ -31,7 +31,7 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
       {/* Custom cursor light effect */}
       <div 
-        className="pointer-events-none fixed w-48 h-48 rounded-full bg-white/20 mix-blend-overlay blur-xl z-50"
+        className="pointer-events-none fixed w-48 h-48 rounded-full bg-white/60 mix-blend-overlay blur-xl z-50"
         style={{
           left: `${cursorPosition.x}px`,
           top: `${cursorPosition.y}px`,
