@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="flex items-center gap-2">
               <Mail className="h-5 w-5 text-portfolio-primary" />
               <a 
-                href="mailto:tuoemail@example.com" 
+                href="mailto:ricki.perniciano.work@gmail.com" 
                 className="text-portfolio-text hover:text-portfolio-primary transition-colors"
               >
                 tuoemail@example.com
@@ -30,7 +30,7 @@ const Footer = () => {
             <div className="flex items-center gap-2">
               <Phone className="h-5 w-5 text-portfolio-primary" />
               <a 
-                href="tel:+391234567890" 
+                href="tel:+393518745889" 
                 className="text-portfolio-text hover:text-portfolio-primary transition-colors"
               >
                 +39 123 456 7890
