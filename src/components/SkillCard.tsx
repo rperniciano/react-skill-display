@@ -63,7 +63,7 @@ const SkillCard = ({
                     Maggiori Informazioni
                   </Button>
                 </DialogTrigger>
-              </TooltipContent>
+              </TooltipTrigger>
               <TooltipContent>
                 <p>Clicca per ulteriori dettagli</p>
               </TooltipContent>
