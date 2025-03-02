@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Skills from "../components/Skills";
+import Footer from "../components/Footer";
 
 const Index = () => {
   return (
@@ -10,6 +11,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Skills />
+      <Footer />
     </div>
   );
 };
