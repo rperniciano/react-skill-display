@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -10,6 +11,9 @@ const Hero = () => {
       const x = event.clientX / window.innerWidth;
       const y = event.clientY / window.innerHeight;
       setMousePosition({ x, y });
+      
+      // Set absolute cursor position for the glow effect
+      setCursorPosition({ x: event.clientX, y: event.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -19,12 +23,23 @@ const Hero = () => {
     };
   }, []);
 
-  // Calculate the transform values for parallax effect
+  // Calculate the transform values for parallax effect (only for background)
   const transformX = mousePosition.x * 20; // Max 20px move in X direction
   const transformY = mousePosition.y * 20; // Max 20px move in Y direction
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+      {/* Custom cursor light effect */}
+      <div 
+        className="pointer-events-none fixed w-48 h-48 rounded-full bg-white/20 mix-blend-overlay blur-xl z-50"
+        style={{
+          left: `${cursorPosition.x}px`,
+          top: `${cursorPosition.y}px`,
+          transform: 'translate(-50%, -50%)',
+          transition: 'left 0.1s ease-out, top 0.1s ease-out'
+        }}
+      />
+      
       {/* Background video with overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -44,13 +59,7 @@ const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div 
-          className="text-center animate-fade-up"
-          style={{ 
-            transform: `translate(${transformX}px, ${transformY}px)`,
-            transition: 'transform 0.2s ease-out'
-          }}
-        >
+        <div className="text-center animate-fade-up">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             React Developer
           </h1>
