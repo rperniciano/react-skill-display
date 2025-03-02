@@ -53,7 +53,7 @@ const Hero = () => {
             transition: 'transform 0.2s ease-out'
           }}
         >
-          <source src="https://cdn.pixabay.com/vimeo/328940142/code-13495.mp4?width=1280&hash=810a113e0da5d85386710eb1d0a909dee17c5d4d" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/853750/853750-hd_1920_1080_25fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
