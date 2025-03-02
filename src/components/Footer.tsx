@@ -23,7 +23,7 @@ const Footer = () => {
                 href="mailto:ricki.perniciano.work@gmail.com" 
                 className="text-portfolio-text hover:text-portfolio-primary transition-colors"
               >
-                tuoemail@example.com
+                ricki.perniciano.work@gmail.com
               </a>
             </div>
             
@@ -33,7 +33,7 @@ const Footer = () => {
                 href="tel:+393518745889" 
                 className="text-portfolio-text hover:text-portfolio-primary transition-colors"
               >
-                +39 123 456 7890
+                +39 351 874 5889
               </a>
             </div>
           </div>
