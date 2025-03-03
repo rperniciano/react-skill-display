@@ -5,16 +5,16 @@ import { Button } from "@/components/ui/button";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-portfolio-background">
+    <section id="about" className="py-20 bg-portfolio-background dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center mb-8">
-            <div className="bg-portfolio-primary/20 p-3 rounded-full">
+            <div className="bg-portfolio-primary/20 dark:bg-portfolio-primary/10 p-3 rounded-full">
               <User className="h-8 w-8 text-portfolio-primary" aria-hidden="true" />
             </div>
           </div>
           
-          <h2 className="text-4xl font-bold text-portfolio-heading text-center mb-8">
+          <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-8">
             Chi Sono
           </h2>
           
@@ -35,22 +35,22 @@ const About = () => {
             </div>
             
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-portfolio-heading">
-                Sviluppatore React Appassionato
+              <h3 className="text-2xl font-bold text-portfolio-heading dark:text-white">
+                Sviluppatore React Specializzato
               </h3>
               
-              <p className="text-portfolio-text">
-                Ciao, sono un sviluppatore frontend specializzato in React con una passione per la creazione di applicazioni web performanti ed eleganti. La mia esperienza spazia dall'implementazione di interfacce utente responsive all'ottimizzazione delle prestazioni e all'accessibilità.
+              <p className="text-portfolio-text dark:text-gray-300">
+                Ciao, sono un sviluppatore frontend con più di 5 anni di esperienza, specializzato in React e tecnologie web moderne. La mia carriera comprende lo sviluppo di Single Page Applications (SPA) con React e GraphQL, sistemi embedded per pagamenti POS, e applicazioni mobili in realtà virtuale.
               </p>
               
-              <p className="text-portfolio-text">
-                Mi piace lavorare in team e affrontare sfide tecniche complesse, trovando il giusto equilibrio tra design innovativo e soluzioni pratiche. Il mio obiettivo è creare esperienze utente che siano tanto belle quanto funzionali.
+              <p className="text-portfolio-text dark:text-gray-300">
+                Oltre alle competenze tecniche in React, ho esperienza con C#, database SQL/MySQL e integrazione di API. Mi piace lavorare in team e affrontare sfide tecniche complesse, trovando il giusto equilibrio tra design innovativo e soluzioni pratiche.
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button 
                   variant="outline" 
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
                   asChild
                 >
                   <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
