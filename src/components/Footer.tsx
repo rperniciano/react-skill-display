@@ -1,5 +1,6 @@
+
 import React from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -18,22 +19,45 @@ const Footer = () => {
 
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Mail className="h-5 w-5 text-portfolio-primary" />
+                <Mail className="h-5 w-5 text-portfolio-primary" aria-hidden="true" />
                 <a
                   href="mailto:ricki.perniciano.work@gmail.com"
                   className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Invia email a ricki.perniciano.work@gmail.com"
                 >
                   ricki.perniciano.work@gmail.com
                 </a>
               </div>
 
               <div className="flex items-center gap-2">
-                <Phone className="h-5 w-5 text-portfolio-primary" />
+                <Phone className="h-5 w-5 text-portfolio-primary" aria-hidden="true" />
                 <a
                   href="tel:+393518745889"
                   className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Chiama +39 351 874 5889"
                 >
                   +39 351 874 5889
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-4 mt-4">
+                <a
+                  href="https://github.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Visita il mio profilo GitHub"
+                >
+                  <Github className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Visita il mio profilo LinkedIn"
+                >
+                  <Linkedin className="h-6 w-6" />
                 </a>
               </div>
             </div>

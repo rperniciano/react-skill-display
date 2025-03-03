@@ -38,6 +38,7 @@ const Hero = () => {
           transform: 'translate(-50%, -50%)',
           transition: 'left 0.1s ease-out, top 0.1s ease-out'
         }}
+        aria-hidden="true"
       />
       
       {/* Background video with overlay */}
@@ -52,6 +53,7 @@ const Hero = () => {
             transform: `translate(${-transformX}px, ${-transformY}px) scale(1.1)`,
             transition: 'transform 0.2s ease-out'
           }}
+          aria-hidden="true"
         >
           <source src="https://videos.pexels.com/video-files/853750/853750-hd_1920_1080_25fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -60,16 +62,17 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center animate-fade-up">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
             React Developer
           </h1>
-          <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl text-white max-w-2xl mx-auto mb-8">
             Specializzato nello sviluppo di applicazioni web moderne e performanti
             con React e il suo ecosistema
           </p>
           <a
             href="#skills"
-            className="inline-block bg-portfolio-primary text-white px-8 py-3 rounded-lg hover:bg-portfolio-primary/90 transition-colors"
+            className="inline-block bg-portfolio-primary text-white px-8 py-3 rounded-lg hover:bg-portfolio-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-portfolio-primary focus:ring-offset-2 focus:ring-offset-black"
+            aria-label="Scopri le mie competenze"
           >
             Scopri le mie competenze
           </a>

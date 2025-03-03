@@ -34,9 +34,10 @@ const SkillCard = ({
   category = ""
 }: SkillCardProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <Card className="hover:shadow-lg transition-shadow">
+    <Card className="hover:shadow-lg transition-shadow dark:border-gray-700">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           {icon}
@@ -44,12 +45,19 @@ const SkillCard = ({
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="overflow-hidden rounded-md">
-          <img 
-            src={image} 
-            alt={`${title} skill`} 
-            className="w-full h-40 object-cover transition-transform hover:scale-105 duration-300" 
-          />
+        <div className="overflow-hidden rounded-md bg-gray-200 dark:bg-gray-700">
+          <div className={`relative ${!imageLoaded ? 'aspect-w-16 aspect-h-9 animate-pulse' : ''}`}>
+            <img 
+              src={image} 
+              alt={`${title} skill`} 
+              className={`w-full h-40 object-cover transition-all duration-300 ${
+                imageLoaded 
+                  ? 'hover:scale-105 opacity-100' 
+                  : 'opacity-0'
+              }`}
+              onLoad={() => setImageLoaded(true)}
+            />
+          </div>
         </div>
         <p className="text-portfolio-text">{description}</p>
         
@@ -66,7 +74,8 @@ const SkillCard = ({
                 <DialogTrigger asChild>
                   <Button 
                     variant="outline" 
-                    className="w-full hover:bg-portfolio-primary hover:text-white"
+                    className="w-full hover:bg-portfolio-primary hover:text-white focus:ring-2 focus:ring-portfolio-primary focus:ring-offset-2"
+                    aria-label={`Maggiori informazioni su ${title}`}
                   >
                     Maggiori Informazioni
                   </Button>
