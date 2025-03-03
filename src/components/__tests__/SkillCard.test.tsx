@@ -4,6 +4,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../test/utils';
 import SkillCard from '../SkillCard';
+import '@testing-library/jest-dom';
 import { Code } from 'lucide-react';
 
 describe('SkillCard Component', () => {

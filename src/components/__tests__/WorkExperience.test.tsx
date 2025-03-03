@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithProviders } from '../../test/utils';
 import WorkExperience from '../WorkExperience';
+import '@testing-library/jest-dom';
 
 describe('WorkExperience Component', () => {
   it('renders section title correctly', () => {
