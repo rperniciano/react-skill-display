@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Skills from "../components/Skills";
-import Projects from "../components/Projects";
 import WorkExperience from "../components/WorkExperience";
 import Footer from "../components/Footer";
 import { ThemeProvider } from "../hooks/useTheme";
@@ -18,7 +17,6 @@ const Index = () => {
         <About />
         <WorkExperience />
         <Skills />
-        <Projects />
         <Footer />
       </div>
     </ThemeProvider>

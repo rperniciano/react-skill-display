@@ -55,9 +55,6 @@ const Navbar = () => {
                   <a href="#skills" className="w-full">Competenze</a>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <a href="#projects" className="w-full">Progetti</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
                   <a href="#contact" className="w-full">Contatti</a>
                 </DropdownMenuItem>
               </DropdownMenuContent>
