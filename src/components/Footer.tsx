@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Mail, Phone, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, Twitter, Instagram, FileText } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -58,6 +58,33 @@ const Footer = () => {
                   aria-label="Visita il mio profilo LinkedIn"
                 >
                   <Linkedin className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://twitter.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Seguimi su Twitter"
+                >
+                  <Twitter className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://instagram.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Seguimi su Instagram"
+                >
+                  <Instagram className="h-6 w-6" />
+                </a>
+                <a
+                  href="/cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  aria-label="Scarica il mio CV"
+                >
+                  <FileText className="h-6 w-6" />
                 </a>
               </div>
             </div>
