@@ -33,7 +33,7 @@ const timelineItems: TimelineItem[] = [
     type: "work"
   },
   {
-    id: 3,
+    id: 2,
     title: "CORSO AVANZATO REACT & TYPESCRIPT",
     organization: "Udemy",
     period: "Settembre 2021 - Ottobre 2021",
@@ -59,7 +59,7 @@ const timelineItems: TimelineItem[] = [
     type: "education"
   },
   {
-    id: 2,
+    id: 4,
     title: "SOFTWARE ENGINEER / FULL-STACK DEVELOPER",
     organization: "SOFTWARELAB",
     period: "2018 - 2021",
@@ -72,7 +72,7 @@ const timelineItems: TimelineItem[] = [
     type: "work"
   },
   {
-    id: 4,
+    id: 5,
     title: "SVILUPPATORE MOBILE",
     organization: "Virtuard LTD",
     period: "Marzo 2018 – Giugno 2018",
@@ -83,7 +83,20 @@ const timelineItems: TimelineItem[] = [
       "Gestione completa del ciclo di sviluppo, inclusi testing e ottimizzazione del software."
     ],
     type: "work"
-  }
+  },
+  {
+    id: 6,
+    title: "DIPLOMA PERITO INFORMATICO",
+    organization: "I.I.S.S. MICHELE GIUA",
+    period: "Settembre 2013 - Ottobre 2018",
+    location: "Online",
+    description: [
+      "Studio approfondito di sistemi di rete, e DBMS, con utilizzo di linguaggio SQL",
+      "Studio approfondito del linguaggio C# in ambito software",
+      "Sviluppo di progetti partendo da 0 per lavori di gruppo, integrando lavoro di squadra e skills"
+    ],
+    type: "education"
+  },
 ];
 
 const getIconByType = (type: TimelineItem["type"]) => {
@@ -92,8 +105,6 @@ const getIconByType = (type: TimelineItem["type"]) => {
       return <Briefcase className="h-5 w-5" />;
     case "education":
       return <GraduationCap className="h-5 w-5" />;
-    case "certification":
-      return <Star className="h-5 w-5" />;
     default:
       return <Briefcase className="h-5 w-5" />;
   }
@@ -105,8 +116,6 @@ const getColorByType = (type: TimelineItem["type"]) => {
       return "bg-portfolio-primary text-white";
     case "education":
       return "bg-blue-600 text-white";
-    case "certification":
-      return "bg-amber-500 text-white";
     default:
       return "bg-portfolio-primary text-white";
   }
@@ -165,12 +174,6 @@ const WorkExperience = () => {
               onClick={() => setFilter("education")}
             >
               Formazione
-            </Button>
-            <Button 
-              variant={filter === "certification" ? "default" : "outline"} 
-              onClick={() => setFilter("certification")}
-            >
-              Certificazioni
             </Button>
           </div>
           
