@@ -15,6 +15,9 @@ describe('Navbar Component', () => {
     
     // Check if theme toggle button exists
     expect(screen.getByLabelText(/Attiva modalità/)).toBeInTheDocument();
+    
+    // Check if language selector exists
+    expect(screen.getByLabelText('Seleziona lingua')).toBeInTheDocument();
   });
 
   it('opens dropdown menu when clicked', async () => {
@@ -28,6 +31,6 @@ describe('Navbar Component', () => {
     // Check if menu items are displayed
     expect(screen.getByText('Chi Sono')).toBeInTheDocument();
     expect(screen.getByText('Competenze')).toBeInTheDocument();
-    expect(screen.getByText('Progetti')).toBeInTheDocument();
+    expect(screen.getByText('Contatti')).toBeInTheDocument();
   });
 });
