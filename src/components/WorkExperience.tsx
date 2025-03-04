@@ -25,9 +25,38 @@ const timelineItems: TimelineItem[] = [
     description: [
       "Progettazione e implementazione di applicazioni Single Page (SPA) utilizzando React e GraphQL, ottimizzando prestazioni e usabilità.",
       "Collaborazione con il team back-end per definire query efficienti e integrare soluzioni personalizzate.",
-      "Sviluppo di componenti UI fedeli ai design realizzati su Figma, garantendo una resa visiva impeccabile."
+      "Sviluppo di componenti UI fedeli ai design realizzati su Figma, garantendo una resa visiva impeccabile.",
+      "Implementazione di UNIT e COVERAGE test tramite JEST, E2E test con Cypress",
+      "Gestione pipeline tramite spinnaker",
+      "Tecniche CD/CI"
     ],
     type: "work"
+  },
+  {
+    id: 3,
+    title: "CORSO AVANZATO REACT & TYPESCRIPT",
+    organization: "Udemy",
+    period: "Settembre 2021 - Ottobre 2021",
+    location: "Online",
+    description: [
+      "Approfondimento delle tecniche avanzate di React con TypeScript",
+      "Implementazione di pattern moderni per lo state management",
+      "Sviluppo di applicazioni React ottimizzate con considerazioni per performance e accessibilità"
+    ],
+    type: "education"
+  },
+  {
+    id: 3,
+    title: "CORSO AVANZATO CSS & SASS",
+    organization: "Udemy",
+    period: "Settembre 2021 - Ottobre 2021",
+    location: "Online",
+    description: [
+      "Approfondimento delle tecniche CSS avanzate",
+      "Studio approfondito del preprocessore SASS",
+      "Sviluppo SPA completamente responsive, con il solo utilizzo di CSS/SASS"
+    ],
+    type: "education"
   },
   {
     id: 2,
@@ -41,19 +70,6 @@ const timelineItems: TimelineItem[] = [
       "Redazione di manuali utente e report analitici per il monitoraggio e la risoluzione di eventuali criticità."
     ],
     type: "work"
-  },
-  {
-    id: 3,
-    title: "CORSO AVANZATO REACT & TYPESCRIPT",
-    organization: "Udemy",
-    period: "Gennaio 2020 - Marzo 2020",
-    location: "Online",
-    description: [
-      "Approfondimento delle tecniche avanzate di React con TypeScript",
-      "Implementazione di pattern moderni per lo state management",
-      "Sviluppo di applicazioni React ottimizzate con considerazioni per performance e accessibilità"
-    ],
-    type: "education"
   },
   {
     id: 4,
