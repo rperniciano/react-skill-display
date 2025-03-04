@@ -34,10 +34,9 @@ const About = () => {
               
               <p className="text-portfolio-text dark:text-gray-300">Ciao, sono un sviluppatore frontend con più di 5 anni di esperienza, specializzato in React e tecnologie web moderne. La mia carriera comprende lo sviluppo di Single Page Applications (SPA) con React e GraphQL, sistemi embedded per pagamenti POS, e applicazioni mobile in realtà virtuale.</p>
               
-              <p className="text-portfolio-text dark:text-gray-300">Oltre alle competenze tecniche in React, ho esperienza con C#, database SQL/MySQL e integrazione di API. Mi piace lavorare in team e affrontare sfide tecniche complesse, trovando il giusto equilibrio tra design innovativo e soluzioni pratiche.
-
-Nell'ultimo anno mi sono concentrato particolarmente sull'utilizzo di LLM nel mondo dello sviluppo, integrandole in vari miei progetti, e studiando il loro utilizzo in ambito aziendale.</p>
+              <p className="text-portfolio-text dark:text-gray-300">Oltre alle competenze tecniche in React, ho esperienza con C#, database SQL/MySQL e integrazione di API. Mi piace lavorare in team e affrontare sfide tecniche complesse, trovando il giusto equilibrio tra design innovativo e soluzioni pratiche.</p>
               
+              <p className="text-portfolio-text dark:text-gray-300">Nell'ultimo anno mi sono concentrato particolarmente sull'utilizzo di LLM nel mondo dello sviluppo, integrandole in vari miei progetti, e studiando il loro utilizzo in ambito aziendale.</p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button variant="outline" className="flex items-center gap-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" asChild>
                   <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
