@@ -90,7 +90,7 @@ const Skills = () => {
           <h2 className="text-4xl font-bold text-portfolio-heading mb-4">
             Le Mie Competenze
           </h2>
-          <p className="text-xl text-portfolio-text mb-8">Questa sezione serve a esemplificare le mie competenze in ambito REACT, i dati qui sotto sono creati da AI e non veritieri</p>
+          <p className="text-xl text-portfolio-text mb-8">Questa sezione serve a esemplificare le mie competenze in ambito REACT, i dati qui sotto sono creati da AI</p>
           
           <Tabs defaultValue="lista" className="mb-12">
             <TabsList className="mx-auto">
