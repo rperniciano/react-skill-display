@@ -67,19 +67,6 @@ const timelineItems: TimelineItem[] = [
       "Gestione completa del ciclo di sviluppo, inclusi testing e ottimizzazione del software."
     ],
     type: "work"
-  },
-  {
-    id: 5,
-    title: "CERTIFICAZIONE AWS DEVELOPER ASSOCIATE",
-    organization: "Amazon Web Services",
-    period: "Novembre 2019",
-    location: "Online",
-    description: [
-      "Certificazione per lo sviluppo di applicazioni su AWS Cloud",
-      "Competenze validate in servizi come Lambda, DynamoDB, e S3",
-      "Implementazione di architetture scalabili e sicure"
-    ],
-    type: "certification"
   }
 ];
 
