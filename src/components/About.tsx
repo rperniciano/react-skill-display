@@ -32,9 +32,7 @@ const About = () => {
                 Sviluppatore React Specializzato
               </h3>
               
-              <p className="text-portfolio-text dark:text-gray-300">
-                Ciao, sono un sviluppatore frontend con più di 5 anni di esperienza, specializzato in React e tecnologie web moderne. La mia carriera comprende lo sviluppo di Single Page Applications (SPA) con React e GraphQL, sistemi embedded per pagamenti POS, e applicazioni mobili in realtà virtuale.
-              </p>
+              <p className="text-portfolio-text dark:text-gray-300">Ciao, sono un sviluppatore frontend con più di 5 anni di esperienza, specializzato in React e tecnologie web moderne. La mia carriera comprende lo sviluppo di Single Page Applications (SPA) con React e GraphQL, sistemi embedded per pagamenti POS, e applicazioni mobile in realtà virtuale.</p>
               
               <p className="text-portfolio-text dark:text-gray-300">Oltre alle competenze tecniche in React, ho esperienza con C#, database SQL/MySQL e integrazione di API. Mi piace lavorare in team e affrontare sfide tecniche complesse, trovando il giusto equilibrio tra design innovativo e soluzioni pratiche.
 
