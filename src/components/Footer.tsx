@@ -1,10 +1,7 @@
 
 import { Mail, Phone, Linkedin, FileText } from "lucide-react";
-import { useLanguage } from "../hooks/useLanguage";
 
 const Footer = () => {
-  const { t } = useLanguage();
-  
   return (
     <section id="contact">
       <footer className="bg-portfolio-secondary py-10 border-t">
@@ -12,10 +9,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
               <h3 className="text-2xl font-bold text-portfolio-heading mb-2">
-                {t('contactMeFooter')}
+                Contattami
               </h3>
               <p className="text-portfolio-text">
-                {t('available')}
+                Sono disponibile per nuove opportunità e collaborazioni
               </p>
             </div>
 
@@ -69,7 +66,7 @@ const Footer = () => {
 
           <div className="mt-8 text-center text-sm text-portfolio-text">
             <p>
-              © {new Date().getFullYear()} Riccardo Perniciano. {t('rights')}
+              © {new Date().getFullYear()} Riccardo Perniciano. Tutti i diritti riservati.
             </p>
           </div>
         </div>

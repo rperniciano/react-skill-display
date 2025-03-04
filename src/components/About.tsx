@@ -2,11 +2,8 @@
 import React from "react";
 import { User, FileText, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "../hooks/useLanguage";
 
 const About = () => {
-  const { t } = useLanguage();
-  
   return (
     <section id="about" className="py-20 bg-portfolio-background dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -18,7 +15,7 @@ const About = () => {
           </div>
           
           <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-8">
-            {t('aboutMe')}
+            Chi Sono
           </h2>
           
           <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -27,7 +24,7 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                 <div className="p-6">
                   <span className="px-3 py-1 bg-portfolio-primary text-white text-sm rounded-full">
-                    {t('experience')}
+                    5+ anni di esperienza
                   </span>
                 </div>
               </div>
@@ -35,26 +32,32 @@ const About = () => {
             
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-portfolio-heading dark:text-white">
-                {t('reactDeveloper')}
+                Sviluppatore React Specializzato
               </h3>
               
-              <p className="text-portfolio-text dark:text-gray-300">{t('aboutDescription1')}</p>
+              <p className="text-portfolio-text dark:text-gray-300">
+                Ciao, sono un sviluppatore frontend con più di 5 anni di esperienza, specializzato in React e tecnologie web moderne. La mia carriera comprende lo sviluppo di Single Page Applications (SPA) con React e GraphQL, sistemi embedded per pagamenti POS, e applicazioni mobile in realtà virtuale.
+              </p>
               
-              <p className="text-portfolio-text dark:text-gray-300">{t('aboutDescription2')}</p>
+              <p className="text-portfolio-text dark:text-gray-300">
+                Oltre alle competenze tecniche in React, ho esperienza con C#, database SQL/MySQL e integrazione di API. Mi piace lavorare in team e affrontare sfide tecniche complesse, trovando il giusto equilibrio tra design innovativo e soluzioni pratiche.
+              </p>
               
-              <p className="text-portfolio-text dark:text-gray-300">{t('aboutDescription3')}</p>
+              <p className="text-portfolio-text dark:text-gray-300">
+                Nell'ultimo anno mi sono concentrato particolarmente sull'utilizzo di LLM nel mondo dello sviluppo, integrandole in vari miei progetti, e studiando il loro utilizzo in ambito aziendale.
+              </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button variant="outline" className="flex items-center gap-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" asChild>
                   <a href="/Curriculum-Riccardo-Perniciano.pdf" target="_blank" rel="noopener noreferrer">
                     <FileText className="h-4 w-4" />
-                    {t('downloadCV')}
+                    Scarica CV
                   </a>
                 </Button>
                 
                 <Button className="flex items-center gap-2" asChild>
                   <a href="#contact">
                     <ExternalLink className="h-4 w-4" />
-                    {t('contactMe')}
+                    Contattami
                   </a>
                 </Button>
               </div>
