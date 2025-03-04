@@ -39,7 +39,7 @@ const About = () => {
               <p className="text-portfolio-text dark:text-gray-300">Nell'ultimo anno mi sono concentrato particolarmente sull'utilizzo di LLM nel mondo dello sviluppo, integrandole in vari miei progetti, e studiando il loro utilizzo in ambito aziendale.</p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button variant="outline" className="flex items-center gap-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" asChild>
-                  <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="/Curriculum-Riccardo-Perniciano.pdf" target="_blank" rel="noopener noreferrer">
                     <FileText className="h-4 w-4" />
                     Scarica CV
                   </a>

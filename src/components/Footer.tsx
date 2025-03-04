@@ -1,6 +1,5 @@
 
-import React from "react";
-import { Mail, Phone, Github, Linkedin, Twitter, Instagram, FileText } from "lucide-react";
+import { Mail, Phone, Linkedin, FileText } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -42,16 +41,7 @@ const Footer = () => {
               
               <div className="flex items-center gap-4 mt-4">
                 <a
-                  href="https://github.com/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
-                  aria-label="Visita il mio profilo GitHub"
-                >
-                  <Github className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/riccardo-perniciano-42a28321a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-portfolio-text hover:text-portfolio-primary transition-colors"
@@ -60,31 +50,15 @@ const Footer = () => {
                   <Linkedin className="h-6 w-6" />
                 </a>
                 <a
-                  href="https://twitter.com/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
-                  aria-label="Seguimi su Twitter"
-                >
-                  <Twitter className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://instagram.com/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
-                  aria-label="Seguimi su Instagram"
-                >
-                  <Instagram className="h-6 w-6" />
-                </a>
-                <a
                   href="/cv.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-portfolio-text hover:text-portfolio-primary transition-colors"
                   aria-label="Scarica il mio CV"
                 >
-                  <FileText className="h-6 w-6" />
+                  <a href="/Curriculum-Riccardo-Perniciano.pdf" target="_blank" rel="noopener noreferrer">
+                    <FileText className="h-6 w-6"/> 
+                  </a>
                 </a>
               </div>
             </div>
@@ -92,7 +66,7 @@ const Footer = () => {
 
           <div className="mt-8 text-center text-sm text-portfolio-text">
             <p>
-              © {new Date().getFullYear()} Il tuo nome. Tutti i diritti
+              © {new Date().getFullYear()} Riccardo Perniciano. Tutti i diritti
               riservati.
             </p>
           </div>
