@@ -1,6 +1,7 @@
-
-import { Briefcase, Github, ExternalLink } from "lucide-react";
+import React from "react";
+import { Briefcase, Github, ExternalLink, TrendingUp, Clock, Code2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -9,57 +10,90 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-const projects = [
-  {
-    title: "E-commerce Dashboard",
-    description: "Dashboard per la gestione di un negozio online con analisi delle vendite in tempo reale",
-    tags: ["React", "TypeScript", "Chart.js", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1000&q=80",
-    github: "https://github.com/username/ecommerce-dashboard",
-    demo: "https://demo-ecommerce-dashboard.example.com",
-  },
-  {
-    title: "Social Media App",
-    description: "Applicazione social media con funzionalità di chat in tempo reale e condivisione di contenuti",
-    tags: ["React", "Firebase", "Redux", "Styled Components"],
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
-    github: "https://github.com/username/social-media-app",
-    demo: "https://demo-social-app.example.com",
-  },
-  {
-    title: "Gestione Progetti",
-    description: "Applicazione per la gestione di progetti e task con funzionalità di drag-and-drop e reportistica",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1000&q=80",
-    github: "https://github.com/username/project-management",
-    demo: "https://demo-project-management.example.com",
-  },
-];
+import { portfolioData } from "./portfolio-data";
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 bg-portfolio-secondary">
+    <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center mb-8">
-            <div className="bg-portfolio-primary/20 p-3 rounded-full">
-              <Briefcase className="h-8 w-8 text-portfolio-primary" aria-hidden="true" />
+            <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-full">
+              <Briefcase className="h-8 w-8 text-white" aria-hidden="true" />
             </div>
           </div>
           
-          <h2 className="text-4xl font-bold text-portfolio-heading text-center mb-4">
+          <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-4">
             Progetti & Portfolio
           </h2>
           
-          <p className="text-portfolio-text text-center max-w-2xl mx-auto mb-12">
-            Una selezione dei miei progetti recenti. Ogni progetto è il risultato di una combinazione di design intuitivo ed esperienza tecnica.
+          <p className="text-portfolio-text dark:text-gray-300 text-center max-w-2xl mx-auto mb-12">
+            Progetti enterprise e personali che dimostrano expertise in architetture scalabili, AI integration e sviluppo full-stack
           </p>
           
+          {/* Featured Project - FEDRO */}
+          <div className="mb-12">
+            <Card className="overflow-hidden bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20">
+              <div className="md:flex">
+                <div className="md:w-2/5">
+                  <img 
+                    src={portfolioData.projects[0].image} 
+                    alt={portfolioData.projects[0].title} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="md:w-3/5 p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge className="bg-purple-600 text-white">Lead Developer</Badge>
+                    <Badge variant="outline">2025</Badge>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3">{portfolioData.projects[0].title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    {portfolioData.projects[0].longDescription}
+                  </p>
+                  
+                  {/* Metrics */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    {portfolioData.projects[0].metrics.map((metric, i) => (
+                      <div key={i} className="text-center">
+                        <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                          {metric.split(' ')[0]}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {metric.split(' ').slice(1).join(' ')}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {portfolioData.projects[0].technologies.map((tech, i) => (
+                      <Badge key={i} variant="secondary">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  {/* Features */}
+                  <div className="space-y-1 mb-4">
+                    {portfolioData.projects[0].features.slice(0, 3).map((feature, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <Code2 className="h-3 w-3" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+          
+          {/* Other Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <Card key={index} className="overflow-hidden flex flex-col h-full hover:shadow-lg transition-shadow bg-background">
-                <div className="h-48 overflow-hidden">
+            {portfolioData.projects.slice(1).map((project, index) => (
+              <Card key={index} className="overflow-hidden flex flex-col h-full hover:shadow-xl transition-all hover:-translate-y-1">
+                <div className="h-48 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700">
                   <img 
                     src={project.image} 
                     alt={project.title} 
@@ -68,64 +102,119 @@ const Projects = () => {
                 </div>
                 
                 <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant={project.type === "enterprise" ? "default" : "secondary"}>
+                      {project.type === "enterprise" ? "Enterprise" : "Personal"}
+                    </Badge>
+                    <span className="text-sm text-gray-500">{project.year}</span>
+                  </div>
+                  <CardTitle className="text-lg">{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
                 
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span 
+                <CardContent className="flex-1">
+                  {/* Metrics or Features */}
+                  {project.metrics && (
+                    <div className="space-y-2 mb-4">
+                      {project.metrics.slice(0, 2).map((metric, i) => (
+                        <div key={i} className="flex items-center gap-2 text-sm">
+                          <TrendingUp className="h-3 w-3 text-green-500" />
+                          <span className="text-gray-600 dark:text-gray-400">{metric}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.slice(0, 4).map((tech, tagIndex) => (
+                      <Badge 
                         key={tagIndex} 
-                        className="text-xs px-2 py-1 rounded-full bg-portfolio-primary/10 text-portfolio-primary"
+                        variant="outline"
+                        className="text-xs"
                       >
-                        {tag}
-                      </span>
+                        {tech}
+                      </Badge>
                     ))}
+                    {project.technologies.length > 4 && (
+                      <Badge variant="outline" className="text-xs">
+                        +{project.technologies.length - 4}
+                      </Badge>
+                    )}
                   </div>
                 </CardContent>
                 
                 <CardFooter className="flex justify-between mt-auto">
-                  <Button variant="outline" size="sm" asChild>
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1"
-                    >
-                      <Github className="h-4 w-4" />
-                      <span>Codice</span>
-                    </a>
-                  </Button>
+                  {project.github ? (
+                    <Button variant="outline" size="sm" asChild>
+                      <a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1"
+                      >
+                        <Github className="h-4 w-4" />
+                        <span>Codice</span>
+                      </a>
+                    </Button>
+                  ) : (
+                    <Badge variant="outline" className="text-xs">
+                      <Clock className="h-3 w-3 mr-1" />
+                      Proprietario
+                    </Badge>
+                  )}
                   
-                  <Button size="sm" asChild>
-                    <a 
-                      href={project.demo} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      <span>Demo</span>
-                    </a>
-                  </Button>
+                  {project.demo && (
+                    <Button size="sm" asChild>
+                      <a 
+                        href={project.demo} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        <span>Demo</span>
+                      </a>
+                    </Button>
+                  )}
+                  
+                  {project.client && (
+                    <Badge variant="secondary" className="text-xs">
+                      <Users className="h-3 w-3 mr-1" />
+                      {project.client}
+                    </Badge>
+                  )}
                 </CardFooter>
               </Card>
             ))}
           </div>
           
-          <div className="mt-12 text-center">
-            <Button asChild variant="outline">
-              <a 
-                href="https://github.com/yourusername" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
-              >
-                <Github className="h-4 w-4" />
-                <span>Altri progetti su GitHub</span>
-              </a>
-            </Button>
+          {/* Call to Action */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex flex-col items-center">
+              <h3 className="text-2xl font-bold mb-4">Interessato a collaborare?</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
+                Sono sempre aperto a nuove sfide e progetti interessanti. Contattami per discutere come posso contribuire al tuo team.
+              </p>
+              <div className="flex gap-4">
+                <Button asChild>
+                  <a href="#contact">
+                    Contattami
+                  </a>
+                </Button>
+                <Button variant="outline" asChild>
+                  <a 
+                    href="https://github.com/rickyperniciano" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Github className="h-4 w-4" />
+                    <span>Altri progetti su GitHub</span>
+                  </a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

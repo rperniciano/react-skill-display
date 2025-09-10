@@ -1,102 +1,134 @@
 
 import React, { useState } from "react";
-import { Briefcase, Calendar, ChevronDown, ChevronUp, GraduationCap, Star } from "lucide-react";
+import { Briefcase, Calendar, ChevronDown, ChevronUp, GraduationCap, Star, Building2, Users, TrendingUp, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { portfolioData } from "./portfolio-data";
 
 interface TimelineItem {
   id: number;
   title: string;
   organization: string;
+  client?: string;
   period: string;
   location: string;
   description: string[];
   type: "work" | "education" | "certification";
+  technologies?: string[];
+  highlight?: boolean;
+  current?: boolean;
 }
 
 const timelineItems: TimelineItem[] = [
   {
     id: 1,
-    title: "REACT DEVELOPER",
-    organization: "ALTEN",
-    period: "2021 - 2023",
-    location: "Roma",
+    title: "SOFTWARE ENGINEER - LEAD DEVELOPER",
+    organization: "FEDRO Software SRL",
+    period: "Gennaio 2025 - Presente",
+    location: "Cagliari",
     description: [
-      "Progettazione e implementazione di applicazioni Single Page (SPA) utilizzando React e GraphQL, ottimizzando prestazioni e usabilità.",
-      "Collaborazione con il team back-end per definire query efficienti e integrare soluzioni personalizzate.",
-      "Sviluppo di componenti UI fedeli ai design realizzati su Figma, garantendo una resa visiva impeccabile.",
-      "Implementazione di UNIT e COVERAGE test tramite JEST, E2E test con Cypress",
-      "Gestione pipeline tramite spinnaker",
-      "Tecniche CD/CI"
+      "Lead developer della piattaforma FEDRO CognitiveServices per analisi chiamate con AI",
+      "Ridotto l'85% del codice legacy attraverso refactoring con Template Method Pattern",
+      "Implementato sistema Hangfire V2 per processing parallelo di 100+ file audio",
+      "Raggiunto 99.9% uptime con retry policies e gestione errori resiliente",
+      "Sviluppato abstraction layer per multi-provider AI (Azure, Assembly.AI, OpenAI)",
+      "Gestione isolata di 50+ tenant con RBAC granulare",
+      "Ottimizzato performance del 50% attraverso caching multi-livello e query optimization"
     ],
-    type: "work"
+    type: "work",
+    technologies: [".NET 9", "Angular", "ABP.io", "Elasticsearch", "Azure AI", "OpenAI", "Hangfire", "Docker"],
+    highlight: true,
+    current: true
   },
   {
     id: 2,
-    title: "CORSO AVANZATO REACT & TYPESCRIPT",
-    organization: "Udemy",
-    period: "Settembre 2021 - Ottobre 2021",
-    location: "Online",
+    title: "REACT DEVELOPER",
+    organization: "ALTEN Italia",
+    client: "Expedia Group",
+    period: "2021 - 2023",
+    location: "Roma (Remoto)",
     description: [
-      "Approfondimento delle tecniche avanzate di React con TypeScript",
-      "Implementazione di pattern moderni per lo state management",
-      "Sviluppo di applicazioni React ottimizzate con considerazioni per performance e accessibilità"
+      "Sviluppato componenti React per piattaforma con milioni di utenti",
+      "Ottimizzato query GraphQL riducendo latenza API del 40%",
+      "Team internazionale di 10+ sviluppatori in metodologia Agile",
+      "Implementato testing con Jest e Cypress (coverage 80%+)",
+      "Gestione pipeline CI/CD con Spinnaker",
+      "Sviluppo di componenti UI fedeli ai design realizzati su Figma"
     ],
-    type: "education"
+    type: "work",
+    technologies: ["React", "TypeScript", "GraphQL", "Redux", "Jest", "Cypress"],
+    highlight: false
   },
   {
     id: 3,
-    title: "CORSO AVANZATO CSS & SASS",
-    organization: "Udemy",
-    period: "Settembre 2021 - Ottobre 2021",
-    location: "Online",
-    description: [
-      "Approfondimento delle tecniche CSS avanzate",
-      "Studio approfondito del preprocessore SASS",
-      "Sviluppo SPA completamente responsive, con il solo utilizzo di CSS/SASS"
-    ],
-    type: "education"
-  },
-  {
-    id: 4,
     title: "SOFTWARE ENGINEER / FULL-STACK DEVELOPER",
     organization: "SOFTWARELAB",
     period: "2018 - 2021",
     location: "Cagliari",
     description: [
-      "Progettazione e sviluppo di sistemi embedded per la gestione di pagamenti via POS e stampa di report.",
-      "Sviluppo di applicazioni in C# e gestione dei database tramite SQL/MySQL, assicurando comunicazioni fluide con vari WebServices.",
-      "Redazione di manuali utente e report analitici per il monitoraggio e la risoluzione di eventuali criticità."
+      "Progettato sistema POS embedded gestendo 100.000+ transazioni/anno",
+      "Sviluppato integrazioni WebServices per comunicazione real-time con sistemi bancari",
+      "Ottimizzato database queries migliorando response time del 60%",
+      "Creato documentazione tecnica e manuali utente per deployment e manutenzione"
     ],
-    type: "work"
+    type: "work",
+    technologies: ["C#", "SQL Server", "MySQL", "REST APIs", "Embedded Systems"]
   },
   {
-    id: 5,
+    id: 4,
     title: "SVILUPPATORE MOBILE",
     organization: "Virtuard LTD",
     period: "Marzo 2018 – Giugno 2018",
     location: "Cagliari",
     description: [
-      "Progettazione e sviluppo di un'applicazione mobile per il caricamento e la visualizzazione di immagini 3D in realtà virtale, direttamente da smartphone.",
-      "Implementazione di funzionalità avanzate tramite Unity e C#, integrando librerie Google VR per la gestione di giroscopio e oscilloscopio.",
-      "Gestione completa del ciclo di sviluppo, inclusi testing e ottimizzazione del software."
+      "Sviluppato app mobile VR per visualizzazione modelli 3D",
+      "Implementato gesture recognition con giroscopio e accelerometro",
+      "Ottimizzato rendering per 60 FPS stabili su dispositivi mobile"
     ],
-    type: "work"
+    type: "work",
+    technologies: ["Unity", "C#", "Google VR SDK"]
   },
   {
-    id: 6,
-    title: "DIPLOMA PERITO INFORMATICO",
-    organization: "I.I.S.S. MICHELE GIUA",
-    period: "Settembre 2013 - Ottobre 2018",
+    id: 5,
+    title: "MACHINE LEARNING SPECIALIZATION",
+    organization: "Stanford University via Coursera",
+    period: "2023",
     location: "Online",
     description: [
-      "Studio approfondito di sistemi di rete, e DBMS, con utilizzo di linguaggio SQL",
-      "Studio approfondito del linguaggio C# in ambito software",
-      "Sviluppo di progetti partendo da 0 per lavori di gruppo, integrando lavoro di squadra e skills"
+      "Completato corso completo di Machine Learning con Andrew Ng",
+      "Studio di algoritmi supervisionati e non supervisionati",
+      "Implementazione di neural networks e deep learning"
     ],
     type: "education"
   },
+  {
+    id: 6,
+    title: "REACT ADVANCED + REDUX",
+    organization: "Udemy",
+    period: "2021",
+    location: "Online",
+    description: [
+      "Approfondimento tecniche avanzate React con TypeScript",
+      "Redux, Redux Toolkit, Redux Saga per state management",
+      "Performance optimization e best practices"
+    ],
+    type: "education"
+  },
+  {
+    id: 7,
+    title: "DIPLOMA PERITO INFORMATICO",
+    organization: "ITIS GIUA",
+    period: "2013 - 2018",
+    location: "Cagliari",
+    description: [
+      "Specializzazione in Informatica e Telecomunicazioni",
+      "Focus su sviluppo software, reti e database",
+      "Progetti pratici in C#, SQL, networking"
+    ],
+    type: "education"
+  }
 ];
 
 const getIconByType = (type: TimelineItem["type"]) => {
@@ -105,6 +137,8 @@ const getIconByType = (type: TimelineItem["type"]) => {
       return <Briefcase className="h-5 w-5" />;
     case "education":
       return <GraduationCap className="h-5 w-5" />;
+    case "certification":
+      return <Award className="h-5 w-5" />;
     default:
       return <Briefcase className="h-5 w-5" />;
   }
@@ -113,9 +147,11 @@ const getIconByType = (type: TimelineItem["type"]) => {
 const getColorByType = (type: TimelineItem["type"]) => {
   switch (type) {
     case "work":
-      return "bg-portfolio-primary text-white";
+      return "bg-gradient-to-r from-purple-600 to-purple-500 text-white";
     case "education":
-      return "bg-blue-600 text-white";
+      return "bg-gradient-to-r from-blue-600 to-blue-500 text-white";
+    case "certification":
+      return "bg-gradient-to-r from-green-600 to-green-500 text-white";
     default:
       return "bg-portfolio-primary text-white";
   }
@@ -192,18 +228,48 @@ const WorkExperience = () => {
                   {/* Content card */}
                   <div className={`w-5/12 ${index % 2 === 0 ? 'ml-auto pl-8' : 'mr-auto pr-8'}`}>
                     <Collapsible open={openItems.includes(item.id)}>
-                      <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-background dark:bg-gray-900 dark:border-gray-700">
-                        <div className="p-4 flex justify-between items-start">
-                          <div>
-                            <h3 className="text-lg font-semibold dark:text-white">{item.title}</h3>
-                            <p className="text-portfolio-primary font-medium mt-1">
-                              {item.organization}, {item.location}
-                            </p>
+                      <Card className={`overflow-hidden hover:shadow-xl transition-all ${item.highlight ? 'ring-2 ring-purple-500' : ''} bg-background dark:bg-gray-900 dark:border-gray-700`}>
+                        <div className="p-4">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex-1">
+                              {item.current && (
+                                <Badge className="mb-2 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                  Posizione Corrente
+                                </Badge>
+                              )}
+                              <h3 className="text-lg font-bold dark:text-white">{item.title}</h3>
+                              <p className="text-purple-600 dark:text-purple-400 font-semibold mt-1">
+                                {item.organization}
+                              </p>
+                              {item.client && (
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                  Cliente: {item.client}
+                                </p>
+                              )}
+                              <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                                {item.location}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-1 px-3 py-1 bg-portfolio-secondary/20 dark:bg-gray-800 rounded-full text-sm">
+                              <Calendar className="h-4 w-4" />
+                              <span>{item.period}</span>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-1 px-3 py-1 bg-portfolio-secondary/20 dark:bg-gray-800 rounded-full text-sm">
-                            <Calendar className="h-4 w-4" />
-                            <span>{item.period}</span>
-                          </div>
+                          
+                          {item.technologies && (
+                            <div className="flex flex-wrap gap-1 mt-3">
+                              {item.technologies.slice(0, 4).map((tech, i) => (
+                                <Badge key={i} variant="secondary" className="text-xs">
+                                  {tech}
+                                </Badge>
+                              ))}
+                              {item.technologies.length > 4 && (
+                                <Badge variant="secondary" className="text-xs">
+                                  +{item.technologies.length - 4}
+                                </Badge>
+                              )}
+                            </div>
+                          )}
                         </div>
                         
                         <CollapsibleTrigger asChild>
