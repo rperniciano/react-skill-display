@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Briefcase, Calendar, ChevronDown, ChevronUp, GraduationCap, Star, Building2, Users, TrendingUp, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,9 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { portfolioData } from "./portfolio-data";
+import { useLanguage } from "./LanguageContext";
+import { formatPeriod, getJobDescription } from "./translation-utils";
 
 interface TimelineItem {
   id: number;
+  jobId: string;
   title: string;
   organization: string;
   client?: string;
@@ -21,144 +23,91 @@ interface TimelineItem {
   current?: boolean;
 }
 
-const timelineItems: TimelineItem[] = [
-  {
-    id: 1,
-    title: "SOFTWARE ENGINEER - LEAD DEVELOPER",
-    organization: "FEDRO Software SRL",
-    period: "Gennaio 2025 - Presente",
-    location: "Cagliari",
-    description: [
-      "Lead developer della piattaforma FEDRO CognitiveServices per analisi chiamate con AI",
-      "Ridotto l'85% del codice legacy attraverso refactoring con Template Method Pattern",
-      "Implementato sistema Hangfire V2 per processing parallelo di 100+ file audio",
-      "Raggiunto 99.9% uptime con retry policies e gestione errori resiliente",
-      "Sviluppato abstraction layer per multi-provider AI (Azure, Assembly.AI, OpenAI)",
-      "Gestione isolata di 50+ tenant con RBAC granulare",
-      "Ottimizzato performance del 50% attraverso caching multi-livello e query optimization"
-    ],
-    type: "work",
-    technologies: [".NET 9", "Angular", "ABP.io", "Elasticsearch", "Azure AI", "OpenAI", "Hangfire", "Docker"],
-    highlight: true,
-    current: true
-  },
-  {
-    id: 2,
-    title: "REACT DEVELOPER",
-    organization: "ALTEN Italia",
-    client: "Expedia Group",
-    period: "2021 - 2023",
-    location: "Roma (Remoto)",
-    description: [
-      "Sviluppato componenti React per piattaforma con milioni di utenti",
-      "Ottimizzato query GraphQL riducendo latenza API del 40%",
-      "Team internazionale di 10+ sviluppatori in metodologia Agile",
-      "Implementato testing con Jest e Cypress (coverage 80%+)",
-      "Gestione pipeline CI/CD con Spinnaker",
-      "Sviluppo di componenti UI fedeli ai design realizzati su Figma"
-    ],
-    type: "work",
-    technologies: ["React", "TypeScript", "GraphQL", "Redux", "Jest", "Cypress"],
-    highlight: false
-  },
-  {
-    id: 3,
-    title: "SOFTWARE ENGINEER / FULL-STACK DEVELOPER",
-    organization: "SOFTWARELAB",
-    period: "2018 - 2021",
-    location: "Cagliari",
-    description: [
-      "Progettato sistema POS embedded gestendo 100.000+ transazioni/anno",
-      "Sviluppato integrazioni WebServices per comunicazione real-time con sistemi bancari",
-      "Ottimizzato database queries migliorando response time del 60%",
-      "Creato documentazione tecnica e manuali utente per deployment e manutenzione"
-    ],
-    type: "work",
-    technologies: ["C#", "SQL Server", "MySQL", "REST APIs", "Embedded Systems"]
-  },
-  {
-    id: 4,
-    title: "SVILUPPATORE MOBILE",
-    organization: "Virtuard LTD",
-    period: "Marzo 2018 – Giugno 2018",
-    location: "Cagliari",
-    description: [
-      "Sviluppato app mobile VR per visualizzazione modelli 3D",
-      "Implementato gesture recognition con giroscopio e accelerometro",
-      "Ottimizzato rendering per 60 FPS stabili su dispositivi mobile"
-    ],
-    type: "work",
-    technologies: ["Unity", "C#", "Google VR SDK"]
-  },
-  {
-    id: 5,
-    title: "MACHINE LEARNING SPECIALIZATION",
-    organization: "Stanford University via Coursera",
-    period: "2023",
-    location: "Online",
-    description: [
-      "Completato corso completo di Machine Learning con Andrew Ng",
-      "Studio di algoritmi supervisionati e non supervisionati",
-      "Implementazione di neural networks e deep learning"
-    ],
-    type: "education"
-  },
-  {
-    id: 6,
-    title: "REACT ADVANCED + REDUX",
-    organization: "Udemy",
-    period: "2021",
-    location: "Online",
-    description: [
-      "Approfondimento tecniche avanzate React con TypeScript",
-      "Redux, Redux Toolkit, Redux Saga per state management",
-      "Performance optimization e best practices"
-    ],
-    type: "education"
-  },
-  {
-    id: 7,
-    title: "DIPLOMA PERITO INFORMATICO",
-    organization: "ITIS GIUA",
-    period: "2013 - 2018",
-    location: "Cagliari",
-    description: [
-      "Specializzazione in Informatica e Telecomunicazioni",
-      "Focus su sviluppo software, reti e database",
-      "Progetti pratici in C#, SQL, networking"
-    ],
-    type: "education"
-  }
-];
-
-const getIconByType = (type: TimelineItem["type"]) => {
-  switch (type) {
-    case "work":
-      return <Briefcase className="h-5 w-5" />;
-    case "education":
-      return <GraduationCap className="h-5 w-5" />;
-    case "certification":
-      return <Award className="h-5 w-5" />;
-    default:
-      return <Briefcase className="h-5 w-5" />;
-  }
-};
-
-const getColorByType = (type: TimelineItem["type"]) => {
-  switch (type) {
-    case "work":
-      return "bg-gradient-to-r from-purple-600 to-purple-500 text-white";
-    case "education":
-      return "bg-gradient-to-r from-blue-600 to-blue-500 text-white";
-    case "certification":
-      return "bg-gradient-to-r from-green-600 to-green-500 text-white";
-    default:
-      return "bg-portfolio-primary text-white";
-  }
-};
-
 const WorkExperience = () => {
+  const { t, language } = useLanguage();
   const [openItems, setOpenItems] = useState<number[]>([1]);
+  const [filter, setFilter] = useState<TimelineItem["type"] | "all">("all");
+
+  const timelineItems: TimelineItem[] = [
+    {
+      id: 1,
+      jobId: 'fedro',
+      title: "SOFTWARE ENGINEER - LEAD DEVELOPER",
+      organization: "FEDRO Software SRL",
+      period: "Gennaio 2025 - Presente",
+      location: "Cagliari",
+      description: getJobDescription('fedro', t),
+      type: "work",
+      technologies: [".NET 9", "Angular", "ABP.io", "Elasticsearch", "Azure AI", "OpenAI", "Hangfire", "Docker"],
+      highlight: true,
+      current: true
+    },
+    {
+      id: 2,
+      jobId: 'alten',
+      title: "REACT DEVELOPER",
+      organization: "ALTEN Italia",
+      client: "Expedia Group",
+      period: "2021 - 2023",
+      location: language === 'it' ? "Roma (Remoto)" : language === 'es' ? "Roma (Remoto)" : "Rome (Remote)",
+      description: getJobDescription('alten', t),
+      type: "work",
+      technologies: ["React", "TypeScript", "GraphQL", "Redux", "Jest", "Cypress"],
+      highlight: false
+    },
+    {
+      id: 3,
+      jobId: 'softwarelab',
+      title: "SOFTWARE ENGINEER / FULL-STACK DEVELOPER",
+      organization: "SOFTWARELAB",
+      period: "2018 - 2021",
+      location: "Cagliari",
+      description: getJobDescription('softwarelab', t),
+      type: "work",
+      technologies: ["C#", "SQL Server", "MySQL", "REST APIs", "Embedded Systems"]
+    },
+    {
+      id: 4,
+      jobId: 'virtuard',
+      title: language === 'it' ? "SVILUPPATORE MOBILE" : language === 'es' ? "DESARROLLADOR MÓVIL" : "MOBILE DEVELOPER",
+      organization: "Virtuard LTD",
+      period: "Marzo 2018 – Giugno 2018",
+      location: "Cagliari",
+      description: getJobDescription('virtuard', t),
+      type: "work",
+      technologies: ["Unity", "C#", "Google VR SDK"]
+    },
+    {
+      id: 5,
+      jobId: 'ml-course',
+      title: "MACHINE LEARNING SPECIALIZATION",
+      organization: "Stanford University via Coursera",
+      period: "2023",
+      location: "Online",
+      description: getJobDescription('ml-course', t),
+      type: "education"
+    },
+    {
+      id: 6,
+      jobId: 'react-course',
+      title: "REACT ADVANCED + REDUX",
+      organization: "Udemy",
+      period: "2021",
+      location: "Online",
+      description: getJobDescription('react-course', t),
+      type: "education"
+    },
+    {
+      id: 7,
+      jobId: 'diploma',
+      title: language === 'it' ? "DIPLOMA PERITO INFORMATICO" : language === 'es' ? "DIPLOMA EN INFORMÁTICA" : "COMPUTER SCIENCE DIPLOMA",
+      organization: "ITIS GIUA",
+      period: "2013 - 2018",
+      location: "Cagliari",
+      description: getJobDescription('diploma', t),
+      type: "education"
+    }
+  ];
 
   const toggleItem = (id: number) => {
     setOpenItems(prevOpenItems => 
@@ -168,11 +117,35 @@ const WorkExperience = () => {
     );
   };
 
-  const [filter, setFilter] = useState<TimelineItem["type"] | "all">("all");
-
   const filteredItems = filter === "all" 
     ? timelineItems 
     : timelineItems.filter(item => item.type === filter);
+
+  const getIconByType = (type: TimelineItem["type"]) => {
+    switch (type) {
+      case "work":
+        return <Briefcase className="h-5 w-5" />;
+      case "education":
+        return <GraduationCap className="h-5 w-5" />;
+      case "certification":
+        return <Award className="h-5 w-5" />;
+      default:
+        return <Briefcase className="h-5 w-5" />;
+    }
+  };
+
+  const getColorByType = (type: TimelineItem["type"]) => {
+    switch (type) {
+      case "work":
+        return "bg-gradient-to-r from-purple-600 to-purple-500 text-white";
+      case "education":
+        return "bg-gradient-to-r from-blue-600 to-blue-500 text-white";
+      case "certification":
+        return "bg-gradient-to-r from-green-600 to-green-500 text-white";
+      default:
+        return "bg-portfolio-primary text-white";
+    }
+  };
 
   return (
     <section id="experience" className="py-20 bg-portfolio-secondary/30 dark:bg-gray-800">
@@ -185,11 +158,11 @@ const WorkExperience = () => {
           </div>
           
           <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-4">
-            Timeline Professionale
+            {t.experience.title}
           </h2>
           
           <p className="text-portfolio-text dark:text-gray-300 text-center max-w-2xl mx-auto mb-8">
-            Il mio percorso professionale include diversi ruoli tecnici, formazione continua e certificazioni.
+            {t.experience.subtitle}
           </p>
           
           <div className="flex justify-center gap-2 mb-10">
@@ -197,19 +170,19 @@ const WorkExperience = () => {
               variant={filter === "all" ? "default" : "outline"} 
               onClick={() => setFilter("all")}
             >
-              Tutto
+              {t.experience.all}
             </Button>
             <Button 
               variant={filter === "work" ? "default" : "outline"} 
               onClick={() => setFilter("work")}
             >
-              Lavoro
+              {t.experience.work}
             </Button>
             <Button 
               variant={filter === "education" ? "default" : "outline"} 
               onClick={() => setFilter("education")}
             >
-              Formazione
+              {t.experience.education}
             </Button>
           </div>
           
@@ -234,7 +207,7 @@ const WorkExperience = () => {
                             <div className="flex-1">
                               {item.current && (
                                 <Badge className="mb-2 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                  Posizione Corrente
+                                  {t.experience.currentPosition}
                                 </Badge>
                               )}
                               <h3 className="text-lg font-bold dark:text-white">{item.title}</h3>
@@ -243,7 +216,7 @@ const WorkExperience = () => {
                               </p>
                               {item.client && (
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                                  Cliente: {item.client}
+                                  {t.experience.client}: {item.client}
                                 </p>
                               )}
                               <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
@@ -252,7 +225,7 @@ const WorkExperience = () => {
                             </div>
                             <div className="flex items-center gap-1 px-3 py-1 bg-portfolio-secondary/20 dark:bg-gray-800 rounded-full text-sm">
                               <Calendar className="h-4 w-4" />
-                              <span>{item.period}</span>
+                              <span>{formatPeriod(item.period, language, t)}</span>
                             </div>
                           </div>
                           
@@ -282,12 +255,12 @@ const WorkExperience = () => {
                             {openItems.includes(item.id) ? (
                               <>
                                 <ChevronUp className="h-4 w-4 mr-1" />
-                                <span>Nascondi dettagli</span>
+                                <span>{t.experience.hideDetails}</span>
                               </>
                             ) : (
                               <>
                                 <ChevronDown className="h-4 w-4 mr-1" />
-                                <span>Mostra dettagli</span>
+                                <span>{t.experience.showDetails}</span>
                               </>
                             )}
                           </Button>

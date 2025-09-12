@@ -1,0 +1,622 @@
+// Translation system for portfolio
+export const translations = {
+  it: {
+    nav: {
+      home: "Home",
+      skills: "Competenze",
+      experience: "Esperienza",
+      projects: "Progetti",
+      about: "Chi Sono",
+      contact: "Contatti",
+      downloadCV: "Scarica CV"
+    },
+    hero: {
+      available: "Disponibile per nuovi progetti",
+      yearsExp: "anni di esperienza",
+      leadDeveloper: "Lead Developer presso",
+      specializedIn: "Specializzato in",
+      andArchitectures: "e architetture enterprise",
+      explorePortfolio: "Esplora Portfolio",
+      downloadCV: "Download CV",
+      codeReduction: "Riduzione Codice",
+      uptime: "Uptime",
+      transcriptionsHour: "Trascrizioni/ora"
+    },
+    skills: {
+      title: "Competenze Tecniche",
+      subtitle: "anni di esperienza • Full Stack Development • AI Integration",
+      currentPosition: "Lead Developer @ FEDRO",
+      exTeam: "Ex-Expedia Team",
+      viewGrid: "Vista Griglia",
+      coreSkills: "Competenze Core",
+      experience: "Esperienza",
+      distribution: "Distribuzione",
+      mainSkills: "Competenze Principali",
+      skillLevel: "Livello di padronanza delle tecnologie core",
+      yearsExperience: "Anni di Esperienza per Tecnologia",
+      topTech: "Top 10 tecnologie per esperienza e livello di competenza",
+      skillDistribution: "Distribuzione delle Competenze",
+      byArea: "Ripartizione per area di specializzazione",
+      technologies: "Tecnologie Padroneggiante",
+      years: "Anni di Esperienza",
+      avgLevel: "Livello Medio Competenza",
+      certifications: "Certificazioni",
+      all: "Tutte",
+      frontend: "Frontend",
+      backend: "Backend",
+      aiCloud: "AI & Cloud",
+      architecture: "Architettura",
+      devops: "DevOps",
+      testing: "Testing",
+      viewCarousel: "Visualizza come carosello",
+      viewColumn: "Visualizza in griglia",
+      yearsUnit: "anni"
+    },
+    experience: {
+      title: "Timeline Professionale",
+      subtitle: "Il mio percorso professionale include diversi ruoli tecnici, formazione continua e certificazioni",
+      all: "Tutto",
+      work: "Lavoro",
+      education: "Formazione",
+      showDetails: "Mostra dettagli",
+      hideDetails: "Nascondi dettagli",
+      currentPosition: "Posizione Corrente",
+      client: "Cliente",
+      present: "Presente",
+      january: "Gennaio",
+      march: "Marzo",
+      june: "Giugno",
+      september: "Settembre",
+      october: "Ottobre",
+      december: "Dicembre",
+      
+      // Job descriptions (non traduciamo i nomi delle aziende)
+      fedroDesc: [
+        "Lead developer della piattaforma FEDRO CognitiveServices per analisi chiamate con AI",
+        "Ridotto l'85% del codice legacy attraverso refactoring con Template Method Pattern",
+        "Implementato sistema Hangfire V2 per processing parallelo di 100+ file audio",
+        "Raggiunto 99.9% uptime con retry policies e gestione errori resiliente",
+        "Sviluppato abstraction layer per multi-provider AI (Azure, Assembly.AI, OpenAI)",
+        "Gestione isolata di 50+ tenant con RBAC granulare",
+        "Ottimizzato performance del 50% attraverso caching multi-livello e query optimization"
+      ],
+      altenDesc: [
+        "Sviluppato componenti React per piattaforma con milioni di utenti",
+        "Ottimizzato query GraphQL riducendo latenza API del 40%",
+        "Team internazionale di 10+ sviluppatori in metodologia Agile",
+        "Implementato testing con Jest e Cypress (coverage 80%+)",
+        "Gestione pipeline CI/CD con Spinnaker",
+        "Sviluppo di componenti UI fedeli ai design realizzati su Figma"
+      ],
+      softwarelabDesc: [
+        "Progettato sistema POS embedded gestendo 100.000+ transazioni/anno",
+        "Sviluppato integrazioni WebServices per comunicazione real-time con sistemi bancari",
+        "Ottimizzato database queries migliorando response time del 60%",
+        "Creato documentazione tecnica e manuali utente per deployment e manutenzione"
+      ],
+      virtuardDesc: [
+        "Sviluppato app mobile VR per visualizzazione modelli 3D",
+        "Implementato gesture recognition con giroscopio e accelerometro",
+        "Ottimizzato rendering per 60 FPS stabili su dispositivi mobile"
+      ],
+      mlCourseDesc: [
+        "Completato corso completo di Machine Learning con Andrew Ng",
+        "Studio di algoritmi supervisionati e non supervisionati",
+        "Implementazione di neural networks e deep learning"
+      ],
+      reactCourseDesc: [
+        "Approfondimento tecniche avanzate React con TypeScript",
+        "Redux, Redux Toolkit, Redux Saga per state management",
+        "Performance optimization e best practices"
+      ],
+      diplomaDesc: [
+        "Specializzazione in Informatica e Telecomunicazioni",
+        "Focus su sviluppo software, reti e database",
+        "Progetti pratici in C#, SQL, networking"
+      ]
+    },
+    projects: {
+      title: "Progetti & Portfolio",
+      subtitle: "Progetti enterprise e personali che dimostrano expertise in architetture scalabili, AI integration e sviluppo full-stack",
+      leadDeveloper: "Lead Developer",
+      metrics: "Metriche",
+      technologies: "Tecnologie",
+      features: "Caratteristiche",
+      code: "Codice",
+      demo: "Demo",
+      enterprise: "Enterprise",
+      personal: "Personale",
+      proprietary: "Proprietario",
+      interestedCollab: "Interessato a collaborare?",
+      openToProjects: "Sono sempre aperto a nuove sfide e progetti interessanti. Contattami per discutere come posso contribuire al tuo team.",
+      contactMe: "Contattami",
+      moreOnGithub: "Altri progetti su GitHub",
+      
+      // Project descriptions
+      fedroProjectDesc: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant.",
+      expediaProjectDesc: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
+      posProjectDesc: "Soluzione completa per gestione pagamenti POS con integrazione bancaria real-time e sistema di reporting avanzato.",
+      portfolioProjectDesc: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
+      
+      fedroMetrics: [
+        "riduzione codice legacy",
+        "uptime",
+        "trascrizioni/ora",
+        "tenant gestiti"
+      ],
+      expediaMetrics: [
+        "riduzione latenza API",
+        "code coverage",
+        "Milioni di utenti serviti"
+      ],
+      posMetrics: [
+        "transazioni/anno",
+        "miglioramento response time",
+        "Zero downtime critico"
+      ]
+    },
+    about: {
+      title: "Chi Sono",
+      available: "Disponibile",
+      expertiseAreas: "Aree di Expertise",
+      bio1: "Ciao! Sono Riccardo, un Full Stack Developer con oltre 7 anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili.",
+      bio2: "Attualmente sono Lead Developer presso FEDRO Software, dove guido lo sviluppo di una piattaforma AI-powered per l'analisi delle chiamate che processa oltre 1000 trascrizioni all'ora. Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di orchestrazione che gestisce il processing parallelo di centinaia di file audio.",
+      bio3: "La mia esperienza spazia dal frontend con React e Angular, al backend con .NET 9 e Node.js, fino all'integrazione di servizi AI come OpenAI GPT e Azure Cognitive Services. Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati da milioni di utenti.",
+      bio4: "Sono appassionato di Clean Architecture, pattern DDD e CQRS, e credo fermamente nell'importanza del testing (raggiungendo regolarmente coverage superiori all'80%). Nel tempo libero, continuo a studiare le ultime tecnologie, recentemente completando la Machine Learning Specialization di Stanford.",
+      languages: "Lingue",
+      italian: "Italiano",
+      english: "Inglese",
+      spanish: "Spagnolo",
+      native: "Madrelingua",
+      professional: "Professionale",
+      intermediate: "Intermedio",
+      downloadFullCV: "Scarica CV Completo",
+      contactMe: "Contattami",
+      yearsExperience: "anni esperienza",
+      codeReduction: "riduzione",
+      codeLegacy: "Codice Legacy",
+      transcriptionsHour: "trascrizioni/ora",
+      aiProcessing: "AI Processing"
+    },
+    contact: {
+      title: "Contattami",
+      subtitle: "Disponibile per opportunità full-time, progetti freelance e collaborazioni innovative nel campo dello sviluppo software e AI",
+      contactInfo: "Informazioni di Contatto",
+      availableProjects: "Disponibile per nuovi progetti",
+      availableDesc: "Attualmente disponibile per opportunità di lavoro full-time o progetti freelance interessanti. Specializzato in sviluppo full-stack, AI integration e architetture enterprise.",
+      fullTime: "Full-time",
+      freelance: "Freelance",
+      consulting: "Consulenza",
+      remote: "Remote",
+      responseTime: "Tempo di risposta",
+      responseDesc: "Generalmente rispondo entro 24-48 ore. Per richieste urgenti, preferisco il contatto telefonico.",
+      sendMessage: "Invia un Messaggio",
+      name: "Nome",
+      email: "Email",
+      subject: "Oggetto",
+      message: "Messaggio",
+      namePlaceholder: "Il tuo nome",
+      emailPlaceholder: "tua@email.com",
+      subjectPlaceholder: "Di cosa vuoi parlare?",
+      messagePlaceholder: "Il tuo messaggio...",
+      sending: "Invio in corso...",
+      messageSent: "Messaggio Inviato!",
+      send: "Invia Messaggio",
+      thankYou: "Grazie per il tuo messaggio! Ti risponderò il prima possibile.",
+      phone: "Telefono",
+      location: "Posizione"
+    }
+  },
+  
+  en: {
+    nav: {
+      home: "Home",
+      skills: "Skills",
+      experience: "Experience",
+      projects: "Projects",
+      about: "About",
+      contact: "Contact",
+      downloadCV: "Download CV"
+    },
+    hero: {
+      available: "Available for new projects",
+      yearsExp: "years of experience",
+      leadDeveloper: "Lead Developer at",
+      specializedIn: "Specialized in",
+      andArchitectures: "and enterprise architectures",
+      explorePortfolio: "Explore Portfolio",
+      downloadCV: "Download CV",
+      codeReduction: "Code Reduction",
+      uptime: "Uptime",
+      transcriptionsHour: "Transcriptions/h"
+    },
+    skills: {
+      title: "Technical Skills",
+      subtitle: "years of experience • Full Stack Development • AI Integration",
+      currentPosition: "Lead Developer @ FEDRO",
+      exTeam: "Ex-Expedia Team",
+      viewGrid: "Grid View",
+      coreSkills: "Core Skills",
+      experience: "Experience",
+      distribution: "Distribution",
+      mainSkills: "Main Skills",
+      skillLevel: "Proficiency level of core technologies",
+      yearsExperience: "Years of Experience by Technology",
+      topTech: "Top 10 technologies by experience and skill level",
+      skillDistribution: "Skills Distribution",
+      byArea: "Distribution by specialization area",
+      technologies: "Technologies Mastered",
+      years: "Years of Experience",
+      avgLevel: "Average Skill Level",
+      certifications: "Certifications",
+      all: "All",
+      frontend: "Frontend",
+      backend: "Backend",
+      aiCloud: "AI & Cloud",
+      architecture: "Architecture",
+      devops: "DevOps",
+      testing: "Testing",
+      viewCarousel: "View as carousel",
+      viewColumn: "View as grid",
+      yearsUnit: "years"
+    },
+    experience: {
+      title: "Professional Timeline",
+      subtitle: "My professional journey includes various technical roles, continuous training and certifications",
+      all: "All",
+      work: "Work",
+      education: "Education",
+      showDetails: "Show details",
+      hideDetails: "Hide details",
+      currentPosition: "Current Position",
+      client: "Client",
+      present: "Present",
+      january: "January",
+      march: "March",
+      june: "June",
+      september: "September",
+      october: "October",
+      december: "December",
+      
+      fedroDesc: [
+        "Lead developer of FEDRO CognitiveServices platform for AI-powered call analytics",
+        "Reduced 85% of legacy code through refactoring with Template Method Pattern",
+        "Implemented Hangfire V2 system for parallel processing of 100+ audio files",
+        "Achieved 99.9% uptime with retry policies and resilient error handling",
+        "Developed abstraction layer for multi-provider AI (Azure, Assembly.AI, OpenAI)",
+        "Isolated management of 50+ tenants with granular RBAC",
+        "Optimized performance by 50% through multi-layer caching and query optimization"
+      ],
+      altenDesc: [
+        "Developed React components for platform with millions of users",
+        "Optimized GraphQL queries reducing API latency by 40%",
+        "International team of 10+ developers in Agile methodology",
+        "Implemented testing with Jest and Cypress (80%+ coverage)",
+        "CI/CD pipeline management with Spinnaker",
+        "Development of pixel-perfect UI components from Figma designs"
+      ],
+      softwarelabDesc: [
+        "Designed embedded POS system handling 100,000+ transactions/year",
+        "Developed WebServices integrations for real-time communication with banking systems",
+        "Optimized database queries improving response time by 60%",
+        "Created technical documentation and user manuals for deployment and maintenance"
+      ],
+      virtuardDesc: [
+        "Developed VR mobile app for 3D model visualization",
+        "Implemented gesture recognition with gyroscope and accelerometer",
+        "Optimized rendering for stable 60 FPS on mobile devices"
+      ],
+      mlCourseDesc: [
+        "Completed comprehensive Machine Learning course with Andrew Ng",
+        "Study of supervised and unsupervised algorithms",
+        "Implementation of neural networks and deep learning"
+      ],
+      reactCourseDesc: [
+        "Advanced React techniques with TypeScript",
+        "Redux, Redux Toolkit, Redux Saga for state management",
+        "Performance optimization and best practices"
+      ],
+      diplomaDesc: [
+        "Specialization in Computer Science and Telecommunications",
+        "Focus on software development, networks and databases",
+        "Practical projects in C#, SQL, networking"
+      ]
+    },
+    projects: {
+      title: "Projects & Portfolio",
+      subtitle: "Enterprise and personal projects demonstrating expertise in scalable architectures, AI integration and full-stack development",
+      leadDeveloper: "Lead Developer",
+      metrics: "Metrics",
+      technologies: "Technologies",
+      features: "Features",
+      code: "Code",
+      demo: "Demo",
+      enterprise: "Enterprise",
+      personal: "Personal",
+      proprietary: "Proprietary",
+      interestedCollab: "Interested in collaborating?",
+      openToProjects: "I'm always open to new challenges and interesting projects. Contact me to discuss how I can contribute to your team.",
+      contactMe: "Contact Me",
+      moreOnGithub: "More projects on GitHub",
+      
+      fedroProjectDesc: "Complete orchestration system for audio file acquisition, AI transcription, NLP analysis, full-text indexing and data visualization with customizable dashboards per tenant.",
+      expediaProjectDesc: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
+      posProjectDesc: "Complete solution for POS payment management with real-time bank integration and advanced reporting system.",
+      portfolioProjectDesc: "Modern web portfolio with smooth animations, dark mode, interactive data visualizations and responsive design.",
+      
+      fedroMetrics: [
+        "legacy code reduction",
+        "uptime",
+        "transcriptions/hour",
+        "managed tenants"
+      ],
+      expediaMetrics: [
+        "API latency reduction",
+        "code coverage",
+        "Million users served"
+      ],
+      posMetrics: [
+        "transactions/year",
+        "response time improvement",
+        "Zero critical downtime"
+      ]
+    },
+    about: {
+      title: "About Me",
+      available: "Available",
+      expertiseAreas: "Expertise Areas",
+      bio1: "Hi! I'm Riccardo, a Full Stack Developer with over 7 years of experience in designing and implementing scalable enterprise solutions.",
+      bio2: "I'm currently Lead Developer at FEDRO Software, where I lead the development of an AI-powered platform for call analytics that processes over 1000 transcriptions per hour. I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
+      bio3: "My experience spans from frontend with React and Angular, to backend with .NET 9 and Node.js, to integration of AI services like OpenAI GPT and Azure Cognitive Services. I've worked with international teams for clients like Expedia, developing components used by millions of users.",
+      bio4: "I'm passionate about Clean Architecture, DDD and CQRS patterns, and firmly believe in the importance of testing (regularly achieving coverage above 80%). In my free time, I continue studying the latest technologies, recently completing Stanford's Machine Learning Specialization.",
+      languages: "Languages",
+      italian: "Italian",
+      english: "English",
+      spanish: "Spanish",
+      native: "Native",
+      professional: "Professional",
+      intermediate: "Intermediate",
+      downloadFullCV: "Download Full CV",
+      contactMe: "Contact Me",
+      yearsExperience: "years experience",
+      codeReduction: "reduction",
+      codeLegacy: "Legacy Code",
+      transcriptionsHour: "transcriptions/hour",
+      aiProcessing: "AI Processing"
+    },
+    contact: {
+      title: "Contact Me",
+      subtitle: "Available for full-time opportunities, freelance projects and innovative collaborations in software development and AI",
+      contactInfo: "Contact Information",
+      availableProjects: "Available for new projects",
+      availableDesc: "Currently available for full-time job opportunities or interesting freelance projects. Specialized in full-stack development, AI integration and enterprise architectures.",
+      fullTime: "Full-time",
+      freelance: "Freelance",
+      consulting: "Consulting",
+      remote: "Remote",
+      responseTime: "Response Time",
+      responseDesc: "I usually respond within 24-48 hours. For urgent requests, I prefer phone contact.",
+      sendMessage: "Send a Message",
+      name: "Name",
+      email: "Email",
+      subject: "Subject",
+      message: "Message",
+      namePlaceholder: "Your name",
+      emailPlaceholder: "your@email.com",
+      subjectPlaceholder: "What would you like to discuss?",
+      messagePlaceholder: "Your message...",
+      sending: "Sending...",
+      messageSent: "Message Sent!",
+      send: "Send Message",
+      thankYou: "Thank you for your message! I'll respond as soon as possible.",
+      phone: "Phone",
+      location: "Location"
+    }
+  },
+  
+  es: {
+    nav: {
+      home: "Inicio",
+      skills: "Habilidades",
+      experience: "Experiencia",
+      projects: "Proyectos",
+      about: "Sobre Mí",
+      contact: "Contacto",
+      downloadCV: "Descargar CV"
+    },
+    hero: {
+      available: "Disponible para nuevos proyectos",
+      yearsExp: "años de experiencia",
+      leadDeveloper: "Lead Developer en",
+      specializedIn: "Especializado en",
+      andArchitectures: "y arquitecturas empresariales",
+      explorePortfolio: "Explorar Portfolio",
+      downloadCV: "Descargar CV",
+      codeReduction: "Reducción de Código",
+      uptime: "Tiempo Activo",
+      transcriptionsHour: "Transcripciones/h"
+    },
+    skills: {
+      title: "Habilidades Técnicas",
+      subtitle: "años de experiencia • Desarrollo Full Stack • Integración IA",
+      currentPosition: "Lead Developer @ FEDRO",
+      exTeam: "Ex-Equipo Expedia",
+      viewGrid: "Vista Cuadrícula",
+      coreSkills: "Habilidades Principales",
+      experience: "Experiencia",
+      distribution: "Distribución",
+      mainSkills: "Habilidades Principales",
+      skillLevel: "Nivel de dominio de tecnologías principales",
+      yearsExperience: "Años de Experiencia por Tecnología",
+      topTech: "Top 10 tecnologías por experiencia y nivel de habilidad",
+      skillDistribution: "Distribución de Habilidades",
+      byArea: "Distribución por área de especialización",
+      technologies: "Tecnologías Dominadas",
+      years: "Años de Experiencia",
+      avgLevel: "Nivel Promedio de Habilidad",
+      certifications: "Certificaciones",
+      all: "Todas",
+      frontend: "Frontend",
+      backend: "Backend",
+      aiCloud: "IA y Nube",
+      architecture: "Arquitectura",
+      devops: "DevOps",
+      testing: "Testing",
+      viewCarousel: "Ver como carrusel",
+      viewColumn: "Ver como cuadrícula",
+      yearsUnit: "años"
+    },
+    experience: {
+      title: "Línea de Tiempo Profesional",
+      subtitle: "Mi trayectoria profesional incluye varios roles técnicos, formación continua y certificaciones",
+      all: "Todo",
+      work: "Trabajo",
+      education: "Educación",
+      showDetails: "Mostrar detalles",
+      hideDetails: "Ocultar detalles",
+      currentPosition: "Posición Actual",
+      client: "Cliente",
+      present: "Presente",
+      january: "Enero",
+      march: "Marzo",
+      june: "Junio",
+      september: "Septiembre",
+      october: "Octubre",
+      december: "Diciembre",
+      
+      fedroDesc: [
+        "Desarrollador principal de la plataforma FEDRO CognitiveServices para análisis de llamadas con IA",
+        "Reducido el 85% del código legacy mediante refactorización con Template Method Pattern",
+        "Implementado sistema Hangfire V2 para procesamiento paralelo de 100+ archivos de audio",
+        "Logrado 99.9% de tiempo activo con políticas de reintentos y manejo resiliente de errores",
+        "Desarrollado capa de abstracción para IA multi-proveedor (Azure, Assembly.AI, OpenAI)",
+        "Gestión aislada de 50+ inquilinos con RBAC granular",
+        "Optimizado el rendimiento en un 50% mediante caché multicapa y optimización de consultas"
+      ],
+      altenDesc: [
+        "Desarrollado componentes React para plataforma con millones de usuarios",
+        "Optimizado consultas GraphQL reduciendo latencia API en 40%",
+        "Equipo internacional de 10+ desarrolladores en metodología Ágil",
+        "Implementado testing con Jest y Cypress (cobertura 80%+)",
+        "Gestión de pipeline CI/CD con Spinnaker",
+        "Desarrollo de componentes UI fieles a diseños de Figma"
+      ],
+      softwarelabDesc: [
+        "Diseñado sistema POS embebido gestionando 100,000+ transacciones/año",
+        "Desarrollado integraciones WebServices para comunicación en tiempo real con sistemas bancarios",
+        "Optimizado consultas de base de datos mejorando tiempo de respuesta en 60%",
+        "Creado documentación técnica y manuales de usuario para despliegue y mantenimiento"
+      ],
+      virtuardDesc: [
+        "Desarrollado app móvil VR para visualización de modelos 3D",
+        "Implementado reconocimiento de gestos con giroscopio y acelerómetro",
+        "Optimizado renderizado para 60 FPS estables en dispositivos móviles"
+      ],
+      mlCourseDesc: [
+        "Completado curso completo de Machine Learning con Andrew Ng",
+        "Estudio de algoritmos supervisados y no supervisados",
+        "Implementación de redes neuronales y deep learning"
+      ],
+      reactCourseDesc: [
+        "Técnicas avanzadas de React con TypeScript",
+        "Redux, Redux Toolkit, Redux Saga para gestión de estado",
+        "Optimización de rendimiento y mejores prácticas"
+      ],
+      diplomaDesc: [
+        "Especialización en Informática y Telecomunicaciones",
+        "Enfoque en desarrollo de software, redes y bases de datos",
+        "Proyectos prácticos en C#, SQL, redes"
+      ]
+    },
+    projects: {
+      title: "Proyectos y Portfolio",
+      subtitle: "Proyectos empresariales y personales que demuestran experiencia en arquitecturas escalables, integración IA y desarrollo full-stack",
+      leadDeveloper: "Desarrollador Principal",
+      metrics: "Métricas",
+      technologies: "Tecnologías",
+      features: "Características",
+      code: "Código",
+      demo: "Demo",
+      enterprise: "Empresarial",
+      personal: "Personal",
+      proprietary: "Propietario",
+      interestedCollab: "¿Interesado en colaborar?",
+      openToProjects: "Siempre estoy abierto a nuevos desafíos y proyectos interesantes. Contáctame para discutir cómo puedo contribuir a tu equipo.",
+      contactMe: "Contáctame",
+      moreOnGithub: "Más proyectos en GitHub",
+      
+      fedroProjectDesc: "Sistema completo de orquestación para adquisición de archivos de audio, transcripción mediante IA, análisis NLP, indexación de texto completo y visualización de datos con dashboards personalizables por inquilino.",
+      expediaProjectDesc: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
+      posProjectDesc: "Solución completa para gestión de pagos POS con integración bancaria en tiempo real y sistema de reportes avanzado.",
+      portfolioProjectDesc: "Portfolio web moderno con animaciones fluidas, modo oscuro, visualizaciones de datos interactivas y diseño responsivo.",
+      
+      fedroMetrics: [
+        "reducción código legacy",
+        "tiempo activo",
+        "transcripciones/hora",
+        "inquilinos gestionados"
+      ],
+      expediaMetrics: [
+        "reducción latencia API",
+        "cobertura de código",
+        "Millones de usuarios servidos"
+      ],
+      posMetrics: [
+        "transacciones/año",
+        "mejora tiempo respuesta",
+        "Cero tiempo inactivo crítico"
+      ]
+    },
+    about: {
+      title: "Sobre Mí",
+      available: "Disponible",
+      expertiseAreas: "Áreas de Experiencia",
+      bio1: "¡Hola! Soy Riccardo, un Desarrollador Full Stack con más de 7 años de experiencia en el diseño e implementación de soluciones empresariales escalables.",
+      bio2: "Actualmente soy Lead Developer en FEDRO Software, donde lidero el desarrollo de una plataforma impulsada por IA para análisis de llamadas que procesa más de 1000 transcripciones por hora. Reduje el 85% del código legacy mediante refactorización estratégica e implementé un sistema de orquestación que gestiona el procesamiento paralelo de cientos de archivos de audio.",
+      bio3: "Mi experiencia abarca desde frontend con React y Angular, hasta backend con .NET 9 y Node.js, hasta la integración de servicios de IA como OpenAI GPT y Azure Cognitive Services. He trabajado con equipos internacionales para clientes como Expedia, desarrollando componentes utilizados por millones de usuarios.",
+      bio4: "Soy apasionado de Clean Architecture, patrones DDD y CQRS, y creo firmemente en la importancia del testing (logrando regularmente cobertura superior al 80%). En mi tiempo libre, continúo estudiando las últimas tecnologías, completando recientemente la Especialización en Machine Learning de Stanford.",
+      languages: "Idiomas",
+      italian: "Italiano",
+      english: "Inglés",
+      spanish: "Español",
+      native: "Nativo",
+      professional: "Profesional",
+      intermediate: "Intermedio",
+      downloadFullCV: "Descargar CV Completo",
+      contactMe: "Contáctame",
+      yearsExperience: "años experiencia",
+      codeReduction: "reducción",
+      codeLegacy: "Código Legacy",
+      transcriptionsHour: "transcripciones/hora",
+      aiProcessing: "Procesamiento IA"
+    },
+    contact: {
+      title: "Contáctame",
+      subtitle: "Disponible para oportunidades a tiempo completo, proyectos freelance y colaboraciones innovadoras en desarrollo de software e IA",
+      contactInfo: "Información de Contacto",
+      availableProjects: "Disponible para nuevos proyectos",
+      availableDesc: "Actualmente disponible para oportunidades de trabajo a tiempo completo o proyectos freelance interesantes. Especializado en desarrollo full-stack, integración IA y arquitecturas empresariales.",
+      fullTime: "Tiempo completo",
+      freelance: "Freelance",
+      consulting: "Consultoría",
+      remote: "Remoto",
+      responseTime: "Tiempo de Respuesta",
+      responseDesc: "Generalmente respondo dentro de 24-48 horas. Para solicitudes urgentes, prefiero el contacto telefónico.",
+      sendMessage: "Enviar un Mensaje",
+      name: "Nombre",
+      email: "Correo",
+      subject: "Asunto",
+      message: "Mensaje",
+      namePlaceholder: "Tu nombre",
+      emailPlaceholder: "tu@correo.com",
+      subjectPlaceholder: "¿De qué quieres hablar?",
+      messagePlaceholder: "Tu mensaje...",
+      sending: "Enviando...",
+      messageSent: "¡Mensaje Enviado!",
+      send: "Enviar Mensaje",
+      thankYou: "¡Gracias por tu mensaje! Responderé lo antes posible.",
+      phone: "Teléfono",
+      location: "Ubicación"
+    }
+  }
+};

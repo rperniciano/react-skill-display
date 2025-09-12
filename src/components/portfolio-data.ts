@@ -7,7 +7,7 @@ export const portfolioData = {
     phone: "+39 351 8745889",
     location: "Cagliari, Italia",
     portfolio: "https://react-skill-display.vercel.app/",
-    github: "https://github.com/rickyperniciano",
+    github: "https://github.com/rperniciano",
     linkedin: "https://linkedin.com/in/riccardo-perniciano",
     yearsOfExperience: 7,
     summary: "Mid-Senior Full Stack Developer con 7+ anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili. Lead developer di piattaforme AI-powered per l'analisi delle chiamate con processing di 1000+ trascrizioni/ora."
@@ -162,7 +162,7 @@ export const portfolioData = {
       longDescription: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
       technologies: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
-      github: "https://github.com/rickyperniciano/react-skill-display",
+      github: "https://github.com/rperniciano/react-skill-display",
       demo: "https://react-skill-display.vercel.app/",
       features: [
         "Animazioni fluide",

@@ -6,8 +6,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { portfolioData } from './portfolio-data';
+import { useLanguage } from './LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,26 +36,26 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Mail className="h-5 w-5" />,
-      label: "Email",
+      label: t.contact.email,
       value: portfolioData.personal.email,
       link: `mailto:${portfolioData.personal.email}`
     },
     {
       icon: <Phone className="h-5 w-5" />,
-      label: "Telefono",
+      label: t.contact.phone,
       value: portfolioData.personal.phone,
       link: `tel:${portfolioData.personal.phone.replace(/\s/g, '')}`
     },
     {
       icon: <MapPin className="h-5 w-5" />,
-      label: "Posizione",
+      label: t.contact.location,
       value: portfolioData.personal.location,
       link: null
     },
     {
       icon: <Github className="h-5 w-5" />,
       label: "GitHub",
-      value: "github.com/rickyperniciano",
+      value: "github.com/rperniciano",
       link: portfolioData.personal.github
     },
     {
@@ -73,9 +75,9 @@ const Contact = () => {
             <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mb-4">
               <MessageSquare className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl font-bold text-white mb-4">Contattami</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">{t.contact.title}</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Disponibile per opportunità full-time, progetti freelance e collaborazioni innovative nel campo dello sviluppo software e AI
+              {t.contact.subtitle}
             </p>
           </div>
 
@@ -84,7 +86,7 @@ const Contact = () => {
             <div className="space-y-6">
               <Card className="bg-gray-800/50 border-gray-700 backdrop-blur">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-white">Informazioni di Contatto</CardTitle>
+                  <CardTitle className="text-2xl text-white">{t.contact.contactInfo}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {contactInfo.map((info) => (
@@ -120,24 +122,23 @@ const Contact = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <h3 className="text-xl font-bold text-white">Disponibile per nuovi progetti</h3>
+                    <h3 className="text-xl font-bold text-white">{t.contact.availableProjects}</h3>
                   </div>
                   <p className="text-gray-300 mb-4">
-                    Attualmente disponibile per opportunità di lavoro full-time o progetti freelance interessanti.
-                    Specializzato in sviluppo full-stack, AI integration e architetture enterprise.
+                    {t.contact.availableDesc}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/50">
-                      Full-time
+                      {t.contact.fullTime}
                     </Badge>
                     <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/50">
-                      Freelance
+                      {t.contact.freelance}
                     </Badge>
                     <Badge className="bg-green-500/20 text-green-300 border-green-500/50">
-                      Consulenza
+                      {t.contact.consulting}
                     </Badge>
                     <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/50">
-                      Remote
+                      {t.contact.remote}
                     </Badge>
                   </div>
                 </CardContent>
@@ -148,10 +149,10 @@ const Contact = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="h-5 w-5 text-blue-400" />
-                    <h3 className="text-lg font-semibold text-white">Tempo di risposta</h3>
+                    <h3 className="text-lg font-semibold text-white">{t.contact.responseTime}</h3>
                   </div>
                   <p className="text-gray-400">
-                    Generalmente rispondo entro 24-48 ore. Per richieste urgenti, preferisco il contatto telefonico.
+                    {t.contact.responseDesc}
                   </p>
                 </CardContent>
               </Card>
@@ -160,14 +161,14 @@ const Contact = () => {
             {/* Contact Form */}
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur">
               <CardHeader>
-                <CardTitle className="text-2xl text-white">Invia un Messaggio</CardTitle>
+                <CardTitle className="text-2xl text-white">{t.contact.sendMessage}</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                        Nome *
+                        {t.contact.name} *
                       </label>
                       <Input
                         id="name"
@@ -175,12 +176,12 @@ const Contact = () => {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-500"
-                        placeholder="Il tuo nome"
+                        placeholder={t.contact.namePlaceholder}
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                        Email *
+                        {t.contact.email} *
                       </label>
                       <Input
                         id="email"
@@ -189,14 +190,14 @@ const Contact = () => {
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-500"
-                        placeholder="tua@email.com"
+                        placeholder={t.contact.emailPlaceholder}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                      Oggetto *
+                      {t.contact.subject} *
                     </label>
                     <Input
                       id="subject"
@@ -204,13 +205,13 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={(e) => setFormData({...formData, subject: e.target.value})}
                       className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-500"
-                      placeholder="Di cosa vuoi parlare?"
+                      placeholder={t.contact.subjectPlaceholder}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                      Messaggio *
+                      {t.contact.message} *
                     </label>
                     <Textarea
                       id="message"
@@ -219,7 +220,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-500"
-                      placeholder="Il tuo messaggio..."
+                      placeholder={t.contact.messagePlaceholder}
                     />
                   </div>
 
@@ -232,17 +233,17 @@ const Contact = () => {
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Invio in corso...
+                        {t.contact.sending}
                       </span>
                     ) : submitStatus === 'success' ? (
                       <span className="flex items-center justify-center gap-2">
                         <CheckCircle className="h-5 w-5" />
-                        Messaggio Inviato!
+                        {t.contact.messageSent}
                       </span>
                     ) : (
                       <span className="flex items-center justify-center gap-2">
                         <Send className="h-5 w-5" />
-                        Invia Messaggio
+                        {t.contact.send}
                       </span>
                     )}
                   </Button>
@@ -250,7 +251,7 @@ const Contact = () => {
                   {submitStatus === 'success' && (
                     <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 text-center">
                       <p className="text-green-300">
-                        Grazie per il tuo messaggio! Ti risponderò il prima possibile.
+                        {t.contact.thankYou}
                       </p>
                     </div>
                   )}

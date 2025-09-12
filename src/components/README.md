@@ -239,7 +239,7 @@ Questo progetto è rilasciato sotto licenza MIT. Sentiti libero di utilizzare il
 
 - **Email:** ricki.perniciano.work@gmail.com
 - **LinkedIn:** [linkedin.com/in/riccardo-perniciano](https://linkedin.com/in/riccardo-perniciano)
-- **GitHub:** [github.com/rperniciano](https://github.com/rperniciano)
+- **GitHub:** [github.com/rickyperniciano](https://github.com/rickyperniciano)
 - **Portfolio:** [react-skill-display.vercel.app](https://react-skill-display.vercel.app)
 - **Telefono:** +39 351 874 5889
 

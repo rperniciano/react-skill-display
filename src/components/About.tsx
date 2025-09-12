@@ -4,13 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { portfolioData } from "./portfolio-data";
+import { useLanguage } from "./LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const highlights = [
-    { icon: <Code className="h-5 w-5" />, label: "7+ anni esperienza", value: "Full Stack Development" },
+    { icon: <Code className="h-5 w-5" />, label: `7+ ${t.about.yearsExperience}`, value: "Full Stack Development" },
     { icon: <Briefcase className="h-5 w-5" />, label: "Lead Developer", value: "FEDRO Software" },
-    { icon: <Trophy className="h-5 w-5" />, label: "85% riduzione", value: "Codice Legacy" },
-    { icon: <Target className="h-5 w-5" />, label: "1000+ trascrizioni/ora", value: "AI Processing" }
+    { icon: <Trophy className="h-5 w-5" />, label: `85% ${t.about.codeReduction}`, value: t.about.codeLegacy },
+    { icon: <Target className="h-5 w-5" />, label: `1000+ ${t.about.transcriptionsHour}`, value: t.about.aiProcessing }
   ];
 
   const expertise = [
@@ -32,7 +35,7 @@ const About = () => {
           </div>
           
           <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-8">
-            Chi Sono
+            {t.about.title}
           </h2>
           
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -56,7 +59,7 @@ const About = () => {
                   <div className="flex flex-wrap gap-2">
                     <Badge className="bg-green-500/20 text-green-300 border-green-500/50">
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                      Disponibile
+                      {t.about.available}
                     </Badge>
                     <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/50">
                       {portfolioData.personal.location}
@@ -70,7 +73,7 @@ const About = () => {
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-purple-500" />
-                    Aree di Expertise
+                    {t.about.expertiseAreas}
                   </h3>
                   <div className="space-y-3">
                     {expertise.map((area, i) => (
@@ -99,32 +102,19 @@ const About = () => {
               {/* Bio */}
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-portfolio-text dark:text-gray-300 leading-relaxed">
-                  Ciao! Sono <span className="font-semibold text-purple-600 dark:text-purple-400">Riccardo</span>, 
-                  un Full Stack Developer con <span className="font-semibold">oltre 7 anni di esperienza</span> nella 
-                  progettazione e implementazione di soluzioni enterprise scalabili.
+                  {t.about.bio1}
                 </p>
                 
                 <p className="text-portfolio-text dark:text-gray-300 leading-relaxed">
-                  Attualmente sono <span className="font-semibold">Lead Developer presso FEDRO Software</span>, dove 
-                  guido lo sviluppo di una piattaforma AI-powered per l'analisi delle chiamate che processa 
-                  <span className="font-semibold text-blue-600 dark:text-blue-400"> oltre 1000 trascrizioni all'ora</span>. 
-                  Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di 
-                  orchestrazione che gestisce il processing parallelo di centinaia di file audio.
+                  {t.about.bio2}
                 </p>
                 
                 <p className="text-portfolio-text dark:text-gray-300 leading-relaxed">
-                  La mia esperienza spazia dal frontend con <span className="font-semibold">React e Angular</span>, 
-                  al backend con <span className="font-semibold">.NET 9 e Node.js</span>, fino all'integrazione 
-                  di <span className="font-semibold">servizi AI come OpenAI GPT e Azure Cognitive Services</span>. 
-                  Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati 
-                  da milioni di utenti.
+                  {t.about.bio3}
                 </p>
                 
                 <p className="text-portfolio-text dark:text-gray-300 leading-relaxed">
-                  Sono appassionato di <span className="font-semibold text-green-600 dark:text-green-400">Clean Architecture</span>, 
-                  pattern DDD e CQRS, e credo fermamente nell'importanza del testing (raggiungendo regolarmente 
-                  coverage superiori all'80%). Nel tempo libero, continuo a studiare le ultime tecnologie, 
-                  recentemente completando la Machine Learning Specialization di Stanford.
+                  {t.about.bio4}
                 </p>
               </div>
 
@@ -154,19 +144,19 @@ const About = () => {
               {/* Languages */}
               <Card className="dark:bg-gray-800/50 dark:border-gray-700">
                 <CardContent className="pt-6">
-                  <h3 className="text-lg font-bold mb-3">Lingue</h3>
+                  <h3 className="text-lg font-bold mb-3">{t.about.languages}</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm">Italiano</span>
-                      <Badge variant="secondary">Madrelingua</Badge>
+                      <span className="text-sm">{t.about.italian}</span>
+                      <Badge variant="secondary">{t.about.native}</Badge>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm">Inglese</span>
-                      <Badge variant="secondary">B2 - Professionale</Badge>
+                      <span className="text-sm">{t.about.english}</span>
+                      <Badge variant="secondary">B2 - {t.about.professional}</Badge>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm">Spagnolo</span>
-                      <Badge variant="secondary">B2 - Intermedio</Badge>
+                      <span className="text-sm">{t.about.spanish}</span>
+                      <Badge variant="secondary">B2 - {t.about.intermediate}</Badge>
                     </div>
                   </div>
                 </CardContent>
@@ -180,14 +170,14 @@ const About = () => {
                 >
                   <a href="/CV-Riccardo-Perniciano.pdf" target="_blank" rel="noopener noreferrer">
                     <FileText className="h-4 w-4 mr-2" />
-                    Scarica CV Completo
+                    {t.about.downloadFullCV}
                   </a>
                 </Button>
                 
                 <Button className="flex-1" variant="outline" asChild>
                   <a href="#contact">
                     <ExternalLink className="h-4 w-4 mr-2" />
-                    Contattami
+                    {t.about.contactMe}
                   </a>
                 </Button>
               </div>

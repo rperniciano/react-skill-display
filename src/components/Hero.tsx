@@ -3,8 +3,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Download, ArrowRight } from "lucide-react";
 import { portfolioData } from "./portfolio-data";
+import { useLanguage } from "./LanguageContext";
 
 const Hero = () => {
+  const { t, language } = useLanguage();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [textIndex, setTextIndex] = useState(0);
@@ -12,7 +14,7 @@ const Hero = () => {
   const roles = [
     "Full Stack Developer",
     "AI Integration Specialist", 
-    "Lead Developer",
+    "Lead Developer @ FEDRO",
     ".NET & React Expert"
   ];
 
@@ -90,7 +92,7 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 mb-6">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <Badge className="bg-white/10 text-white border-white/20 backdrop-blur">
-              Disponibile per nuovi progetti
+              {t.hero.available}
             </Badge>
           </div>
           
@@ -108,11 +110,11 @@ const Hero = () => {
           
           {/* Description */}
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-            <span className="text-purple-400 font-semibold">7+ anni</span> di esperienza • 
-            Lead Developer della piattaforma{" "}
+            <span className="text-purple-400 font-semibold">7+ {t.hero.yearsExp}</span> • 
+            {t.hero.leadDeveloper}{" "}
             <span className="text-blue-400 font-semibold">FEDRO CognitiveServices</span> • 
-            Specializzato in{" "}
-            <span className="text-green-400 font-semibold">AI Integration</span> e architetture enterprise
+            {t.hero.specializedIn}{" "}
+            <span className="text-green-400 font-semibold">AI Integration</span> {t.hero.andArchitectures}
           </p>
           
           {/* Tech Stack */}
@@ -136,7 +138,7 @@ const Hero = () => {
               asChild
             >
               <a href="#projects" className="flex items-center gap-2">
-                Esplora Portfolio
+                {t.hero.explorePortfolio}
                 <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
@@ -148,7 +150,7 @@ const Hero = () => {
             >
               <a href="/CV-Riccardo-Perniciano.pdf" download className="flex items-center gap-2">
                 <Download className="h-4 w-4" />
-                Download CV
+                {t.hero.downloadCV}
               </a>
             </Button>
           </div>
@@ -189,7 +191,9 @@ const Hero = () => {
                 <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                   {achievement.metric}
                 </div>
-                <div className="text-sm text-gray-400 mt-1">{achievement.label}</div>
+                <div className="text-sm text-gray-400 mt-1">
+                  {i === 0 ? t.hero.codeReduction : i === 1 ? t.hero.uptime : t.hero.transcriptionsHour}
+                </div>
               </div>
             ))}
           </div>
