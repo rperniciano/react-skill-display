@@ -20,7 +20,8 @@ describe('Index Page', () => {
     expect(mainContainer).toBeInTheDocument();
     
     // Check if Navbar is rendered (by checking for a unique element)
-    expect(screen.getByText('Portfolio')).toBeInTheDocument();
+    const logo = screen.queryByText('Portfolio') || screen.queryByText('Riccardo');
+    expect(logo).toBeInTheDocument();
     
     // We can check if other key elements from major sections are present
     // but these tests would be more comprehensive in the individual component tests

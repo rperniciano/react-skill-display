@@ -1,85 +1,120 @@
-import React from "react";
-import { Menu, ChevronDown, Moon, Sun } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "../hooks/useTheme";
 import { useLanguage } from "./LanguageContext";
 import LanguageSelector from "./LanguageSelector";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useTheme();
   const { t } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
+    { href: "#hero", label: t.nav.home },
+    { href: "#about", label: t.nav.about },
+    { href: "#skills", label: t.nav.skills },
+    { href: "#solutions", label: "Soluzioni" },
+    { href: "#experience", label: t.nav.experience },
+    { href: "#projects", label: t.nav.projects },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/80 dark:bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold text-portfolio-heading dark:text-white">
-            Portfolio
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md" 
+        : "bg-transparent"
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <a href="/" className="flex items-center space-x-2">
+            <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">R</span>
+            </div>
+            <span className="text-xl font-bold text-gray-900 dark:text-white hidden sm:inline">
+              Riccardo
+            </span>
           </a>
-          <div className="flex items-center gap-2">
-            {/* Language Selector - Always visible */}
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-3">
             <LanguageSelector />
+            <ThemeToggle />
             
-            {/* Theme Toggle */}
+            {/* CTA Button - Desktop */}
             <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={toggleTheme}
-              className="rounded-full"
-              aria-label={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              className="hidden lg:inline-flex bg-purple-600 hover:bg-purple-700 text-white"
+              asChild
             >
-              {theme === 'dark' ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
+                Prenota
+              </a>
             </Button>
-            
-            {/* Menu Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <Menu className="h-5 w-5" />
-                <span className="hidden sm:inline">Menu</span>
-                <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48">
-                <DropdownMenuItem>
-                  <a href="#hero" className="w-full">{t.nav.home}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#skills" className="w-full">{t.nav.skills}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#experience" className="w-full">{t.nav.experience}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#projects" className="w-full">{t.nav.projects}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#about" className="w-full">{t.nav.about}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#contact" className="w-full">{t.nav.contact}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="border-t">
-                  <a 
-                    href="/CV-Riccardo-Perniciano.pdf" 
-                    download 
-                    className="w-full font-semibold text-purple-600 dark:text-purple-400"
-                  >
-                    {t.nav.downloadCV}
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+              ) : (
+                <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button 
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white mt-4"
+                asChild
+              >
+                <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
+                  Prenota una call gratuita
+                </a>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

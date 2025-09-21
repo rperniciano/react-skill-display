@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Globe } from 'lucide-react';
 
 const LanguageSelector: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -22,27 +23,27 @@ const LanguageSelector: React.FC = () => {
 
   return (
     <Select value={language} onValueChange={(value) => setLanguage(value as 'it' | 'en' | 'es')}>
-      <SelectTrigger className="w-[110px] sm:w-[140px] bg-white/10 backdrop-blur border-white/20 text-white hover:bg-white/20 transition-colors dark:bg-gray-800/50 dark:border-gray-700 dark:hover:bg-gray-700">
+      <SelectTrigger className="w-[110px] sm:w-[140px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
         <SelectValue>
           {currentLang && (
             <span className="flex items-center gap-2">
-              <span className="text-lg">{currentLang.flag}</span>
-              <span className="hidden sm:inline">{currentLang.name}</span>
-              <span className="sm:hidden">{currentLang.shortName}</span>
+              <Globe className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+              <span className="hidden sm:inline font-medium">{currentLang.name}</span>
+              <span className="sm:hidden font-medium">{currentLang.shortName}</span>
             </span>
           )}
         </SelectValue>
       </SelectTrigger>
-      <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
+      <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 shadow-lg">
         {languages.map((lang) => (
           <SelectItem 
             key={lang.code} 
             value={lang.code}
-            className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800 cursor-pointer"
+            className="text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 focus:bg-purple-50 dark:focus:bg-purple-900/20 cursor-pointer transition-colors"
           >
             <span className="flex items-center gap-2">
               <span className="text-lg">{lang.flag}</span>
-              <span>{lang.name}</span>
+              <span className="font-medium">{lang.name}</span>
             </span>
           </SelectItem>
         ))}

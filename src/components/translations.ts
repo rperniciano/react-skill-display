@@ -8,6 +8,7 @@ export const translations = {
       projects: "Progetti",
       about: "Chi Sono",
       contact: "Contatti",
+      solutions: "Soluzioni",
       downloadCV: "Scarica CV"
     },
     hero: {
@@ -20,7 +21,18 @@ export const translations = {
       downloadCV: "Download CV",
       codeReduction: "Riduzione Codice",
       uptime: "Uptime",
-      transcriptionsHour: "Trascrizioni/ora"
+      transcriptionsHour: "Trascrizioni/ora",
+      tagline: "Il partner per lo sviluppo delle tue idee enterprise.",
+      title: "Mid-Senior Full Stack Developer",
+      yearsExperienceIn: "anni di esperienza in",
+      enterpriseSolutions: "soluzioni enterprise",
+      description: "Esperto nell'integrazione di servizi cognitivi (Azure AI, OpenAI GPT) e nell'ottimizzazione di architetture complesse. Lead Developer presso FEDRO Software con focus su AI-powered solutions.",
+      bookFreeCall: "Prenota una call gratuita",
+      noCommitment: "Senza impegno",
+      thirtyMinCall: "Call di 30 minuti",
+      legacyReduction: "Riduzione Code Legacy",
+      systemUptime: "Uptime Sistemi",
+      managedTenants: "Tenant Gestiti"
     },
     skills: {
       title: "Competenze Tecniche",
@@ -228,7 +240,18 @@ export const translations = {
       downloadCV: "Download CV",
       codeReduction: "Code Reduction",
       uptime: "Uptime",
-      transcriptionsHour: "Transcriptions/h"
+      transcriptionsHour: "Transcriptions/h",
+      tagline: "The partner for developing your enterprise ideas.",
+      title: "Mid-Senior Full Stack Developer",
+      yearsExperienceIn: "years of experience in",
+      enterpriseSolutions: "enterprise solutions",
+      description: "Expert in cognitive services integration (Azure AI, OpenAI GPT) and complex architecture optimization. Lead Developer at FEDRO Software with focus on AI-powered solutions.",
+      bookFreeCall: "Book a free call",
+      noCommitment: "No commitment",
+      thirtyMinCall: "30-minute call",
+      legacyReduction: "Legacy Code Reduction",
+      systemUptime: "System Uptime",
+      managedTenants: "Managed Tenants"
     },
     skills: {
       title: "Technical Skills",
@@ -434,7 +457,18 @@ export const translations = {
       downloadCV: "Descargar CV",
       codeReduction: "Reducción de Código",
       uptime: "Tiempo Activo",
-      transcriptionsHour: "Transcripciones/h"
+      transcriptionsHour: "Transcripciones/h",
+      tagline: "El socio para el desarrollo de tus ideas empresariales.",
+      title: "Mid-Senior Full Stack Developer",
+      yearsExperienceIn: "años de experiencia en",
+      enterpriseSolutions: "soluciones empresariales",
+      description: "Experto en integración de servicios cognitivos (Azure AI, OpenAI GPT) y optimización de arquitecturas complejas. Lead Developer en FEDRO Software con enfoque en soluciones impulsadas por IA.",
+      bookFreeCall: "Reserva una llamada gratuita",
+      noCommitment: "Sin compromiso",
+      thirtyMinCall: "Llamada de 30 minutos",
+      legacyReduction: "Reducción de Código Legacy",
+      systemUptime: "Tiempo Activo del Sistema",
+      managedTenants: "Inquilinos Gestionados"
     },
     skills: {
       title: "Habilidades Técnicas",
