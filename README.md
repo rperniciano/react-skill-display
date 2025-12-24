@@ -253,9 +253,6 @@ Un ringraziamento speciale a tutti i colleghi e mentor che hanno contribuito all
 
 <div align="center">
   <p>
-    <strong>Sviluppato con ❤️ a Cagliari, Italia</strong>
-  </p>
-  <p>
     <a href="https://react-skill-display.vercel.app">🌐 Visita il Portfolio Live</a>
   </p>
 </div>

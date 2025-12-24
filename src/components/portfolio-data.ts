@@ -100,8 +100,8 @@ export const portfolioData = {
       metrics: [
         "85% riduzione codice legacy",
         "99.9% uptime",
-        "1000+ trascrizioni/ora",
-        "50+ tenant gestiti"
+        "100+ trascrizioni/ora",
+        "3+ tenant gestiti"
       ],
       features: [
         "Multi-tenant architecture con isolation completo",
@@ -121,9 +121,6 @@ export const portfolioData = {
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
       technologies: ["React", "TypeScript", "GraphQL", "Storybook", "Jest", "Cypress"],
       metrics: [
-        "40% riduzione latenza API",
-        "80%+ code coverage",
-        "Milioni di utenti serviti"
       ],
       features: [
         "Componenti accessibili WCAG compliant",
@@ -142,9 +139,6 @@ export const portfolioData = {
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80",
       technologies: ["C#", "SQL Server", "Embedded Systems", "WebServices", "REST APIs"],
       metrics: [
-        "100k+ transazioni/anno",
-        "60% miglioramento response time",
-        "Zero downtime critico"
       ],
       features: [
         "Processing pagamenti real-time",

@@ -84,11 +84,6 @@ const Footer = () => {
               © {currentYear} {portfolioData.personal.name}. 
               {language === 'it' ? ' Tutti i diritti riservati.' : ' All rights reserved.'}
             </p>
-            <p className="text-gray-500 text-sm mt-2 flex items-center justify-center gap-2">
-              {language === 'it' ? 'Sviluppato con' : 'Built with'} 
-              <Heart className="h-4 w-4 text-red-500" /> 
-              {language === 'it' ? 'a' : 'in'} {portfolioData.personal.location}
-            </p>
           </div>
         </div>
       </div>
