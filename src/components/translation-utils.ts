@@ -50,10 +50,14 @@ export const getJobDescription = (jobId: string, t: any): string[] => {
       return t.experience.softwarelabDesc;
     case 'virtuard':
       return t.experience.virtuardDesc;
-    case 'ml-course':
-      return t.experience.mlCourseDesc;
+    case 'epicode':
+      return t.experience.epicodeDesc;
     case 'react-course':
       return t.experience.reactCourseDesc;
+    case 'css-course':
+      return t.experience.cssCourseDesc;
+    case 'typescript-course':
+      return t.experience.typescriptCourseDesc;
     case 'diploma':
       return t.experience.diplomaDesc;
     default:

@@ -29,7 +29,7 @@ describe('Contact Component', () => {
     
     // Check location
     expect(screen.getByText('Posizione')).toBeInTheDocument();
-    expect(screen.getByText('Cagliari, Italia')).toBeInTheDocument();
+    expect(screen.getByText('09128, Cagliari')).toBeInTheDocument();
   });
 
   it('renders social media links with proper attributes', () => {

@@ -1,6 +1,8 @@
 import React from "react";
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
+import { AnimatedSection } from "./AnimatedSection";
+import { StaggeredGrid } from "./StaggeredGrid";
 
 const About = () => {
   const { language } = useLanguage();
@@ -10,18 +12,20 @@ const About = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            Ciao, sono <span className="text-purple-600 dark:text-purple-400">{portfolioData.personal.name}</span>. 
-            Piacere di conoscerti.
-          </h2>
+          <AnimatedSection animation="fade-in-up" className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Ciao, sono <span className="text-purple-600 dark:text-purple-400">{portfolioData.personal.name}</span>.
+              Piacere di conoscerti.
+            </h2>
+          </AnimatedSection>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Profile Image */}
-            <div className="flex justify-center lg:justify-end">
+            <AnimatedSection animation="scale-in" className="flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
+                  <img
+                    src="/fotoCurriculum.png"
                     alt={portfolioData.personal.name}
                     className="w-full h-full object-cover"
                   />
@@ -29,10 +33,10 @@ const About = () => {
                 {/* Decorative element */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-600 rounded-full opacity-20 blur-xl"></div>
               </div>
-            </div>
+            </AnimatedSection>
 
             {/* Right Column - Bio */}
-            <div className="space-y-6">
+            <AnimatedSection animation="fade-in-up" delay={150} className="space-y-6">
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {language === 'it' ? 
@@ -62,69 +66,93 @@ const About = () => {
                   }
                 </p>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
 
           {/* Experience & Skills Section */}
           <div className="mt-20">
-            <h3 className="text-3xl font-bold text-center mb-12">
-              {language === 'it' ? 'Competenze Trasversali' : 'Soft Skills'}
-            </h3>
+            <AnimatedSection animation="fade-in-up" className="text-center mb-12">
+              <h3 className="text-3xl font-bold">
+                {language === 'it' ? 'Competenze Trasversali' : language === 'es' ? 'Competencias Transversales' : 'Soft Skills'}
+              </h3>
+            </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Communication */}
-              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">Comunicazione</h4>
+            <StaggeredGrid className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={100}>
+              {/* Technical Communication */}
+              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">
+                  {language === 'it' ? 'Comunicazione Tecnica' : language === 'es' ? 'Comunicación Técnica' : 'Technical Communication'}
+                </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Eccellenti doti comunicative e di public speaking
+                  {language === 'it'
+                    ? 'Stakeholder Management, referente tecnico verso clienti non-tecnici. Capacità di tradurre requisiti di business in soluzioni tecniche.'
+                    : language === 'es'
+                    ? 'Gestión de stakeholders, referente técnico para clientes no técnicos. Capacidad de traducir requisitos de negocio en soluciones técnicas.'
+                    : 'Stakeholder Management, technical referent for non-technical clients. Ability to translate business requirements into technical solutions.'}
                 </p>
               </div>
 
-              {/* Teamwork */}
-              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">Teamwork</h4>
+              {/* Ownership & Delivery */}
+              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">Ownership & Delivery</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Forte attitudine al lavoro in team e leadership
+                  {language === 'it'
+                    ? 'Track record di progetti portati da zero a produzione in tempi rapidi (3 mesi per piattaforma enterprise SPRocket).'
+                    : language === 'es'
+                    ? 'Historial de proyectos llevados de cero a producción en tiempos rápidos (3 meses para plataforma enterprise SPRocket).'
+                    : 'Track record of projects delivered from zero to production quickly (3 months for SPRocket enterprise platform).'}
                 </p>
               </div>
 
-              {/* Stress Management */}
-              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">Gestione Stress</h4>
+              {/* International Teams */}
+              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">
+                  {language === 'it' ? 'Team Internazionali' : language === 'es' ? 'Equipos Internacionales' : 'International Teams'}
+                </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Capacità di gestione dello stress e delle priorità
+                  {language === 'it'
+                    ? '2 anni in team distribuito 10+ sviluppatori per Expedia Group, metodologia Agile.'
+                    : language === 'es'
+                    ? '2 años en equipo distribuido de 10+ desarrolladores para Expedia Group, metodología Agile.'
+                    : '2 years in distributed team of 10+ developers for Expedia Group, Agile methodology.'}
                 </p>
               </div>
 
-              {/* Strategic Planning */}
-              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">Pianificazione</h4>
+              {/* Autonomy & Problem Solving */}
+              <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">
+                  {language === 'it' ? 'Autonomia & Problem Solving' : language === 'es' ? 'Autonomía & Problem Solving' : 'Autonomy & Problem Solving'}
+                </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Pianificazione strategica e monitoraggio dei risultati
+                  {language === 'it'
+                    ? 'Abitudine a lavorare con alta autonomia su architetture complesse, prendendo decisioni tecniche in prima persona.'
+                    : language === 'es'
+                    ? 'Acostumbrado a trabajar con alta autonomía en arquitecturas complejas, tomando decisiones técnicas de primera mano.'
+                    : 'Accustomed to working with high autonomy on complex architectures, making technical decisions firsthand.'}
                 </p>
               </div>
-            </div>
+            </StaggeredGrid>
 
             {/* Languages Section */}
-            <div className="mt-12">
+            <AnimatedSection animation="fade-in-up" delay={200} className="mt-12">
               <h3 className="text-2xl font-bold text-center mb-8">
                 {language === 'it' ? 'Competenze Linguistiche' : 'Language Skills'}
               </h3>
               <div className="flex flex-wrap justify-center gap-6">
-                <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg">
+                <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg hover:shadow-lg transition-shadow duration-300">
                   <span className="font-bold text-purple-600 dark:text-purple-400">Italiano:</span>
                   <span className="ml-2 text-gray-700 dark:text-gray-300">Madrelingua</span>
                 </div>
-                <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg">
+                <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg hover:shadow-lg transition-shadow duration-300">
                   <span className="font-bold text-purple-600 dark:text-purple-400">Inglese:</span>
                   <span className="ml-2 text-gray-700 dark:text-gray-300">B2 - Intermedio superiore</span>
                 </div>
-                <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg">
+                <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg hover:shadow-lg transition-shadow duration-300">
                   <span className="font-bold text-purple-600 dark:text-purple-400">Spagnolo:</span>
                   <span className="ml-2 text-gray-700 dark:text-gray-300">B2 - Intermedio superiore</span>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </div>

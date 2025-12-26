@@ -84,45 +84,69 @@ export const translations = {
       
       // Job descriptions (non traduciamo i nomi delle aziende)
       fedroDesc: [
-        "Lead developer della piattaforma FEDRO CognitiveServices per analisi chiamate con AI",
-        "Ridotto l'85% del codice legacy attraverso refactoring con Template Method Pattern",
-        "Implementato sistema Hangfire V2 per processing parallelo di 100+ file audio",
-        "Raggiunto 99.9% uptime con retry policies e gestione errori resiliente",
-        "Sviluppato abstraction layer per multi-provider AI (Azure, Assembly.AI, OpenAI)",
-        "Gestione isolata di 50+ tenant con RBAC granulare",
-        "Ottimizzato performance del 50% attraverso caching multi-livello e query optimization"
+        "Architetto e sviluppatore principale di SPRocket, piattaforma enterprise per l'analisi intelligente delle conversazioni telefoniche tramite AI",
+        "Progettazione completa dell'architettura applicativa: Clean Architecture, DDD, CQRS su ABP.io",
+        "Sviluppo orchestratore unificato con Hangfire per processing asincrono e parallelizzazione",
+        "Implementazione multi-tenancy con isolamento dati, RBAC granulare",
+        "Design RESTful APIs versionate con compliance OWASP",
+        "Architettura provider-agnostic per servizi AI: switch trasparente tra Azure Cognitive Services, Assembly.AI e OpenAI",
+        "Pipeline di trascrizione, analisi semantica e question-answering su conversazioni",
+        "Dashboard Angular con visualizzazioni real-time dei KPI chiamate",
+        "Motore di ricerca fulltext con Elasticsearch per navigazione istantanea su trascrizioni",
+        "Ottimizzazione +50% performance con caching multi-livello e query tuning",
+        "Sistema di retry policies e circuit breaker per resilienza"
       ],
       altenDesc: [
-        "Sviluppato componenti React per piattaforma con milioni di utenti",
-        "Ottimizzato query GraphQL riducendo latenza API del 40%",
-        "Team internazionale di 10+ sviluppatori in metodologia Agile",
-        "Implementato testing con Jest e Cypress (coverage 80%+)",
-        "Gestione pipeline CI/CD con Spinnaker",
-        "Sviluppo di componenti UI fedeli ai design realizzati su Figma"
+        "Sviluppatore frontend in team internazionale di 10+ sviluppatori per Expedia Group",
+        "Sviluppo componente carosello \"Suggested Homes\" per raccomandazioni personalizzate agli utenti",
+        "Implementazione widget meteo interattivo con visualizzazione forecast per date e location selezionate",
+        "Sviluppo componenti React riutilizzabili seguendo design system aziendale",
+        "Implementazione UI pixel-perfect da specifiche Figma con focus su responsive design",
+        "Codebase enterprise servita a 100.000+ utenti",
+        "Partecipazione attiva a refinement tecnici e definizione dei ticket",
+        "Workflow Agile con team distribuito (daily standup, sprint review, retrospective)"
       ],
       softwarelabDesc: [
-        "Progettato sistema POS embedded gestendo 100.000+ transazioni/anno",
-        "Sviluppato integrazioni WebServices per comunicazione real-time con sistemi bancari",
-        "Ottimizzato database queries migliorando response time del 60%",
-        "Creato documentazione tecnica e manuali utente per deployment e manutenzione"
+        "Progettazione e sviluppo da zero di sistema POS embedded per mense universitarie (Cliente: ERSU Cagliari)",
+        "Architettura completa del software POS da zero",
+        "Integrazione pagamenti carta multi-circuito (Visa, Mastercard, etc.) su hardware embedded",
+        "Sviluppo WebServices per comunicazione real-time con sistemi di backend",
+        "Gestione database transazionale (MySQL)",
+        "Evoluzione da sviluppatore junior a referente tecnico diretto per ERSU e tecnici IT delle facoltà universitarie",
+        "Creazione documentazione tecnica e manuali operativi per deployment e manutenzione",
+        "Sistema operativo in diverse mense universitarie a Cagliari",
+        "10.000+ transazioni/anno gestite"
       ],
       virtuardDesc: [
-        "Sviluppato app mobile VR per visualizzazione modelli 3D",
-        "Implementato gesture recognition con giroscopio e accelerometro",
-        "Ottimizzato rendering per 60 FPS stabili su dispositivi mobile"
+        "Sviluppatore in team di 3 persone per startup proptech - Piattaforma di Virtual Tour Immobiliare",
+        "Co-sviluppo dell'applicazione VR mobile da zero per visualizzazione immersiva di immobili in affitto tramite foto 360° e realtà virtuale",
+        "Implementazione sistema di navigazione gesture-based tramite giroscopio e accelerometro",
+        "Rendering 3D ottimizzato per dispositivi mobile (60 FPS stabili)",
+        "Compatibilità multi-device: Oculus, Google Cardboard, visori generici",
+        "Applicazione rilasciata in produzione e tuttora attiva sul mercato"
       ],
-      mlCourseDesc: [
-        "Completato corso completo di Machine Learning con Andrew Ng",
-        "Studio di algoritmi supervisionati e non supervisionati",
-        "Implementazione di neural networks e deep learning"
+      epicodeDesc: [
+        "Corso di laurea in Computer Engineering in corso",
+        "Focus su architetture software avanzate e best practices",
+        "Approfondimento su cloud computing e sistemi distribuiti"
       ],
       reactCourseDesc: [
         "Approfondimento tecniche avanzate React con TypeScript",
         "Redux, Redux Toolkit, Redux Saga per state management",
         "Performance optimization e best practices"
       ],
+      cssCourseDesc: [
+        "Corso avanzato CSS e SASS",
+        "Tecniche di styling moderne e responsive design",
+        "Architettura CSS scalabile (BEM, OOCSS)"
+      ],
+      typescriptCourseDesc: [
+        "TypeScript per applicazioni React",
+        "Tipizzazione avanzata e generics",
+        "Best practices e pattern TypeScript"
+      ],
       diplomaDesc: [
-        "Specializzazione in Informatica e Telecomunicazioni",
+        "Diploma in Informatica e Telecomunicazioni",
         "Focus su sviluppo software, reti e database",
         "Progetti pratici in C#, SQL, networking"
       ]
@@ -302,45 +326,69 @@ export const translations = {
       december: "December",
       
       fedroDesc: [
-        "Lead developer of FEDRO CognitiveServices platform for AI-powered call analytics",
-        "Reduced 85% of legacy code through refactoring with Template Method Pattern",
-        "Implemented Hangfire V2 system for parallel processing of 100+ audio files",
-        "Achieved 99.9% uptime with retry policies and resilient error handling",
-        "Developed abstraction layer for multi-provider AI (Azure, Assembly.AI, OpenAI)",
-        "Isolated management of 50+ tenants with granular RBAC",
-        "Optimized performance by 50% through multi-layer caching and query optimization"
+        "Architect and lead developer of SPRocket, enterprise platform for intelligent phone conversation analysis via AI",
+        "Complete application architecture design: Clean Architecture, DDD, CQRS on ABP.io",
+        "Unified orchestrator development with Hangfire for async processing and parallelization",
+        "Multi-tenancy implementation with data isolation, granular RBAC",
+        "RESTful APIs design versioned with OWASP compliance",
+        "Provider-agnostic architecture for AI services: transparent switch between Azure Cognitive Services, Assembly.AI and OpenAI",
+        "Transcription, semantic analysis and question-answering pipeline on conversations",
+        "Angular dashboard with real-time call KPI visualizations",
+        "Fulltext search engine with Elasticsearch for instant navigation on transcriptions",
+        "+50% performance optimization with multi-layer caching and query tuning",
+        "Retry policies and circuit breaker system for resilience"
       ],
       altenDesc: [
-        "Developed React components for platform with millions of users",
-        "Optimized GraphQL queries reducing API latency by 40%",
-        "International team of 10+ developers in Agile methodology",
-        "Implemented testing with Jest and Cypress (80%+ coverage)",
-        "CI/CD pipeline management with Spinnaker",
-        "Development of pixel-perfect UI components from Figma designs"
+        "Frontend developer in international team of 10+ developers for Expedia Group",
+        "Development of \"Suggested Homes\" carousel component for personalized user recommendations",
+        "Implementation of interactive weather widget with forecast visualization for selected dates and locations",
+        "Reusable React components development following company design system",
+        "Pixel-perfect UI implementation from Figma specs with focus on responsive design",
+        "Enterprise codebase serving 100,000+ users",
+        "Active participation in technical refinements and ticket definition",
+        "Agile workflow with distributed team (daily standup, sprint review, retrospective)"
       ],
       softwarelabDesc: [
-        "Designed embedded POS system handling 100,000+ transactions/year",
-        "Developed WebServices integrations for real-time communication with banking systems",
-        "Optimized database queries improving response time by 60%",
-        "Created technical documentation and user manuals for deployment and maintenance"
+        "Design and development from scratch of embedded POS system for university canteens (Client: ERSU Cagliari)",
+        "Complete POS software architecture from scratch",
+        "Multi-circuit card payment integration (Visa, Mastercard, etc.) on embedded hardware",
+        "WebServices development for real-time communication with backend systems",
+        "Transactional database management (MySQL)",
+        "Evolution from junior developer to direct technical referent for ERSU and university faculty IT staff",
+        "Technical documentation and operational manuals creation for deployment and maintenance",
+        "System operational in various university canteens in Cagliari",
+        "10,000+ transactions/year managed"
       ],
       virtuardDesc: [
-        "Developed VR mobile app for 3D model visualization",
-        "Implemented gesture recognition with gyroscope and accelerometer",
-        "Optimized rendering for stable 60 FPS on mobile devices"
+        "Developer in team of 3 for proptech startup - Real Estate Virtual Tour Platform",
+        "Co-development of VR mobile application from scratch for immersive visualization of rental properties via 360° photos and virtual reality",
+        "Gesture-based navigation system implementation via gyroscope and accelerometer",
+        "3D rendering optimized for mobile devices (stable 60 FPS)",
+        "Multi-device compatibility: Oculus, Google Cardboard, generic headsets",
+        "Application released to production and still active in the market"
       ],
-      mlCourseDesc: [
-        "Completed comprehensive Machine Learning course with Andrew Ng",
-        "Study of supervised and unsupervised algorithms",
-        "Implementation of neural networks and deep learning"
+      epicodeDesc: [
+        "Computer Engineering degree in progress",
+        "Focus on advanced software architectures and best practices",
+        "Deep dive on cloud computing and distributed systems"
       ],
       reactCourseDesc: [
         "Advanced React techniques with TypeScript",
         "Redux, Redux Toolkit, Redux Saga for state management",
         "Performance optimization and best practices"
       ],
+      cssCourseDesc: [
+        "Advanced CSS and SASS course",
+        "Modern styling techniques and responsive design",
+        "Scalable CSS architecture (BEM, OOCSS)"
+      ],
+      typescriptCourseDesc: [
+        "TypeScript for React applications",
+        "Advanced typing and generics",
+        "TypeScript best practices and patterns"
+      ],
       diplomaDesc: [
-        "Specialization in Computer Science and Telecommunications",
+        "Diploma in Computer Science and Telecommunications",
         "Focus on software development, networks and databases",
         "Practical projects in C#, SQL, networking"
       ]
@@ -519,45 +567,69 @@ export const translations = {
       december: "Diciembre",
       
       fedroDesc: [
-        "Desarrollador principal de la plataforma FEDRO CognitiveServices para análisis de llamadas con IA",
-        "Reducido el 85% del código legacy mediante refactorización con Template Method Pattern",
-        "Implementado sistema Hangfire V2 para procesamiento paralelo de 100+ archivos de audio",
-        "Logrado 99.9% de tiempo activo con políticas de reintentos y manejo resiliente de errores",
-        "Desarrollado capa de abstracción para IA multi-proveedor (Azure, Assembly.AI, OpenAI)",
-        "Gestión aislada de 50+ inquilinos con RBAC granular",
-        "Optimizado el rendimiento en un 50% mediante caché multicapa y optimización de consultas"
+        "Arquitecto y desarrollador principal de SPRocket, plataforma enterprise para análisis inteligente de conversaciones telefónicas mediante IA",
+        "Diseño completo de la arquitectura aplicativa: Clean Architecture, DDD, CQRS sobre ABP.io",
+        "Desarrollo de orquestador unificado con Hangfire para procesamiento asíncrono y paralelización",
+        "Implementación de multi-tenancy con aislamiento de datos, RBAC granular",
+        "Diseño de APIs RESTful versionadas con cumplimiento OWASP",
+        "Arquitectura provider-agnostic para servicios IA: cambio transparente entre Azure Cognitive Services, Assembly.AI y OpenAI",
+        "Pipeline de transcripción, análisis semántico y question-answering sobre conversaciones",
+        "Dashboard Angular con visualizaciones en tiempo real de KPIs de llamadas",
+        "Motor de búsqueda fulltext con Elasticsearch para navegación instantánea en transcripciones",
+        "Optimización +50% de rendimiento con caché multicapa y query tuning",
+        "Sistema de retry policies y circuit breaker para resiliencia"
       ],
       altenDesc: [
-        "Desarrollado componentes React para plataforma con millones de usuarios",
-        "Optimizado consultas GraphQL reduciendo latencia API en 40%",
-        "Equipo internacional de 10+ desarrolladores en metodología Ágil",
-        "Implementado testing con Jest y Cypress (cobertura 80%+)",
-        "Gestión de pipeline CI/CD con Spinnaker",
-        "Desarrollo de componentes UI fieles a diseños de Figma"
+        "Desarrollador frontend en equipo internacional de 10+ desarrolladores para Expedia Group",
+        "Desarrollo del componente carrusel \"Suggested Homes\" para recomendaciones personalizadas a usuarios",
+        "Implementación de widget meteorológico interactivo con visualización de pronóstico para fechas y ubicaciones seleccionadas",
+        "Desarrollo de componentes React reutilizables siguiendo design system empresarial",
+        "Implementación de UI pixel-perfect desde especificaciones Figma con enfoque en diseño responsive",
+        "Codebase enterprise sirviendo a 100.000+ usuarios",
+        "Participación activa en refinements técnicos y definición de tickets",
+        "Workflow Agile con equipo distribuido (daily standup, sprint review, retrospective)"
       ],
       softwarelabDesc: [
-        "Diseñado sistema POS embebido gestionando 100,000+ transacciones/año",
-        "Desarrollado integraciones WebServices para comunicación en tiempo real con sistemas bancarios",
-        "Optimizado consultas de base de datos mejorando tiempo de respuesta en 60%",
-        "Creado documentación técnica y manuales de usuario para despliegue y mantenimiento"
+        "Diseño y desarrollo desde cero de sistema POS embebido para comedores universitarios (Cliente: ERSU Cagliari)",
+        "Arquitectura completa del software POS desde cero",
+        "Integración de pagos con tarjeta multi-circuito (Visa, Mastercard, etc.) en hardware embebido",
+        "Desarrollo de WebServices para comunicación en tiempo real con sistemas de backend",
+        "Gestión de base de datos transaccional (MySQL)",
+        "Evolución de desarrollador junior a referente técnico directo para ERSU y personal IT de facultades universitarias",
+        "Creación de documentación técnica y manuales operativos para despliegue y mantenimiento",
+        "Sistema operativo en varios comedores universitarios de Cagliari",
+        "10.000+ transacciones/año gestionadas"
       ],
       virtuardDesc: [
-        "Desarrollado app móvil VR para visualización de modelos 3D",
-        "Implementado reconocimiento de gestos con giroscopio y acelerómetro",
-        "Optimizado renderizado para 60 FPS estables en dispositivos móviles"
+        "Desarrollador en equipo de 3 personas para startup proptech - Plataforma de Tour Virtual Inmobiliario",
+        "Co-desarrollo de aplicación VR móvil desde cero para visualización inmersiva de inmuebles en alquiler mediante fotos 360° y realidad virtual",
+        "Implementación de sistema de navegación basado en gestos mediante giroscopio y acelerómetro",
+        "Renderizado 3D optimizado para dispositivos móviles (60 FPS estables)",
+        "Compatibilidad multi-dispositivo: Oculus, Google Cardboard, visores genéricos",
+        "Aplicación lanzada en producción y aún activa en el mercado"
       ],
-      mlCourseDesc: [
-        "Completado curso completo de Machine Learning con Andrew Ng",
-        "Estudio de algoritmos supervisados y no supervisados",
-        "Implementación de redes neuronales y deep learning"
+      epicodeDesc: [
+        "Carrera de Ingeniería Informática en curso",
+        "Enfoque en arquitecturas de software avanzadas y mejores prácticas",
+        "Profundización en cloud computing y sistemas distribuidos"
       ],
       reactCourseDesc: [
         "Técnicas avanzadas de React con TypeScript",
         "Redux, Redux Toolkit, Redux Saga para gestión de estado",
         "Optimización de rendimiento y mejores prácticas"
       ],
+      cssCourseDesc: [
+        "Curso avanzado de CSS y SASS",
+        "Técnicas de estilizado modernas y diseño responsive",
+        "Arquitectura CSS escalable (BEM, OOCSS)"
+      ],
+      typescriptCourseDesc: [
+        "TypeScript para aplicaciones React",
+        "Tipado avanzado y generics",
+        "Mejores prácticas y patrones TypeScript"
+      ],
       diplomaDesc: [
-        "Especialización en Informática y Telecomunicaciones",
+        "Diploma en Informática y Telecomunicaciones",
         "Enfoque en desarrollo de software, redes y bases de datos",
         "Proyectos prácticos en C#, SQL, redes"
       ]

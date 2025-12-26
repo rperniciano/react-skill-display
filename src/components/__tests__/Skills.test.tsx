@@ -15,32 +15,32 @@ describe('Skills Component', () => {
 
   it('displays all technology categories', () => {
     renderWithProviders(<Skills />);
-    
-    // Check all technology category titles
+
+    // Check all technology category titles (updated to match CV)
     expect(screen.getByText('Languages & Frameworks')).toBeInTheDocument();
     expect(screen.getByText('Database & Search')).toBeInTheDocument();
-    expect(screen.getByText('AI & Machine Learning')).toBeInTheDocument();
-    expect(screen.getByText('Cloud & DevOps')).toBeInTheDocument();
+    expect(screen.getByText('AI & Speech Processing')).toBeInTheDocument();
+    expect(screen.getByText('Cloud & Infrastructure')).toBeInTheDocument();
     expect(screen.getByText('Architecture & Patterns')).toBeInTheDocument();
-    expect(screen.getByText('Testing & Performance')).toBeInTheDocument();
+    expect(screen.getByText('Testing & Metodologie')).toBeInTheDocument();
   });
 
   it('shows detailed technology descriptions', () => {
     renderWithProviders(<Skills />);
-    
-    // Check some key technology descriptions
+
+    // Check some key technology descriptions (updated to match CV)
     expect(screen.getByText(/Frontend: React, Angular, TypeScript/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: C# \(\.NET 9\), Python, PHP/)).toBeInTheDocument();
-    expect(screen.getByText(/SQL Server, MySQL, Elasticsearch/)).toBeInTheDocument();
+    expect(screen.getByText(/Backend: C# \(\.NET 9\), Node\.js, REST APIs, GraphQL, Fastify, Swagger/)).toBeInTheDocument();
+    expect(screen.getByText(/SQL Server, MySQL, Elasticsearch, Supabase/)).toBeInTheDocument();
     expect(screen.getByText(/Azure Cognitive Services, OpenAI GPT/)).toBeInTheDocument();
   });
 
   it('displays technology details for Italian language', () => {
     renderWithProviders(<Skills />);
-    
-    // Check Italian-specific details
+
+    // Check Italian-specific details (updated to match CV)
     expect(screen.getByText(/Query optimization, indicizzazione full-text/)).toBeInTheDocument();
-    expect(screen.getByText(/Performance optimization, caching multi-livello/)).toBeInTheDocument();
+    expect(screen.getByText(/Metodologie: Agile \(Scrum, Kanban\), Jira/)).toBeInTheDocument();
   });
 
   it('renders the methodologies and tools section', () => {

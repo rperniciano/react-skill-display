@@ -15,10 +15,10 @@ describe('About Component', () => {
 
   it('displays profile image with correct attributes', () => {
     renderWithProviders(<About />);
-    
+
     const profileImage = screen.getByAltText('Riccardo Perniciano');
     expect(profileImage).toBeInTheDocument();
-    expect(profileImage).toHaveAttribute('src', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800');
+    expect(profileImage).toHaveAttribute('src', '/fotoCurriculum.png');
   });
 
   it('renders biography content in Italian by default', () => {
@@ -33,21 +33,21 @@ describe('About Component', () => {
 
   it('displays soft skills section correctly', () => {
     renderWithProviders(<About />);
-    
+
     expect(screen.getByText('Competenze Trasversali')).toBeInTheDocument();
-    
-    // Check individual soft skills
-    expect(screen.getByText('Comunicazione')).toBeInTheDocument();
-    expect(screen.getByText('Eccellenti doti comunicative e di public speaking')).toBeInTheDocument();
-    
-    expect(screen.getByText('Teamwork')).toBeInTheDocument();
-    expect(screen.getByText('Forte attitudine al lavoro in team e leadership')).toBeInTheDocument();
-    
-    expect(screen.getByText('Gestione Stress')).toBeInTheDocument();
-    expect(screen.getByText('Capacità di gestione dello stress e delle priorità')).toBeInTheDocument();
-    
-    expect(screen.getByText('Pianificazione')).toBeInTheDocument();
-    expect(screen.getByText('Pianificazione strategica e monitoraggio dei risultati')).toBeInTheDocument();
+
+    // Check individual soft skills (updated to match CV)
+    expect(screen.getByText('Comunicazione Tecnica')).toBeInTheDocument();
+    expect(screen.getByText(/Stakeholder Management, referente tecnico verso clienti non-tecnici/)).toBeInTheDocument();
+
+    expect(screen.getByText('Ownership & Delivery')).toBeInTheDocument();
+    expect(screen.getByText(/Track record di progetti portati da zero a produzione/)).toBeInTheDocument();
+
+    expect(screen.getByText('Team Internazionali')).toBeInTheDocument();
+    expect(screen.getByText(/2 anni in team distribuito 10\+ sviluppatori per Expedia Group/)).toBeInTheDocument();
+
+    expect(screen.getByText('Autonomia & Problem Solving')).toBeInTheDocument();
+    expect(screen.getByText(/Abitudine a lavorare con alta autonomia su architetture complesse/)).toBeInTheDocument();
   });
 
   it('shows language skills section', () => {

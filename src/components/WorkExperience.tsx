@@ -7,6 +7,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
 import { formatPeriod, getJobDescription } from "./translation-utils";
+import { AnimatedSection } from "./AnimatedSection";
 
 interface TimelineItem {
   id: number;
@@ -32,60 +33,62 @@ const WorkExperience = () => {
     {
       id: 1,
       jobId: 'fedro',
-      title: "SOFTWARE ENGINEER - LEAD DEVELOPER",
+      title: "SOLUTION ARCHITECT & TECHNICAL LEAD",
       organization: "FEDRO Software SRL",
       period: "Gennaio 2025 - Presente",
       location: "Cagliari",
       description: getJobDescription('fedro', t),
       type: "work",
-      technologies: [".NET 9", "Angular", "ABP.io", "Elasticsearch", "Azure AI", "OpenAI", "Hangfire", "Docker"],
+      technologies: ["ABP.io", ".NET 9", "Angular", "TypeScript", "Elasticsearch", "Azure AI", "OpenAI", "Assembly.AI", "Hangfire", "Docker"],
       highlight: true,
       current: true
     },
     {
       id: 2,
       jobId: 'alten',
-      title: "REACT DEVELOPER",
+      title: "FRONTEND DEVELOPER",
       organization: "ALTEN Italia",
       client: "Expedia Group",
       period: "2021 - 2023",
       location: language === 'it' ? "Roma (Remoto)" : language === 'es' ? "Roma (Remoto)" : "Rome (Remote)",
       description: getJobDescription('alten', t),
       type: "work",
-      technologies: ["React", "TypeScript", "GraphQL", "Redux", "Jest", "Cypress"],
+      technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
       highlight: false
     },
     {
       id: 3,
       jobId: 'softwarelab',
-      title: "SOFTWARE ENGINEER / FULL-STACK DEVELOPER",
+      title: language === 'it' ? "SOFTWARE DEVELOPER → TECHNICAL REFERENT" : language === 'es' ? "DESARROLLADOR → REFERENTE TÉCNICO" : "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
       organization: "SOFTWARELAB",
+      client: "ERSU Cagliari",
       period: "2018 - 2021",
       location: "Cagliari",
       description: getJobDescription('softwarelab', t),
       type: "work",
-      technologies: ["C#", "SQL Server", "MySQL", "REST APIs", "Embedded Systems"]
+      technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"]
     },
     {
       id: 4,
       jobId: 'virtuard',
-      title: language === 'it' ? "SVILUPPATORE MOBILE" : language === 'es' ? "DESARROLLADOR MÓVIL" : "MOBILE DEVELOPER",
+      title: language === 'it' ? "MOBILE/VR DEVELOPER" : language === 'es' ? "DESARROLLADOR MÓVIL/VR" : "MOBILE/VR DEVELOPER",
       organization: "Virtuard LTD",
       period: "Marzo 2018 – Giugno 2018",
       location: "Cagliari",
       description: getJobDescription('virtuard', t),
       type: "work",
-      technologies: ["Unity", "C#", "Google VR SDK"]
+      technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering"]
     },
     {
       id: 5,
-      jobId: 'ml-course',
-      title: "MACHINE LEARNING SPECIALIZATION",
-      organization: "Stanford University via Coursera",
-      period: "2023",
+      jobId: 'epicode',
+      title: "COMPUTER ENGINEERING",
+      organization: "Epicode Institute of Technology",
+      period: "2025 - Presente",
       location: "Online",
-      description: getJobDescription('ml-course', t),
-      type: "education"
+      description: getJobDescription('epicode', t),
+      type: "education",
+      current: true
     },
     {
       id: 6,
@@ -99,10 +102,30 @@ const WorkExperience = () => {
     },
     {
       id: 7,
+      jobId: 'css-course',
+      title: "ADVANCED CSS AND SASS",
+      organization: "Udemy",
+      period: "2021",
+      location: "Online",
+      description: getJobDescription('css-course', t),
+      type: "education"
+    },
+    {
+      id: 8,
+      jobId: 'typescript-course',
+      title: "TYPESCRIPT FOR REACT",
+      organization: "Udemy",
+      period: "2021",
+      location: "Online",
+      description: getJobDescription('typescript-course', t),
+      type: "education"
+    },
+    {
+      id: 9,
       jobId: 'diploma',
-      title: language === 'it' ? "DIPLOMA PERITO INFORMATICO" : language === 'es' ? "DIPLOMA EN INFORMÁTICA" : "COMPUTER SCIENCE DIPLOMA",
+      title: language === 'it' ? "DIPLOMA IN INFORMATICA E TELECOMUNICAZIONI" : language === 'es' ? "DIPLOMA EN INFORMÁTICA Y TELECOMUNICACIONES" : "DIPLOMA IN COMPUTER SCIENCE AND TELECOMMUNICATIONS",
       organization: "ITIS GIUA",
-      period: "2013 - 2018",
+      period: "2018",
       location: "Cagliari",
       description: getJobDescription('diploma', t),
       type: "education"
@@ -151,40 +174,45 @@ const WorkExperience = () => {
     <section id="experience" className="py-20 bg-portfolio-secondary/30 dark:bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-portfolio-primary/20 dark:bg-portfolio-primary/10 p-3 rounded-full">
-              <Calendar className="h-8 w-8 text-portfolio-primary" aria-hidden="true" />
+          <AnimatedSection animation="fade-in-up" className="text-center mb-8">
+            <div className="flex items-center justify-center mb-8">
+              <div className="bg-portfolio-primary/20 dark:bg-portfolio-primary/10 p-3 rounded-full">
+                <Calendar className="h-8 w-8 text-portfolio-primary" aria-hidden="true" />
+              </div>
             </div>
-          </div>
-          
-          <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-4">
-            {t.experience.title}
-          </h2>
-          
-          <p className="text-portfolio-text dark:text-gray-300 text-center max-w-2xl mx-auto mb-8">
-            {t.experience.subtitle}
-          </p>
-          
-          <div className="flex justify-center gap-2 mb-10">
-            <Button 
-              variant={filter === "all" ? "default" : "outline"} 
+
+            <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white mb-4">
+              {t.experience.title}
+            </h2>
+
+            <p className="text-portfolio-text dark:text-gray-300 max-w-2xl mx-auto">
+              {t.experience.subtitle}
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-in-up" delay={100} className="flex justify-center gap-2 mb-10">
+            <Button
+              variant={filter === "all" ? "default" : "outline"}
               onClick={() => setFilter("all")}
+              className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               {t.experience.all}
             </Button>
-            <Button 
-              variant={filter === "work" ? "default" : "outline"} 
+            <Button
+              variant={filter === "work" ? "default" : "outline"}
               onClick={() => setFilter("work")}
+              className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               {t.experience.work}
             </Button>
-            <Button 
-              variant={filter === "education" ? "default" : "outline"} 
+            <Button
+              variant={filter === "education" ? "default" : "outline"}
               onClick={() => setFilter("education")}
+              className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               {t.experience.education}
             </Button>
-          </div>
+          </AnimatedSection>
           
           <div className="relative">
             {/* Timeline line */}
@@ -199,9 +227,13 @@ const WorkExperience = () => {
                   </div>
                   
                   {/* Content card */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'ml-auto pl-8' : 'mr-auto pr-8'}`}>
+                  <AnimatedSection
+                    animation="fade-in-up"
+                    delay={index * 100}
+                    className={`w-5/12 ${index % 2 === 0 ? 'ml-auto pl-8' : 'mr-auto pr-8'}`}
+                  >
                     <Collapsible open={openItems.includes(item.id)}>
-                      <Card className={`overflow-hidden hover:shadow-xl transition-all ${item.highlight ? 'ring-2 ring-purple-500' : ''} bg-background dark:bg-gray-900 dark:border-gray-700`}>
+                      <Card className={`overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${item.highlight ? 'ring-2 ring-purple-500' : ''} bg-background dark:bg-gray-900 dark:border-gray-700`}>
                         <div className="p-4">
                           <div className="flex justify-between items-start mb-2">
                             <div className="flex-1">
@@ -280,7 +312,7 @@ const WorkExperience = () => {
                         </CollapsibleContent>
                       </Card>
                     </Collapsible>
-                  </div>
+                  </AnimatedSection>
                 </div>
               ))}
             </div>

@@ -133,12 +133,10 @@ describe('PortfolioLayout Component', () => {
 
   it('shows professional metrics and statistics', () => {
     renderWithProviders(<PortfolioLayout />);
-    
-    // Check for key metrics in Hero section (there are multiple instances)
-    expect(screen.getByText('7+')).toBeInTheDocument();
-    expect(screen.getAllByText('85%').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('99.9%').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('50+').length).toBeGreaterThan(0);
+
+    // Check for key metrics mentioned throughout the portfolio (updated to match CV)
+    expect(screen.getAllByText(/7\+/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/99\.9%/).length).toBeGreaterThan(0);
   });
 
   it('renders project portfolio with proper structure', () => {

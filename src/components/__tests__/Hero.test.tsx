@@ -41,7 +41,7 @@ describe('Hero Component', () => {
     // Check CV download button
     const cvButton = screen.getByRole('link', { name: /Download CV/i });
     expect(cvButton).toBeInTheDocument();
-    expect(cvButton).toHaveAttribute('href', '/CV-Riccardo-Perniciano.pdf');
+    expect(cvButton).toHaveAttribute('href', '/Curriculum Riccardo Perniciano 12-2025 ITA.pdf');
     expect(cvButton).toHaveAttribute('download');
   });
 
@@ -54,18 +54,13 @@ describe('Hero Component', () => {
 
   it('renders stats section with correct metrics', () => {
     renderWithProviders(<Hero />);
-    
-    // Check stats values
-    expect(screen.getByText('7+')).toBeInTheDocument();
-    expect(screen.getByText('85%')).toBeInTheDocument();
-    expect(screen.getByText('99.9%')).toBeInTheDocument();
-    expect(screen.getByText('50+')).toBeInTheDocument();
 
-    // Check stats labels
-    expect(screen.getByText('anni di esperienza')).toBeInTheDocument();
-    expect(screen.getByText('Riduzione Code Legacy')).toBeInTheDocument();
-    expect(screen.getByText('Uptime Sistemi')).toBeInTheDocument();
-    expect(screen.getByText('Tenant Gestiti')).toBeInTheDocument();
+    // Check stats values - Hero now shows years of experience inline
+    expect(screen.getAllByText(/7\+/).length).toBeGreaterThan(0);
+
+    // Check for key labels in the Hero section
+    expect(screen.getByText(/anni di esperienza|years of experience/i)).toBeInTheDocument();
+    expect(screen.getByText(/soluzioni enterprise|enterprise solutions/i)).toBeInTheDocument();
   });
 
   it('has proper accessibility attributes', () => {

@@ -13,6 +13,8 @@ import {
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
 import { getProjectDescription, getProjectMetrics } from "./translation-utils";
+import { AnimatedSection } from "./AnimatedSection";
+import { StaggeredGrid } from "./StaggeredGrid";
 
 const Projects = () => {
   const { t, language } = useLanguage();
@@ -28,23 +30,25 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-full">
-              <Briefcase className="h-8 w-8 text-white" aria-hidden="true" />
+          <AnimatedSection animation="fade-in-up" className="text-center mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-full">
+                <Briefcase className="h-8 w-8 text-white" aria-hidden="true" />
+              </div>
             </div>
-          </div>
-          
-          <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white text-center mb-4">
-            {t.projects.title}
-          </h2>
-          
-          <p className="text-portfolio-text dark:text-gray-300 text-center max-w-2xl mx-auto mb-12">
-            {t.projects.subtitle}
-          </p>
-          
+
+            <h2 className="text-4xl font-bold text-portfolio-heading dark:text-white mb-4">
+              {t.projects.title}
+            </h2>
+
+            <p className="text-portfolio-text dark:text-gray-300 max-w-2xl mx-auto">
+              {t.projects.subtitle}
+            </p>
+          </AnimatedSection>
+
           {/* Featured Project - FEDRO */}
-          <div className="mb-12">
-            <Card className="overflow-hidden bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20">
+          <AnimatedSection animation="scale-in" className="mb-12">
+            <Card className="overflow-hidden bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20 hover:shadow-xl transition-shadow duration-300">
               <div className="md:flex">
                 <div className="md:w-2/5">
                   <img 
@@ -98,12 +102,12 @@ const Projects = () => {
                 </div>
               </div>
             </Card>
-          </div>
-          
+          </AnimatedSection>
+
           {/* Other Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggeredGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={100}>
             {projectsWithTranslations.slice(1).map((project, index) => (
-              <Card key={index} className="overflow-hidden flex flex-col h-full hover:shadow-xl transition-all hover:-translate-y-1">
+              <Card key={index} className="overflow-hidden flex flex-col h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <div className="h-48 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700">
                   <img 
                     src={project.image} 
@@ -198,25 +202,25 @@ const Projects = () => {
                 </CardFooter>
               </Card>
             ))}
-          </div>
-          
+          </StaggeredGrid>
+
           {/* Call to Action */}
-          <div className="mt-16 text-center">
+          <AnimatedSection animation="fade-in-up" className="mt-16 text-center">
             <div className="inline-flex flex-col items-center">
               <h3 className="text-2xl font-bold mb-4">{t.projects.interestedCollab}</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
                 {t.projects.openToProjects}
               </p>
               <div className="flex gap-4">
-                <Button asChild>
+                <Button asChild className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                   <a href="#contact">
                     {t.projects.contactMe}
                   </a>
                 </Button>
-                <Button variant="outline" asChild>
-                  <a 
-                    href="https://github.com/rperniciano" 
-                    target="_blank" 
+                <Button variant="outline" asChild className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+                  <a
+                    href="https://github.com/rperniciano"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
@@ -226,7 +230,7 @@ const Projects = () => {
                 </Button>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

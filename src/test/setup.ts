@@ -43,6 +43,13 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
   disconnect: vi.fn(),
 }));
 
+// Mock IntersectionObserver for scroll animations
+global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
 // Mock HTMLElement methods for Radix UI
 Object.defineProperty(HTMLElement.prototype, 'hasPointerCapture', {
   writable: true,

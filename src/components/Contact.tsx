@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
+import { AnimatedSection } from "./AnimatedSection";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -14,7 +15,7 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
+          <AnimatedSection animation="fade-in-up" className="text-center mb-12">
             <span className="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/50 rounded-full text-purple-600 dark:text-purple-400 text-sm mb-4">
               {t.contact.title}
             </span>
@@ -24,13 +25,13 @@ const Contact = () => {
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               {t.contact.subtitle}
             </p>
-          </div>
+          </AnimatedSection>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Column - Contact Info Cards */}
-            <div className="space-y-6">
+            <AnimatedSection animation="fade-in-up" className="space-y-6">
               {/* Main Contact Card */}
-              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
                     {t.contact.contactInfo}
@@ -75,27 +76,27 @@ const Contact = () => {
 
                   {/* Social Links */}
                   <div className="flex gap-3 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                    <a 
+                    <a
                       href={portfolioData.personal.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 hover:scale-110 transition-all duration-200"
                       aria-label="LinkedIn"
                     >
                       <Linkedin className="h-5 w-5" />
                     </a>
-                    <a 
+                    <a
                       href={portfolioData.personal.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 hover:scale-110 transition-all duration-200"
                       aria-label="GitHub"
                     >
                       <Github className="h-5 w-5" />
                     </a>
-                    <a 
+                    <a
                       href={`mailto:${portfolioData.personal.email}`}
-                      className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 hover:scale-110 transition-all duration-200"
                       aria-label="Email"
                     >
                       <Mail className="h-5 w-5" />
@@ -105,7 +106,7 @@ const Contact = () => {
               </Card>
 
               {/* Response Time Card */}
-              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
@@ -122,12 +123,12 @@ const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </AnimatedSection>
 
             {/* Right Column - Book a Call CTA */}
-            <div className="space-y-6">
+            <AnimatedSection animation="fade-in-up" delay={150} className="space-y-6">
               {/* Main CTA Card */}
-              <Card className="bg-gradient-to-br from-purple-600 to-purple-700 dark:from-purple-700 dark:to-purple-800 text-white">
+              <Card className="bg-gradient-to-br from-purple-600 to-purple-700 dark:from-purple-700 dark:to-purple-800 text-white hover:shadow-2xl transition-shadow duration-300">
                 <CardContent className="p-8 text-center">
                   <div className="flex justify-center mb-4">
                     <div className="p-4 bg-white/20 rounded-full">
@@ -142,9 +143,9 @@ const Contact = () => {
                     Prenota una chiamata gratuita di 30 minuti senza impegno.
                   </p>
                   
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-white text-purple-600 hover:bg-gray-100"
+                  <Button
+                    size="lg"
+                    className="w-full bg-white text-purple-600 hover:bg-gray-100 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                     asChild
                   >
                     <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
@@ -171,7 +172,7 @@ const Contact = () => {
               </Card>
 
               {/* Alternative Contact Methods */}
-              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="p-2 bg-purple-100 dark:bg-purple-900/50 rounded-lg">
@@ -185,20 +186,22 @@ const Contact = () => {
                         Puoi contattarmi direttamente via email o LinkedIn per qualsiasi domanda o proposta.
                       </p>
                       <div className="flex gap-2">
-                        <Button 
-                          size="sm" 
+                        <Button
+                          size="sm"
                           variant="outline"
                           asChild
+                          className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                         >
                           <a href={`mailto:${portfolioData.personal.email}`}>
                             <Mail className="h-4 w-4 mr-2" />
                             Email
                           </a>
                         </Button>
-                        <Button 
-                          size="sm" 
+                        <Button
+                          size="sm"
                           variant="outline"
                           asChild
+                          className="transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                         >
                           <a href={portfolioData.personal.linkedin} target="_blank" rel="noopener noreferrer">
                             <Linkedin className="h-4 w-4 mr-2" />
@@ -210,7 +213,7 @@ const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </div>

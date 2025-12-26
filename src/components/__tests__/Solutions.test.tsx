@@ -81,10 +81,10 @@ describe('Solutions Component', () => {
 
   it('applies hover effects to solution cards', () => {
     const { container } = renderWithProviders(<Solutions />);
-    
-    // Check for hover effects
-    const hoverCards = container.querySelectorAll('.hover\\:shadow-lg');
-    expect(hoverCards.length).toBe(3); // Three main solution cards
+
+    // Check for hover effects (updated to shadow-xl)
+    const hoverCards = container.querySelectorAll('.hover\\:shadow-xl');
+    expect(hoverCards.length).toBe(4); // Three main solution cards + custom solutions card
   });
 
   it('displays the custom solutions card with special styling', () => {
