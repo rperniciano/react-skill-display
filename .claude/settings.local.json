@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm run test:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: add CSS animation system for enhanced UI\n\n- Add useScrollAnimation hook with IntersectionObserver for scroll-triggered animations\n- Create AnimatedSection component for reusable fade/scale animations\n- Create StaggeredGrid component for staggered card animations\n- Add new keyframes in tailwind.config.ts: fade-in-up, fade-in-down, scale-in, hero-fade-in, glow-pulse\n- Add animation delay utilities and reduced-motion support in index.css\n- Apply sequential entrance animations to Hero section\n- Apply scroll-triggered animations to Skills, Projects, Solutions, WorkExperience, About, Contact\n- Add micro-interactions \\(hover scale, shadow effects\\) to buttons and cards\n- Add IntersectionObserver mock in test setup\n- Update tests for new animation classes\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ],
     "deny": []
   }
