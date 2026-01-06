@@ -216,19 +216,6 @@ react-skill-display/
 
 ---
 
-## 📈 Prossimi Sviluppi
-
-- [ ] Blog section con articoli tecnici
-- [ ] Integration con CMS headless
-- [ ] Dashboard analytics
-- [ ] PWA support
-- [ ] Testing E2E con Cypress
-- [ ] Storybook per component library
-- [ ] Newsletter integration
-- [ ] Video portfolio section
-
----
-
 ## 📄 Licenza
 
 Questo progetto è rilasciato sotto licenza MIT. Sentiti libero di utilizzare il codice per il tuo portfolio personale.
@@ -240,7 +227,7 @@ Questo progetto è rilasciato sotto licenza MIT. Sentiti libero di utilizzare il
 - **Email:** ricki.perniciano.work@gmail.com
 - **LinkedIn:** [linkedin.com/in/riccardo-perniciano](https://linkedin.com/in/riccardo-perniciano)
 - **GitHub:** [github.com/rperniciano](https://github.com/rperniciano)
-- **Portfolio:** [react-skill-display.vercel.app](https://react-skill-display.vercel.app)
+- **Portfolio:** [riccardo-perniciano.cv](https://riccardo-perniciano-cv.vercel.app/)
 - **Telefono:** +39 351 874 5889
 
 ---
