@@ -9,19 +9,19 @@ describe('Hero Component', () => {
     renderWithProviders(<Hero />);
     
     // Check if the main title is rendered
-    expect(screen.getByText('Mid-Senior Full Stack Developer')).toBeInTheDocument();
-    expect(screen.getByText(/7\+ anni di esperienza in/)).toBeInTheDocument();
-    expect(screen.getByText('soluzioni enterprise')).toBeInTheDocument();
+    expect(screen.getByText('Senior .NET Developer & Solution Architect')).toBeInTheDocument();
+    expect(screen.getByText(/7\+ anni di esperienza/)).toBeInTheDocument();
+    expect(screen.getByText('Sistemi AI in produzione')).toBeInTheDocument();
   });
 
   it('renders the tagline and description', () => {
     renderWithProviders(<Hero />);
     
     // Check tagline
-    expect(screen.getByText('Il partner per lo sviluppo delle tue idee enterprise.')).toBeInTheDocument();
-    
+    expect(screen.getByText('Sistemi AI in produzione, costruiti su .NET enterprise.')).toBeInTheDocument();
+
     // Check description (partial match due to long text)
-    expect(screen.getByText(/Esperto nell'integrazione di servizi cognitivi/)).toBeInTheDocument();
+    expect(screen.getByText(/Specializzato in sistemi AI in produzione/)).toBeInTheDocument();
   });
 
   it('renders all CTA buttons with correct links', () => {
@@ -41,7 +41,7 @@ describe('Hero Component', () => {
     // Check CV download button
     const cvButton = screen.getByRole('link', { name: /Download CV/i });
     expect(cvButton).toBeInTheDocument();
-    expect(cvButton).toHaveAttribute('href', '/Curriculum Riccardo Perniciano 12-2025 ITA.pdf');
+    expect(cvButton).toHaveAttribute('href', '/CV_Riccardo_Perniciano_2026_ITA.pdf');
     expect(cvButton).toHaveAttribute('download');
   });
 
@@ -60,7 +60,7 @@ describe('Hero Component', () => {
 
     // Check for key labels in the Hero section
     expect(screen.getByText(/anni di esperienza|years of experience/i)).toBeInTheDocument();
-    expect(screen.getByText(/soluzioni enterprise|enterprise solutions/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sistemi AI in produzione/i)).toBeInTheDocument();
   });
 
   it('has proper accessibility attributes', () => {

@@ -17,7 +17,7 @@ describe('PortfolioLayout Component', () => {
     renderWithProviders(<PortfolioLayout />);
     
     // Check for Hero section
-    expect(screen.getByText('Mid-Senior Full Stack Developer')).toBeInTheDocument();
+    expect(screen.getByText('Senior .NET Developer & Solution Architect')).toBeInTheDocument();
     
     // Check for About section
     expect(screen.getByText(/Ciao, sono/)).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe('PortfolioLayout Component', () => {
     renderWithProviders(<PortfolioLayout />);
     
     // Since the component is rendered with providers, check if Italian content is displayed
-    expect(screen.getByText('Mid-Senior Full Stack Developer')).toBeInTheDocument();
+    expect(screen.getByText('Senior .NET Developer & Solution Architect')).toBeInTheDocument();
     expect(screen.getByText('Competenze Tecniche')).toBeInTheDocument();
   });
 

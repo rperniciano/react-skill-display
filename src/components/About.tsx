@@ -40,14 +40,14 @@ const About = () => {
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {language === 'it' ? 
-                    "Mid-Senior Full Stack Developer con 7+ anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili." :
-                    "Mid-Senior Full Stack Developer with 7+ years of experience in designing and implementing scalable enterprise solutions."
+                    "Senior .NET Developer & Solution Architect con 7+ anni di esperienza nella progettazione di soluzioni enterprise scalabili, oggi specializzato in AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG." :
+                    "Senior .NET Developer & Solution Architect with 7+ years of experience in designing and implementing scalable enterprise solutions."
                   }
                 </p>
                 
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {language === 'it' ?
-                    "Esperto nell'integrazione di servizi cognitivi (Azure AI, OpenAI GPT) e nell'ottimizzazione di architetture complesse. Lead Developer presso FEDRO Software." :
+                    "Come Solution Architect & Technical Lead in FEDRO Software ho progettato e portato in produzione SPRocket e SprocketLive (analisi AI e assistenza live per call center): 2.000+ ore audio/mese, multi-tenant, 99.9% uptime, da zero a produzione in 3 mesi. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR." :
                     "Expert in cognitive services integration (Azure AI, OpenAI GPT) and complex architecture optimization. Lead Developer at FEDRO Software."
                   }
                 </p>

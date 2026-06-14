@@ -2,7 +2,7 @@
 export const portfolioData = {
   personal: {
     name: "Riccardo Perniciano",
-    title: "Mid-Senior Full Stack Developer",
+    title: "Senior .NET Developer & Solution Architect",
     email: "ricki.perniciano.work@gmail.com",
     phone: "+39 351 8745889",
     location: "09128, Cagliari",
@@ -11,7 +11,7 @@ export const portfolioData = {
     linkedin: "https://linkedin.com/in/riccardo-perniciano",
     yearsOfExperience: 7,
     birthDate: "10/04/1999",
-    summary: "Mid-Senior Full Stack Developer con 7+ anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili. Esperto nell'integrazione di servizi cognitivi (Azure AI, OpenAI GPT) e nell'ottimizzazione di architetture complesse."
+    summary: "Senior .NET Developer & Solution Architect con 7+ anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili. Esperto nell'integrazione di servizi cognitivi (Azure AI, OpenAI GPT) e nell'ottimizzazione di architetture complesse."
   },
 
   achievements: [

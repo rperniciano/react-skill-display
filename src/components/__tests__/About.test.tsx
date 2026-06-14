@@ -25,8 +25,8 @@ describe('About Component', () => {
     renderWithProviders(<About />);
     
     // Check Italian bio content
-    expect(screen.getByText(/Mid-Senior Full Stack Developer con 7\+ anni di esperienza/)).toBeInTheDocument();
-    expect(screen.getByText(/Esperto nell'integrazione di servizi cognitivi/)).toBeInTheDocument();
+    expect(screen.getByText(/Senior \.NET Developer & Solution Architect con 7\+ anni di esperienza/)).toBeInTheDocument();
+    expect(screen.getByText(/Come Solution Architect & Technical Lead in FEDRO Software/)).toBeInTheDocument();
     expect(screen.getByText(/Ho ridotto l'85% del codice legacy/)).toBeInTheDocument();
     expect(screen.getByText(/Ho lavorato con team internazionali per clienti come Expedia/)).toBeInTheDocument();
   });

@@ -35,10 +35,10 @@ const Skills = () => {
       icon: <Brain className="h-8 w-8 text-white" />,
       title: "AI & Speech Processing",
       description: language === 'it' ?
-        "Azure Cognitive Services, OpenAI GPT, Assembly.AI" :
+        "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs" :
         "Azure Cognitive Services, OpenAI GPT, Assembly.AI",
       details: language === 'it' ?
-        "Speech-to-Text multi-provider, Video & Image Generation, Simple RAG systems" :
+        "Architetture multi-agente, integrazione LLM, RAG, structured outputs (JSON Schema), Speech-to-Text multi-provider, tooling agentico (MCP custom, Claude Code)" :
         "Speech-to-Text multi-provider, Video & Image Generation, Simple RAG systems",
       color: "from-purple-500 to-purple-600"
     },

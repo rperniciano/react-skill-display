@@ -8,8 +8,10 @@ const Hero = () => {
   const { t, language } = useLanguage();
 
   const cvPath = language === 'it'
-    ? '/Curriculum Riccardo Perniciano 12-2025 ITA.pdf'
-    : '/Curriculum Riccardo Perniciano 12-2025 ENG.pdf';
+    ? '/CV_Riccardo_Perniciano_2026_ITA.pdf'
+    : language === 'es'
+    ? '/CV_Riccardo_Perniciano_2026_ES.pdf'
+    : '/CV_Riccardo_Perniciano_2026_ENG.pdf';
 
   return (
     <section id="hero" className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">

@@ -10,7 +10,7 @@ describe('Contact Component', () => {
     
     // There are multiple "Contattami" elements (badge and heading)
     expect(screen.getAllByText('Contattami')).toHaveLength(2);
-    expect(screen.getByText(/Disponibile per opportunità full-time/)).toBeInTheDocument();
+    expect(screen.getByText(/Disponibile per contratti freelance/)).toBeInTheDocument();
   });
 
   it('displays contact information correctly', () => {
