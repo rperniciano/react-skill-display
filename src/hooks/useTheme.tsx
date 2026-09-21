@@ -1,60 +1,37 @@
+"use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+// Thin adapter over next-themes so the rest of the app keeps consuming the
+// original `{ theme, toggleTheme }` API. The provider itself lives only in
+// `@/components/theme-provider` now; the hand-rolled context that used to be
+// here (initialise to 'light', then read localStorage/matchMedia in an effect)
+// is gone — it was the source of the white flash and the hydration mismatch.
 
-type Theme = 'light' | 'dark';
+import { useCallback } from "react";
+import { useTheme as useNextTheme } from "next-themes";
 
-interface ThemeContextType {
+export type Theme = "light" | "dark";
+
+export interface UseThemeResult {
   theme: Theme;
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export function useTheme(): UseThemeResult {
+  // `resolvedTheme` collapses 'system' down to a concrete 'light' | 'dark'.
+  // It is `undefined` on the server and on the very first client render, which
+  // is deliberate: both sides agree on the same value, so there is no
+  // hydration mismatch. Components that render theme-dependent output should
+  // gate on a `mounted` flag (see ThemeToggle) rather than on this value.
+  const { resolvedTheme, setTheme } = useNextTheme();
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const theme: Theme = resolvedTheme === "dark" ? "dark" : "light";
 
-  useEffect(() => {
-    // Get the user's preference or use the system preference
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme('dark');
-    }
-  }, []);
+  const toggleTheme = useCallback(() => {
+    // Writes a concrete theme, so toggling out of 'system' pins the choice.
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
-  useEffect(() => {
-    // Apply theme by toggling dark class on document element
-    const root = window.document.documentElement;
-    
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+  return { theme, toggleTheme };
+}
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-};
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  
-  return context;
-};
+export default useTheme;

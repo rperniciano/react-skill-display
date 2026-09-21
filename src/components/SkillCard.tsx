@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -96,6 +98,10 @@ const SkillCard = ({
                   : 'opacity-0'
               }`}
               onLoad={() => setImageLoaded(true)}
+              width={500}
+              height={333}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -182,6 +188,10 @@ const SkillCard = ({
                   src={image} 
                   alt={`${title} skill`} 
                   className="w-full h-48 object-cover rounded-md" 
+                  width={500}
+                  height={333}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-md text-portfolio-text dark:text-gray-300">{detailedInfo}</p>
                 

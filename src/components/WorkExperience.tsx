@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Briefcase, Calendar, ChevronDown, ChevronUp, GraduationCap, Star, Building2, Users, TrendingUp, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";

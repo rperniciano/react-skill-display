@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
@@ -28,6 +30,10 @@ const About = () => {
                     src="/fotoCurriculum.png"
                     alt={portfolioData.personal.name}
                     className="w-full h-full object-cover"
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 {/* Decorative element */}

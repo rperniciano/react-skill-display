@@ -1,4 +1,121 @@
 // Centralized Portfolio Data
+
+/**
+ * Shape of a `portfolioData.projects` entry.
+ *
+ * The array below is annotated instead of being left to inference. TypeScript
+ * infers an array literal of differing object literals as a union of those
+ * literals, and while it does add each literal's *missing siblings* back as
+ * optional (which is why `github` / `demo` / `metrics` resolve), a key that no
+ * literal carries at all is absent from the union entirely. `Projects.tsx` reads
+ * `project.client`, so that key needs to exist on the declared type.
+ *
+ * Optional members mirror the inferred union exactly; nothing here narrows a
+ * property the inference had widened.
+ */
+export interface PortfolioProject {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  technologies: string[];
+  features: string[];
+  type: string;
+  year: number;
+  metrics?: string[];
+  github?: string;
+  demo?: string;
+  client?: string;
+}
+
+const projects: PortfolioProject[] = [
+  {
+    id: "sprocket",
+    title: "SPRocket - AI Call Analytics Platform",
+    description: "Piattaforma enterprise per l'analisi intelligente delle conversazioni telefoniche tramite AI",
+    longDescription: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant. Costruito da zero su ABP.io con deployment in produzione in 3 mesi.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["ABP.io", ".NET 9", "Angular", "Azure Cognitive Services", "OpenAI GPT", "Assembly.AI", "Elasticsearch", "Hangfire", "Docker"],
+    metrics: [
+      "2.000+ ore di chiamate/mese",
+      "99.9% uptime",
+      "100+ file audio in parallelo",
+      "2 tenant enterprise"
+    ],
+    features: [
+      "Clean Architecture, DDD, CQRS su ABP.io",
+      "Multi-tenant con isolamento dati e RBAC granulare",
+      "Provider-agnostic AI (Azure, Assembly.AI, OpenAI)",
+      "Dashboard Angular con KPI real-time",
+      "Motore di ricerca fulltext con Elasticsearch",
+      "Sistema di retry policies e circuit breaker"
+    ],
+    type: "enterprise",
+    year: 2025
+  },
+  {
+    id: "expedia-components",
+    title: "Expedia Group - Frontend Components",
+    description: "Componenti React per una delle maggiori piattaforme di prenotazione viaggi al mondo",
+    longDescription: "Sviluppo di componenti React riutilizzabili seguendo design system aziendale, con UI pixel-perfect da specifiche Figma. Codebase enterprise servita a 100.000+ utenti.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
+    metrics: [
+      "100.000+ utenti serviti",
+      "Team di 10+ sviluppatori"
+    ],
+    features: [
+      "Carosello \"Suggested Homes\" per raccomandazioni personalizzate",
+      "Widget meteo interattivo con forecast",
+      "UI pixel-perfect responsive",
+      "Workflow Agile con team distribuito"
+    ],
+    type: "enterprise",
+    year: 2022
+  },
+  {
+    id: "pos-system",
+    title: "Sistema POS per Mense Universitarie",
+    description: "Sistema POS embedded per erogazione buoni pasto universitari",
+    longDescription: "Progettazione e sviluppo da zero di sistema POS embedded integrato in macchine automatiche per l'erogazione di buoni pasto universitari. Cliente: ERSU Cagliari.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"],
+    metrics: [
+      "10.000+ transazioni/anno",
+      "Diverse mense universitarie",
+      "Centinaia di transazioni/giorno"
+    ],
+    features: [
+      "Architettura software POS da zero",
+      "Integrazione pagamenti multi-circuito (Visa, Mastercard)",
+      "WebServices real-time con backend",
+      "Documentazione tecnica e manuali operativi"
+    ],
+    type: "enterprise",
+    year: 2020
+  },
+  {
+    id: "react-portfolio",
+    title: "Interactive React Portfolio",
+    description: "Portfolio personale con animazioni avanzate e visualizzazioni interattive",
+    longDescription: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
+    github: "https://github.com/rperniciano/react-skill-display",
+    demo: "https://react-skill-display.vercel.app/",
+    features: [
+      "Animazioni fluide",
+      "Grafici interattivi con Recharts",
+      "Dark/Light mode toggle",
+      "Fully responsive design",
+      "Performance optimized"
+    ],
+    type: "personal",
+    year: 2024
+  }
+];
+
 export const portfolioData = {
   personal: {
     name: "Riccardo Perniciano",
@@ -115,90 +232,5 @@ export const portfolioData = {
     }
   ],
 
-  projects: [
-    {
-      id: "sprocket",
-      title: "SPRocket - AI Call Analytics Platform",
-      description: "Piattaforma enterprise per l'analisi intelligente delle conversazioni telefoniche tramite AI",
-      longDescription: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant. Costruito da zero su ABP.io con deployment in produzione in 3 mesi.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
-      technologies: ["ABP.io", ".NET 9", "Angular", "Azure Cognitive Services", "OpenAI GPT", "Assembly.AI", "Elasticsearch", "Hangfire", "Docker"],
-      metrics: [
-        "2.000+ ore di chiamate/mese",
-        "99.9% uptime",
-        "100+ file audio in parallelo",
-        "2 tenant enterprise"
-      ],
-      features: [
-        "Clean Architecture, DDD, CQRS su ABP.io",
-        "Multi-tenant con isolamento dati e RBAC granulare",
-        "Provider-agnostic AI (Azure, Assembly.AI, OpenAI)",
-        "Dashboard Angular con KPI real-time",
-        "Motore di ricerca fulltext con Elasticsearch",
-        "Sistema di retry policies e circuit breaker"
-      ],
-      type: "enterprise",
-      year: 2025
-    },
-    {
-      id: "expedia-components",
-      title: "Expedia Group - Frontend Components",
-      description: "Componenti React per una delle maggiori piattaforme di prenotazione viaggi al mondo",
-      longDescription: "Sviluppo di componenti React riutilizzabili seguendo design system aziendale, con UI pixel-perfect da specifiche Figma. Codebase enterprise servita a 100.000+ utenti.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
-      technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
-      metrics: [
-        "100.000+ utenti serviti",
-        "Team di 10+ sviluppatori"
-      ],
-      features: [
-        "Carosello \"Suggested Homes\" per raccomandazioni personalizzate",
-        "Widget meteo interattivo con forecast",
-        "UI pixel-perfect responsive",
-        "Workflow Agile con team distribuito"
-      ],
-      type: "enterprise",
-      year: 2022
-    },
-    {
-      id: "pos-system",
-      title: "Sistema POS per Mense Universitarie",
-      description: "Sistema POS embedded per erogazione buoni pasto universitari",
-      longDescription: "Progettazione e sviluppo da zero di sistema POS embedded integrato in macchine automatiche per l'erogazione di buoni pasto universitari. Cliente: ERSU Cagliari.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80",
-      technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"],
-      metrics: [
-        "10.000+ transazioni/anno",
-        "Diverse mense universitarie",
-        "Centinaia di transazioni/giorno"
-      ],
-      features: [
-        "Architettura software POS da zero",
-        "Integrazione pagamenti multi-circuito (Visa, Mastercard)",
-        "WebServices real-time con backend",
-        "Documentazione tecnica e manuali operativi"
-      ],
-      type: "enterprise",
-      year: 2020
-    },
-    {
-      id: "react-portfolio",
-      title: "Interactive React Portfolio",
-      description: "Portfolio personale con animazioni avanzate e visualizzazioni interattive",
-      longDescription: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
-      github: "https://github.com/rperniciano/react-skill-display",
-      demo: "https://react-skill-display.vercel.app/",
-      features: [
-        "Animazioni fluide",
-        "Grafici interattivi con Recharts",
-        "Dark/Light mode toggle",
-        "Fully responsive design",
-        "Performance optimized"
-      ],
-      type: "personal",
-      year: 2024
-    }
-  ]
+  projects
 };

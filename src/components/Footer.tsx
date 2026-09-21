@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Heart, Mail, Phone, MapPin } from "lucide-react";
 import { portfolioData } from "./portfolio-data";

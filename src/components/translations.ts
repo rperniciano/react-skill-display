@@ -252,6 +252,7 @@ export const translations = {
       projects: "Projects",
       about: "About",
       contact: "Contact",
+      solutions: "Solutions",
       downloadCV: "Download CV"
     },
     hero: {
@@ -493,6 +494,7 @@ export const translations = {
       projects: "Proyectos",
       about: "Sobre Mí",
       contact: "Contacto",
+      solutions: "Soluciones",
       downloadCV: "Descargar CV"
     },
     hero: {

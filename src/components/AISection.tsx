@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Sparkles, Code2, Zap, Target } from "lucide-react";
 import { useLanguage } from "./LanguageContext";

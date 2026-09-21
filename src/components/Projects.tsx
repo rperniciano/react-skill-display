@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Briefcase, Github, ExternalLink, TrendingUp, Clock, Code2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -55,6 +57,10 @@ const Projects = () => {
                     src={projectsWithTranslations[0].image} 
                     alt={projectsWithTranslations[0].title} 
                     className="w-full h-full object-cover"
+                    width={1000}
+                    height={667}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="md:w-3/5 p-6">
@@ -113,6 +119,10 @@ const Projects = () => {
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
+                    width={400}
+                    height={192}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 

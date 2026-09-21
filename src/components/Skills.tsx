@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Code, Database, Brain, Layout, Shield, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
