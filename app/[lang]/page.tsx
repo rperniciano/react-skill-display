@@ -12,8 +12,10 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
-import { isLanguage } from '../i18n';
+import { isLanguage, LANGUAGES } from '../i18n';
 import { pageMetadata } from '../seo';
+import { personJsonLd } from '../json-ld';
+import JsonLd from '../JsonLd';
 
 type HomePageProps = {
   params: Promise<{ lang: string }>;
@@ -26,8 +28,9 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
     notFound();
   }
 
-  // path '' => the locale home page. canonical + hreflang come from app/seo.ts.
-  return pageMetadata({ language: lang });
+  // path '' => the locale home page, which exists in all three locales.
+  // canonical + hreflang come from app/seo.ts.
+  return pageMetadata({ language: lang, locales: LANGUAGES });
 }
 
 /**
@@ -51,6 +54,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <JsonLd data={personJsonLd(lang)} />
       <Navbar />
       <main>
         <Hero />

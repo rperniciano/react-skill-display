@@ -176,5 +176,12 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    // Was installed but never registered. Blog articles are long-form MDX
+    // (headings, tables, code fences) rendered through a `prose` wrapper
+    // (see app/[lang]/blog/[slug]/page.tsx); without this plugin `prose` is
+    // just an inert class name and the article renders as unstyled HTML.
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;

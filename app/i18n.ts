@@ -49,20 +49,48 @@ export function localeUrl(language: Language, path = ''): string {
 }
 
 /**
- * hreflang map for one logical page across every locale, plus `x-default`.
+ * hreflang map for one logical page, across exactly the locales it exists in,
+ * plus `x-default`.
  *
- * The return type is keyed by `Language`, so adding a locale to LANGUAGES makes
- * the compiler point straight at this object instead of silently shipping an
- * incomplete hreflang set. The shape is accepted as-is by both Next's
- * `alternates.languages` and the sitemap's `alternates.languages`.
+ * `locales` has no default. It used to be implicitly "all three" - fine for
+ * the home page, wrong for a page that is deliberately locale-restricted
+ * (a legal/public-sector blog article that only exists in Italian, a Model
+ * Context Protocol article that only exists in English): that page would
+ * advertise an alternate at a URL that 404s, and a broken hreflang can make
+ * search engines distrust the whole cluster, including the three home pages
+ * that are correct. Making the parameter required rather than defaulted means
+ * a caller who forgets it gets a compile error, not a silently broken
+ * three-locale hreflang set on a one-locale page - "hard to misuse" here means
+ * "impossible to omit", not "defaults to something safe-looking but wrong".
+ *
+ * The return type reflects that partiality: only locales present in `locales`
+ * get a key. `x-default` still needs exactly one target - FALLBACK_LANGUAGE
+ * when the page exists in it (matching where the `/` proxy sends an unmatched
+ * visitor), otherwise the first locale the page *does* exist in, in
+ * `LANGUAGES` order. Pointing `x-default` at a locale outside `locales` would
+ * reintroduce the exact problem this function exists to prevent.
  */
-export function alternateLanguages(path = ''): Record<Language | 'x-default', string> {
+export function alternateLanguages(
+  locales: readonly Language[],
+  path = '',
+): Partial<Record<Language, string>> & { 'x-default': string } {
+  const present = LANGUAGES.filter((language) => locales.includes(language));
+
+  if (present.length === 0) {
+    // Defence in depth beneath the type system: an empty array (or one full
+    // of values that aren't actually in LANGUAGES) is a caller bug, not a
+    // page with no hreflang.
+    throw new Error('alternateLanguages: locales must include at least one known language');
+  }
+
+  const languages = Object.fromEntries(
+    present.map((language) => [language, localeUrl(language, path)]),
+  ) as Partial<Record<Language, string>>;
+
+  const xDefaultLanguage = present.includes(FALLBACK_LANGUAGE) ? FALLBACK_LANGUAGE : present[0];
+
   return {
-    it: localeUrl('it', path),
-    en: localeUrl('en', path),
-    es: localeUrl('es', path),
-    // Visitors whose language we do not target: the `/` proxy sends them
-    // to FALLBACK_LANGUAGE, so x-default points at the same document.
-    'x-default': localeUrl(FALLBACK_LANGUAGE, path),
+    ...languages,
+    'x-default': localeUrl(xDefaultLanguage, path),
   };
 }

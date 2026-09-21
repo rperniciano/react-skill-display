@@ -409,9 +409,21 @@ export const translations = {
       quickLinks: "Link Rapidi",
       // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
       rights: " Tutti i diritti riservati."
+    },
+    // Blog chrome (index heading/intro, empty state, article page labels). The
+    // article bodies themselves are not here: they are MDX content files under
+    // content/blog/<locale>/, one locale each by construction, so there is
+    // nothing to keep in sync across it/en/es for that part.
+    blog: {
+      title: "Blog",
+      description: "Note tecniche su architetture AI, integrazione LLM e automazione, dalla pratica quotidiana.",
+      empty: "Non ci sono ancora articoli pubblicati. Torna presto.",
+      readMore: "Leggi l'articolo",
+      backToBlog: "Torna al blog",
+      publishedOn: "Pubblicato il"
     }
   },
-  
+
   en: {
     // See the note on `it.meta`.
     meta: {
@@ -803,9 +815,17 @@ export const translations = {
       quickLinks: "Quick Links",
       // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
       rights: " All rights reserved."
+    },
+    blog: {
+      title: "Blog",
+      description: "Technical notes on AI architectures, LLM integration and automation, from day-to-day practice.",
+      empty: "No articles published yet. Check back soon.",
+      readMore: "Read the article",
+      backToBlog: "Back to blog",
+      publishedOn: "Published on"
     }
   },
-  
+
   es: {
     // See the note on `it.meta`.
     meta: {
@@ -1197,6 +1217,14 @@ export const translations = {
       quickLinks: "Enlaces Rápidos",
       // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
       rights: " Todos los derechos reservados."
+    },
+    blog: {
+      title: "Blog",
+      description: "Notas técnicas sobre arquitecturas de IA, integración de LLM y automatización, desde la práctica diaria.",
+      empty: "Todavía no hay artículos publicados. Vuelve pronto.",
+      readMore: "Leer el artículo",
+      backToBlog: "Volver al blog",
+      publishedOn: "Publicado el"
     }
   }
 };

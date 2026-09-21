@@ -1,16 +1,20 @@
 import type { MetadataRoute } from 'next';
 
-import { LANGUAGES, alternateLanguages, localeUrl } from './i18n';
+import { LANGUAGES, alternateLanguages, localeUrl, type Language } from './i18n';
+import { publishedArticles, localesForSlug } from './blog';
 
 /**
- * One entry per (route x locale), each carrying the full hreflang set.
+ * One entry per (route x locale it exists in), each carrying the hreflang set
+ * for exactly that locale set - never a hardcoded fan-out over all three, so
+ * a locale-restricted page (a blog article) cannot advertise a sitemap URL
+ * alongside alternates that 404.
  *
- * Add future indexable pages to ROUTES - `path` is everything after the locale
- * segment - and the locale fan-out plus alternates come for free. A blog would
- * be `...ROUTES, ...posts.map((post) => ({ path: `/blog/${post.slug}`, ... }))`.
+ * Add future indexable pages to ROUTES the same way: `path` is everything
+ * after the locale segment, `locales` is where it actually exists.
  */
 type LocalisedRoute = {
   path: string;
+  locales: readonly Language[];
   lastModified?: Date;
   changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: number;
@@ -18,20 +22,39 @@ type LocalisedRoute = {
 
 const ROUTES: LocalisedRoute[] = [
   // The locale home pages.
-  { path: '', changeFrequency: 'monthly', priority: 1 },
+  { path: '', locales: LANGUAGES, changeFrequency: 'monthly', priority: 1 },
 ];
+
+/**
+ * One route per published slug (deduplicated - a slug published in more than
+ * one locale is one sitemap URL per locale, not one per Article record). Goes
+ * through `publishedArticles()`, the same draft-excluding path the blog index
+ * and `generateStaticParams` use, so while every article is a draft this
+ * contributes nothing and the sitemap is unchanged from before this file
+ * existed.
+ */
+function articleRoutes(): LocalisedRoute[] {
+  const slugs = Array.from(new Set(publishedArticles().map((article) => article.slug)));
+
+  return slugs.map((slug) => ({
+    path: `/blog/${slug}`,
+    locales: localesForSlug(slug),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const builtAt = new Date();
 
-  return ROUTES.flatMap((route) =>
-    LANGUAGES.map((language) => ({
+  return [...ROUTES, ...articleRoutes()].flatMap((route) =>
+    route.locales.map((language) => ({
       url: localeUrl(language, route.path),
       lastModified: route.lastModified ?? builtAt,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
       alternates: {
-        languages: alternateLanguages(route.path),
+        languages: alternateLanguages(route.locales, route.path),
       },
     })),
   );

@@ -1,0 +1,50 @@
+Model Context Protocol (MCP) standardises how an LLM-based client talks to
+external tools, data sources and prompts. Instead of every integration
+inventing its own function-calling contract, a client and a server agree on
+one JSON-RPC based protocol and everything downstream - tool discovery,
+invocation, streaming results - follows the same shape.
+
+This is a draft fixture, not a published article: it exists to prove the blog
+pipeline (MDX compilation, `prose` styling, routing, draft exclusion) end to
+end before real content lands.
+
+## Why it matters for a .NET backend
+
+A typical enterprise .NET service already exposes plenty of internal
+capability - queries, workflows, reports - behind REST or gRPC. MCP gives that
+same capability a second, model-friendly front door without duplicating the
+business logic:
+
+- The server describes its tools once, with a JSON Schema per tool.
+- The client (an IDE, an agent runtime, a chat product) discovers those tools
+  at connection time - no hardcoded integration per tool.
+- Invocation and results travel over the same transport, so adding a tool is
+  a server-side change only.
+
+## Transports at a glance
+
+| Transport | Typical use | Notes |
+| --- | --- | --- |
+| stdio | Local tool, spawned by the client | Simplest to implement; no network exposure |
+| Streamable HTTP | Remote server, multiple clients | Supports auth, load balancing |
+
+## A minimal tool declaration
+
+```json
+{
+  "name": "get_case_status",
+  "description": "Look up the status of a case by its protocol number.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "protocolNumber": { "type": "string" }
+    },
+    "required": ["protocolNumber"]
+  }
+}
+```
+
+The server validates the input against that schema, runs the same handler a
+REST endpoint would call, and returns a structured result the model can read
+back to the user. Everything else - retries, error shaping, streaming partial
+output - is the protocol's job, not something each integration reinvents.
