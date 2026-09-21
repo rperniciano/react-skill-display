@@ -1,19 +1,65 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
   "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "incremental": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    /* Linting — kept as loose as the previous tsconfig.app.json */
+    "strict": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
-  }
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  /* Everything that ships or is tested is type-checked.
+
+     An app-scoped `include` left `src/**` checked only transitively - a file
+     nothing imported was never looked at - and the root-level request handler
+     not checked at all, even though `next build` bundles it.
+
+     `middleware.ts` is listed alongside `proxy.ts` on purpose: the file itself
+     is gone (Next 16 deprecated that convention in favour of `proxy.ts`), and
+     naming it here means that if it ever reappears it is type-checked rather
+     than silently bundled. A non-existent entry in `include` is ignored, unlike
+     one in `files`. */
+  "include": [
+    "next-env.d.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "proxy.ts",
+    "middleware.ts",
+    "*.config.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

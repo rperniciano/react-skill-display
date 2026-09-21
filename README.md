@@ -1,9 +1,9 @@
 # 🚀 Riccardo Perniciano - Portfolio Professionale
 
-[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-4.4-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.3-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
 ## 👨‍💻 Chi Sono
 
@@ -39,13 +39,14 @@ Questo portfolio è stato sviluppato con le più moderne tecnologie web per offr
 
 #### 🌍 **Sistema Multi-Lingua**
 - Supporto completo per **Italiano**, **English** e **Español**
-- Auto-detect della lingua del browser
-- Cambio lingua in tempo reale senza refresh
+- Una route per lingua: `/it`, `/en`, `/es` (ognuna prerenderizzata come HTML statico)
+- Auto-detect della lingua del browser su `/` tramite `Accept-Language` (redirect 307)
+- Cambio lingua come navigazione, quindi l'URL è condivisibile e indicizzabile
 - Traduzioni complete di tutti i contenuti
 
 #### 🎨 **Design & UX**
-- **Dark/Light Mode** con persistenza delle preferenze
-- **Animazioni fluide** con Framer Motion
+- **Dark/Light Mode** con persistenza delle preferenze (`next-themes`, senza flash al primo paint)
+- **Animazioni fluide** con transizioni CSS e IntersectionObserver
 - **Fully Responsive** - Ottimizzato per mobile, tablet e desktop
 - **Glassmorphism** e gradient moderni
 - **Loading animations** e skeleton screens
@@ -56,15 +57,16 @@ Questo portfolio è stato sviluppato con le più moderne tecnologie web per offr
 - **Progress bars animate** per skill levels
 - **Metriche in tempo reale** con animazioni
 
-#### 🚀 **Performance**
-- **Lazy loading** delle immagini
-- **Code splitting** automatico
-- **Ottimizzazione bundle** con Vite
-- **Caching intelligente** delle risorse
-- **Lighthouse Score: 95+**
+#### 🚀 **Performance & SEO**
+- **Rendering server-side**: ogni pagina locale è HTML statico completo, non un guscio vuoto
+- **Code splitting** automatico (Turbopack)
+- **Metadata per lingua**: title, description, canonical e 4 `hreflang` (it/en/es/x-default)
+- `sitemap.xml` e `robots.txt` generati dalle route metadata di Next
+- Solo il dizionario della lingua attiva attraversa il confine server → client
 
 #### 🔧 **Architettura Tecnica**
-- **React 18** con Hooks e Context API
+- **Next.js 16** con App Router e React Server Components
+- **React 19** con Hooks e Context API
 - **TypeScript** per type safety
 - **Tailwind CSS** per styling utility-first
 - **Component-based architecture**
@@ -112,14 +114,14 @@ Questo portfolio è stato sviluppato con le più moderne tecnologie web per offr
 ## 🚀 Quick Start
 
 ### Prerequisiti
-- Node.js 18+ 
+- Node.js 20+ (sviluppato su Node 22)
 - npm o yarn
 
 ### Installazione
 
 ```bash
 # Clona il repository
-git clone https://github.com/rickyperniciano/react-skill-display.git
+git clone https://github.com/rperniciano/react-skill-display.git
 
 # Entra nella directory
 cd react-skill-display
@@ -127,18 +129,29 @@ cd react-skill-display
 # Installa le dipendenze
 npm install
 
-# Avvia il development server
+# Avvia il development server (next dev) su http://localhost:3000
 npm run dev
 ```
+
+Aprendo `/` si viene rediretti a `/it`, `/en` o `/es` in base all'`Accept-Language`.
 
 ### Build per Produzione
 
 ```bash
-# Crea build ottimizzata
+# Crea la build di produzione (next build)
 npm run build
 
-# Preview build locale
-npm run preview
+# Avvia il server di produzione (next start)
+npm run start
+```
+
+### Altri comandi
+
+```bash
+npm run lint   # ESLint (eslint-config-next). Next 16 non esegue più il lint
+               # durante la build, quindi non può bloccare il deploy.
+npm run test   # Vitest + React Testing Library
+npx tsc --noEmit  # Type-check di app/, src/ e proxy.ts
 ```
 
 ### Deploy
@@ -146,37 +159,39 @@ npm run preview
 Il sito è ottimizzato per il deploy su:
 - **Vercel** (consigliato)
 - **Netlify**
-- **GitHub Pages**
-- **Qualsiasi hosting statico**
+- Qualsiasi hosting che sappia eseguire un server Node
+
+> Le tre pagine sono prerenderizzate, ma `proxy.ts` gira a ogni richiesta per il
+> redirect su `/`: un hosting puramente statico servirebbe le pagine senza il
+> redirect iniziale.
 
 ---
 
 ## 📦 Tecnologie Utilizzate
 
 ### Core
-- **React 18.2** - UI Library
-- **TypeScript 5.0** - Type Safety
-- **Vite 4.4** - Build Tool
-- **React Router 6** - Routing
+- **Next.js 16.3** - Framework e build tool (App Router, Turbopack)
+- **React 19.3** - UI Library
+- **TypeScript 5.5** - Type Safety
+- **Routing** - File-system routing dell'App Router (`app/[lang]/`)
 
 ### Styling
-- **Tailwind CSS 3.3** - Utility-first CSS
-- **Framer Motion** - Animations
+- **Tailwind CSS 3.4** - Utility-first CSS
+- **next-themes** - Dark/Light mode senza flash
 - **Radix UI** - Headless Components
 - **Lucide Icons** - Icon Library
 
 ### Data Visualization
 - **Recharts** - Grafici e Charts
-- **React Carousel** - Carousel Component
+- **Embla Carousel** - Carousel Component
 
 ### Form & Validation
 - **React Hook Form** - Form Management
 - **Zod** - Schema Validation
 
 ### Development
-- **ESLint** - Linting
-- **Prettier** - Code Formatting
-- **Vitest** - Testing
+- **ESLint** (`eslint-config-next`) - Linting
+- **Vitest** + **React Testing Library** - Testing
 
 ---
 
@@ -184,26 +199,53 @@ Il sito è ottimizzato per il deploy su:
 
 ```
 react-skill-display/
+├── app/                         # App Router
+│   ├── [lang]/
+│   │   ├── layout.tsx           # ROOT layout: <html lang>, provider, metadata
+│   │   ├── page.tsx             # Home page della lingua (tutte le sezioni)
+│   │   └── not-found.tsx        # 404 sotto /[lang]
+│   ├── globals.css              # Unico foglio di stile globale
+│   ├── i18n.ts                  # LANGUAGES, SITE_URL, canonical + hreflang
+│   ├── seo.ts                   # pageMetadata() per lingua (solo server)
+│   ├── sitemap.ts               # → /sitemap.xml
+│   ├── robots.ts                # → /robots.txt
+│   └── favicon.ico              # Convenzione metadata: <link rel="icon"> automatico
+├── proxy.ts                     # Redirect 307 da / alla lingua (Accept-Language)
 ├── src/
-│   ├── components/         # React components
+│   ├── components/              # React components (client)
 │   │   ├── Hero.tsx
 │   │   ├── Skills.tsx
 │   │   ├── WorkExperience.tsx
 │   │   ├── Projects.tsx
 │   │   ├── About.tsx
 │   │   ├── Contact.tsx
-│   │   ├── LanguageContext.tsx
-│   │   ├── translations.ts
-│   │   └── ui/            # UI components library
-│   ├── hooks/             # Custom React hooks
-│   ├── styles/            # Global styles
-│   └── App.tsx           # Main application
-├── public/               # Static assets
+│   │   ├── LanguageContext.tsx  # useLanguage(): { language, setLanguage, t }
+│   │   ├── translations.ts      # Tutte le stringhe, it/en/es
+│   │   ├── portfolio-data.ts    # Dati statici (skill, esperienze, progetti)
+│   │   ├── __tests__/           # Test dei componenti
+│   │   └── ui/                  # Libreria UI (shadcn/ui)
+│   ├── hooks/                   # Custom React hooks
+│   ├── lib/                     # Utility
+│   └── test/                    # Setup e helper di Vitest
+├── public/                      # Asset statici (CV PDF, foto)
 ├── package.json
 ├── tsconfig.json
-├── tailwind.config.js
-└── vite.config.ts
+├── tailwind.config.ts
+├── vitest.config.ts
+└── next.config.ts
 ```
+
+**Non esiste `app/layout.tsx`**: il root layout è `app/[lang]/layout.tsx`. Solo un
+root layout può renderizzare `<html>`/`<body>`, e solo un layout dentro `[lang]`
+riceve il segmento di lingua — che è ciò che permette un `<html lang>` dinamico.
+
+### Dove stanno le traduzioni
+
+Tutte le stringhe vivono in `src/components/translations.ts`, un oggetto con una
+chiave per lingua (`it`, `en`, `es`). Il layout server legge il segmento `[lang]`
+e passa **solo quella fetta** a `<LanguageProvider>`; i componenti la leggono con
+`const { t } = useLanguage()`. Aggiungendo una stringa va aggiunta in tutte e tre
+le lingue.
 
 ---
 

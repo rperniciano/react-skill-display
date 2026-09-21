@@ -1,6 +1,20 @@
 // Translation system for portfolio
 export const translations = {
   it: {
+    // Page-level metadata, read server-side by app/seo.ts. `hero.title` is the
+    // on-page H1 and is deliberately the same English job title in every
+    // locale, which left /it, /en and /es shipping an identical <title>.
+    // `title` is written per locale and kept to ~50-65 rendered characters so
+    // Google does not truncate it.
+    //
+    // `description` is the SERP copy, 150-160 characters. It is a key of its
+    // own rather than a reuse of `hero.description`: the hero paragraph is
+    // on-page copy, written at whatever length reads well, and squeezing it
+    // into the SERP budget cost it a clause. Neither constrains the other.
+    meta: {
+      title: "Riccardo Perniciano | Solution Architect .NET e sistemi AI",
+      description: "Solution Architect & Technical Lead in FEDRO Software: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG."
+    },
     nav: {
       home: "Home",
       skills: "Competenze",
@@ -9,12 +23,14 @@ export const translations = {
       about: "Chi Sono",
       contact: "Contatti",
       solutions: "Soluzioni",
-      downloadCV: "Scarica CV"
+      downloadCV: "Scarica CV",
+      // Navbar CTA. The long form is hero.bookFreeCall.
+      bookCall: "Prenota"
     },
     hero: {
       available: "Disponibile per nuovi progetti",
       yearsExp: "anni di esperienza",
-      leadDeveloper: "Lead Developer presso",
+      leadDeveloper: "Solution Architect & Technical Lead presso",
       specializedIn: "Specializzato in",
       andArchitectures: "e architetture enterprise",
       explorePortfolio: "Esplora Portfolio",
@@ -26,7 +42,10 @@ export const translations = {
       title: "Senior .NET Developer & Solution Architect",
       yearsExperienceIn: "anni di esperienza ·",
       enterpriseSolutions: "Sistemi AI in produzione",
-      description: "Specializzato in sistemi AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG. Solution Architect & Lead Developer in FEDRO Software, dove ho portato una piattaforma AI per call center dallo zero alla produzione in 3 mesi.",
+      // On-page hero copy, and only that: the page <meta name="description">
+      // is `meta.description`, so this paragraph is free to run as long as it
+      // reads well. The role title matches `about.profile2`.
+      description: "Specializzato in sistemi AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG. Solution Architect & Technical Lead in FEDRO Software, dove ho portato una piattaforma AI per call center dallo zero alla produzione in 3 mesi.",
       bookFreeCall: "Prenota una call gratuita",
       noCommitment: "Senza impegno",
       thirtyMinCall: "Call di 30 minuti",
@@ -37,7 +56,7 @@ export const translations = {
     skills: {
       title: "Competenze Tecniche",
       subtitle: "anni di esperienza • Full Stack Development • AI Integration",
-      currentPosition: "Lead Developer @ FEDRO",
+      currentPosition: "Solution Architect & Technical Lead @ FEDRO",
       exTeam: "Ex-Expedia Team",
       viewGrid: "Vista Griglia",
       coreSkills: "Competenze Core",
@@ -62,7 +81,55 @@ export const translations = {
       testing: "Testing",
       viewCarousel: "Visualizza come carosello",
       viewColumn: "Visualizza in griglia",
-      yearsUnit: "anni"
+      yearsUnit: "anni",
+      // Section copy (moved out of Skills.tsx)
+      stackTitle: "Stack Tecnologico Completo",
+      stackSubtitle: "7+ anni di esperienza con tecnologie enterprise e integrazione AI avanzata",
+      methodologiesTitle: "Metodologie & Tools",
+      langFrameworksDesc: "Frontend: React, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3/SASS",
+      langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
+      databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
+      databaseDetails: "Query optimization, indicizzazione full-text, multi-tenancy isolation",
+      aiSpeechDesc: "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs",
+      aiSpeechDetails: "Architetture multi-agente, integrazione LLM, RAG, structured outputs (JSON Schema), Speech-to-Text multi-provider, tooling agentico (MCP custom, Claude Code)",
+      cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
+      cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
+      architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
+      architectureDetails: "VR & 3D: Unity, C#, Google VR SDK, Mobile VR Development",
+      testingMethodologiesTitle: "Testing & Metodologie",
+      testingDesc: "Jest, Cypress, Unit Testing",
+      testingDetails: "Metodologie: Agile (Scrum, Kanban), Jira",
+      // Card labels (moved out of SkillCard.tsx)
+      moreInfo: "Maggiori Informazioni",
+      clickForDetails: "Clicca per ulteriori dettagli",
+      category: "Categoria",
+      proficiency: "Competenza"
+    },
+    ai: {
+      badge: "Intelligenza artificiale",
+      title: "Integrazione AI per risultati concreti e misurabili",
+      intro1: "7+ anni di esperienza nell'integrazione di servizi cognitivi per soluzioni enterprise. Ho implementato sistemi che processano migliaia di trascrizioni all'ora con accuracy superiore al 95%.",
+      intro2: "Lead developer della piattaforma FEDRO CognitiveServices: un sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP e indicizzazione full-text.",
+      azureTitle: "Azure Cognitive Services Integration",
+      azureDesc: "Implementazione completa di Azure AI per speech-to-text, analisi del sentiment e question answering con processing di 1000+ trascrizioni/ora.",
+      multiProviderTitle: "OpenAI GPT & Assembly.AI",
+      multiProviderDesc: "Abstraction layer multi-provider per switch trasparente tra diversi servizi AI. Integrazione seamless con fallback automatico.",
+      nlpTitle: "NLP & Semantic Analysis",
+      nlpDesc: "Sistemi avanzati di analisi semantica, question answering e indicizzazione full-text con Elasticsearch per ricerca intelligente."
+    },
+    solutions: {
+      badge: "Soluzioni",
+      title: "Soluzioni Enterprise che posso realizzare",
+      subtitle: "Focus su architetture scalabili, integrazione AI e ottimizzazione di sistemi complessi.",
+      enterpriseTitle: "Piattaforme Enterprise Scalabili",
+      enterpriseDesc: "Sviluppo di soluzioni enterprise con architetture DDD, CQRS e microservices. Gestione multi-tenant con RBAC granulare.",
+      aiTitle: "Integrazione AI & Cognitive Services",
+      aiDesc: "Implementazione di servizi cognitivi Azure, OpenAI GPT e Assembly.AI. Speech-to-text, NLP e analisi semantica avanzata.",
+      missionCriticalTitle: "Sistemi Mission-Critical ad Alta Disponibilità",
+      missionCriticalDesc: "Progettazione di sistemi con 99.9% uptime, retry policies resilienti e gestione errori avanzata. Monitoring con Application Insights.",
+      performanceTitle: "Ottimizzazione Performance & Legacy Code",
+      performanceDesc: "Riduzione dell'85% del codice legacy attraverso refactoring strategico. Ottimizzazione performance del 50% con caching multi-livello e query optimization.",
+      cta: "Parliamo del tuo progetto"
     },
     experience: {
       title: "Timeline Professionale",
@@ -102,7 +169,7 @@ export const translations = {
         "Implementazione widget meteo interattivo con visualizzazione forecast per date e location selezionate",
         "Sviluppo componenti React riutilizzabili seguendo design system aziendale",
         "Implementazione UI pixel-perfect da specifiche Figma con focus su responsive design",
-        "Codebase enterprise servita a 100.000+ utenti",
+        "Codebase enterprise servita a 1.000.000+ utenti",
         "Partecipazione attiva a refinement tecnici e definizione dei ticket",
         "Workflow Agile con team distribuito (daily standup, sprint review, retrospective)"
       ],
@@ -149,12 +216,19 @@ export const translations = {
         "Diploma in Informatica e Telecomunicazioni",
         "Focus su sviluppo software, reti e database",
         "Progetti pratici in C#, SQL, networking"
-      ]
+      ],
+      // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      altenLocation: "Roma (Remoto)",
+      softwarelabTitle: "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
+      virtuardTitle: "MOBILE/VR DEVELOPER",
+      diplomaTitle: "DIPLOMA IN INFORMATICA E TELECOMUNICAZIONI"
     },
     projects: {
       title: "Progetti & Portfolio",
       subtitle: "Progetti enterprise e personali che dimostrano expertise in architetture scalabili, AI integration e sviluppo full-stack",
-      leadDeveloper: "Lead Developer",
+      // Badge on the SPRocket featured card. The role title is English in all
+      // three locales, exactly as `about.profile2` writes it.
+      leadDeveloper: "Solution Architect & Technical Lead",
       metrics: "Metriche",
       technologies: "Tecnologie",
       features: "Caratteristiche",
@@ -168,37 +242,103 @@ export const translations = {
       contactMe: "Contattami",
       moreOnGithub: "Altri progetti su GitHub",
       
-      // Project descriptions
-      fedroProjectDesc: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant.",
-      expediaProjectDesc: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
-      posProjectDesc: "Soluzione completa per gestione pagamenti POS con integrazione bancaria real-time e sistema di reporting avanzato.",
-      portfolioProjectDesc: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
+      // Copy for the portfolioData.projects entries, keyed by project id.
+      //
+      // It lives here rather than in portfolio-data.ts because that module is
+      // imported by client components: an `{ it, en, es }` field there would ship
+      // all three locales to every visitor, while the dictionary crosses the
+      // server -> client boundary one locale at a time (see LanguageContext.tsx).
+      projectItems: {
+        sprocket: {
+          title: "SPRocket - AI Call Analytics Platform",
+          description: "Piattaforma enterprise per l'analisi intelligente delle conversazioni telefoniche tramite AI",
+          longDescription: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant. Costruito da zero su ABP.io con deployment in produzione in 3 mesi.",
+          features: [
+            "Clean Architecture, DDD, CQRS su ABP.io",
+            "Multi-tenant con isolamento dati e RBAC granulare",
+            "Provider-agnostic AI (Azure, Assembly.AI, OpenAI)",
+            "Dashboard Angular con KPI real-time",
+            "Motore di ricerca fulltext con Elasticsearch",
+            "Sistema di retry policies e circuit breaker"
+          ]
+        },
+        "cisa-automation": {
+          title: "C.I.S.A. - Automazione Documentale e AI",
+          description: "Automazione documentale e AI per un consorzio: protocollo, compiti, archivio, contabilità e riconciliazione dei pagamenti, con server MCP di dominio e infrastruttura interamente on-premise.",
+          longDescription: "Fase 1 — studio di fattibilità e piano operativo — per cinque automazioni: protocollazione assistita della posta in arrivo, smistamento e assegnazione dei compiti ai referenti, riordino e indicizzazione dell'archivio documentale, acquisizione delle fatture con scadenzari e riconciliazione dei pagamenti. Backend C# su ABP Framework con un server MCP di dominio: il database resta l'unica fonte di verità, gli assistenti AI scrivono solo attraverso tool controllati e ogni decisione persistita ne registra l'origine. Progetto in corso.",
+          features: [
+            "Cinque automazioni: protocollo, compiti, archivio, contabilità, pagamenti",
+            "Server MCP di dominio su ABP Framework: l'AI scrive solo tramite tool controllati, mai SQL",
+            "Lavoro deterministico nel backend con job Hangfire, interpretativo lato AI, con origine tracciata",
+            "Server MCP stdio che legge le share con l'identità dell'utente: le ACL NTFS le applica il file server",
+            "Infrastruttura on-premise e governance EU AI Act (policy, registro dei sistemi AI e piano di formazione art. 4)"
+          ]
+        },
+        "expedia-components": {
+          title: "Expedia Group - Frontend Components",
+          description: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
+          longDescription: "Sviluppo di componenti React riutilizzabili seguendo design system aziendale, con UI pixel-perfect da specifiche Figma. Codebase enterprise servita a 1.000.000+ utenti.",
+          features: [
+            "Carosello \"Suggested Homes\" per raccomandazioni personalizzate",
+            "Widget meteo interattivo con forecast",
+            "UI pixel-perfect responsive",
+            "Workflow Agile con team distribuito"
+          ]
+        },
+        "pos-system": {
+          title: "Sistema POS per Mense Universitarie",
+          description: "Soluzione completa per gestione pagamenti POS con integrazione bancaria real-time e sistema di reporting avanzato.",
+          longDescription: "Progettazione e sviluppo da zero di sistema POS embedded integrato in macchine automatiche per l'erogazione di buoni pasto universitari. Cliente: ERSU Cagliari.",
+          features: [
+            "Architettura software POS da zero",
+            "Integrazione pagamenti multi-circuito (Visa, Mastercard)",
+            "WebServices real-time con backend",
+            "Documentazione tecnica e manuali operativi"
+          ]
+        },
+        "react-portfolio": {
+          title: "Interactive React Portfolio",
+          description: "Portfolio personale con animazioni avanzate e visualizzazioni interattive",
+          longDescription: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
+          features: [
+            "Animazioni fluide",
+            "Grafici interattivi con Recharts",
+            "Dark/Light mode toggle",
+            "Fully responsive design",
+            "Performance optimized"
+          ]
+        }
+      },
       
-      fedroMetrics: [
-        "riduzione codice legacy",
-        "uptime",
-        "trascrizioni/ora",
-        "tenant gestiti"
+      // Metric chips, rendered by Projects.tsx. The whole string lives here -
+      // figure included - so every locale groups its own digits: it/es write
+      // "1.000.000+", en writes "1,000,000+". The figure used to sit in
+      // portfolio-data.ts with only the label swapped by index, which shipped
+      // Italian grouping to /en ("1.000.000+ users served") and, where a chip
+      // opened with a word instead of a number, shifted the labels by one.
+      sprocketMetrics: [
+        "2.000+ ore di chiamate/mese",
+        "99.9% uptime",
+        "100+ file audio in parallelo",
+        "2 tenant enterprise"
       ],
       expediaMetrics: [
-        "riduzione latenza API",
-        "code coverage",
-        "Milioni di utenti serviti"
+        "1.000.000+ utenti serviti",
+        "10+ sviluppatori nel team"
       ],
       posMetrics: [
-        "transazioni/anno",
-        "miglioramento response time",
-        "Zero downtime critico"
+        "10.000+ transazioni/anno",
+        "Diverse mense universitarie",
+        "Centinaia di transazioni/giorno"
       ]
     },
     about: {
       title: "Chi Sono",
       available: "Disponibile",
       expertiseAreas: "Aree di Expertise",
-      bio1: "Ciao! Sono Riccardo, un Full Stack Developer con oltre 7 anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili.",
-      bio2: "Attualmente sono Lead Developer presso FEDRO Software, dove guido lo sviluppo di una piattaforma AI-powered per l'analisi delle chiamate che processa oltre 1000 trascrizioni all'ora. Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di orchestrazione che gestisce il processing parallelo di centinaia di file audio.",
-      bio3: "La mia esperienza spazia dal frontend con React e Angular, al backend con .NET 9 e Node.js, fino all'integrazione di servizi AI come OpenAI GPT e Azure Cognitive Services. Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati da milioni di utenti.",
-      bio4: "Sono appassionato di Clean Architecture, pattern DDD e CQRS, e credo fermamente nell'importanza del testing (raggiungendo regolarmente coverage superiori all'80%). Nel tempo libero, continuo a studiare le ultime tecnologie, recentemente completando la Machine Learning Specialization di Stanford.",
+      // About.tsx <h2>, rendered around the name: prefix + name + suffix.
+      greetingPrefix: "Ciao, sono ",
+      greetingSuffix: ". Piacere di conoscerti.",
       languages: "Lingue",
       italian: "Italiano",
       english: "Inglese",
@@ -206,13 +346,30 @@ export const translations = {
       native: "Madrelingua",
       professional: "Professionale",
       intermediate: "Intermedio",
+      levelB2: "B2 - Intermedio superiore",
       downloadFullCV: "Scarica CV Completo",
       contactMe: "Contattami",
       yearsExperience: "anni esperienza",
       codeReduction: "riduzione",
       codeLegacy: "Codice Legacy",
       transcriptionsHour: "trascrizioni/ora",
-      aiProcessing: "AI Processing"
+      aiProcessing: "AI Processing",
+      // Bio paragraphs rendered by About.tsx
+      profile1: "Senior .NET Developer & Solution Architect con 7+ anni di esperienza nella progettazione di soluzioni enterprise scalabili, oggi specializzato in AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG.",
+      profile2: "Come Solution Architect & Technical Lead in FEDRO Software ho progettato e portato in produzione SPRocket e SprocketLive (analisi AI e assistenza live per call center): 2.000+ ore audio/mese, multi-tenant, 99.9% uptime, da zero a produzione in 3 mesi. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile3: "Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di orchestrazione che gestisce il processing parallelo di centinaia di file audio.",
+      profile4: "Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati da milioni di utenti. Il mio approccio combina competenze tecniche con una visione strategica per creare soluzioni che risolvono problemi reali.",
+      // Soft skills grid
+      softSkillsTitle: "Competenze Trasversali",
+      softSkillCommunicationTitle: "Comunicazione Tecnica",
+      softSkillCommunicationDesc: "Stakeholder Management, referente tecnico verso clienti non-tecnici. Capacità di tradurre requisiti di business in soluzioni tecniche.",
+      softSkillOwnershipTitle: "Ownership & Delivery",
+      softSkillOwnershipDesc: "Track record di progetti portati da zero a produzione in tempi rapidi (3 mesi per piattaforma enterprise SPRocket).",
+      softSkillTeamsTitle: "Team Internazionali",
+      softSkillTeamsDesc: "2 anni in team distribuito 10+ sviluppatori per Expedia Group, metodologia Agile.",
+      softSkillAutonomyTitle: "Autonomia & Problem Solving",
+      softSkillAutonomyDesc: "Abitudine a lavorare con alta autonomia su architetture complesse, prendendo decisioni tecniche in prima persona.",
+      languageSkillsTitle: "Competenze Linguistiche"
     },
     contact: {
       title: "Contattami",
@@ -240,11 +397,28 @@ export const translations = {
       send: "Invia Messaggio",
       thankYou: "Grazie per il tuo messaggio! Ti risponderò il prima possibile.",
       phone: "Telefono",
-      location: "Posizione"
+      location: "Posizione",
+      // Calendly CTA card and the "prefer to write?" card
+      calendlyPitch: "Discutiamo del tuo progetto e di come posso aiutarti a realizzare le tue idee. Prenota una chiamata gratuita di 30 minuti senza impegno.",
+      bookOnCalendly: "Prenota ora su Calendly",
+      freeConsultation: "Consulenza gratuita",
+      preferWriting: "Preferisci scrivere?",
+      preferWritingDesc: "Puoi contattarmi direttamente via email o LinkedIn per qualsiasi domanda o proposta."
+    },
+    footer: {
+      tagline: "Full Stack Developer con 7+ anni di esperienza nello sviluppo di soluzioni enterprise scalabili.",
+      quickLinks: "Link Rapidi",
+      // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
+      rights: " Tutti i diritti riservati."
     }
   },
   
   en: {
+    // See the note on `it.meta`.
+    meta: {
+      title: "Riccardo Perniciano | .NET Solution Architect & AI Systems",
+      description: "Solution Architect & Technical Lead at FEDRO Software: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG."
+    },
     nav: {
       home: "Home",
       skills: "Skills",
@@ -252,12 +426,15 @@ export const translations = {
       projects: "Projects",
       about: "About",
       contact: "Contact",
-      downloadCV: "Download CV"
+      solutions: "Solutions",
+      downloadCV: "Download CV",
+      // Navbar CTA. The long form is hero.bookFreeCall.
+      bookCall: "Book a call"
     },
     hero: {
       available: "Available for new projects",
       yearsExp: "years of experience",
-      leadDeveloper: "Lead Developer at",
+      leadDeveloper: "Solution Architect & Technical Lead at",
       specializedIn: "Specialized in",
       andArchitectures: "and enterprise architectures",
       explorePortfolio: "Explore Portfolio",
@@ -269,7 +446,8 @@ export const translations = {
       title: "Senior .NET Developer & Solution Architect",
       yearsExperienceIn: "years of experience in",
       enterpriseSolutions: "enterprise solutions",
-      description: "Expert in cognitive services integration (Azure AI, OpenAI GPT) and complex architecture optimization. Lead Developer at FEDRO Software with focus on AI-powered solutions.",
+      // See the note on `it.hero.description`.
+      description: "Specialized in production AI systems: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG. Solution Architect & Technical Lead at FEDRO Software, where I took an AI platform for call centers from zero to production in 3 months.",
       bookFreeCall: "Book a free call",
       noCommitment: "No commitment",
       thirtyMinCall: "30-minute call",
@@ -280,7 +458,7 @@ export const translations = {
     skills: {
       title: "Technical Skills",
       subtitle: "years of experience • Full Stack Development • AI Integration",
-      currentPosition: "Lead Developer @ FEDRO",
+      currentPosition: "Solution Architect & Technical Lead @ FEDRO",
       exTeam: "Ex-Expedia Team",
       viewGrid: "Grid View",
       coreSkills: "Core Skills",
@@ -305,7 +483,55 @@ export const translations = {
       testing: "Testing",
       viewCarousel: "View as carousel",
       viewColumn: "View as grid",
-      yearsUnit: "years"
+      yearsUnit: "years",
+      // Section copy (moved out of Skills.tsx)
+      stackTitle: "Complete Technology Stack",
+      stackSubtitle: "7+ years of experience with enterprise technologies and advanced AI integration",
+      methodologiesTitle: "Methodologies & Tools",
+      langFrameworksDesc: "Frontend: React, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3/SASS",
+      langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
+      databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
+      databaseDetails: "Query optimization, full-text indexing, multi-tenancy isolation",
+      aiSpeechDesc: "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs",
+      aiSpeechDetails: "Multi-agent architectures, LLM integration, RAG, structured outputs (JSON Schema), multi-provider Speech-to-Text, agentic tooling (custom MCP, Claude Code)",
+      cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
+      cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
+      architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
+      architectureDetails: "VR & 3D: Unity, C#, Google VR SDK, Mobile VR Development",
+      testingMethodologiesTitle: "Testing & Methodologies",
+      testingDesc: "Jest, Cypress, Unit Testing",
+      testingDetails: "Methodologies: Agile (Scrum, Kanban), Jira",
+      // Card labels (moved out of SkillCard.tsx)
+      moreInfo: "More Information",
+      clickForDetails: "Click for more details",
+      category: "Category",
+      proficiency: "Proficiency"
+    },
+    ai: {
+      badge: "Artificial Intelligence",
+      title: "AI Integration for concrete and measurable results",
+      intro1: "7+ years of experience integrating cognitive services for enterprise solutions. I've implemented systems that process thousands of transcriptions per hour with over 95% accuracy.",
+      intro2: "Lead developer of FEDRO CognitiveServices platform: a complete orchestration system for audio file acquisition, AI transcription, NLP analysis and full-text indexing.",
+      azureTitle: "Azure Cognitive Services Integration",
+      azureDesc: "Complete Azure AI implementation for speech-to-text, sentiment analysis and question answering with 1000+ transcriptions/hour processing.",
+      multiProviderTitle: "OpenAI GPT & Assembly.AI",
+      multiProviderDesc: "Multi-provider abstraction layer for transparent switching between different AI services. Seamless integration with automatic fallback.",
+      nlpTitle: "NLP & Semantic Analysis",
+      nlpDesc: "Advanced semantic analysis systems, question answering and full-text indexing with Elasticsearch for intelligent search."
+    },
+    solutions: {
+      badge: "Solutions",
+      title: "Enterprise Solutions I Can Build",
+      subtitle: "Focus on scalable architectures, AI integration and complex systems optimization.",
+      enterpriseTitle: "Scalable Enterprise Platforms",
+      enterpriseDesc: "Development of enterprise solutions with DDD, CQRS and microservices architectures. Multi-tenant management with granular RBAC.",
+      aiTitle: "AI & Cognitive Services Integration",
+      aiDesc: "Implementation of Azure cognitive services, OpenAI GPT and Assembly.AI. Speech-to-text, NLP and advanced semantic analysis.",
+      missionCriticalTitle: "High Availability Mission-Critical Systems",
+      missionCriticalDesc: "Design of systems with 99.9% uptime, resilient retry policies and advanced error handling. Monitoring with Application Insights.",
+      performanceTitle: "Performance Optimization & Legacy Code",
+      performanceDesc: "85% legacy code reduction through strategic refactoring. 50% performance optimization with multi-layer caching and query optimization.",
+      cta: "Let's talk about your project"
     },
     experience: {
       title: "Professional Timeline",
@@ -344,7 +570,7 @@ export const translations = {
         "Implementation of interactive weather widget with forecast visualization for selected dates and locations",
         "Reusable React components development following company design system",
         "Pixel-perfect UI implementation from Figma specs with focus on responsive design",
-        "Enterprise codebase serving 100,000+ users",
+        "Enterprise codebase serving 1,000,000+ users",
         "Active participation in technical refinements and ticket definition",
         "Agile workflow with distributed team (daily standup, sprint review, retrospective)"
       ],
@@ -391,12 +617,18 @@ export const translations = {
         "Diploma in Computer Science and Telecommunications",
         "Focus on software development, networks and databases",
         "Practical projects in C#, SQL, networking"
-      ]
+      ],
+      // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      altenLocation: "Rome (Remote)",
+      softwarelabTitle: "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
+      virtuardTitle: "MOBILE/VR DEVELOPER",
+      diplomaTitle: "DIPLOMA IN COMPUTER SCIENCE AND TELECOMMUNICATIONS"
     },
     projects: {
       title: "Projects & Portfolio",
       subtitle: "Enterprise and personal projects demonstrating expertise in scalable architectures, AI integration and full-stack development",
-      leadDeveloper: "Lead Developer",
+      // See the note on `it.projects.leadDeveloper`.
+      leadDeveloper: "Solution Architect & Technical Lead",
       metrics: "Metrics",
       technologies: "Technologies",
       features: "Features",
@@ -410,36 +642,98 @@ export const translations = {
       contactMe: "Contact Me",
       moreOnGithub: "More projects on GitHub",
       
-      fedroProjectDesc: "Complete orchestration system for audio file acquisition, AI transcription, NLP analysis, full-text indexing and data visualization with customizable dashboards per tenant.",
-      expediaProjectDesc: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
-      posProjectDesc: "Complete solution for POS payment management with real-time bank integration and advanced reporting system.",
-      portfolioProjectDesc: "Modern web portfolio with smooth animations, dark mode, interactive data visualizations and responsive design.",
+      // Copy for the portfolioData.projects entries, keyed by project id.
+      //
+      // It lives here rather than in portfolio-data.ts because that module is
+      // imported by client components: an `{ it, en, es }` field there would ship
+      // all three locales to every visitor, while the dictionary crosses the
+      // server -> client boundary one locale at a time (see LanguageContext.tsx).
+      projectItems: {
+        sprocket: {
+          title: "SPRocket - AI Call Analytics Platform",
+          description: "Enterprise platform for intelligent phone conversation analysis via AI",
+          longDescription: "Complete orchestration system for audio file acquisition, AI transcription, NLP analysis, full-text indexing and data visualization with customizable dashboards per tenant. Built from scratch on ABP.io with production deployment in 3 months.",
+          features: [
+            "Clean Architecture, DDD, CQRS on ABP.io",
+            "Multi-tenant with data isolation and granular RBAC",
+            "Provider-agnostic AI (Azure, Assembly.AI, OpenAI)",
+            "Angular dashboard with real-time KPIs",
+            "Fulltext search engine with Elasticsearch",
+            "Retry policies and circuit breaker system"
+          ]
+        },
+        "cisa-automation": {
+          title: "C.I.S.A. - Document Automation & AI",
+          description: "Document automation and AI for a consortium: mail registration, task routing, document archive, accounting and payment reconciliation, with a domain MCP server and fully on-premise infrastructure.",
+          longDescription: "Phase 1 — feasibility study and operational plan — for five automations: assisted registration of incoming mail, routing and assignment of tasks to the referents, reorganisation and indexing of the document archive, invoice acquisition with due-date scheduling, and payment reconciliation. C# backend on ABP Framework with a domain MCP server: the database remains the single source of truth, AI assistants write only through controlled tools, and every persisted decision records its origin. Work in progress.",
+          features: [
+            "Five automations: protocol, tasks, archive, accounting, payments",
+            "Domain MCP server on ABP Framework: the AI writes only through controlled tools, never SQL",
+            "Deterministic work in the backend as Hangfire jobs, interpretive work in the AI, origin always tracked",
+            "stdio MCP server reading the shares as the logged-in user: NTFS ACLs enforced by the file server",
+            "On-premise infrastructure and EU AI Act governance (policy, AI systems register and an Article 4 training plan)"
+          ]
+        },
+        "expedia-components": {
+          title: "Expedia Group - Frontend Components",
+          description: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
+          longDescription: "Development of reusable React components following the company design system, with pixel-perfect UI from Figma specs. Enterprise codebase serving 1,000,000+ users.",
+          features: [
+            "\"Suggested Homes\" carousel for personalized recommendations",
+            "Interactive weather widget with forecast",
+            "Pixel-perfect responsive UI",
+            "Agile workflow with a distributed team"
+          ]
+        },
+        "pos-system": {
+          title: "POS System for University Canteens",
+          description: "Complete solution for POS payment management with real-time bank integration and advanced reporting system.",
+          longDescription: "Design and development from scratch of an embedded POS system integrated into vending machines for issuing university meal vouchers. Client: ERSU Cagliari.",
+          features: [
+            "POS software architecture from scratch",
+            "Multi-circuit payment integration (Visa, Mastercard)",
+            "Real-time WebServices with the backend",
+            "Technical documentation and operational manuals"
+          ]
+        },
+        "react-portfolio": {
+          title: "Interactive React Portfolio",
+          description: "Personal portfolio with advanced animations and interactive visualizations",
+          longDescription: "Modern web portfolio with smooth animations, dark mode, interactive data visualizations and responsive design.",
+          features: [
+            "Smooth animations",
+            "Interactive charts with Recharts",
+            "Dark/Light mode toggle",
+            "Fully responsive design",
+            "Performance optimized"
+          ]
+        }
+      },
       
-      fedroMetrics: [
-        "legacy code reduction",
-        "uptime",
-        "transcriptions/hour",
-        "managed tenants"
+      // See the note on `it.projects.sprocketMetrics`.
+      sprocketMetrics: [
+        "2,000+ hours of calls/month",
+        "99.9% uptime",
+        "100+ audio files in parallel",
+        "2 enterprise tenants"
       ],
       expediaMetrics: [
-        "API latency reduction",
-        "code coverage",
-        "Million users served"
+        "1,000,000+ users served",
+        "10+ developers in the team"
       ],
       posMetrics: [
-        "transactions/year",
-        "response time improvement",
-        "Zero critical downtime"
+        "10,000+ transactions/year",
+        "Several university canteens",
+        "Hundreds of transactions/day"
       ]
     },
     about: {
       title: "About Me",
       available: "Available",
       expertiseAreas: "Expertise Areas",
-      bio1: "Hi! I'm Riccardo, a Full Stack Developer with over 7 years of experience in designing and implementing scalable enterprise solutions.",
-      bio2: "I'm currently Lead Developer at FEDRO Software, where I lead the development of an AI-powered platform for call analytics that processes over 1000 transcriptions per hour. I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
-      bio3: "My experience spans from frontend with React and Angular, to backend with .NET 9 and Node.js, to integration of AI services like OpenAI GPT and Azure Cognitive Services. I've worked with international teams for clients like Expedia, developing components used by millions of users.",
-      bio4: "I'm passionate about Clean Architecture, DDD and CQRS patterns, and firmly believe in the importance of testing (regularly achieving coverage above 80%). In my free time, I continue studying the latest technologies, recently completing Stanford's Machine Learning Specialization.",
+      // About.tsx <h2>, rendered around the name: prefix + name + suffix.
+      greetingPrefix: "Hi, I'm ",
+      greetingSuffix: ". Nice to meet you.",
       languages: "Languages",
       italian: "Italian",
       english: "English",
@@ -447,13 +741,30 @@ export const translations = {
       native: "Native",
       professional: "Professional",
       intermediate: "Intermediate",
+      levelB2: "B2 - Upper intermediate",
       downloadFullCV: "Download Full CV",
       contactMe: "Contact Me",
       yearsExperience: "years experience",
       codeReduction: "reduction",
       codeLegacy: "Legacy Code",
       transcriptionsHour: "transcriptions/hour",
-      aiProcessing: "AI Processing"
+      aiProcessing: "AI Processing",
+      // Bio paragraphs rendered by About.tsx
+      profile1: "Senior .NET Developer & Solution Architect with 7+ years of experience designing scalable enterprise solutions, today specialized in production AI: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG.",
+      profile2: "As Solution Architect & Technical Lead at FEDRO Software I designed and took to production SPRocket and SprocketLive (AI analysis and live assistance for call centers): 2,000+ audio hours/month, multi-tenant, 99.9% uptime, from zero to production in 3 months. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile3: "I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
+      profile4: "I've worked with international teams for clients like Expedia, developing components used by millions of users. My approach combines technical skills with a strategic vision to create solutions that solve real problems.",
+      // Soft skills grid
+      softSkillsTitle: "Soft Skills",
+      softSkillCommunicationTitle: "Technical Communication",
+      softSkillCommunicationDesc: "Stakeholder Management, technical referent for non-technical clients. Ability to translate business requirements into technical solutions.",
+      softSkillOwnershipTitle: "Ownership & Delivery",
+      softSkillOwnershipDesc: "Track record of projects delivered from zero to production quickly (3 months for SPRocket enterprise platform).",
+      softSkillTeamsTitle: "International Teams",
+      softSkillTeamsDesc: "2 years in distributed team of 10+ developers for Expedia Group, Agile methodology.",
+      softSkillAutonomyTitle: "Autonomy & Problem Solving",
+      softSkillAutonomyDesc: "Accustomed to working with high autonomy on complex architectures, making technical decisions firsthand.",
+      languageSkillsTitle: "Language Skills"
     },
     contact: {
       title: "Contact Me",
@@ -481,11 +792,28 @@ export const translations = {
       send: "Send Message",
       thankYou: "Thank you for your message! I'll respond as soon as possible.",
       phone: "Phone",
-      location: "Location"
+      location: "Location",
+      // Calendly CTA card and the "prefer to write?" card
+      calendlyPitch: "Let's talk about your project and how I can help you bring your ideas to life. Book a free 30-minute call, no commitment.",
+      bookOnCalendly: "Book now on Calendly",
+      freeConsultation: "Free consultation",
+      preferWriting: "Prefer to write?",
+      preferWritingDesc: "You can reach me directly by email or on LinkedIn for any question or proposal."
+    },
+    footer: {
+      tagline: "Full Stack Developer with 7+ years of experience developing scalable enterprise solutions.",
+      quickLinks: "Quick Links",
+      // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
+      rights: " All rights reserved."
     }
   },
   
   es: {
+    // See the note on `it.meta`.
+    meta: {
+      title: "Riccardo Perniciano | Solution Architect .NET y sistemas de IA",
+      description: "Solution Architect & Technical Lead en FEDRO Software: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG."
+    },
     nav: {
       home: "Inicio",
       skills: "Habilidades",
@@ -493,12 +821,15 @@ export const translations = {
       projects: "Proyectos",
       about: "Sobre Mí",
       contact: "Contacto",
-      downloadCV: "Descargar CV"
+      solutions: "Soluciones",
+      downloadCV: "Descargar CV",
+      // Navbar CTA. The long form is hero.bookFreeCall.
+      bookCall: "Reservar"
     },
     hero: {
       available: "Disponible para nuevos proyectos",
       yearsExp: "años de experiencia",
-      leadDeveloper: "Lead Developer en",
+      leadDeveloper: "Solution Architect & Technical Lead en",
       specializedIn: "Especializado en",
       andArchitectures: "y arquitecturas empresariales",
       explorePortfolio: "Explorar Portfolio",
@@ -510,7 +841,8 @@ export const translations = {
       title: "Senior .NET Developer & Solution Architect",
       yearsExperienceIn: "años de experiencia en",
       enterpriseSolutions: "soluciones empresariales",
-      description: "Experto en integración de servicios cognitivos (Azure AI, OpenAI GPT) y optimización de arquitecturas complejas. Lead Developer en FEDRO Software con enfoque en soluciones impulsadas por IA.",
+      // See the note on `it.hero.description`.
+      description: "Especializado en sistemas de IA en producción: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG. Solution Architect & Technical Lead en FEDRO Software, donde llevé una plataforma de IA para call centers de cero a producción en 3 meses.",
       bookFreeCall: "Reserva una llamada gratuita",
       noCommitment: "Sin compromiso",
       thirtyMinCall: "Llamada de 30 minutos",
@@ -521,7 +853,7 @@ export const translations = {
     skills: {
       title: "Habilidades Técnicas",
       subtitle: "años de experiencia • Desarrollo Full Stack • Integración IA",
-      currentPosition: "Lead Developer @ FEDRO",
+      currentPosition: "Solution Architect & Technical Lead @ FEDRO",
       exTeam: "Ex-Equipo Expedia",
       viewGrid: "Vista Cuadrícula",
       coreSkills: "Habilidades Principales",
@@ -546,7 +878,55 @@ export const translations = {
       testing: "Testing",
       viewCarousel: "Ver como carrusel",
       viewColumn: "Ver como cuadrícula",
-      yearsUnit: "años"
+      yearsUnit: "años",
+      // Section copy (moved out of Skills.tsx)
+      stackTitle: "Stack Tecnológico Completo",
+      stackSubtitle: "7+ años de experiencia con tecnologías enterprise e integración avanzada de IA",
+      methodologiesTitle: "Metodologías & Tools",
+      langFrameworksDesc: "Frontend: React, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3/SASS",
+      langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
+      databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
+      databaseDetails: "Query optimization, indexación full-text, multi-tenancy isolation",
+      aiSpeechDesc: "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs",
+      aiSpeechDetails: "Arquitecturas multiagente, integración LLM, RAG, structured outputs (JSON Schema), Speech-to-Text multi-provider, tooling agéntico (MCP custom, Claude Code)",
+      cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
+      cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
+      architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
+      architectureDetails: "VR & 3D: Unity, C#, Google VR SDK, Mobile VR Development",
+      testingMethodologiesTitle: "Testing & Metodologías",
+      testingDesc: "Jest, Cypress, Unit Testing",
+      testingDetails: "Metodologías: Agile (Scrum, Kanban), Jira",
+      // Card labels (moved out of SkillCard.tsx)
+      moreInfo: "Más Información",
+      clickForDetails: "Haz clic para más detalles",
+      category: "Categoría",
+      proficiency: "Competencia"
+    },
+    ai: {
+      badge: "Inteligencia artificial",
+      title: "Integración de IA para resultados concretos y medibles",
+      intro1: "7+ años de experiencia en la integración de servicios cognitivos para soluciones enterprise. He implementado sistemas que procesan miles de transcripciones por hora con una accuracy superior al 95%.",
+      intro2: "Lead developer de la plataforma FEDRO CognitiveServices: un sistema completo de orquestación para la adquisición de archivos de audio, transcripción mediante IA, análisis NLP e indexación full-text.",
+      azureTitle: "Azure Cognitive Services Integration",
+      azureDesc: "Implementación completa de Azure AI para speech-to-text, análisis del sentiment y question answering con processing de 1000+ transcripciones/hora.",
+      multiProviderTitle: "OpenAI GPT & Assembly.AI",
+      multiProviderDesc: "Abstraction layer multi-provider para switch transparente entre distintos servicios de IA. Integración seamless con fallback automático.",
+      nlpTitle: "NLP & Semantic Analysis",
+      nlpDesc: "Sistemas avanzados de análisis semántico, question answering e indexación full-text con Elasticsearch para búsqueda inteligente."
+    },
+    solutions: {
+      badge: "Soluciones",
+      title: "Soluciones Enterprise que puedo desarrollar",
+      subtitle: "Foco en arquitecturas escalables, integración de IA y optimización de sistemas complejos.",
+      enterpriseTitle: "Plataformas Enterprise Escalables",
+      enterpriseDesc: "Desarrollo de soluciones enterprise con arquitecturas DDD, CQRS y microservices. Gestión multi-tenant con RBAC granular.",
+      aiTitle: "Integración IA & Cognitive Services",
+      aiDesc: "Implementación de servicios cognitivos Azure, OpenAI GPT y Assembly.AI. Speech-to-text, NLP y análisis semántico avanzado.",
+      missionCriticalTitle: "Sistemas Mission-Critical de Alta Disponibilidad",
+      missionCriticalDesc: "Diseño de sistemas con 99.9% uptime, retry policies resilientes y gestión avanzada de errores. Monitoring con Application Insights.",
+      performanceTitle: "Optimización de Performance & Legacy Code",
+      performanceDesc: "Reducción del 85% del código legacy mediante refactoring estratégico. Optimización del 50% del rendimiento con caching multinivel y query optimization.",
+      cta: "Hablemos de tu proyecto"
     },
     experience: {
       title: "Línea de Tiempo Profesional",
@@ -585,7 +965,7 @@ export const translations = {
         "Implementación de widget meteorológico interactivo con visualización de pronóstico para fechas y ubicaciones seleccionadas",
         "Desarrollo de componentes React reutilizables siguiendo design system empresarial",
         "Implementación de UI pixel-perfect desde especificaciones Figma con enfoque en diseño responsive",
-        "Codebase enterprise sirviendo a 100.000+ usuarios",
+        "Codebase enterprise sirviendo a 1.000.000+ usuarios",
         "Participación activa en refinements técnicos y definición de tickets",
         "Workflow Agile con equipo distribuido (daily standup, sprint review, retrospective)"
       ],
@@ -632,12 +1012,18 @@ export const translations = {
         "Diploma en Informática y Telecomunicaciones",
         "Enfoque en desarrollo de software, redes y bases de datos",
         "Proyectos prácticos en C#, SQL, redes"
-      ]
+      ],
+      // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      altenLocation: "Roma (Remoto)",
+      softwarelabTitle: "DESARROLLADOR → REFERENTE TÉCNICO",
+      virtuardTitle: "DESARROLLADOR MÓVIL/VR",
+      diplomaTitle: "DIPLOMA EN INFORMÁTICA Y TELECOMUNICACIONES"
     },
     projects: {
       title: "Proyectos y Portfolio",
       subtitle: "Proyectos empresariales y personales que demuestran experiencia en arquitecturas escalables, integración IA y desarrollo full-stack",
-      leadDeveloper: "Desarrollador Principal",
+      // See the note on `it.projects.leadDeveloper`.
+      leadDeveloper: "Solution Architect & Technical Lead",
       metrics: "Métricas",
       technologies: "Tecnologías",
       features: "Características",
@@ -651,36 +1037,98 @@ export const translations = {
       contactMe: "Contáctame",
       moreOnGithub: "Más proyectos en GitHub",
       
-      fedroProjectDesc: "Sistema completo de orquestación para adquisición de archivos de audio, transcripción mediante IA, análisis NLP, indexación de texto completo y visualización de datos con dashboards personalizables por inquilino.",
-      expediaProjectDesc: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
-      posProjectDesc: "Solución completa para gestión de pagos POS con integración bancaria en tiempo real y sistema de reportes avanzado.",
-      portfolioProjectDesc: "Portfolio web moderno con animaciones fluidas, modo oscuro, visualizaciones de datos interactivas y diseño responsivo.",
+      // Copy for the portfolioData.projects entries, keyed by project id.
+      //
+      // It lives here rather than in portfolio-data.ts because that module is
+      // imported by client components: an `{ it, en, es }` field there would ship
+      // all three locales to every visitor, while the dictionary crosses the
+      // server -> client boundary one locale at a time (see LanguageContext.tsx).
+      projectItems: {
+        sprocket: {
+          title: "SPRocket - AI Call Analytics Platform",
+          description: "Plataforma enterprise para el análisis inteligente de conversaciones telefónicas mediante IA",
+          longDescription: "Sistema completo de orquestación para adquisición de archivos de audio, transcripción mediante IA, análisis NLP, indexación de texto completo y visualización de datos con dashboards personalizables por inquilino. Construido desde cero sobre ABP.io con despliegue en producción en 3 meses.",
+          features: [
+            "Clean Architecture, DDD, CQRS sobre ABP.io",
+            "Multi-tenant con aislamiento de datos y RBAC granular",
+            "IA provider-agnostic (Azure, Assembly.AI, OpenAI)",
+            "Dashboard Angular con KPIs en tiempo real",
+            "Motor de búsqueda fulltext con Elasticsearch",
+            "Sistema de retry policies y circuit breaker"
+          ]
+        },
+        "cisa-automation": {
+          title: "C.I.S.A. - Automatización Documental e IA",
+          description: "Automatización documental e IA para un consorcio: protocolo, tareas, archivo, contabilidad y conciliación de pagos, con servidor MCP de dominio e infraestructura íntegramente on-premise.",
+          longDescription: "Fase 1 — estudio de viabilidad y plan operativo — para cinco automatizaciones: registro asistido del correo entrante, distribución y asignación de tareas a los referentes, reorganización e indexación del archivo documental, adquisición de facturas con vencimientos y conciliación de pagos. Backend C# sobre ABP Framework con un servidor MCP de dominio: la base de datos sigue siendo la única fuente de verdad, los asistentes de IA escriben solo mediante herramientas controladas y cada decisión persistida registra su origen. Proyecto en curso.",
+          features: [
+            "Cinco automatizaciones: protocolo, tareas, archivo, contabilidad, pagos",
+            "Servidor MCP de dominio sobre ABP Framework: la IA escribe solo mediante herramientas controladas, nunca SQL",
+            "Trabajo determinista en el backend con jobs Hangfire, interpretativo en la IA, con el origen siempre trazado",
+            "Servidor MCP stdio que lee los recursos compartidos con la identidad del usuario: las ACL NTFS las aplica el servidor de archivos",
+            "Infraestructura on-premise y gobernanza del EU AI Act (política, registro de sistemas de IA y plan de formación art. 4)"
+          ]
+        },
+        "expedia-components": {
+          title: "Expedia Group - Frontend Components",
+          description: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
+          longDescription: "Desarrollo de componentes React reutilizables siguiendo el design system empresarial, con UI pixel-perfect desde especificaciones Figma. Codebase enterprise sirviendo a 1.000.000+ usuarios.",
+          features: [
+            "Carrusel \"Suggested Homes\" para recomendaciones personalizadas",
+            "Widget meteorológico interactivo con pronóstico",
+            "UI pixel-perfect responsive",
+            "Workflow Agile con equipo distribuido"
+          ]
+        },
+        "pos-system": {
+          title: "Sistema POS para Comedores Universitarios",
+          description: "Solución completa para gestión de pagos POS con integración bancaria en tiempo real y sistema de reportes avanzado.",
+          longDescription: "Diseño y desarrollo desde cero de un sistema POS embebido integrado en máquinas expendedoras para la emisión de vales de comida universitarios. Cliente: ERSU Cagliari.",
+          features: [
+            "Arquitectura del software POS desde cero",
+            "Integración de pagos multi-circuito (Visa, Mastercard)",
+            "WebServices en tiempo real con el backend",
+            "Documentación técnica y manuales operativos"
+          ]
+        },
+        "react-portfolio": {
+          title: "Interactive React Portfolio",
+          description: "Portfolio personal con animaciones avanzadas y visualizaciones interactivas",
+          longDescription: "Portfolio web moderno con animaciones fluidas, modo oscuro, visualizaciones de datos interactivas y diseño responsivo.",
+          features: [
+            "Animaciones fluidas",
+            "Gráficos interactivos con Recharts",
+            "Dark/Light mode toggle",
+            "Fully responsive design",
+            "Performance optimized"
+          ]
+        }
+      },
       
-      fedroMetrics: [
-        "reducción código legacy",
-        "tiempo activo",
-        "transcripciones/hora",
-        "inquilinos gestionados"
+      // See the note on `it.projects.sprocketMetrics`.
+      sprocketMetrics: [
+        "2.000+ horas de llamadas/mes",
+        "99.9% uptime",
+        "100+ archivos de audio en paralelo",
+        "2 inquilinos enterprise"
       ],
       expediaMetrics: [
-        "reducción latencia API",
-        "cobertura de código",
-        "Millones de usuarios servidos"
+        "1.000.000+ usuarios atendidos",
+        "10+ desarrolladores en el equipo"
       ],
       posMetrics: [
-        "transacciones/año",
-        "mejora tiempo respuesta",
-        "Cero tiempo inactivo crítico"
+        "10.000+ transacciones/año",
+        "Varios comedores universitarios",
+        "Cientos de transacciones/día"
       ]
     },
     about: {
       title: "Sobre Mí",
       available: "Disponible",
       expertiseAreas: "Áreas de Experiencia",
-      bio1: "¡Hola! Soy Riccardo, un Desarrollador Full Stack con más de 7 años de experiencia en el diseño e implementación de soluciones empresariales escalables.",
-      bio2: "Actualmente soy Lead Developer en FEDRO Software, donde lidero el desarrollo de una plataforma impulsada por IA para análisis de llamadas que procesa más de 1000 transcripciones por hora. Reduje el 85% del código legacy mediante refactorización estratégica e implementé un sistema de orquestación que gestiona el procesamiento paralelo de cientos de archivos de audio.",
-      bio3: "Mi experiencia abarca desde frontend con React y Angular, hasta backend con .NET 9 y Node.js, hasta la integración de servicios de IA como OpenAI GPT y Azure Cognitive Services. He trabajado con equipos internacionales para clientes como Expedia, desarrollando componentes utilizados por millones de usuarios.",
-      bio4: "Soy apasionado de Clean Architecture, patrones DDD y CQRS, y creo firmemente en la importancia del testing (logrando regularmente cobertura superior al 80%). En mi tiempo libre, continúo estudiando las últimas tecnologías, completando recientemente la Especialización en Machine Learning de Stanford.",
+      // About.tsx <h2>, rendered around the name: prefix + name + suffix.
+      greetingPrefix: "Hola, soy ",
+      greetingSuffix: ". Encantado de conocerte.",
       languages: "Idiomas",
       italian: "Italiano",
       english: "Inglés",
@@ -688,13 +1136,30 @@ export const translations = {
       native: "Nativo",
       professional: "Profesional",
       intermediate: "Intermedio",
+      levelB2: "B2 - Intermedio alto",
       downloadFullCV: "Descargar CV Completo",
       contactMe: "Contáctame",
       yearsExperience: "años experiencia",
       codeReduction: "reducción",
       codeLegacy: "Código Legacy",
       transcriptionsHour: "transcripciones/hora",
-      aiProcessing: "Procesamiento IA"
+      aiProcessing: "Procesamiento IA",
+      // Bio paragraphs rendered by About.tsx
+      profile1: "Senior .NET Developer & Solution Architect con 7+ años de experiencia en el diseño de soluciones enterprise escalables, hoy especializado en IA en producción: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG.",
+      profile2: "Como Solution Architect & Technical Lead en FEDRO Software he diseñado y llevado a producción SPRocket y SprocketLive (análisis con IA y asistencia live para call centers): 2.000+ horas de audio/mes, multi-tenant, 99.9% uptime, de cero a producción en 3 meses. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile3: "He reducido el 85% del código legacy mediante refactoring estratégico e implementado un sistema de orquestación que gestiona el procesamiento paralelo de cientos de archivos de audio.",
+      profile4: "He trabajado con equipos internacionales para clientes como Expedia, desarrollando componentes utilizados por millones de usuarios. Mi enfoque combina competencias técnicas con una visión estratégica para crear soluciones que resuelven problemas reales.",
+      // Soft skills grid
+      softSkillsTitle: "Competencias Transversales",
+      softSkillCommunicationTitle: "Comunicación Técnica",
+      softSkillCommunicationDesc: "Gestión de stakeholders, referente técnico para clientes no técnicos. Capacidad de traducir requisitos de negocio en soluciones técnicas.",
+      softSkillOwnershipTitle: "Ownership & Delivery",
+      softSkillOwnershipDesc: "Historial de proyectos llevados de cero a producción en tiempos rápidos (3 meses para plataforma enterprise SPRocket).",
+      softSkillTeamsTitle: "Equipos Internacionales",
+      softSkillTeamsDesc: "2 años en equipo distribuido de 10+ desarrolladores para Expedia Group, metodología Agile.",
+      softSkillAutonomyTitle: "Autonomía & Problem Solving",
+      softSkillAutonomyDesc: "Acostumbrado a trabajar con alta autonomía en arquitecturas complejas, tomando decisiones técnicas de primera mano.",
+      languageSkillsTitle: "Competencias Lingüísticas"
     },
     contact: {
       title: "Contáctame",
@@ -722,7 +1187,19 @@ export const translations = {
       send: "Enviar Mensaje",
       thankYou: "¡Gracias por tu mensaje! Responderé lo antes posible.",
       phone: "Teléfono",
-      location: "Ubicación"
+      location: "Ubicación",
+      // Calendly CTA card and the "prefer to write?" card
+      calendlyPitch: "Hablemos de tu proyecto y de cómo puedo ayudarte a hacer realidad tus ideas. Reserva una llamada gratuita de 30 minutos sin compromiso.",
+      bookOnCalendly: "Reserva ahora en Calendly",
+      freeConsultation: "Consultoría gratuita",
+      preferWriting: "¿Prefieres escribir?",
+      preferWritingDesc: "Puedes contactarme directamente por correo electrónico o LinkedIn para cualquier pregunta o propuesta."
+    },
+    footer: {
+      tagline: "Full Stack Developer con 7+ años de experiencia en el desarrollo de soluciones enterprise escalables.",
+      quickLinks: "Enlaces Rápidos",
+      // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
+      rights: " Todos los derechos reservados."
     }
   }
 };

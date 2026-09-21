@@ -23,8 +23,8 @@ describe('Projects Component', () => {
   it('renders featured project (FEDRO) with special styling', () => {
     renderWithProviders(<Projects />);
     
-    // Check for lead developer badge
-    expect(screen.getByText('Lead Developer')).toBeInTheDocument();
+    // Check for the role badge
+    expect(screen.getByText('Solution Architect & Technical Lead')).toBeInTheDocument();
     
     // Check for year badge
     expect(screen.getByText('2025')).toBeInTheDocument();

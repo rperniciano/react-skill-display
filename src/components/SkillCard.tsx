@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -41,7 +43,7 @@ const SkillCard = ({
   tags = [],
   years
 }: SkillCardProps) => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -58,21 +60,13 @@ const SkillCard = ({
     }
   };
 
-  const moreInfoText = language === 'it' ? "Maggiori Informazioni" : 
-                       language === 'es' ? "Más Información" : 
-                       "More Information";
-  
-  const clickForDetails = language === 'it' ? "Clicca per ulteriori dettagli" :
-                          language === 'es' ? "Haz clic para más detalles" :
-                          "Click for more details";
+  const moreInfoText = t.skills.moreInfo;
 
-  const categoryLabel = language === 'it' ? "Categoria" :
-                       language === 'es' ? "Categoría" :
-                       "Category";
+  const clickForDetails = t.skills.clickForDetails;
 
-  const competenceLabel = language === 'it' ? "Competenza" :
-                         language === 'es' ? "Competencia" :
-                         "Proficiency";
+  const categoryLabel = t.skills.category;
+
+  const competenceLabel = t.skills.proficiency;
 
   return (
     <Card className="hover:shadow-lg transition-shadow dark:border-gray-700 h-full flex flex-col">
@@ -96,6 +90,10 @@ const SkillCard = ({
                   : 'opacity-0'
               }`}
               onLoad={() => setImageLoaded(true)}
+              width={500}
+              height={333}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -182,6 +180,10 @@ const SkillCard = ({
                   src={image} 
                   alt={`${title} skill`} 
                   className="w-full h-48 object-cover rounded-md" 
+                  width={500}
+                  height={333}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-md text-portfolio-text dark:text-gray-300">{detailedInfo}</p>
                 

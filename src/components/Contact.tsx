@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Mail, Phone, MapPin, Linkedin, Github, Calendar, Clock, CheckCircle, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -139,8 +141,7 @@ const Contact = () => {
                     {t.hero.bookFreeCall}
                   </h3>
                   <p className="text-purple-100 mb-6">
-                    Discutiamo del tuo progetto e di come posso aiutarti a realizzare le tue idee. 
-                    Prenota una chiamata gratuita di 30 minuti senza impegno.
+                    {t.contact.calendlyPitch}
                   </p>
                   
                   <Button
@@ -150,7 +151,7 @@ const Contact = () => {
                   >
                     <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
                       <Calendar className="h-5 w-5 mr-2" />
-                      Prenota ora su Calendly
+                      {t.contact.bookOnCalendly}
                     </a>
                   </Button>
 
@@ -165,7 +166,7 @@ const Contact = () => {
                     </div>
                     <div className="flex items-center justify-center gap-2 text-purple-100">
                       <CheckCircle className="h-4 w-4" />
-                      <span className="text-sm">Consulenza gratuita</span>
+                      <span className="text-sm">{t.contact.freeConsultation}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -180,10 +181,10 @@ const Contact = () => {
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-                        Preferisci scrivere?
+                        {t.contact.preferWriting}
                       </h4>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                        Puoi contattarmi direttamente via email o LinkedIn per qualsiasi domanda o proposta.
+                        {t.contact.preferWritingDesc}
                       </p>
                       <div className="flex gap-2">
                         <Button

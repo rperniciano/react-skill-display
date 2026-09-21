@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Briefcase, Calendar, ChevronDown, ChevronUp, GraduationCap, Star, Building2, Users, TrendingUp, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -50,7 +52,7 @@ const WorkExperience = () => {
       organization: "ALTEN Italia",
       client: "Expedia Group",
       period: "2021 - 2023",
-      location: language === 'it' ? "Roma (Remoto)" : language === 'es' ? "Roma (Remoto)" : "Rome (Remote)",
+      location: t.experience.altenLocation,
       description: getJobDescription('alten', t),
       type: "work",
       technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
@@ -59,7 +61,7 @@ const WorkExperience = () => {
     {
       id: 3,
       jobId: 'softwarelab',
-      title: language === 'it' ? "SOFTWARE DEVELOPER → TECHNICAL REFERENT" : language === 'es' ? "DESARROLLADOR → REFERENTE TÉCNICO" : "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
+      title: t.experience.softwarelabTitle,
       organization: "SOFTWARELAB",
       client: "ERSU Cagliari",
       period: "2018 - 2021",
@@ -71,7 +73,7 @@ const WorkExperience = () => {
     {
       id: 4,
       jobId: 'virtuard',
-      title: language === 'it' ? "MOBILE/VR DEVELOPER" : language === 'es' ? "DESARROLLADOR MÓVIL/VR" : "MOBILE/VR DEVELOPER",
+      title: t.experience.virtuardTitle,
       organization: "Virtuard LTD",
       period: "Marzo 2018 – Giugno 2018",
       location: "Cagliari",
@@ -123,7 +125,7 @@ const WorkExperience = () => {
     {
       id: 9,
       jobId: 'diploma',
-      title: language === 'it' ? "DIPLOMA IN INFORMATICA E TELECOMUNICAZIONI" : language === 'es' ? "DIPLOMA EN INFORMÁTICA Y TELECOMUNICACIONES" : "DIPLOMA IN COMPUTER SCIENCE AND TELECOMMUNICATIONS",
+      title: t.experience.diplomaTitle,
       organization: "ITIS GIUA",
       period: "2018",
       location: "Cagliari",

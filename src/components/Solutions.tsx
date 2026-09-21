@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,37 +9,29 @@ import { AnimatedSection } from "./AnimatedSection";
 import { StaggeredGrid } from "./StaggeredGrid";
 
 const Solutions = () => {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
 
   const solutions = [
     {
       icon: <ShoppingCart className="h-8 w-8" />,
-      title: language === 'it' ? "Piattaforme Enterprise Scalabili" : "Scalable Enterprise Platforms",
-      description: language === 'it' ?
-        "Sviluppo di soluzioni enterprise con architetture DDD, CQRS e microservices. Gestione multi-tenant con RBAC granulare." :
-        "Development of enterprise solutions with DDD, CQRS and microservices architectures. Multi-tenant management with granular RBAC."
+      title: t.solutions.enterpriseTitle,
+      description: t.solutions.enterpriseDesc
     },
     {
       icon: <Brain className="h-8 w-8" />,
-      title: language === 'it' ? "Integrazione AI & Cognitive Services" : "AI & Cognitive Services Integration",
-      description: language === 'it' ?
-        "Implementazione di servizi cognitivi Azure, OpenAI GPT e Assembly.AI. Speech-to-text, NLP e analisi semantica avanzata." :
-        "Implementation of Azure cognitive services, OpenAI GPT and Assembly.AI. Speech-to-text, NLP and advanced semantic analysis."
+      title: t.solutions.aiTitle,
+      description: t.solutions.aiDesc
     },
     {
       icon: <Lock className="h-8 w-8" />,
-      title: language === 'it' ? "Sistemi Mission-Critical ad Alta Disponibilità" : "High Availability Mission-Critical Systems",
-      description: language === 'it' ?
-        "Progettazione di sistemi con 99.9% uptime, retry policies resilienti e gestione errori avanzata. Monitoring con Application Insights." :
-        "Design of systems with 99.9% uptime, resilient retry policies and advanced error handling. Monitoring with Application Insights."
+      title: t.solutions.missionCriticalTitle,
+      description: t.solutions.missionCriticalDesc
     }
   ];
 
   const customSolutions = {
-    title: language === 'it' ? "Ottimizzazione Performance & Legacy Code" : "Performance Optimization & Legacy Code",
-    description: language === 'it' ?
-      "Riduzione dell'85% del codice legacy attraverso refactoring strategico. Ottimizzazione performance del 50% con caching multi-livello e query optimization." :
-      "85% legacy code reduction through strategic refactoring. 50% performance optimization with multi-layer caching and query optimization."
+    title: t.solutions.performanceTitle,
+    description: t.solutions.performanceDesc
   };
 
   return (
@@ -47,16 +41,13 @@ const Solutions = () => {
           {/* Section Header */}
           <AnimatedSection animation="fade-in-up" className="text-center mb-12">
             <span className="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/50 rounded-full text-purple-700 dark:text-purple-300 text-sm mb-4">
-              {language === 'it' ? 'Soluzioni' : 'Solutions'}
+              {t.solutions.badge}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              {language === 'it' ? 'Soluzioni Enterprise che posso realizzare' : 'Enterprise Solutions I Can Build'}
+              {t.solutions.title}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              {language === 'it' ?
-                'Focus su architetture scalabili, integrazione AI e ottimizzazione di sistemi complessi.' :
-                'Focus on scalable architectures, AI integration and complex systems optimization.'
-              }
+              {t.solutions.subtitle}
             </p>
           </AnimatedSection>
 
@@ -102,7 +93,7 @@ const Solutions = () => {
                   asChild
                 >
                   <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
-                    {language === 'it' ? 'Parliamo del tuo progetto' : 'Let\'s talk about your project'}
+                    {t.solutions.cta}
                   </a>
                 </Button>
               </CardContent>

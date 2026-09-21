@@ -1,3 +1,5 @@
+'use client';
+
 import React, { Children, cloneElement, isValidElement } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -22,7 +24,10 @@ export const StaggeredGrid: React.FC<StaggeredGridProps> = ({
   return (
     <div ref={ref as React.RefObject<HTMLDivElement>} className={className}>
       {Children.map(children, (child, index) => {
-        if (!isValidElement(child)) return child;
+        // React 19's `isValidElement` narrows to `ReactElement<unknown>` unless the
+        // props shape is supplied, which is what makes `child.props.className` /
+        // `child.props.style` below type-check.
+        if (!isValidElement<React.HTMLAttributes<HTMLElement>>(child)) return child;
 
         const delay = baseDelay + (index * staggerDelay);
 

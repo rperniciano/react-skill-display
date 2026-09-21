@@ -18,7 +18,7 @@ describe('About Component', () => {
 
     const profileImage = screen.getByAltText('Riccardo Perniciano');
     expect(profileImage).toBeInTheDocument();
-    expect(profileImage).toHaveAttribute('src', '/fotoCurriculum.png');
+    expect(profileImage).toHaveAttribute('src', '/fotoCurriculum.webp');
   });
 
   it('renders biography content in Italian by default', () => {

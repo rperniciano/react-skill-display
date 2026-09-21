@@ -21,7 +21,9 @@ describe('Hero Component', () => {
     expect(screen.getByText('Sistemi AI in produzione, costruiti su .NET enterprise.')).toBeInTheDocument();
 
     // Check description (partial match due to long text)
-    expect(screen.getByText(/Specializzato in sistemi AI in produzione/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Solution Architect & Technical Lead in FEDRO Software/),
+    ).toBeInTheDocument();
   });
 
   it('renders all CTA buttons with correct links', () => {
@@ -60,7 +62,9 @@ describe('Hero Component', () => {
 
     // Check for key labels in the Hero section
     expect(screen.getByText(/anni di esperienza|years of experience/i)).toBeInTheDocument();
-    expect(screen.getByText(/Sistemi AI in produzione/i)).toBeInTheDocument();
+    // The Italian copy repeats this phrase in the tagline, the headline and the
+    // description, so the match is intentionally non-unique (same as /7\+/ above).
+    expect(screen.getAllByText(/Sistemi AI in produzione/i).length).toBeGreaterThan(0);
   });
 
   it('has proper accessibility attributes', () => {

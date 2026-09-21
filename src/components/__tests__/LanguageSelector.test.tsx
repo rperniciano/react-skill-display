@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../test/utils';
 import '@testing-library/jest-dom';
@@ -43,8 +43,10 @@ describe('LanguageSelector Component', () => {
     const trigger = screen.getByRole('combobox');
     expect(trigger).toBeInTheDocument();
     
-    // Check for Italian language text (could be full name or abbreviation)
-    const italianText = screen.queryByText('Italiano') || screen.queryByText('IT');
+    // Check for Italian language text (could be full name or abbreviation).
+    // Scoped to the trigger because the crawlable sr-only nav below the
+    // select renders the same language names a second time.
+    const italianText = within(trigger).queryByText('Italiano') || within(trigger).queryByText('IT');
     expect(italianText).toBeInTheDocument();
   });
 
@@ -140,5 +142,31 @@ describe('LanguageSelector Component', () => {
     const { container } = renderWithProviders(<LanguageSelector />);
     const globeIcon = container.querySelector('.text-purple-600');
     expect(globeIcon).toBeInTheDocument();
+  });
+
+  // --- Phase 2: language switching is a navigation, not local state ---
+
+  it('exposes a crawlable link for every locale', () => {
+    const { container } = renderWithProviders(<LanguageSelector />);
+
+    const nav = container.querySelector('nav[aria-label="Language"]');
+    expect(nav).toBeInTheDocument();
+
+    const links = Array.from(nav!.querySelectorAll('a'));
+    expect(links).toHaveLength(3);
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(['/it', '/en', '/es']);
+    expect(links.map((link) => link.getAttribute('hreflang'))).toEqual(['it', 'en', 'es']);
+  });
+
+  it('keeps the locale links out of the visual layout', () => {
+    const { container } = renderWithProviders(<LanguageSelector />);
+
+    expect(container.querySelector('nav[aria-label="Language"]')).toHaveClass('sr-only');
+  });
+
+  it('renders a single combobox next to the crawlable links', () => {
+    renderWithProviders(<LanguageSelector />);
+
+    expect(screen.getAllByRole('combobox')).toHaveLength(1);
   });
 });

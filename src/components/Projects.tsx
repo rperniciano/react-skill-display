@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Briefcase, Github, ExternalLink, TrendingUp, Clock, Code2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,19 +14,36 @@ import {
 } from "@/components/ui/card";
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
-import { getProjectDescription, getProjectMetrics } from "./translation-utils";
 import { AnimatedSection } from "./AnimatedSection";
 import { StaggeredGrid } from "./StaggeredGrid";
 
 const Projects = () => {
   const { t, language } = useLanguage();
   
-  // Map project data with translations
-  const projectsWithTranslations = portfolioData.projects.map(project => ({
-    ...project,
-    description: getProjectDescription(project.id.split('-')[0], t) || project.description,
-    metrics: project.metrics ? getProjectMetrics(project.id.split('-')[0], project.metrics, t) : project.metrics
-  }));
+  // Metric chips per project id. The dictionary carries the whole chip, figure
+  // included ("1.000.000+ utenti serviti" / "1,000,000+ users served"), so every
+  // locale groups its own digits. Only these three projects have chips.
+  const metricsByProject: Record<string, string[] | undefined> = {
+    "sprocket": t.projects.sprocketMetrics,
+    "expedia-components": t.projects.expediaMetrics,
+    "pos-system": t.projects.posMetrics
+  };
+
+  // Map project data with translations. Title, description, features and
+  // metrics are copy, so they come from the dictionary keyed by project id;
+  // portfolio-data only carries locale-independent data (image, technologies,
+  // links, year).
+  const projectsWithTranslations = portfolioData.projects.map(project => {
+    const copy = t.projects.projectItems[project.id as keyof typeof t.projects.projectItems];
+
+    return {
+      ...project,
+      title: copy.title,
+      description: copy.description,
+      features: copy.features,
+      metrics: metricsByProject[project.id]
+    };
+  });
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
@@ -55,6 +74,10 @@ const Projects = () => {
                     src={projectsWithTranslations[0].image} 
                     alt={projectsWithTranslations[0].title} 
                     className="w-full h-full object-cover"
+                    width={1000}
+                    height={667}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="md:w-3/5 p-6">
@@ -113,6 +136,10 @@ const Projects = () => {
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
+                    width={400}
+                    height={192}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 

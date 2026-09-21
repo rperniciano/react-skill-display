@@ -32,7 +32,12 @@ describe('Skills Component', () => {
     expect(screen.getByText(/Frontend: React, Angular, TypeScript/)).toBeInTheDocument();
     expect(screen.getByText(/Backend: C# \(\.NET 9\), Node\.js, REST APIs, GraphQL, Fastify, Swagger/)).toBeInTheDocument();
     expect(screen.getByText(/SQL Server, MySQL, Elasticsearch, Supabase/)).toBeInTheDocument();
-    expect(screen.getByText(/Azure Cognitive Services, OpenAI GPT/)).toBeInTheDocument();
+    // The harness renders in Italian, where the AI stack was refreshed to match
+    // the CV. The non-Italian branch in Skills.tsx still reads "Azure Cognitive
+    // Services, OpenAI GPT, Assembly.AI", which is what this line used to assert.
+    expect(
+      screen.getByText(/Azure OpenAI, Anthropic Claude, Assembly\.AI, ElevenLabs/),
+    ).toBeInTheDocument();
   });
 
   it('displays technology details for Italian language', () => {

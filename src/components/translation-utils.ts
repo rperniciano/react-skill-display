@@ -19,13 +19,9 @@ export const getMonthTranslation = (month: string, language: 'it' | 'en' | 'es')
 };
 
 export const formatPeriod = (period: string, language: 'it' | 'en' | 'es', t: any): string => {
-  // Handle "Presente" / "Present" / "Presente"
-  if (period.includes('Presente') || period.includes('Present')) {
-    const present = language === 'it' ? 'Presente' : language === 'en' ? 'Present' : 'Presente';
-    return period.replace(/Presente|Present/, present);
-  }
-  
-  // Handle month translations
+  // Month translations first. They used to run *after* the "Presente" branch
+  // below, which returns early - so "Gennaio 2025 - Presente" kept its Italian
+  // month on /en ("Gennaio 2025 - Present") and on /es.
   let translatedPeriod = period;
   const monthsIt = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
                     'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
@@ -35,6 +31,12 @@ export const formatPeriod = (period: string, language: 'it' | 'en' | 'es', t: an
       translatedPeriod = translatedPeriod.replace(month, getMonthTranslation(month, language));
     }
   });
+  
+  // Handle "Presente" / "Present" / "Presente"
+  if (translatedPeriod.includes('Presente') || translatedPeriod.includes('Present')) {
+    const present = language === 'it' ? 'Presente' : language === 'en' ? 'Present' : 'Presente';
+    return translatedPeriod.replace(/Presente|Present/, present);
+  }
   
   return translatedPeriod;
 };
@@ -65,38 +67,10 @@ export const getJobDescription = (jobId: string, t: any): string[] => {
   }
 };
 
-// Export helper for project descriptions
-export const getProjectDescription = (projectId: string, t: any): string => {
-  switch(projectId) {
-    case 'fedro':
-      return t.projects.fedroProjectDesc;
-    case 'expedia':
-      return t.projects.expediaProjectDesc;
-    case 'pos':
-      return t.projects.posProjectDesc;
-    case 'portfolio':
-      return t.projects.portfolioProjectDesc;
-    default:
-      return '';
-  }
-};
-
-export const getProjectMetrics = (projectId: string, metrics: string[], t: any): string[] => {
-  const metricTranslations: Record<string, string[]> = {
-    'fedro': t.projects.fedroMetrics,
-    'expedia': t.projects.expediaMetrics,
-    'pos': t.projects.posMetrics
-  };
-  
-  const translations = metricTranslations[projectId];
-  if (!translations) return metrics;
-  
-  return metrics.map((metric, index) => {
-    // Keep the number/percentage, replace the description
-    const match = metric.match(/^([\d%+.]+\s*)/);
-    if (match) {
-      return match[1] + (translations[index] || metric.replace(match[1], ''));
-    }
-    return translations[index] || metric;
-  });
-};
+// NOTE: `getProjectMetrics` lived here. It kept one locale-independent
+// figure from portfolio-data.ts and swapped only the label by index, so /en
+// rendered "1.000.000+ users served" - Italian digit grouping in English -
+// and a chip opening with a word instead of a number shifted every label
+// after it by one. The whole chip, figure included, now lives in
+// translations.ts under `projects.sprocketMetrics` / `expediaMetrics` /
+// `posMetrics`, one string per locale, and Projects.tsx reads it directly.

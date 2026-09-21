@@ -1,13 +1,15 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "../hooks/useTheme";
 import { useLanguage } from "./LanguageContext";
 import LanguageSelector from "./LanguageSelector";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,6 +25,7 @@ const Navbar = () => {
     { href: "#hero", label: t.nav.home },
     { href: "#about", label: t.nav.about },
     { href: "#skills", label: t.nav.skills },
+    { href: "#solutions", label: t.nav.solutions },
     { href: "#experience", label: t.nav.experience },
     { href: "#projects", label: t.nav.projects },
     { href: "#contact", label: t.nav.contact },
@@ -36,15 +39,18 @@ const Navbar = () => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <a href="/" className="flex items-center space-x-2">
+          {/* Logo. Points at the *current* locale's home page: a bare href="/"
+              would full-reload and then be re-detected by proxy.ts from
+              Accept-Language, which can drop the visitor into a different
+              language than the one they are reading. */}
+          <Link href={`/${language}`} className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">R</span>
             </div>
             <span className="text-xl font-bold text-gray-900 dark:text-white hidden sm:inline">
               Riccardo
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
@@ -70,7 +76,7 @@ const Navbar = () => {
               asChild
             >
               <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
-                Prenota
+                {t.nav.bookCall}
               </a>
             </Button>
 
@@ -108,7 +114,7 @@ const Navbar = () => {
                 asChild
               >
                 <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
-                  Prenota una call gratuita
+                  {t.hero.bookFreeCall}
                 </a>
               </Button>
             </div>

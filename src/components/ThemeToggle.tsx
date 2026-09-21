@@ -1,48 +1,34 @@
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/useTheme";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { theme, toggleTheme } = useTheme();
 
-  // Initialize theme from localStorage or system preference
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-    }
-  }, []);
+  // The resolved theme is only knowable in the browser, so the first render
+  // (server + hydration) must not depend on it. Until mounted we render a
+  // same-sized, icon-less button: identical markup on both sides, no mismatch,
+  // and no layout shift when the real icon appears.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
-  // Apply theme changes to document
-  useEffect(() => {
-    const root = window.document.documentElement;
-    
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  const label =
+    theme === "light" ? "Attiva modalità scura" : "Attiva modalità chiara";
 
   return (
-    <Button 
-      variant="ghost" 
+    <Button
+      variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      title={theme === "light" ? "Attiva modalità scura" : "Attiva modalità chiara"}
-      aria-label={theme === "light" ? "Attiva modalità scura" : "Attiva modalità chiara"}
+      title={mounted ? label : undefined}
+      aria-label={mounted ? label : "Cambia tema"}
     >
-      {theme === "light" ? (
+      {!mounted ? (
+        <span className="h-5 w-5" aria-hidden="true" />
+      ) : theme === "light" ? (
         <Moon className="h-5 w-5" />
       ) : (
         <Sun className="h-5 w-5" />

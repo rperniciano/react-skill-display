@@ -1,65 +1,44 @@
-// ThemeProvider component wrapper
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+"use client";
 
-type Theme = 'light' | 'dark';
+// The single source of truth for theming in the app.
+//
+// This is a thin wrapper around next-themes. next-themes injects a blocking
+// inline <script> that reads localStorage and sets the `dark` class on <html>
+// *before first paint*, which is what removes the flash-of-wrong-theme the
+// hand-rolled provider used to cause. The root layout sets
+// `suppressHydrationWarning` on <html> so React does not complain about that
+// pre-hydration class mutation.
+//
+// Rendered from a Server Component (the root layout) is safe: this file is a
+// Client Component, so `children` are passed straight through as a server-
+// rendered tree.
 
-interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
-}
+import * as React from "react";
+import {
+  ThemeProvider as NextThemesProvider,
+  type ThemeProviderProps,
+} from "next-themes";
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-interface ThemeProviderProps {
-  children: ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
-}
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ 
-  children, 
-  defaultTheme = 'dark',
-  storageKey = 'portfolio-theme' 
-}) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    // Try to get theme from localStorage
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem(storageKey);
-      if (stored === 'light' || stored === 'dark') {
-        return stored;
-      }
-    }
-    return defaultTheme;
-  });
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    
-    // Remove old theme class
-    root.classList.remove('light', 'dark');
-    
-    // Add new theme class
-    root.classList.add(theme);
-    
-    // Save to localStorage
-    localStorage.setItem(storageKey, theme);
-  }, [theme, storageKey]);
-
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <NextThemesProvider
+      // Tailwind is configured with `darkMode: 'class'`, so the theme has to be
+      // expressed as a class on <html>.
+      attribute="class"
+      // Honour the OS preference when the visitor has never chosen explicitly.
+      defaultTheme="system"
+      enableSystem
+      // Same localStorage key the previous hand-rolled provider wrote, so an
+      // existing visitor's saved 'light' / 'dark' preference carries over.
+      storageKey="theme"
+      // Avoid the colour-transition sweep when flipping the theme.
+      disableTransitionOnChange
+      // Callers may still override any of the above.
+      {...props}
+    >
       {children}
-    </ThemeContext.Provider>
+    </NextThemesProvider>
   );
-};
+}
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
+export default ThemeProvider;
