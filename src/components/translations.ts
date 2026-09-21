@@ -163,6 +163,16 @@ export const translations = {
         "Ottimizzazione +50% performance con caching multi-livello e query tuning",
         "Sistema di retry policies e circuit breaker per resilienza"
       ],
+      cisaDesc: [
+        "Fase 1 in corso: studio di fattibilità e piano operativo per l'automazione documentale e AI del consorzio",
+        "Analisi e disegno di cinque automazioni: protocollazione assistita della posta in arrivo, smistamento dei compiti ai referenti, riordino e indicizzazione dell'archivio documentale, acquisizione delle fatture con scadenzari, riconciliazione dei pagamenti",
+        "Architettura e sviluppo del backend C# su ABP Framework, con il database come unica fonte di verità e app Angular per la gestione dei compiti",
+        "Server MCP di dominio esposto dal backend: gli assistenti AI scrivono solo tramite tool controllati e autorizzati per permesso, mai in SQL diretto",
+        "Confine netto tra lavoro deterministico nel backend (API, parsing, job schedulati con Hangfire) e lavoro interpretativo lasciato all'AI: classificazione delle email, centri di costo, abbinamenti bancari",
+        "Ogni decisione persistita registra la propria origine, AI o operatore, con conferma umana obbligatoria sui passaggi contabili",
+        "Server MCP stdio distribuito come singolo eseguibile, che legge le share con l'identità dell'utente loggato: le ACL NTFS le applica il file server, non il codice applicativo",
+        "Infrastruttura interamente on-premise e impianto di governance EU AI Act: policy, registro dei sistemi AI e piano di formazione art. 4"
+      ],
       altenDesc: [
         "Sviluppatore frontend in team internazionale di 10+ sviluppatori per Expedia Group",
         "Sviluppo componente carosello \"Suggested Homes\" per raccomandazioni personalizzate agli utenti",
@@ -218,6 +228,7 @@ export const translations = {
         "Progetti pratici in C#, SQL, networking"
       ],
       // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      cisaOrganization: "Attività in proprio",
       altenLocation: "Roma (Remoto)",
       softwarelabTitle: "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
       virtuardTitle: "MOBILE/VR DEVELOPER",
@@ -294,18 +305,6 @@ export const translations = {
             "Integrazione pagamenti multi-circuito (Visa, Mastercard)",
             "WebServices real-time con backend",
             "Documentazione tecnica e manuali operativi"
-          ]
-        },
-        "react-portfolio": {
-          title: "Interactive React Portfolio",
-          description: "Portfolio personale con animazioni avanzate e visualizzazioni interattive",
-          longDescription: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
-          features: [
-            "Animazioni fluide",
-            "Grafici interattivi con Recharts",
-            "Dark/Light mode toggle",
-            "Fully responsive design",
-            "Performance optimized"
           ]
         }
       },
@@ -564,6 +563,16 @@ export const translations = {
         "+50% performance optimization with multi-layer caching and query tuning",
         "Retry policies and circuit breaker system for resilience"
       ],
+      cisaDesc: [
+        "Phase 1 in progress: feasibility study and operational plan for the consortium's document automation and AI",
+        "Analysis and design of five automations: assisted registration of incoming mail, routing of tasks to the referents, reorganisation and indexing of the document archive, invoice acquisition with due-date scheduling, payment reconciliation",
+        "Architecture and development of the C# backend on ABP Framework, with the database as the single source of truth and an Angular app for task management",
+        "Domain MCP server exposed by the backend: AI assistants write only through controlled tools authorised by permission, never in raw SQL",
+        "Clear boundary between deterministic work in the backend (APIs, parsing, Hangfire scheduled jobs) and interpretive work left to the AI: email classification, cost centres, bank matching",
+        "Every persisted decision records its own origin, AI or human operator, with mandatory human confirmation on the accounting steps",
+        "Separate stdio MCP server shipped as a single executable, reading the shares as the logged-in user: NTFS ACLs enforced by the file server, not by application code",
+        "Fully on-premise infrastructure and EU AI Act governance: policy, AI systems register and an Article 4 training plan"
+      ],
       altenDesc: [
         "Frontend developer in international team of 10+ developers for Expedia Group",
         "Development of \"Suggested Homes\" carousel component for personalized user recommendations",
@@ -619,6 +628,7 @@ export const translations = {
         "Practical projects in C#, SQL, networking"
       ],
       // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      cisaOrganization: "Freelance",
       altenLocation: "Rome (Remote)",
       softwarelabTitle: "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
       virtuardTitle: "MOBILE/VR DEVELOPER",
@@ -694,18 +704,6 @@ export const translations = {
             "Multi-circuit payment integration (Visa, Mastercard)",
             "Real-time WebServices with the backend",
             "Technical documentation and operational manuals"
-          ]
-        },
-        "react-portfolio": {
-          title: "Interactive React Portfolio",
-          description: "Personal portfolio with advanced animations and interactive visualizations",
-          longDescription: "Modern web portfolio with smooth animations, dark mode, interactive data visualizations and responsive design.",
-          features: [
-            "Smooth animations",
-            "Interactive charts with Recharts",
-            "Dark/Light mode toggle",
-            "Fully responsive design",
-            "Performance optimized"
           ]
         }
       },
@@ -959,6 +957,16 @@ export const translations = {
         "Optimización +50% de rendimiento con caché multicapa y query tuning",
         "Sistema de retry policies y circuit breaker para resiliencia"
       ],
+      cisaDesc: [
+        "Fase 1 en curso: estudio de viabilidad y plan operativo para la automatización documental e IA del consorcio",
+        "Análisis y diseño de cinco automatizaciones: registro asistido del correo entrante, distribución de tareas a los referentes, reorganización e indexación del archivo documental, adquisición de facturas con vencimientos, conciliación de pagos",
+        "Arquitectura y desarrollo del backend C# sobre ABP Framework, con la base de datos como única fuente de verdad y app Angular para la gestión de tareas",
+        "Servidor MCP de dominio expuesto por el backend: los asistentes de IA escriben solo mediante herramientas controladas y autorizadas por permiso, nunca en SQL directo",
+        "Frontera clara entre el trabajo determinista en el backend (APIs, parsing, jobs programados con Hangfire) y el trabajo interpretativo que queda en la IA: clasificación de correos, centros de coste, conciliación bancaria",
+        "Cada decisión persistida registra su origen, IA u operador, con confirmación humana obligatoria en los pasos contables",
+        "Servidor MCP stdio distribuido como un único ejecutable, que lee los recursos compartidos con la identidad del usuario conectado: las ACL NTFS las aplica el servidor de archivos, no el código de aplicación",
+        "Infraestructura íntegramente on-premise y gobernanza del EU AI Act: política, registro de sistemas de IA y plan de formación art. 4"
+      ],
       altenDesc: [
         "Desarrollador frontend en equipo internacional de 10+ desarrolladores para Expedia Group",
         "Desarrollo del componente carrusel \"Suggested Homes\" para recomendaciones personalizadas a usuarios",
@@ -1014,6 +1022,7 @@ export const translations = {
         "Proyectos prácticos en C#, SQL, redes"
       ],
       // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      cisaOrganization: "Trabajo autónomo",
       altenLocation: "Roma (Remoto)",
       softwarelabTitle: "DESARROLLADOR → REFERENTE TÉCNICO",
       virtuardTitle: "DESARROLLADOR MÓVIL/VR",
@@ -1089,18 +1098,6 @@ export const translations = {
             "Integración de pagos multi-circuito (Visa, Mastercard)",
             "WebServices en tiempo real con el backend",
             "Documentación técnica y manuales operativos"
-          ]
-        },
-        "react-portfolio": {
-          title: "Interactive React Portfolio",
-          description: "Portfolio personal con animaciones avanzadas y visualizaciones interactivas",
-          longDescription: "Portfolio web moderno con animaciones fluidas, modo oscuro, visualizaciones de datos interactivas y diseño responsivo.",
-          features: [
-            "Animaciones fluidas",
-            "Gráficos interactivos con Recharts",
-            "Dark/Light mode toggle",
-            "Fully responsive design",
-            "Performance optimized"
           ]
         }
       },

@@ -6,9 +6,14 @@
  * The array below is annotated instead of being left to inference. TypeScript
  * infers an array literal of differing object literals as a union of those
  * literals, and while it does add each literal's *missing siblings* back as
- * optional (which is why `github` / `demo` / `client` resolve), a key that no
- * literal carries at all is absent from the union entirely. `Projects.tsx` reads
- * `project.client`, so that key needs to exist on the declared type.
+ * optional (which is why `client` resolves), a key that no literal carries at
+ * all is absent from the union entirely. `Projects.tsx` reads `project.client`,
+ * `project.github` and `project.demo`, so those keys need to exist on the
+ * declared type - and since the portfolio project was removed from the list,
+ * `github` and `demo` are carried by no literal at all and exist *only*
+ * because of the annotation below. They stay on the type on purpose: the
+ * "Code" / "Demo" buttons in Projects.tsx are still there, waiting for the
+ * next project that has something public to link.
  *
  * Optional members mirror the inferred union exactly; nothing here narrows a
  * property the inference had widened.
@@ -75,15 +80,6 @@ const projects: PortfolioProject[] = [
     technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"],
     type: "enterprise",
     year: 2020
-  },
-  {
-    id: "react-portfolio",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
-    github: "https://github.com/rperniciano/react-skill-display",
-    demo: "https://react-skill-display.vercel.app/",
-    type: "personal",
-    year: 2024
   }
 ];
 

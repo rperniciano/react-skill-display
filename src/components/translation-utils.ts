@@ -46,6 +46,8 @@ export const getJobDescription = (jobId: string, t: any): string[] => {
   switch(jobId) {
     case 'fedro':
       return t.experience.fedroDesc;
+    case 'cisa':
+      return t.experience.cisaDesc;
     case 'alten':
       return t.experience.altenDesc;
     case 'softwarelab':

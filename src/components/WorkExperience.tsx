@@ -47,6 +47,19 @@ const WorkExperience = () => {
     },
     {
       id: 2,
+      jobId: 'cisa',
+      title: "SOLUTION ARCHITECT & FULL-STACK DEVELOPER",
+      organization: t.experience.cisaOrganization,
+      client: "C.I.S.A.",
+      period: "2026 - Presente",
+      location: "Cagliari",
+      description: getJobDescription('cisa', t),
+      type: "work",
+      technologies: ["ABP Framework", ".NET 10", "C#", "Angular 22", "PostgreSQL 17", "MCP", "Hangfire"],
+      current: true
+    },
+    {
+      id: 3,
       jobId: 'alten',
       title: "FRONTEND DEVELOPER",
       organization: "ALTEN Italia",
@@ -59,7 +72,7 @@ const WorkExperience = () => {
       highlight: false
     },
     {
-      id: 3,
+      id: 4,
       jobId: 'softwarelab',
       title: t.experience.softwarelabTitle,
       organization: "SOFTWARELAB",
@@ -71,7 +84,7 @@ const WorkExperience = () => {
       technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"]
     },
     {
-      id: 4,
+      id: 5,
       jobId: 'virtuard',
       title: t.experience.virtuardTitle,
       organization: "Virtuard LTD",
@@ -82,7 +95,7 @@ const WorkExperience = () => {
       technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering"]
     },
     {
-      id: 5,
+      id: 6,
       jobId: 'epicode',
       title: "COMPUTER ENGINEERING",
       organization: "Epicode Institute of Technology",
@@ -93,7 +106,7 @@ const WorkExperience = () => {
       current: true
     },
     {
-      id: 6,
+      id: 7,
       jobId: 'react-course',
       title: "REACT ADVANCED + REDUX",
       organization: "Udemy",
@@ -103,7 +116,7 @@ const WorkExperience = () => {
       type: "education"
     },
     {
-      id: 7,
+      id: 8,
       jobId: 'css-course',
       title: "ADVANCED CSS AND SASS",
       organization: "Udemy",
@@ -113,7 +126,7 @@ const WorkExperience = () => {
       type: "education"
     },
     {
-      id: 8,
+      id: 9,
       jobId: 'typescript-course',
       title: "TYPESCRIPT FOR REACT",
       organization: "Udemy",
@@ -123,7 +136,7 @@ const WorkExperience = () => {
       type: "education"
     },
     {
-      id: 9,
+      id: 10,
       jobId: 'diploma',
       title: t.experience.diplomaTitle,
       organization: "ITIS GIUA",

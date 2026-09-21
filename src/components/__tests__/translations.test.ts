@@ -248,6 +248,10 @@ describe('translations dictionaries', () => {
     // These rendered Italian on /en and /es because nothing ever branched on
     // the language - there was no ternary to lift, just a literal in the JSX
     // (or, for the project entries, a literal in portfolio-data.ts).
+    //
+    // `projects.projectItems.react-portfolio.description` used to be on this
+    // list. It went with the project: the portfolio itself is no longer one of
+    // the entries in `portfolioData.projects`.
     const lifted = [
       'nav.bookCall',
       'about.greetingPrefix',
@@ -264,7 +268,7 @@ describe('translations dictionaries', () => {
       'projects.projectItems.sprocket.description',
       'projects.projectItems.sprocket.features',
       'projects.projectItems.pos-system.title',
-      'projects.projectItems.react-portfolio.description',
+      'projects.projectItems.pos-system.description',
     ];
 
     for (const path of lifted) {

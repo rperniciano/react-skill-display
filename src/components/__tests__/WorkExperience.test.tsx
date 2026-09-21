@@ -23,6 +23,13 @@ describe('WorkExperience Component', () => {
     expect(screen.getByText('SOLUTION ARCHITECT & TECHNICAL LEAD')).toBeInTheDocument();
     expect(screen.getByText('FRONTEND DEVELOPER')).toBeInTheDocument();
 
+    // C.I.S.A. is framed as independent work with the consortium as the
+    // client, the same shape as ALTEN/Expedia and SOFTWARELAB/ERSU. The
+    // organization label is localised; the client name is not.
+    expect(screen.getByText('Attività in proprio')).toBeInTheDocument();
+    expect(screen.getByText('SOLUTION ARCHITECT & FULL-STACK DEVELOPER')).toBeInTheDocument();
+    expect(screen.getByText(/C\.I\.S\.A\./)).toBeInTheDocument();
+
     // Check that timeline shows current positions (FEDRO and Epicode are both current)
     const presenteElements = screen.getAllByText(/Presente/);
     expect(presenteElements.length).toBeGreaterThanOrEqual(1);

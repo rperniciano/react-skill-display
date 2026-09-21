@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import { renderWithProviders } from '../../test/utils';
 import '@testing-library/jest-dom';
 import Projects from '../Projects';
+import { portfolioData } from '../portfolio-data';
 
 describe('Projects Component', () => {
   it('renders the section header correctly', () => {
@@ -69,16 +70,23 @@ describe('Projects Component', () => {
     expect(screen.getAllByText('Enterprise').length).toBeGreaterThan(0);
   });
 
-  it('renders GitHub and demo links when available', () => {
+  it('renders no GitHub or demo link, because no project carries one', () => {
     renderWithProviders(<Projects />);
     
-    // Check for GitHub links (Italian)
-    const githubLinks = screen.getAllByText('Codice');
-    expect(githubLinks.length).toBeGreaterThan(0);
+    // This test used to assert the opposite. The only entry with `github`
+    // and `demo` was the portfolio itself ("Interactive React Portfolio"),
+    // which the owner removed from the Projects section - the visitor is
+    // already looking at it.
+    //
+    // The buttons are deliberately still in Projects.tsx and the fields are
+    // still on `PortfolioProject`: the branch is dead data-wise, not dead
+    // code, and the next project with something public to link brings it
+    // back. Until then every card takes the "Proprietario" fallback.
+    expect(screen.queryByText('Codice')).not.toBeInTheDocument();
+    expect(screen.queryByText('Demo')).not.toBeInTheDocument();
     
-    // Check for demo links
-    const demoLinks = screen.getAllByText('Demo');
-    expect(demoLinks.length).toBeGreaterThan(0);
+    const cards = portfolioData.projects.slice(1); // projects[0] is the featured card
+    expect(screen.getAllByText('Proprietario')).toHaveLength(cards.length);
   });
 
   it('displays proprietary projects with clock icon', () => {
