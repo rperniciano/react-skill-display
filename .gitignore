@@ -28,3 +28,7 @@ dist-ssr
 out/
 next-env.d.ts
 *.tsbuildinfo
+
+# CV superati e residui dello scaffold: restano in locale, fuori dal deploy
+public/Curriculum Riccardo Perniciano 12-2025 *.pdf
+public/placeholder.svg
