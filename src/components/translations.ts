@@ -1,6 +1,14 @@
 // Translation system for portfolio
 export const translations = {
   it: {
+    // Page-level metadata, read server-side by app/seo.ts. `hero.title` is the
+    // on-page H1 and is deliberately the same English job title in every
+    // locale, which left /it, /en and /es shipping an identical <title>.
+    // These are written per locale and kept to ~50-60 rendered characters so
+    // Google does not truncate them.
+    meta: {
+      title: "Riccardo Perniciano | Solution Architect .NET e sistemi AI"
+    },
     nav: {
       home: "Home",
       skills: "Competenze",
@@ -152,7 +160,7 @@ export const translations = {
         "Implementazione widget meteo interattivo con visualizzazione forecast per date e location selezionate",
         "Sviluppo componenti React riutilizzabili seguendo design system aziendale",
         "Implementazione UI pixel-perfect da specifiche Figma con focus su responsive design",
-        "Codebase enterprise servita a 100.000+ utenti",
+        "Codebase enterprise servita a 1.000.000+ utenti",
         "Partecipazione attiva a refinement tecnici e definizione dei ticket",
         "Workflow Agile con team distribuito (daily standup, sprint review, retrospective)"
       ],
@@ -243,10 +251,22 @@ export const translations = {
             "Sistema di retry policies e circuit breaker"
           ]
         },
+        "cisa-automation": {
+          title: "C.I.S.A. - Automazione Documentale e AI",
+          description: "Automazione documentale e AI per un consorzio: protocollo, compiti, archivio, contabilità e riconciliazione dei pagamenti, con server MCP di dominio e infrastruttura interamente on-premise.",
+          longDescription: "Fase 1 — studio di fattibilità e piano operativo — per cinque automazioni: protocollazione assistita della posta in arrivo, smistamento e assegnazione dei compiti ai referenti, riordino e indicizzazione dell'archivio documentale, acquisizione delle fatture con scadenzari e riconciliazione dei pagamenti. Backend C# su ABP Framework con un server MCP di dominio: il database resta l'unica fonte di verità, gli assistenti AI scrivono solo attraverso tool controllati e ogni decisione persistita ne registra l'origine. Progetto in corso.",
+          features: [
+            "Cinque automazioni: protocollo, compiti, archivio, contabilità, pagamenti",
+            "Server MCP di dominio su ABP Framework: l'AI scrive solo tramite tool controllati, mai SQL",
+            "Lavoro deterministico nel backend con job Hangfire, interpretativo lato AI, con origine tracciata",
+            "Server MCP stdio che legge le share con l'identità dell'utente: le ACL NTFS le applica il file server",
+            "Infrastruttura on-premise e governance EU AI Act (policy, registro dei sistemi AI, formazione art. 4)"
+          ]
+        },
         "expedia-components": {
           title: "Expedia Group - Frontend Components",
           description: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
-          longDescription: "Sviluppo di componenti React riutilizzabili seguendo design system aziendale, con UI pixel-perfect da specifiche Figma. Codebase enterprise servita a 100.000+ utenti.",
+          longDescription: "Sviluppo di componenti React riutilizzabili seguendo design system aziendale, con UI pixel-perfect da specifiche Figma. Codebase enterprise servita a 1.000.000+ utenti.",
           features: [
             "Carosello \"Suggested Homes\" per raccomandazioni personalizzate",
             "Widget meteo interattivo con forecast",
@@ -285,10 +305,14 @@ export const translations = {
         "file audio in parallelo",
         "tenant enterprise"
       ],
+      // Aligned by index with `expedia-components.metrics` in portfolio-data.ts:
+      // getProjectMetrics keeps the figure and swaps only the label, so a third
+      // label here used to leave the second metric ("code coverage") with no
+      // figure at all. The role was React frontend - API latency and coverage
+      // were never part of it.
       expediaMetrics: [
-        "riduzione latenza API",
-        "code coverage",
-        "Milioni di utenti serviti"
+        "utenti serviti",
+        "sviluppatori nel team"
       ],
       posMetrics: [
         "transazioni/anno",
@@ -378,6 +402,10 @@ export const translations = {
   },
   
   en: {
+    // See the note on `it.meta`.
+    meta: {
+      title: "Riccardo Perniciano | .NET Solution Architect & AI Systems"
+    },
     nav: {
       home: "Home",
       skills: "Skills",
@@ -450,8 +478,8 @@ export const translations = {
       langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
       databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
       databaseDetails: "Query optimization, full-text indexing, multi-tenancy isolation",
-      aiSpeechDesc: "Azure Cognitive Services, OpenAI GPT, Assembly.AI",
-      aiSpeechDetails: "Speech-to-Text multi-provider, Video & Image Generation, Simple RAG systems",
+      aiSpeechDesc: "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs",
+      aiSpeechDetails: "Multi-agent architectures, LLM integration, RAG, structured outputs (JSON Schema), multi-provider Speech-to-Text, agentic tooling (custom MCP, Claude Code)",
       cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
       cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
       architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
@@ -528,7 +556,7 @@ export const translations = {
         "Implementation of interactive weather widget with forecast visualization for selected dates and locations",
         "Reusable React components development following company design system",
         "Pixel-perfect UI implementation from Figma specs with focus on responsive design",
-        "Enterprise codebase serving 100,000+ users",
+        "Enterprise codebase serving 1,000,000+ users",
         "Active participation in technical refinements and ticket definition",
         "Agile workflow with distributed team (daily standup, sprint review, retrospective)"
       ],
@@ -619,10 +647,22 @@ export const translations = {
             "Retry policies and circuit breaker system"
           ]
         },
+        "cisa-automation": {
+          title: "C.I.S.A. - Document Automation & AI",
+          description: "Document automation and AI for a consortium: mail registration, task routing, document archive, accounting and payment reconciliation, with a domain MCP server and fully on-premise infrastructure.",
+          longDescription: "Phase 1 — feasibility study and operational plan — for five automations: assisted registration of incoming mail, routing and assignment of tasks to the referents, reorganisation and indexing of the document archive, invoice acquisition with due-date scheduling, and payment reconciliation. C# backend on ABP Framework with a domain MCP server: the database remains the single source of truth, AI assistants write only through controlled tools, and every persisted decision records its origin. Work in progress.",
+          features: [
+            "Five automations: protocol, tasks, archive, accounting, payments",
+            "Domain MCP server on ABP Framework: the AI writes only through controlled tools, never SQL",
+            "Deterministic work in the backend as Hangfire jobs, interpretive work in the AI, origin always tracked",
+            "stdio MCP server reading the shares as the logged-in user: NTFS ACLs enforced by the file server",
+            "On-premise infrastructure and EU AI Act governance (policy, AI systems register, Article 4 training)"
+          ]
+        },
         "expedia-components": {
           title: "Expedia Group - Frontend Components",
           description: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
-          longDescription: "Development of reusable React components following the company design system, with pixel-perfect UI from Figma specs. Enterprise codebase serving 100,000+ users.",
+          longDescription: "Development of reusable React components following the company design system, with pixel-perfect UI from Figma specs. Enterprise codebase serving 1,000,000+ users.",
           features: [
             "\"Suggested Homes\" carousel for personalized recommendations",
             "Interactive weather widget with forecast",
@@ -661,10 +701,10 @@ export const translations = {
         "audio files in parallel",
         "enterprise tenants"
       ],
+      // See the note on `it.projects.expediaMetrics`.
       expediaMetrics: [
-        "API latency reduction",
-        "code coverage",
-        "Million users served"
+        "users served",
+        "developers in the team"
       ],
       posMetrics: [
         "transactions/year",
@@ -695,8 +735,8 @@ export const translations = {
       transcriptionsHour: "transcriptions/hour",
       aiProcessing: "AI Processing",
       // Bio paragraphs rendered by About.tsx
-      profile1: "Senior .NET Developer & Solution Architect with 7+ years of experience in designing and implementing scalable enterprise solutions.",
-      profile2: "Expert in cognitive services integration (Azure AI, OpenAI GPT) and complex architecture optimization. Lead Developer at FEDRO Software.",
+      profile1: "Senior .NET Developer & Solution Architect with 7+ years of experience designing scalable enterprise solutions, today specialized in production AI: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG.",
+      profile2: "As Solution Architect & Technical Lead at FEDRO Software I designed and took to production SPRocket and SprocketLive (AI analysis and live assistance for call centers): 2,000+ audio hours/month, multi-tenant, 99.9% uptime, from zero to production in 3 months. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
       profile3: "I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
       profile4: "I've worked with international teams for clients like Expedia, developing components used by millions of users. My approach combines technical skills with a strategic vision to create solutions that solve real problems.",
       // Soft skills grid
@@ -754,6 +794,10 @@ export const translations = {
   },
   
   es: {
+    // See the note on `it.meta`.
+    meta: {
+      title: "Riccardo Perniciano | Solution Architect .NET y sistemas IA"
+    },
     nav: {
       home: "Inicio",
       skills: "Habilidades",
@@ -904,7 +948,7 @@ export const translations = {
         "Implementación de widget meteorológico interactivo con visualización de pronóstico para fechas y ubicaciones seleccionadas",
         "Desarrollo de componentes React reutilizables siguiendo design system empresarial",
         "Implementación de UI pixel-perfect desde especificaciones Figma con enfoque en diseño responsive",
-        "Codebase enterprise sirviendo a 100.000+ usuarios",
+        "Codebase enterprise sirviendo a 1.000.000+ usuarios",
         "Participación activa en refinements técnicos y definición de tickets",
         "Workflow Agile con equipo distribuido (daily standup, sprint review, retrospective)"
       ],
@@ -995,10 +1039,22 @@ export const translations = {
             "Sistema de retry policies y circuit breaker"
           ]
         },
+        "cisa-automation": {
+          title: "C.I.S.A. - Automatización Documental e IA",
+          description: "Automatización documental e IA para un consorcio: protocolo, tareas, archivo, contabilidad y conciliación de pagos, con servidor MCP de dominio e infraestructura íntegramente on-premise.",
+          longDescription: "Fase 1 — estudio de viabilidad y plan operativo — para cinco automatizaciones: registro asistido del correo entrante, distribución y asignación de tareas a los referentes, reorganización e indexación del archivo documental, adquisición de facturas con vencimientos y conciliación de pagos. Backend C# sobre ABP Framework con un servidor MCP de dominio: la base de datos sigue siendo la única fuente de verdad, los asistentes de IA escriben solo mediante herramientas controladas y cada decisión persistida registra su origen. Proyecto en curso.",
+          features: [
+            "Cinco automatizaciones: protocolo, tareas, archivo, contabilidad, pagos",
+            "Servidor MCP de dominio sobre ABP Framework: la IA escribe solo mediante herramientas controladas, nunca SQL",
+            "Trabajo determinista en el backend con jobs Hangfire, interpretativo en la IA, con el origen siempre trazado",
+            "Servidor MCP stdio que lee los recursos compartidos con la identidad del usuario: las ACL NTFS las aplica el servidor de archivos",
+            "Infraestructura on-premise y gobernanza del EU AI Act (política, registro de sistemas de IA, formación art. 4)"
+          ]
+        },
         "expedia-components": {
           title: "Expedia Group - Frontend Components",
           description: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
-          longDescription: "Desarrollo de componentes React reutilizables siguiendo el design system empresarial, con UI pixel-perfect desde especificaciones Figma. Codebase enterprise sirviendo a 100.000+ usuarios.",
+          longDescription: "Desarrollo de componentes React reutilizables siguiendo el design system empresarial, con UI pixel-perfect desde especificaciones Figma. Codebase enterprise sirviendo a 1.000.000+ usuarios.",
           features: [
             "Carrusel \"Suggested Homes\" para recomendaciones personalizadas",
             "Widget meteorológico interactivo con pronóstico",
@@ -1037,10 +1093,10 @@ export const translations = {
         "archivos de audio en paralelo",
         "inquilinos enterprise"
       ],
+      // See the note on `it.projects.expediaMetrics`.
       expediaMetrics: [
-        "reducción latencia API",
-        "cobertura de código",
-        "Millones de usuarios servidos"
+        "usuarios atendidos",
+        "desarrolladores en el equipo"
       ],
       posMetrics: [
         "transacciones/año",

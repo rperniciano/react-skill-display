@@ -33,8 +33,14 @@ export function pageMetadata({
 }): Metadata {
   const dictionary = translations[language];
 
-  // Copy comes from the existing translation data - no new strings invented.
-  const resolvedTitle = title ?? `Riccardo Perniciano — ${dictionary.hero.title}`;
+  // Copy comes from the existing translation data.
+  //
+  // The title is `meta.title`, not `hero.title`: the hero heading is the on-page
+  // H1 and is deliberately the same English job title in every locale, so
+  // building the <title> from it shipped one identical string on /it, /en and
+  // /es - three documents competing for the same query with no localised
+  // signal. `meta.title` is written per locale and sized for the SERP.
+  const resolvedTitle = title ?? dictionary.meta.title;
   const resolvedDescription = description ?? dictionary.hero.description;
 
   return {

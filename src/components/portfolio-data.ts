@@ -46,12 +46,29 @@ const projects: PortfolioProject[] = [
     year: 2025
   },
   {
+    // Second position on purpose: Projects.tsx renders `projects[0]` as the
+    // featured card with a hardcoded "2025" badge, so the featured slot has to
+    // stay on `sprocket`. This is the first card of the grid below it.
+    //
+    // No `github` / `demo`: the client repository is private (it holds
+    // contractual and commercial material), so there is nothing public to link.
+    // No `metrics` either - phase 1 is a feasibility study and operational
+    // plan, and every figure available today is either confidential or comes
+    // from the demo environment. See translations.ts for the copy.
+    id: "cisa-automation",
+    image: "https://images.unsplash.com/photo-1583521214690-73421a1829a9?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["ABP Framework", ".NET 10", "C#", "Angular 22", "PostgreSQL 17", "EF Core 10", "MCP", "Hangfire", "Docker"],
+    type: "enterprise",
+    year: 2026,
+    client: "C.I.S.A."
+  },
+  {
     id: "expedia-components",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
     technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
     metrics: [
-      "100.000+ utenti serviti",
-      "Team di 10+ sviluppatori"
+      "1.000.000+ utenti serviti",
+      "10+ sviluppatori nel team"
     ],
     type: "enterprise",
     year: 2022
@@ -147,7 +164,7 @@ export const portfolioData = {
         "Implementazione widget meteo interattivo con visualizzazione forecast per date e location selezionate",
         "Sviluppo componenti React riutilizzabili seguendo design system aziendale",
         "Implementazione UI pixel-perfect da specifiche Figma con focus su responsive design",
-        "Codebase enterprise servita a 100.000+ utenti",
+        "Codebase enterprise servita a 1.000.000+ utenti",
         "Partecipazione attiva a refinement tecnici e definizione dei ticket",
         "Workflow Agile con team distribuito (daily standup, sprint review, retrospective)"
       ],

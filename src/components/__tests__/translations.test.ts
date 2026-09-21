@@ -150,13 +150,56 @@ describe('translations dictionaries', () => {
     }
   });
 
-  it('keeps the Italian AI stack aligned with the CV', () => {
-    // The Italian copy is the source of truth; English still carries the older
-    // "Azure Cognitive Services, OpenAI GPT, Assembly.AI" line on purpose.
+  it('keeps the AI stack aligned with the CV in every locale', () => {
+    // The Italian copy is the source of truth. English used to carry an older
+    // "Azure Cognitive Services, OpenAI GPT, Assembly.AI" line; it has been
+    // brought up to the Italian, so all three now name the same providers.
     expect(translations.it.skills.aiSpeechDesc).toBe(
       'Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs',
     );
+    expect(translations.en.skills.aiSpeechDesc).toBe(translations.it.skills.aiSpeechDesc);
     expect(translations.es.skills.aiSpeechDesc).toBe(translations.it.skills.aiSpeechDesc);
+  });
+
+  it('gives every locale its own <title>', () => {
+    // app/seo.ts used to build the page title from `hero.title`, which is the
+    // same English job title in all three dictionaries - so /it, /en and /es
+    // shipped an identical <title>. `meta.title` is the per-locale replacement;
+    // `hero.title` stays as it is, because it is the on-page H1.
+    const titles = LANGUAGES.map((language) => translations[language].meta.title);
+
+    expect(new Set(titles).size).toBe(LANGUAGES.length);
+
+    for (const title of titles) {
+      expect(title, title).toContain('Riccardo Perniciano');
+      // Google truncates the SERP title at roughly 60 characters.
+      expect(title.length, title).toBeGreaterThanOrEqual(45);
+      expect(title.length, title).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it('gives each project as many metric labels as it has figures', () => {
+    // `getProjectMetrics` keeps the figure and swaps the label *by index*, so a
+    // surplus label is dead weight and a missing one leaves a figure with its
+    // Italian label - or, worse, shifts every label by one. That is exactly how
+    // the Expedia card came to render "100.000+ riduzione latenza API".
+    const labelKeys = [
+      ['sprocket', 'sprocketMetrics'],
+      ['expedia-components', 'expediaMetrics'],
+      ['pos-system', 'posMetrics'],
+    ] as const;
+
+    for (const [id, key] of labelKeys) {
+      const figures = portfolioData.projects.find((project) => project.id === id)?.metrics;
+
+      expect(figures, id).toBeDefined();
+
+      for (const language of LANGUAGES) {
+        expect(translations[language].projects[key], `${language}.${key}`).toHaveLength(
+          figures?.length ?? 0,
+        );
+      }
+    }
   });
 
   it('covers the copy that was hardcoded Italian with no ternary at all', () => {

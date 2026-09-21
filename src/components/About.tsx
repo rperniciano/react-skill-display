@@ -28,11 +28,11 @@ const About = () => {
               <div className="relative">
                 <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
                   <img
-                    src="/fotoCurriculum.png"
+                    src="/fotoCurriculum.webp"
                     alt={portfolioData.personal.name}
                     className="w-full h-full object-cover"
-                    width={1024}
-                    height={1024}
+                    width={768}
+                    height={768}
                     loading="lazy"
                     decoding="async"
                   />
