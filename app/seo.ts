@@ -66,14 +66,20 @@ export function pageMetadata({
       alternateLocale: LANGUAGES.filter((other) => other !== language).map(
         (other) => OG_LOCALES[other],
       ),
-      // NOTE: no `images` here on purpose. The old index.html pointed at
-      // /og-image.png, which does not exist in public/. A 404ing og:image is
-      // worse than none, so the tag is omitted until the asset is added.
+      // Built from the profile photo. One image for all three locales: it
+      // carries the name and the English job title, which the dictionaries
+      // already share across it/en/es.
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'Riccardo Perniciano — Solution Architect & .NET Developer',
+        },
+      ],
     },
     twitter: {
-      // 'summary' until public/og-image.png exists; a large-image card with no
-      // image just renders as a plain summary anyway.
-      card: 'summary',
+      card: 'summary_large_image',
       title: resolvedTitle,
       description: resolvedDescription,
     },
