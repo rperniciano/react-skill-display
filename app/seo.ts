@@ -40,8 +40,14 @@ export function pageMetadata({
   // building the <title> from it shipped one identical string on /it, /en and
   // /es - three documents competing for the same query with no localised
   // signal. `meta.title` is written per locale and sized for the SERP.
+  //
+  // The description is `meta.description` for the mirror-image reason: it used
+  // to be `hero.description`, which is the on-page hero paragraph, so the SERP
+  // budget (150-160 characters) and the copy the owner actually wrote were
+  // pulling on the same string - and the budget won, costing the Italian hero a
+  // clause. Two keys, no tension.
   const resolvedTitle = title ?? dictionary.meta.title;
-  const resolvedDescription = description ?? dictionary.hero.description;
+  const resolvedDescription = description ?? dictionary.meta.description;
 
   return {
     title: resolvedTitle,

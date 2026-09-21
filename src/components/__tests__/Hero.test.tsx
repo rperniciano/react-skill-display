@@ -21,7 +21,9 @@ describe('Hero Component', () => {
     expect(screen.getByText('Sistemi AI in produzione, costruiti su .NET enterprise.')).toBeInTheDocument();
 
     // Check description (partial match due to long text)
-    expect(screen.getByText(/Specializzato in sistemi AI in produzione/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Solution Architect & Technical Lead in FEDRO Software/),
+    ).toBeInTheDocument();
   });
 
   it('renders all CTA buttons with correct links', () => {

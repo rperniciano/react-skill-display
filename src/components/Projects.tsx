@@ -14,16 +14,25 @@ import {
 } from "@/components/ui/card";
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
-import { getProjectMetrics } from "./translation-utils";
 import { AnimatedSection } from "./AnimatedSection";
 import { StaggeredGrid } from "./StaggeredGrid";
 
 const Projects = () => {
   const { t, language } = useLanguage();
   
-  // Map project data with translations. Title, description and features are
-  // copy, so they come from the dictionary keyed by project id; portfolio-data
-  // only carries locale-independent data (image, technologies, links, year).
+  // Metric chips per project id. The dictionary carries the whole chip, figure
+  // included ("1.000.000+ utenti serviti" / "1,000,000+ users served"), so every
+  // locale groups its own digits. Only these three projects have chips.
+  const metricsByProject: Record<string, string[] | undefined> = {
+    "sprocket": t.projects.sprocketMetrics,
+    "expedia-components": t.projects.expediaMetrics,
+    "pos-system": t.projects.posMetrics
+  };
+
+  // Map project data with translations. Title, description, features and
+  // metrics are copy, so they come from the dictionary keyed by project id;
+  // portfolio-data only carries locale-independent data (image, technologies,
+  // links, year).
   const projectsWithTranslations = portfolioData.projects.map(project => {
     const copy = t.projects.projectItems[project.id as keyof typeof t.projects.projectItems];
 
@@ -32,7 +41,7 @@ const Projects = () => {
       title: copy.title,
       description: copy.description,
       features: copy.features,
-      metrics: project.metrics ? getProjectMetrics(project.id, project.metrics, t) : project.metrics
+      metrics: metricsByProject[project.id]
     };
   });
 

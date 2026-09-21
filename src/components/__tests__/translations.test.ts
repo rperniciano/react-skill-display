@@ -172,34 +172,76 @@ describe('translations dictionaries', () => {
 
     for (const title of titles) {
       expect(title, title).toContain('Riccardo Perniciano');
-      // Google truncates the SERP title at roughly 60 characters.
+      // Google truncates the SERP title on pixel width, around 60 characters.
+      // The Spanish one runs a little past that on the standard "sistemas de
+      // IA" form, which is worth the three characters - hence the 65 ceiling.
       expect(title.length, title).toBeGreaterThanOrEqual(45);
-      expect(title.length, title).toBeLessThanOrEqual(60);
+      expect(title.length, title).toBeLessThanOrEqual(65);
     }
   });
 
-  it('gives each project as many metric labels as it has figures', () => {
-    // `getProjectMetrics` keeps the figure and swaps the label *by index*, so a
-    // surplus label is dead weight and a missing one leaves a figure with its
-    // Italian label - or, worse, shifts every label by one. That is exactly how
-    // the Expedia card came to render "100.000+ riduzione latenza API".
-    const labelKeys = [
-      ['sprocket', 'sprocketMetrics'],
-      ['expedia-components', 'expediaMetrics'],
-      ['pos-system', 'posMetrics'],
-    ] as const;
+  it('gives every locale its own SERP description', () => {
+    // app/seo.ts used to build the description from `hero.description`, which
+    // is the on-page hero paragraph - so the SERP budget and the copy the owner
+    // wrote were pulling on one string. `meta.description` is the per-locale
+    // SERP copy; the hero paragraph is free to run longer.
+    const descriptions = LANGUAGES.map((language) => translations[language].meta.description);
 
-    for (const [id, key] of labelKeys) {
-      const figures = portfolioData.projects.find((project) => project.id === id)?.metrics;
+    expect(new Set(descriptions).size).toBe(LANGUAGES.length);
 
-      expect(figures, id).toBeDefined();
+    for (const description of descriptions) {
+      expect(description, description).toContain('FEDRO Software');
+      // Google renders roughly 150-160 characters of the description.
+      expect(description.length, description).toBeGreaterThanOrEqual(140);
+      expect(description.length, description).toBeLessThanOrEqual(160);
+    }
+
+    for (const language of LANGUAGES) {
+      // Two keys, not an alias of one.
+      expect(translations[language].meta.description, language).not.toBe(
+        translations[language].hero.description,
+      );
+    }
+  });
+
+  it('carries each metric chip whole, figure included, in every locale', () => {
+    // The figure used to live in portfolio-data.ts as a single
+    // locale-independent string and only the *label* was swapped by index, so
+    // /en rendered "1.000.000+ users served" - Italian digit grouping in
+    // English - and a chip opening with a word instead of a number shifted
+    // every label after it by one. The whole chip now lives in the dictionary,
+    // one string per locale, and portfolio-data.ts carries no figures at all.
+    const metricKeys = ['sprocketMetrics', 'expediaMetrics', 'posMetrics'] as const;
+
+    for (const project of portfolioData.projects) {
+      expect(project, project.id).not.toHaveProperty('metrics');
+    }
+
+    for (const key of metricKeys) {
+      const italian = translations.it.projects[key];
+
+      expect(italian.length, key).toBeGreaterThan(0);
 
       for (const language of LANGUAGES) {
-        expect(translations[language].projects[key], `${language}.${key}`).toHaveLength(
-          figures?.length ?? 0,
-        );
+        const chips = translations[language].projects[key];
+
+        // Same number of chips everywhere: a locale one short would drop a
+        // figure from that card rather than only its label.
+        expect(chips, `${language}.${key}`).toHaveLength(italian.length);
+
+        for (const chip of chips) {
+          // Thousands separator: '.' in Italian and Spanish, ',' in English.
+          const wrongGrouping = language === 'en' ? /\d\.\d{3}/ : /\d,\d{3}/;
+
+          expect(chip, `${language}.${key}: ${chip}`).not.toMatch(wrongGrouping);
+        }
       }
     }
+
+    // The chip that carried the bug, pinned in all three locales.
+    expect(translations.it.projects.expediaMetrics[0]).toMatch(/^1\.000\.000\+ /);
+    expect(translations.es.projects.expediaMetrics[0]).toMatch(/^1\.000\.000\+ /);
+    expect(translations.en.projects.expediaMetrics[0]).toMatch(/^1,000,000\+ /);
   });
 
   it('covers the copy that was hardcoded Italian with no ternary at all', () => {

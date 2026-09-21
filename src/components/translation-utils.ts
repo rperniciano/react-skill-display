@@ -67,27 +67,10 @@ export const getJobDescription = (jobId: string, t: any): string[] => {
   }
 };
 
-// Metric labels per project. `metrics` carries the figure and its Italian
-// label ("2.000+ ore di chiamate/mese"); the figure is kept and the label is
-// swapped for the active locale. Keyed by the full project id: the old
-// `id.split('-')[0]` key resolved to 'sprocket' for the featured project and
-// matched no entry, so its four figures kept their Italian labels everywhere.
-export const getProjectMetrics = (projectId: string, metrics: string[], t: any): string[] => {
-  const metricTranslations: Record<string, string[]> = {
-    'sprocket': t.projects.sprocketMetrics,
-    'expedia-components': t.projects.expediaMetrics,
-    'pos-system': t.projects.posMetrics
-  };
-  
-  const translations = metricTranslations[projectId];
-  if (!translations) return metrics;
-  
-  return metrics.map((metric, index) => {
-    // Keep the number/percentage, replace the description
-    const match = metric.match(/^([\d%+.]+\s*)/);
-    if (match) {
-      return match[1] + (translations[index] || metric.replace(match[1], ''));
-    }
-    return translations[index] || metric;
-  });
-};
+// NOTE: `getProjectMetrics` lived here. It kept one locale-independent
+// figure from portfolio-data.ts and swapped only the label by index, so /en
+// rendered "1.000.000+ users served" - Italian digit grouping in English -
+// and a chip opening with a word instead of a number shifted every label
+// after it by one. The whole chip, figure included, now lives in
+// translations.ts under `projects.sprocketMetrics` / `expediaMetrics` /
+// `posMetrics`, one string per locale, and Projects.tsx reads it directly.

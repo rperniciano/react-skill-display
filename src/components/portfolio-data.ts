@@ -6,18 +6,24 @@
  * The array below is annotated instead of being left to inference. TypeScript
  * infers an array literal of differing object literals as a union of those
  * literals, and while it does add each literal's *missing siblings* back as
- * optional (which is why `github` / `demo` / `metrics` resolve), a key that no
+ * optional (which is why `github` / `demo` / `client` resolve), a key that no
  * literal carries at all is absent from the union entirely. `Projects.tsx` reads
  * `project.client`, so that key needs to exist on the declared type.
  *
  * Optional members mirror the inferred union exactly; nothing here narrows a
  * property the inference had widened.
  *
- * Title, description and feature list are deliberately absent: they are copy,
- * and copy lives in `translations.ts` under `projects.projectItems`, keyed by
- * this `id`. This module is imported by client components, so a localised
- * field here would ship all three locales to every visitor - the dictionary
- * only crosses the server -> client boundary one locale at a time.
+ * Title, description, feature list and metric chips are deliberately absent:
+ * they are copy, and copy lives in `translations.ts` under
+ * `projects.projectItems` (keyed by this `id`) and `projects.*Metrics`. This
+ * module is imported by client components, so a localised field here would ship
+ * all three locales to every visitor - the dictionary only crosses the
+ * server -> client boundary one locale at a time.
+ *
+ * `metrics` used to live here as figure + Italian label
+ * ("1.000.000+ utenti serviti") with only the label swapped per locale, so the
+ * figure kept Italian digit grouping on /en. The whole chip now lives in the
+ * dictionary, one string per locale.
  */
 export interface PortfolioProject {
   id: string;
@@ -25,7 +31,6 @@ export interface PortfolioProject {
   technologies: string[];
   type: string;
   year: number;
-  metrics?: string[];
   github?: string;
   demo?: string;
   client?: string;
@@ -36,12 +41,6 @@ const projects: PortfolioProject[] = [
     id: "sprocket",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
     technologies: ["ABP.io", ".NET 9", "Angular", "Azure Cognitive Services", "OpenAI GPT", "Assembly.AI", "Elasticsearch", "Hangfire", "Docker"],
-    metrics: [
-      "2.000+ ore di chiamate/mese",
-      "99.9% uptime",
-      "100+ file audio in parallelo",
-      "2 tenant enterprise"
-    ],
     type: "enterprise",
     year: 2025
   },
@@ -52,9 +51,10 @@ const projects: PortfolioProject[] = [
     //
     // No `github` / `demo`: the client repository is private (it holds
     // contractual and commercial material), so there is nothing public to link.
-    // No `metrics` either - phase 1 is a feasibility study and operational
+    // No metric chips either - phase 1 is a feasibility study and operational
     // plan, and every figure available today is either confidential or comes
-    // from the demo environment. See translations.ts for the copy.
+    // from the demo environment. See translations.ts for the copy, including
+    // the chips of the projects that do have them.
     id: "cisa-automation",
     image: "https://images.unsplash.com/photo-1583521214690-73421a1829a9?auto=format&fit=crop&w=1000&q=80",
     technologies: ["ABP Framework", ".NET 10", "C#", "Angular 22", "PostgreSQL 17", "EF Core 10", "MCP", "Hangfire", "Docker"],
@@ -66,10 +66,6 @@ const projects: PortfolioProject[] = [
     id: "expedia-components",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
     technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
-    metrics: [
-      "1.000.000+ utenti serviti",
-      "10+ sviluppatori nel team"
-    ],
     type: "enterprise",
     year: 2022
   },
@@ -77,11 +73,6 @@ const projects: PortfolioProject[] = [
     id: "pos-system",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80",
     technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"],
-    metrics: [
-      "10.000+ transazioni/anno",
-      "Diverse mense universitarie",
-      "Centinaia di transazioni/giorno"
-    ],
     type: "enterprise",
     year: 2020
   },

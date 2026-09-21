@@ -4,10 +4,16 @@ export const translations = {
     // Page-level metadata, read server-side by app/seo.ts. `hero.title` is the
     // on-page H1 and is deliberately the same English job title in every
     // locale, which left /it, /en and /es shipping an identical <title>.
-    // These are written per locale and kept to ~50-60 rendered characters so
-    // Google does not truncate them.
+    // `title` is written per locale and kept to ~50-65 rendered characters so
+    // Google does not truncate it.
+    //
+    // `description` is the SERP copy, 150-160 characters. It is a key of its
+    // own rather than a reuse of `hero.description`: the hero paragraph is
+    // on-page copy, written at whatever length reads well, and squeezing it
+    // into the SERP budget cost it a clause. Neither constrains the other.
     meta: {
-      title: "Riccardo Perniciano | Solution Architect .NET e sistemi AI"
+      title: "Riccardo Perniciano | Solution Architect .NET e sistemi AI",
+      description: "Solution Architect & Technical Lead in FEDRO Software: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG."
     },
     nav: {
       home: "Home",
@@ -24,7 +30,7 @@ export const translations = {
     hero: {
       available: "Disponibile per nuovi progetti",
       yearsExp: "anni di esperienza",
-      leadDeveloper: "Lead Developer presso",
+      leadDeveloper: "Solution Architect & Technical Lead presso",
       specializedIn: "Specializzato in",
       andArchitectures: "e architetture enterprise",
       explorePortfolio: "Esplora Portfolio",
@@ -36,7 +42,10 @@ export const translations = {
       title: "Senior .NET Developer & Solution Architect",
       yearsExperienceIn: "anni di esperienza ·",
       enterpriseSolutions: "Sistemi AI in produzione",
-      description: "Specializzato in sistemi AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG. Solution Architect & Lead Developer in FEDRO Software, dove ho portato una piattaforma AI per call center dallo zero alla produzione in 3 mesi.",
+      // On-page hero copy, and only that: the page <meta name="description">
+      // is `meta.description`, so this paragraph is free to run as long as it
+      // reads well. The role title matches `about.profile2`.
+      description: "Specializzato in sistemi AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG. Solution Architect & Technical Lead in FEDRO Software, dove ho portato una piattaforma AI per call center dallo zero alla produzione in 3 mesi.",
       bookFreeCall: "Prenota una call gratuita",
       noCommitment: "Senza impegno",
       thirtyMinCall: "Call di 30 minuti",
@@ -47,7 +56,7 @@ export const translations = {
     skills: {
       title: "Competenze Tecniche",
       subtitle: "anni di esperienza • Full Stack Development • AI Integration",
-      currentPosition: "Lead Developer @ FEDRO",
+      currentPosition: "Solution Architect & Technical Lead @ FEDRO",
       exTeam: "Ex-Expedia Team",
       viewGrid: "Vista Griglia",
       coreSkills: "Competenze Core",
@@ -217,7 +226,9 @@ export const translations = {
     projects: {
       title: "Progetti & Portfolio",
       subtitle: "Progetti enterprise e personali che dimostrano expertise in architetture scalabili, AI integration e sviluppo full-stack",
-      leadDeveloper: "Lead Developer",
+      // Badge on the SPRocket featured card. The role title is English in all
+      // three locales, exactly as `about.profile2` writes it.
+      leadDeveloper: "Solution Architect & Technical Lead",
       metrics: "Metriche",
       technologies: "Tecnologie",
       features: "Caratteristiche",
@@ -260,7 +271,7 @@ export const translations = {
             "Server MCP di dominio su ABP Framework: l'AI scrive solo tramite tool controllati, mai SQL",
             "Lavoro deterministico nel backend con job Hangfire, interpretativo lato AI, con origine tracciata",
             "Server MCP stdio che legge le share con l'identità dell'utente: le ACL NTFS le applica il file server",
-            "Infrastruttura on-premise e governance EU AI Act (policy, registro dei sistemi AI, formazione art. 4)"
+            "Infrastruttura on-premise e governance EU AI Act (policy, registro dei sistemi AI e piano di formazione art. 4)"
           ]
         },
         "expedia-components": {
@@ -299,25 +310,26 @@ export const translations = {
         }
       },
       
+      // Metric chips, rendered by Projects.tsx. The whole string lives here -
+      // figure included - so every locale groups its own digits: it/es write
+      // "1.000.000+", en writes "1,000,000+". The figure used to sit in
+      // portfolio-data.ts with only the label swapped by index, which shipped
+      // Italian grouping to /en ("1.000.000+ users served") and, where a chip
+      // opened with a word instead of a number, shifted the labels by one.
       sprocketMetrics: [
-        "ore di chiamate/mese",
-        "uptime",
-        "file audio in parallelo",
-        "tenant enterprise"
+        "2.000+ ore di chiamate/mese",
+        "99.9% uptime",
+        "100+ file audio in parallelo",
+        "2 tenant enterprise"
       ],
-      // Aligned by index with `expedia-components.metrics` in portfolio-data.ts:
-      // getProjectMetrics keeps the figure and swaps only the label, so a third
-      // label here used to leave the second metric ("code coverage") with no
-      // figure at all. The role was React frontend - API latency and coverage
-      // were never part of it.
       expediaMetrics: [
-        "utenti serviti",
-        "sviluppatori nel team"
+        "1.000.000+ utenti serviti",
+        "10+ sviluppatori nel team"
       ],
       posMetrics: [
-        "transazioni/anno",
-        "miglioramento response time",
-        "Zero downtime critico"
+        "10.000+ transazioni/anno",
+        "Diverse mense universitarie",
+        "Centinaia di transazioni/giorno"
       ]
     },
     about: {
@@ -404,7 +416,8 @@ export const translations = {
   en: {
     // See the note on `it.meta`.
     meta: {
-      title: "Riccardo Perniciano | .NET Solution Architect & AI Systems"
+      title: "Riccardo Perniciano | .NET Solution Architect & AI Systems",
+      description: "Solution Architect & Technical Lead at FEDRO Software: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG."
     },
     nav: {
       home: "Home",
@@ -421,7 +434,7 @@ export const translations = {
     hero: {
       available: "Available for new projects",
       yearsExp: "years of experience",
-      leadDeveloper: "Lead Developer at",
+      leadDeveloper: "Solution Architect & Technical Lead at",
       specializedIn: "Specialized in",
       andArchitectures: "and enterprise architectures",
       explorePortfolio: "Explore Portfolio",
@@ -433,7 +446,8 @@ export const translations = {
       title: "Senior .NET Developer & Solution Architect",
       yearsExperienceIn: "years of experience in",
       enterpriseSolutions: "enterprise solutions",
-      description: "Expert in cognitive services integration (Azure AI, OpenAI GPT) and complex architecture optimization. Lead Developer at FEDRO Software with focus on AI-powered solutions.",
+      // See the note on `it.hero.description`.
+      description: "Specialized in production AI systems: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG. Solution Architect & Technical Lead at FEDRO Software, where I took an AI platform for call centers from zero to production in 3 months.",
       bookFreeCall: "Book a free call",
       noCommitment: "No commitment",
       thirtyMinCall: "30-minute call",
@@ -444,7 +458,7 @@ export const translations = {
     skills: {
       title: "Technical Skills",
       subtitle: "years of experience • Full Stack Development • AI Integration",
-      currentPosition: "Lead Developer @ FEDRO",
+      currentPosition: "Solution Architect & Technical Lead @ FEDRO",
       exTeam: "Ex-Expedia Team",
       viewGrid: "Grid View",
       coreSkills: "Core Skills",
@@ -613,7 +627,8 @@ export const translations = {
     projects: {
       title: "Projects & Portfolio",
       subtitle: "Enterprise and personal projects demonstrating expertise in scalable architectures, AI integration and full-stack development",
-      leadDeveloper: "Lead Developer",
+      // See the note on `it.projects.leadDeveloper`.
+      leadDeveloper: "Solution Architect & Technical Lead",
       metrics: "Metrics",
       technologies: "Technologies",
       features: "Features",
@@ -656,7 +671,7 @@ export const translations = {
             "Domain MCP server on ABP Framework: the AI writes only through controlled tools, never SQL",
             "Deterministic work in the backend as Hangfire jobs, interpretive work in the AI, origin always tracked",
             "stdio MCP server reading the shares as the logged-in user: NTFS ACLs enforced by the file server",
-            "On-premise infrastructure and EU AI Act governance (policy, AI systems register, Article 4 training)"
+            "On-premise infrastructure and EU AI Act governance (policy, AI systems register and an Article 4 training plan)"
           ]
         },
         "expedia-components": {
@@ -695,21 +710,21 @@ export const translations = {
         }
       },
       
+      // See the note on `it.projects.sprocketMetrics`.
       sprocketMetrics: [
-        "hours of calls/month",
-        "uptime",
-        "audio files in parallel",
-        "enterprise tenants"
+        "2,000+ hours of calls/month",
+        "99.9% uptime",
+        "100+ audio files in parallel",
+        "2 enterprise tenants"
       ],
-      // See the note on `it.projects.expediaMetrics`.
       expediaMetrics: [
-        "users served",
-        "developers in the team"
+        "1,000,000+ users served",
+        "10+ developers in the team"
       ],
       posMetrics: [
-        "transactions/year",
-        "response time improvement",
-        "Zero critical downtime"
+        "10,000+ transactions/year",
+        "Several university canteens",
+        "Hundreds of transactions/day"
       ]
     },
     about: {
@@ -796,7 +811,8 @@ export const translations = {
   es: {
     // See the note on `it.meta`.
     meta: {
-      title: "Riccardo Perniciano | Solution Architect .NET y sistemas IA"
+      title: "Riccardo Perniciano | Solution Architect .NET y sistemas de IA",
+      description: "Solution Architect & Technical Lead en FEDRO Software: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG."
     },
     nav: {
       home: "Inicio",
@@ -813,7 +829,7 @@ export const translations = {
     hero: {
       available: "Disponible para nuevos proyectos",
       yearsExp: "años de experiencia",
-      leadDeveloper: "Lead Developer en",
+      leadDeveloper: "Solution Architect & Technical Lead en",
       specializedIn: "Especializado en",
       andArchitectures: "y arquitecturas empresariales",
       explorePortfolio: "Explorar Portfolio",
@@ -825,7 +841,8 @@ export const translations = {
       title: "Senior .NET Developer & Solution Architect",
       yearsExperienceIn: "años de experiencia en",
       enterpriseSolutions: "soluciones empresariales",
-      description: "Experto en integración de servicios cognitivos (Azure AI, OpenAI GPT) y optimización de arquitecturas complejas. Lead Developer en FEDRO Software con enfoque en soluciones impulsadas por IA.",
+      // See the note on `it.hero.description`.
+      description: "Especializado en sistemas de IA en producción: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG. Solution Architect & Technical Lead en FEDRO Software, donde llevé una plataforma de IA para call centers de cero a producción en 3 meses.",
       bookFreeCall: "Reserva una llamada gratuita",
       noCommitment: "Sin compromiso",
       thirtyMinCall: "Llamada de 30 minutos",
@@ -836,7 +853,7 @@ export const translations = {
     skills: {
       title: "Habilidades Técnicas",
       subtitle: "años de experiencia • Desarrollo Full Stack • Integración IA",
-      currentPosition: "Lead Developer @ FEDRO",
+      currentPosition: "Solution Architect & Technical Lead @ FEDRO",
       exTeam: "Ex-Equipo Expedia",
       viewGrid: "Vista Cuadrícula",
       coreSkills: "Habilidades Principales",
@@ -1005,7 +1022,8 @@ export const translations = {
     projects: {
       title: "Proyectos y Portfolio",
       subtitle: "Proyectos empresariales y personales que demuestran experiencia en arquitecturas escalables, integración IA y desarrollo full-stack",
-      leadDeveloper: "Desarrollador Principal",
+      // See the note on `it.projects.leadDeveloper`.
+      leadDeveloper: "Solution Architect & Technical Lead",
       metrics: "Métricas",
       technologies: "Tecnologías",
       features: "Características",
@@ -1048,7 +1066,7 @@ export const translations = {
             "Servidor MCP de dominio sobre ABP Framework: la IA escribe solo mediante herramientas controladas, nunca SQL",
             "Trabajo determinista en el backend con jobs Hangfire, interpretativo en la IA, con el origen siempre trazado",
             "Servidor MCP stdio que lee los recursos compartidos con la identidad del usuario: las ACL NTFS las aplica el servidor de archivos",
-            "Infraestructura on-premise y gobernanza del EU AI Act (política, registro de sistemas de IA, formación art. 4)"
+            "Infraestructura on-premise y gobernanza del EU AI Act (política, registro de sistemas de IA y plan de formación art. 4)"
           ]
         },
         "expedia-components": {
@@ -1087,21 +1105,21 @@ export const translations = {
         }
       },
       
+      // See the note on `it.projects.sprocketMetrics`.
       sprocketMetrics: [
-        "horas de llamadas/mes",
-        "uptime",
-        "archivos de audio en paralelo",
-        "inquilinos enterprise"
+        "2.000+ horas de llamadas/mes",
+        "99.9% uptime",
+        "100+ archivos de audio en paralelo",
+        "2 inquilinos enterprise"
       ],
-      // See the note on `it.projects.expediaMetrics`.
       expediaMetrics: [
-        "usuarios atendidos",
-        "desarrolladores en el equipo"
+        "1.000.000+ usuarios atendidos",
+        "10+ desarrolladores en el equipo"
       ],
       posMetrics: [
-        "transacciones/año",
-        "mejora tiempo respuesta",
-        "Cero tiempo inactivo crítico"
+        "10.000+ transacciones/año",
+        "Varios comedores universitarios",
+        "Cientos de transacciones/día"
       ]
     },
     about: {
