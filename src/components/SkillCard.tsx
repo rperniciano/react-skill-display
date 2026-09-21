@@ -43,7 +43,7 @@ const SkillCard = ({
   tags = [],
   years
 }: SkillCardProps) => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -60,21 +60,13 @@ const SkillCard = ({
     }
   };
 
-  const moreInfoText = language === 'it' ? "Maggiori Informazioni" : 
-                       language === 'es' ? "Más Información" : 
-                       "More Information";
-  
-  const clickForDetails = language === 'it' ? "Clicca per ulteriori dettagli" :
-                          language === 'es' ? "Haz clic para más detalles" :
-                          "Click for more details";
+  const moreInfoText = t.skills.moreInfo;
 
-  const categoryLabel = language === 'it' ? "Categoria" :
-                       language === 'es' ? "Categoría" :
-                       "Category";
+  const clickForDetails = t.skills.clickForDetails;
 
-  const competenceLabel = language === 'it' ? "Competenza" :
-                         language === 'es' ? "Competencia" :
-                         "Proficiency";
+  const categoryLabel = t.skills.category;
+
+  const competenceLabel = t.skills.proficiency;
 
   return (
     <Card className="hover:shadow-lg transition-shadow dark:border-gray-700 h-full flex flex-col">

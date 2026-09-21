@@ -6,7 +6,7 @@ import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
 
 const Footer = () => {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,37 +18,34 @@ const Footer = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">{portfolioData.personal.name}</h3>
               <p className="text-gray-400 mb-4">
-                {language === 'it' ? 
-                  'Full Stack Developer con 7+ anni di esperienza nello sviluppo di soluzioni enterprise scalabili.' :
-                  'Full Stack Developer with 7+ years of experience developing scalable enterprise solutions.'
-                }
+                {t.footer.tagline}
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
               <h3 className="text-xl font-bold mb-4">
-                {language === 'it' ? 'Link Rapidi' : 'Quick Links'}
+                {t.footer.quickLinks}
               </h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#about" className="text-gray-400 hover:text-white transition-colors">
-                    {language === 'it' ? 'Chi Sono' : 'About'}
+                    {t.nav.about}
                   </a>
                 </li>
                 <li>
                   <a href="#skills" className="text-gray-400 hover:text-white transition-colors">
-                    {language === 'it' ? 'Competenze' : 'Skills'}
+                    {t.nav.skills}
                   </a>
                 </li>
                 <li>
                   <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
-                    {language === 'it' ? 'Progetti' : 'Projects'}
+                    {t.nav.projects}
                   </a>
                 </li>
                 <li>
                   <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
-                    {language === 'it' ? 'Contatti' : 'Contact'}
+                    {t.nav.contact}
                   </a>
                 </li>
               </ul>
@@ -57,7 +54,7 @@ const Footer = () => {
             {/* Contact Info */}
             <div>
               <h3 className="text-xl font-bold mb-4">
-                {language === 'it' ? 'Contatti' : 'Contact'}
+                {t.nav.contact}
               </h3>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2 text-gray-400">
@@ -84,7 +81,7 @@ const Footer = () => {
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-400 flex items-center justify-center gap-2">
               © {currentYear} {portfolioData.personal.name}. 
-              {language === 'it' ? ' Tutti i diritti riservati.' : ' All rights reserved.'}
+              {t.footer.rights}
             </p>
           </div>
         </div>

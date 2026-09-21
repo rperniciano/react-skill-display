@@ -62,7 +62,55 @@ export const translations = {
       testing: "Testing",
       viewCarousel: "Visualizza come carosello",
       viewColumn: "Visualizza in griglia",
-      yearsUnit: "anni"
+      yearsUnit: "anni",
+      // Section copy (moved out of Skills.tsx)
+      stackTitle: "Stack Tecnologico Completo",
+      stackSubtitle: "7+ anni di esperienza con tecnologie enterprise e integrazione AI avanzata",
+      methodologiesTitle: "Metodologie & Tools",
+      langFrameworksDesc: "Frontend: React, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3/SASS",
+      langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
+      databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
+      databaseDetails: "Query optimization, indicizzazione full-text, multi-tenancy isolation",
+      aiSpeechDesc: "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs",
+      aiSpeechDetails: "Architetture multi-agente, integrazione LLM, RAG, structured outputs (JSON Schema), Speech-to-Text multi-provider, tooling agentico (MCP custom, Claude Code)",
+      cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
+      cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
+      architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
+      architectureDetails: "VR & 3D: Unity, C#, Google VR SDK, Mobile VR Development",
+      testingMethodologiesTitle: "Testing & Metodologie",
+      testingDesc: "Jest, Cypress, Unit Testing",
+      testingDetails: "Metodologie: Agile (Scrum, Kanban), Jira",
+      // Card labels (moved out of SkillCard.tsx)
+      moreInfo: "Maggiori Informazioni",
+      clickForDetails: "Clicca per ulteriori dettagli",
+      category: "Categoria",
+      proficiency: "Competenza"
+    },
+    ai: {
+      badge: "Intelligenza artificiale",
+      title: "Integrazione AI per risultati concreti e misurabili",
+      intro1: "7+ anni di esperienza nell'integrazione di servizi cognitivi per soluzioni enterprise. Ho implementato sistemi che processano migliaia di trascrizioni all'ora con accuracy superiore al 95%.",
+      intro2: "Lead developer della piattaforma FEDRO CognitiveServices: un sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP e indicizzazione full-text.",
+      azureTitle: "Azure Cognitive Services Integration",
+      azureDesc: "Implementazione completa di Azure AI per speech-to-text, analisi del sentiment e question answering con processing di 1000+ trascrizioni/ora.",
+      multiProviderTitle: "OpenAI GPT & Assembly.AI",
+      multiProviderDesc: "Abstraction layer multi-provider per switch trasparente tra diversi servizi AI. Integrazione seamless con fallback automatico.",
+      nlpTitle: "NLP & Semantic Analysis",
+      nlpDesc: "Sistemi avanzati di analisi semantica, question answering e indicizzazione full-text con Elasticsearch per ricerca intelligente."
+    },
+    solutions: {
+      badge: "Soluzioni",
+      title: "Soluzioni Enterprise che posso realizzare",
+      subtitle: "Focus su architetture scalabili, integrazione AI e ottimizzazione di sistemi complessi.",
+      enterpriseTitle: "Piattaforme Enterprise Scalabili",
+      enterpriseDesc: "Sviluppo di soluzioni enterprise con architetture DDD, CQRS e microservices. Gestione multi-tenant con RBAC granulare.",
+      aiTitle: "Integrazione AI & Cognitive Services",
+      aiDesc: "Implementazione di servizi cognitivi Azure, OpenAI GPT e Assembly.AI. Speech-to-text, NLP e analisi semantica avanzata.",
+      missionCriticalTitle: "Sistemi Mission-Critical ad Alta Disponibilità",
+      missionCriticalDesc: "Progettazione di sistemi con 99.9% uptime, retry policies resilienti e gestione errori avanzata. Monitoring con Application Insights.",
+      performanceTitle: "Ottimizzazione Performance & Legacy Code",
+      performanceDesc: "Riduzione dell'85% del codice legacy attraverso refactoring strategico. Ottimizzazione performance del 50% con caching multi-livello e query optimization.",
+      cta: "Parliamo del tuo progetto"
     },
     experience: {
       title: "Timeline Professionale",
@@ -149,7 +197,12 @@ export const translations = {
         "Diploma in Informatica e Telecomunicazioni",
         "Focus su sviluppo software, reti e database",
         "Progetti pratici in C#, SQL, networking"
-      ]
+      ],
+      // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      altenLocation: "Roma (Remoto)",
+      softwarelabTitle: "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
+      virtuardTitle: "MOBILE/VR DEVELOPER",
+      diplomaTitle: "DIPLOMA IN INFORMATICA E TELECOMUNICAZIONI"
     },
     projects: {
       title: "Progetti & Portfolio",
@@ -212,7 +265,22 @@ export const translations = {
       codeReduction: "riduzione",
       codeLegacy: "Codice Legacy",
       transcriptionsHour: "trascrizioni/ora",
-      aiProcessing: "AI Processing"
+      aiProcessing: "AI Processing",
+      // Bio paragraphs rendered by About.tsx
+      profile1: "Senior .NET Developer & Solution Architect con 7+ anni di esperienza nella progettazione di soluzioni enterprise scalabili, oggi specializzato in AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG.",
+      profile2: "Come Solution Architect & Technical Lead in FEDRO Software ho progettato e portato in produzione SPRocket e SprocketLive (analisi AI e assistenza live per call center): 2.000+ ore audio/mese, multi-tenant, 99.9% uptime, da zero a produzione in 3 mesi. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile3: "Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di orchestrazione che gestisce il processing parallelo di centinaia di file audio.",
+      profile4: "Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati da milioni di utenti. Il mio approccio combina competenze tecniche con una visione strategica per creare soluzioni che risolvono problemi reali.",
+      // Soft skills grid
+      softSkillsTitle: "Competenze Trasversali",
+      softSkillCommunicationTitle: "Comunicazione Tecnica",
+      softSkillCommunicationDesc: "Stakeholder Management, referente tecnico verso clienti non-tecnici. Capacità di tradurre requisiti di business in soluzioni tecniche.",
+      softSkillOwnershipDesc: "Track record di progetti portati da zero a produzione in tempi rapidi (3 mesi per piattaforma enterprise SPRocket).",
+      softSkillTeamsTitle: "Team Internazionali",
+      softSkillTeamsDesc: "2 anni in team distribuito 10+ sviluppatori per Expedia Group, metodologia Agile.",
+      softSkillAutonomyTitle: "Autonomia & Problem Solving",
+      softSkillAutonomyDesc: "Abitudine a lavorare con alta autonomia su architetture complesse, prendendo decisioni tecniche in prima persona.",
+      languageSkillsTitle: "Competenze Linguistiche"
     },
     contact: {
       title: "Contattami",
@@ -241,6 +309,12 @@ export const translations = {
       thankYou: "Grazie per il tuo messaggio! Ti risponderò il prima possibile.",
       phone: "Telefono",
       location: "Posizione"
+    },
+    footer: {
+      tagline: "Full Stack Developer con 7+ anni di esperienza nello sviluppo di soluzioni enterprise scalabili.",
+      quickLinks: "Link Rapidi",
+      // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
+      rights: " Tutti i diritti riservati."
     }
   },
   
@@ -306,7 +380,55 @@ export const translations = {
       testing: "Testing",
       viewCarousel: "View as carousel",
       viewColumn: "View as grid",
-      yearsUnit: "years"
+      yearsUnit: "years",
+      // Section copy (moved out of Skills.tsx)
+      stackTitle: "Complete Technology Stack",
+      stackSubtitle: "7+ years of experience with enterprise technologies and advanced AI integration",
+      methodologiesTitle: "Methodologies & Tools",
+      langFrameworksDesc: "Frontend: React, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3/SASS",
+      langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
+      databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
+      databaseDetails: "Query optimization, full-text indexing, multi-tenancy isolation",
+      aiSpeechDesc: "Azure Cognitive Services, OpenAI GPT, Assembly.AI",
+      aiSpeechDetails: "Speech-to-Text multi-provider, Video & Image Generation, Simple RAG systems",
+      cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
+      cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
+      architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
+      architectureDetails: "VR & 3D: Unity, C#, Google VR SDK, Mobile VR Development",
+      testingMethodologiesTitle: "Testing & Methodologies",
+      testingDesc: "Jest, Cypress, Unit Testing",
+      testingDetails: "Methodologies: Agile (Scrum, Kanban), Jira",
+      // Card labels (moved out of SkillCard.tsx)
+      moreInfo: "More Information",
+      clickForDetails: "Click for more details",
+      category: "Category",
+      proficiency: "Proficiency"
+    },
+    ai: {
+      badge: "Artificial Intelligence",
+      title: "AI Integration for concrete and measurable results",
+      intro1: "7+ years of experience integrating cognitive services for enterprise solutions. I've implemented systems that process thousands of transcriptions per hour with over 95% accuracy.",
+      intro2: "Lead developer of FEDRO CognitiveServices platform: a complete orchestration system for audio file acquisition, AI transcription, NLP analysis and full-text indexing.",
+      azureTitle: "Azure Cognitive Services Integration",
+      azureDesc: "Complete Azure AI implementation for speech-to-text, sentiment analysis and question answering with 1000+ transcriptions/hour processing.",
+      multiProviderTitle: "OpenAI GPT & Assembly.AI",
+      multiProviderDesc: "Multi-provider abstraction layer for transparent switching between different AI services. Seamless integration with automatic fallback.",
+      nlpTitle: "NLP & Semantic Analysis",
+      nlpDesc: "Advanced semantic analysis systems, question answering and full-text indexing with Elasticsearch for intelligent search."
+    },
+    solutions: {
+      badge: "Solutions",
+      title: "Enterprise Solutions I Can Build",
+      subtitle: "Focus on scalable architectures, AI integration and complex systems optimization.",
+      enterpriseTitle: "Scalable Enterprise Platforms",
+      enterpriseDesc: "Development of enterprise solutions with DDD, CQRS and microservices architectures. Multi-tenant management with granular RBAC.",
+      aiTitle: "AI & Cognitive Services Integration",
+      aiDesc: "Implementation of Azure cognitive services, OpenAI GPT and Assembly.AI. Speech-to-text, NLP and advanced semantic analysis.",
+      missionCriticalTitle: "High Availability Mission-Critical Systems",
+      missionCriticalDesc: "Design of systems with 99.9% uptime, resilient retry policies and advanced error handling. Monitoring with Application Insights.",
+      performanceTitle: "Performance Optimization & Legacy Code",
+      performanceDesc: "85% legacy code reduction through strategic refactoring. 50% performance optimization with multi-layer caching and query optimization.",
+      cta: "Let's talk about your project"
     },
     experience: {
       title: "Professional Timeline",
@@ -392,7 +514,12 @@ export const translations = {
         "Diploma in Computer Science and Telecommunications",
         "Focus on software development, networks and databases",
         "Practical projects in C#, SQL, networking"
-      ]
+      ],
+      // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      altenLocation: "Rome (Remote)",
+      softwarelabTitle: "SOFTWARE DEVELOPER → TECHNICAL REFERENT",
+      virtuardTitle: "MOBILE/VR DEVELOPER",
+      diplomaTitle: "DIPLOMA IN COMPUTER SCIENCE AND TELECOMMUNICATIONS"
     },
     projects: {
       title: "Projects & Portfolio",
@@ -454,7 +581,22 @@ export const translations = {
       codeReduction: "reduction",
       codeLegacy: "Legacy Code",
       transcriptionsHour: "transcriptions/hour",
-      aiProcessing: "AI Processing"
+      aiProcessing: "AI Processing",
+      // Bio paragraphs rendered by About.tsx
+      profile1: "Senior .NET Developer & Solution Architect with 7+ years of experience in designing and implementing scalable enterprise solutions.",
+      profile2: "Expert in cognitive services integration (Azure AI, OpenAI GPT) and complex architecture optimization. Lead Developer at FEDRO Software.",
+      profile3: "I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
+      profile4: "I've worked with international teams for clients like Expedia, developing components used by millions of users. My approach combines technical skills with a strategic vision to create solutions that solve real problems.",
+      // Soft skills grid
+      softSkillsTitle: "Soft Skills",
+      softSkillCommunicationTitle: "Technical Communication",
+      softSkillCommunicationDesc: "Stakeholder Management, technical referent for non-technical clients. Ability to translate business requirements into technical solutions.",
+      softSkillOwnershipDesc: "Track record of projects delivered from zero to production quickly (3 months for SPRocket enterprise platform).",
+      softSkillTeamsTitle: "International Teams",
+      softSkillTeamsDesc: "2 years in distributed team of 10+ developers for Expedia Group, Agile methodology.",
+      softSkillAutonomyTitle: "Autonomy & Problem Solving",
+      softSkillAutonomyDesc: "Accustomed to working with high autonomy on complex architectures, making technical decisions firsthand.",
+      languageSkillsTitle: "Language Skills"
     },
     contact: {
       title: "Contact Me",
@@ -483,6 +625,12 @@ export const translations = {
       thankYou: "Thank you for your message! I'll respond as soon as possible.",
       phone: "Phone",
       location: "Location"
+    },
+    footer: {
+      tagline: "Full Stack Developer with 7+ years of experience developing scalable enterprise solutions.",
+      quickLinks: "Quick Links",
+      // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
+      rights: " All rights reserved."
     }
   },
   
@@ -548,7 +696,55 @@ export const translations = {
       testing: "Testing",
       viewCarousel: "Ver como carrusel",
       viewColumn: "Ver como cuadrícula",
-      yearsUnit: "años"
+      yearsUnit: "años",
+      // Section copy (moved out of Skills.tsx)
+      stackTitle: "Stack Tecnológico Completo",
+      stackSubtitle: "7+ años de experiencia con tecnologías enterprise e integración avanzada de IA",
+      methodologiesTitle: "Metodologías & Tools",
+      langFrameworksDesc: "Frontend: React, Angular, TypeScript, JavaScript ES6+, HTML5, CSS3/SASS",
+      langFrameworksDetails: "Backend: C# (.NET 9), Node.js, REST APIs, GraphQL, Fastify, Swagger",
+      databaseDesc: "SQL Server, MySQL, Elasticsearch, Supabase, Entity Framework Core",
+      databaseDetails: "Query optimization, indexación full-text, multi-tenancy isolation",
+      aiSpeechDesc: "Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs",
+      aiSpeechDetails: "Arquitecturas multiagente, integración LLM, RAG, structured outputs (JSON Schema), Speech-to-Text multi-provider, tooling agéntico (MCP custom, Claude Code)",
+      cloudDesc: "Microsoft Azure (VMs, Cognitive Services, Foundry), Docker",
+      cloudDetails: "DevOps: Git, GitHub, Azure DevOps, Hangfire, Application Insights",
+      architectureDesc: "DDD, CQRS, ABP.io, Entity Framework Repository Pattern",
+      architectureDetails: "VR & 3D: Unity, C#, Google VR SDK, Mobile VR Development",
+      testingMethodologiesTitle: "Testing & Metodologías",
+      testingDesc: "Jest, Cypress, Unit Testing",
+      testingDetails: "Metodologías: Agile (Scrum, Kanban), Jira",
+      // Card labels (moved out of SkillCard.tsx)
+      moreInfo: "Más Información",
+      clickForDetails: "Haz clic para más detalles",
+      category: "Categoría",
+      proficiency: "Competencia"
+    },
+    ai: {
+      badge: "Inteligencia artificial",
+      title: "Integración de IA para resultados concretos y medibles",
+      intro1: "7+ años de experiencia en la integración de servicios cognitivos para soluciones enterprise. He implementado sistemas que procesan miles de transcripciones por hora con una accuracy superior al 95%.",
+      intro2: "Lead developer de la plataforma FEDRO CognitiveServices: un sistema completo de orquestación para la adquisición de archivos de audio, transcripción mediante IA, análisis NLP e indexación full-text.",
+      azureTitle: "Azure Cognitive Services Integration",
+      azureDesc: "Implementación completa de Azure AI para speech-to-text, análisis del sentiment y question answering con processing de 1000+ transcripciones/hora.",
+      multiProviderTitle: "OpenAI GPT & Assembly.AI",
+      multiProviderDesc: "Abstraction layer multi-provider para switch transparente entre distintos servicios de IA. Integración seamless con fallback automático.",
+      nlpTitle: "NLP & Semantic Analysis",
+      nlpDesc: "Sistemas avanzados de análisis semántico, question answering e indexación full-text con Elasticsearch para búsqueda inteligente."
+    },
+    solutions: {
+      badge: "Soluciones",
+      title: "Soluciones Enterprise que puedo desarrollar",
+      subtitle: "Foco en arquitecturas escalables, integración de IA y optimización de sistemas complejos.",
+      enterpriseTitle: "Plataformas Enterprise Escalables",
+      enterpriseDesc: "Desarrollo de soluciones enterprise con arquitecturas DDD, CQRS y microservices. Gestión multi-tenant con RBAC granular.",
+      aiTitle: "Integración IA & Cognitive Services",
+      aiDesc: "Implementación de servicios cognitivos Azure, OpenAI GPT y Assembly.AI. Speech-to-text, NLP y análisis semántico avanzado.",
+      missionCriticalTitle: "Sistemas Mission-Critical de Alta Disponibilidad",
+      missionCriticalDesc: "Diseño de sistemas con 99.9% uptime, retry policies resilientes y gestión avanzada de errores. Monitoring con Application Insights.",
+      performanceTitle: "Optimización de Performance & Legacy Code",
+      performanceDesc: "Reducción del 85% del código legacy mediante refactoring estratégico. Optimización del 50% del rendimiento con caching multinivel y query optimization.",
+      cta: "Hablemos de tu proyecto"
     },
     experience: {
       title: "Línea de Tiempo Profesional",
@@ -634,7 +830,12 @@ export const translations = {
         "Diploma en Informática y Telecomunicaciones",
         "Enfoque en desarrollo de software, redes y bases de datos",
         "Proyectos prácticos en C#, SQL, redes"
-      ]
+      ],
+      // Timeline entries whose label is language-dependent (moved out of WorkExperience.tsx)
+      altenLocation: "Roma (Remoto)",
+      softwarelabTitle: "DESARROLLADOR → REFERENTE TÉCNICO",
+      virtuardTitle: "DESARROLLADOR MÓVIL/VR",
+      diplomaTitle: "DIPLOMA EN INFORMÁTICA Y TELECOMUNICACIONES"
     },
     projects: {
       title: "Proyectos y Portfolio",
@@ -696,7 +897,22 @@ export const translations = {
       codeReduction: "reducción",
       codeLegacy: "Código Legacy",
       transcriptionsHour: "transcripciones/hora",
-      aiProcessing: "Procesamiento IA"
+      aiProcessing: "Procesamiento IA",
+      // Bio paragraphs rendered by About.tsx
+      profile1: "Senior .NET Developer & Solution Architect con 7+ años de experiencia en el diseño de soluciones enterprise escalables, hoy especializado en IA en producción: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG.",
+      profile2: "Como Solution Architect & Technical Lead en FEDRO Software he diseñado y llevado a producción SPRocket y SprocketLive (análisis con IA y asistencia live para call centers): 2.000+ horas de audio/mes, multi-tenant, 99.9% uptime, de cero a producción en 3 meses. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile3: "He reducido el 85% del código legacy mediante refactoring estratégico e implementado un sistema de orquestación que gestiona el procesamiento paralelo de cientos de archivos de audio.",
+      profile4: "He trabajado con equipos internacionales para clientes como Expedia, desarrollando componentes utilizados por millones de usuarios. Mi enfoque combina competencias técnicas con una visión estratégica para crear soluciones que resuelven problemas reales.",
+      // Soft skills grid
+      softSkillsTitle: "Competencias Transversales",
+      softSkillCommunicationTitle: "Comunicación Técnica",
+      softSkillCommunicationDesc: "Gestión de stakeholders, referente técnico para clientes no técnicos. Capacidad de traducir requisitos de negocio en soluciones técnicas.",
+      softSkillOwnershipDesc: "Historial de proyectos llevados de cero a producción en tiempos rápidos (3 meses para plataforma enterprise SPRocket).",
+      softSkillTeamsTitle: "Equipos Internacionales",
+      softSkillTeamsDesc: "2 años en equipo distribuido de 10+ desarrolladores para Expedia Group, metodología Agile.",
+      softSkillAutonomyTitle: "Autonomía & Problem Solving",
+      softSkillAutonomyDesc: "Acostumbrado a trabajar con alta autonomía en arquitecturas complejas, tomando decisiones técnicas de primera mano.",
+      languageSkillsTitle: "Competencias Lingüísticas"
     },
     contact: {
       title: "Contáctame",
@@ -725,6 +941,12 @@ export const translations = {
       thankYou: "¡Gracias por tu mensaje! Responderé lo antes posible.",
       phone: "Teléfono",
       location: "Ubicación"
+    },
+    footer: {
+      tagline: "Full Stack Developer con 7+ años de experiencia en el desarrollo de soluciones enterprise escalables.",
+      quickLinks: "Enlaces Rápidos",
+      // Leading space is intentional: it follows the "(c) <year> <name>." run in Footer.tsx
+      rights: " Todos los derechos reservados."
     }
   }
 };

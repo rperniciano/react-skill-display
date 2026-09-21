@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Skills from '@/components/Skills';
+import AISection from '@/components/AISection';
+import Solutions from '@/components/Solutions';
 import WorkExperience from '@/components/WorkExperience';
 import Projects from '@/components/Projects';
 import About from '@/components/About';
@@ -29,9 +31,14 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 }
 
 /**
- * The home page: the exact section tree the pre-migration `src/App.tsx` used to
- * render, minus the providers and <Analytics /> (both hoisted into the root
- * layout so Analytics is mounted once). That file is gone as of Phase 3.
+ * The home page. Built from the pre-migration `src/App.tsx` section tree, minus
+ * the providers and <Analytics /> (both hoisted into the root layout so
+ * Analytics is mounted once). That file is gone as of Phase 3.
+ *
+ * Section order reads as capability -> AI deep-dive -> what that builds for a
+ * client -> track record -> proof -> who he is -> contact. <AISection /> and
+ * <Solutions /> lost their mount point with the layout deleted during the
+ * migration and are wired back in here.
  */
 export default async function HomePage({ params }: HomePageProps) {
   const { lang } = await params;
@@ -48,6 +55,8 @@ export default async function HomePage({ params }: HomePageProps) {
       <main>
         <Hero />
         <Skills />
+        <AISection />
+        <Solutions />
         <WorkExperience />
         <Projects />
         <About />
