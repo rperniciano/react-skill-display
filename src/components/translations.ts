@@ -9,7 +9,9 @@ export const translations = {
       about: "Chi Sono",
       contact: "Contatti",
       solutions: "Soluzioni",
-      downloadCV: "Scarica CV"
+      downloadCV: "Scarica CV",
+      // Navbar CTA. The long form is hero.bookFreeCall.
+      bookCall: "Prenota"
     },
     hero: {
       available: "Disponibile per nuovi progetti",
@@ -221,17 +223,67 @@ export const translations = {
       contactMe: "Contattami",
       moreOnGithub: "Altri progetti su GitHub",
       
-      // Project descriptions
-      fedroProjectDesc: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant.",
-      expediaProjectDesc: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
-      posProjectDesc: "Soluzione completa per gestione pagamenti POS con integrazione bancaria real-time e sistema di reporting avanzato.",
-      portfolioProjectDesc: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
+      // Copy for the portfolioData.projects entries, keyed by project id.
+      //
+      // It lives here rather than in portfolio-data.ts because that module is
+      // imported by client components: an `{ it, en, es }` field there would ship
+      // all three locales to every visitor, while the dictionary crosses the
+      // server -> client boundary one locale at a time (see LanguageContext.tsx).
+      projectItems: {
+        sprocket: {
+          title: "SPRocket - AI Call Analytics Platform",
+          description: "Piattaforma enterprise per l'analisi intelligente delle conversazioni telefoniche tramite AI",
+          longDescription: "Sistema completo di orchestrazione per acquisizione file audio, trascrizione mediante AI, analisi NLP, indicizzazione full-text e visualizzazione dati con dashboard personalizzabili per tenant. Costruito da zero su ABP.io con deployment in produzione in 3 mesi.",
+          features: [
+            "Clean Architecture, DDD, CQRS su ABP.io",
+            "Multi-tenant con isolamento dati e RBAC granulare",
+            "Provider-agnostic AI (Azure, Assembly.AI, OpenAI)",
+            "Dashboard Angular con KPI real-time",
+            "Motore di ricerca fulltext con Elasticsearch",
+            "Sistema di retry policies e circuit breaker"
+          ]
+        },
+        "expedia-components": {
+          title: "Expedia Group - Frontend Components",
+          description: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
+          longDescription: "Sviluppo di componenti React riutilizzabili seguendo design system aziendale, con UI pixel-perfect da specifiche Figma. Codebase enterprise servita a 100.000+ utenti.",
+          features: [
+            "Carosello \"Suggested Homes\" per raccomandazioni personalizzate",
+            "Widget meteo interattivo con forecast",
+            "UI pixel-perfect responsive",
+            "Workflow Agile con team distribuito"
+          ]
+        },
+        "pos-system": {
+          title: "Sistema POS per Mense Universitarie",
+          description: "Soluzione completa per gestione pagamenti POS con integrazione bancaria real-time e sistema di reporting avanzato.",
+          longDescription: "Progettazione e sviluppo da zero di sistema POS embedded integrato in macchine automatiche per l'erogazione di buoni pasto universitari. Cliente: ERSU Cagliari.",
+          features: [
+            "Architettura software POS da zero",
+            "Integrazione pagamenti multi-circuito (Visa, Mastercard)",
+            "WebServices real-time con backend",
+            "Documentazione tecnica e manuali operativi"
+          ]
+        },
+        "react-portfolio": {
+          title: "Interactive React Portfolio",
+          description: "Portfolio personale con animazioni avanzate e visualizzazioni interattive",
+          longDescription: "Portfolio web moderno con animazioni fluide, dark mode, visualizzazioni dati interattive e design responsive.",
+          features: [
+            "Animazioni fluide",
+            "Grafici interattivi con Recharts",
+            "Dark/Light mode toggle",
+            "Fully responsive design",
+            "Performance optimized"
+          ]
+        }
+      },
       
-      fedroMetrics: [
-        "riduzione codice legacy",
+      sprocketMetrics: [
+        "ore di chiamate/mese",
         "uptime",
-        "trascrizioni/ora",
-        "tenant gestiti"
+        "file audio in parallelo",
+        "tenant enterprise"
       ],
       expediaMetrics: [
         "riduzione latenza API",
@@ -248,10 +300,9 @@ export const translations = {
       title: "Chi Sono",
       available: "Disponibile",
       expertiseAreas: "Aree di Expertise",
-      bio1: "Ciao! Sono Riccardo, un Full Stack Developer con oltre 7 anni di esperienza nella progettazione e implementazione di soluzioni enterprise scalabili.",
-      bio2: "Attualmente sono Lead Developer presso FEDRO Software, dove guido lo sviluppo di una piattaforma AI-powered per l'analisi delle chiamate che processa oltre 1000 trascrizioni all'ora. Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di orchestrazione che gestisce il processing parallelo di centinaia di file audio.",
-      bio3: "La mia esperienza spazia dal frontend con React e Angular, al backend con .NET 9 e Node.js, fino all'integrazione di servizi AI come OpenAI GPT e Azure Cognitive Services. Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati da milioni di utenti.",
-      bio4: "Sono appassionato di Clean Architecture, pattern DDD e CQRS, e credo fermamente nell'importanza del testing (raggiungendo regolarmente coverage superiori all'80%). Nel tempo libero, continuo a studiare le ultime tecnologie, recentemente completando la Machine Learning Specialization di Stanford.",
+      // About.tsx <h2>, rendered around the name: prefix + name + suffix.
+      greetingPrefix: "Ciao, sono ",
+      greetingSuffix: ". Piacere di conoscerti.",
       languages: "Lingue",
       italian: "Italiano",
       english: "Inglese",
@@ -259,6 +310,7 @@ export const translations = {
       native: "Madrelingua",
       professional: "Professionale",
       intermediate: "Intermedio",
+      levelB2: "B2 - Intermedio superiore",
       downloadFullCV: "Scarica CV Completo",
       contactMe: "Contattami",
       yearsExperience: "anni esperienza",
@@ -275,6 +327,7 @@ export const translations = {
       softSkillsTitle: "Competenze Trasversali",
       softSkillCommunicationTitle: "Comunicazione Tecnica",
       softSkillCommunicationDesc: "Stakeholder Management, referente tecnico verso clienti non-tecnici. Capacità di tradurre requisiti di business in soluzioni tecniche.",
+      softSkillOwnershipTitle: "Ownership & Delivery",
       softSkillOwnershipDesc: "Track record di progetti portati da zero a produzione in tempi rapidi (3 mesi per piattaforma enterprise SPRocket).",
       softSkillTeamsTitle: "Team Internazionali",
       softSkillTeamsDesc: "2 anni in team distribuito 10+ sviluppatori per Expedia Group, metodologia Agile.",
@@ -308,7 +361,13 @@ export const translations = {
       send: "Invia Messaggio",
       thankYou: "Grazie per il tuo messaggio! Ti risponderò il prima possibile.",
       phone: "Telefono",
-      location: "Posizione"
+      location: "Posizione",
+      // Calendly CTA card and the "prefer to write?" card
+      calendlyPitch: "Discutiamo del tuo progetto e di come posso aiutarti a realizzare le tue idee. Prenota una chiamata gratuita di 30 minuti senza impegno.",
+      bookOnCalendly: "Prenota ora su Calendly",
+      freeConsultation: "Consulenza gratuita",
+      preferWriting: "Preferisci scrivere?",
+      preferWritingDesc: "Puoi contattarmi direttamente via email o LinkedIn per qualsiasi domanda o proposta."
     },
     footer: {
       tagline: "Full Stack Developer con 7+ anni di esperienza nello sviluppo di soluzioni enterprise scalabili.",
@@ -327,7 +386,9 @@ export const translations = {
       about: "About",
       contact: "Contact",
       solutions: "Solutions",
-      downloadCV: "Download CV"
+      downloadCV: "Download CV",
+      // Navbar CTA. The long form is hero.bookFreeCall.
+      bookCall: "Book a call"
     },
     hero: {
       available: "Available for new projects",
@@ -538,16 +599,67 @@ export const translations = {
       contactMe: "Contact Me",
       moreOnGithub: "More projects on GitHub",
       
-      fedroProjectDesc: "Complete orchestration system for audio file acquisition, AI transcription, NLP analysis, full-text indexing and data visualization with customizable dashboards per tenant.",
-      expediaProjectDesc: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
-      posProjectDesc: "Complete solution for POS payment management with real-time bank integration and advanced reporting system.",
-      portfolioProjectDesc: "Modern web portfolio with smooth animations, dark mode, interactive data visualizations and responsive design.",
+      // Copy for the portfolioData.projects entries, keyed by project id.
+      //
+      // It lives here rather than in portfolio-data.ts because that module is
+      // imported by client components: an `{ it, en, es }` field there would ship
+      // all three locales to every visitor, while the dictionary crosses the
+      // server -> client boundary one locale at a time (see LanguageContext.tsx).
+      projectItems: {
+        sprocket: {
+          title: "SPRocket - AI Call Analytics Platform",
+          description: "Enterprise platform for intelligent phone conversation analysis via AI",
+          longDescription: "Complete orchestration system for audio file acquisition, AI transcription, NLP analysis, full-text indexing and data visualization with customizable dashboards per tenant. Built from scratch on ABP.io with production deployment in 3 months.",
+          features: [
+            "Clean Architecture, DDD, CQRS on ABP.io",
+            "Multi-tenant with data isolation and granular RBAC",
+            "Provider-agnostic AI (Azure, Assembly.AI, OpenAI)",
+            "Angular dashboard with real-time KPIs",
+            "Fulltext search engine with Elasticsearch",
+            "Retry policies and circuit breaker system"
+          ]
+        },
+        "expedia-components": {
+          title: "Expedia Group - Frontend Components",
+          description: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
+          longDescription: "Development of reusable React components following the company design system, with pixel-perfect UI from Figma specs. Enterprise codebase serving 100,000+ users.",
+          features: [
+            "\"Suggested Homes\" carousel for personalized recommendations",
+            "Interactive weather widget with forecast",
+            "Pixel-perfect responsive UI",
+            "Agile workflow with a distributed team"
+          ]
+        },
+        "pos-system": {
+          title: "POS System for University Canteens",
+          description: "Complete solution for POS payment management with real-time bank integration and advanced reporting system.",
+          longDescription: "Design and development from scratch of an embedded POS system integrated into vending machines for issuing university meal vouchers. Client: ERSU Cagliari.",
+          features: [
+            "POS software architecture from scratch",
+            "Multi-circuit payment integration (Visa, Mastercard)",
+            "Real-time WebServices with the backend",
+            "Technical documentation and operational manuals"
+          ]
+        },
+        "react-portfolio": {
+          title: "Interactive React Portfolio",
+          description: "Personal portfolio with advanced animations and interactive visualizations",
+          longDescription: "Modern web portfolio with smooth animations, dark mode, interactive data visualizations and responsive design.",
+          features: [
+            "Smooth animations",
+            "Interactive charts with Recharts",
+            "Dark/Light mode toggle",
+            "Fully responsive design",
+            "Performance optimized"
+          ]
+        }
+      },
       
-      fedroMetrics: [
-        "legacy code reduction",
+      sprocketMetrics: [
+        "hours of calls/month",
         "uptime",
-        "transcriptions/hour",
-        "managed tenants"
+        "audio files in parallel",
+        "enterprise tenants"
       ],
       expediaMetrics: [
         "API latency reduction",
@@ -564,10 +676,9 @@ export const translations = {
       title: "About Me",
       available: "Available",
       expertiseAreas: "Expertise Areas",
-      bio1: "Hi! I'm Riccardo, a Full Stack Developer with over 7 years of experience in designing and implementing scalable enterprise solutions.",
-      bio2: "I'm currently Lead Developer at FEDRO Software, where I lead the development of an AI-powered platform for call analytics that processes over 1000 transcriptions per hour. I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
-      bio3: "My experience spans from frontend with React and Angular, to backend with .NET 9 and Node.js, to integration of AI services like OpenAI GPT and Azure Cognitive Services. I've worked with international teams for clients like Expedia, developing components used by millions of users.",
-      bio4: "I'm passionate about Clean Architecture, DDD and CQRS patterns, and firmly believe in the importance of testing (regularly achieving coverage above 80%). In my free time, I continue studying the latest technologies, recently completing Stanford's Machine Learning Specialization.",
+      // About.tsx <h2>, rendered around the name: prefix + name + suffix.
+      greetingPrefix: "Hi, I'm ",
+      greetingSuffix: ". Nice to meet you.",
       languages: "Languages",
       italian: "Italian",
       english: "English",
@@ -575,6 +686,7 @@ export const translations = {
       native: "Native",
       professional: "Professional",
       intermediate: "Intermediate",
+      levelB2: "B2 - Upper intermediate",
       downloadFullCV: "Download Full CV",
       contactMe: "Contact Me",
       yearsExperience: "years experience",
@@ -591,6 +703,7 @@ export const translations = {
       softSkillsTitle: "Soft Skills",
       softSkillCommunicationTitle: "Technical Communication",
       softSkillCommunicationDesc: "Stakeholder Management, technical referent for non-technical clients. Ability to translate business requirements into technical solutions.",
+      softSkillOwnershipTitle: "Ownership & Delivery",
       softSkillOwnershipDesc: "Track record of projects delivered from zero to production quickly (3 months for SPRocket enterprise platform).",
       softSkillTeamsTitle: "International Teams",
       softSkillTeamsDesc: "2 years in distributed team of 10+ developers for Expedia Group, Agile methodology.",
@@ -624,7 +737,13 @@ export const translations = {
       send: "Send Message",
       thankYou: "Thank you for your message! I'll respond as soon as possible.",
       phone: "Phone",
-      location: "Location"
+      location: "Location",
+      // Calendly CTA card and the "prefer to write?" card
+      calendlyPitch: "Let's talk about your project and how I can help you bring your ideas to life. Book a free 30-minute call, no commitment.",
+      bookOnCalendly: "Book now on Calendly",
+      freeConsultation: "Free consultation",
+      preferWriting: "Prefer to write?",
+      preferWritingDesc: "You can reach me directly by email or on LinkedIn for any question or proposal."
     },
     footer: {
       tagline: "Full Stack Developer with 7+ years of experience developing scalable enterprise solutions.",
@@ -643,7 +762,9 @@ export const translations = {
       about: "Sobre Mí",
       contact: "Contacto",
       solutions: "Soluciones",
-      downloadCV: "Descargar CV"
+      downloadCV: "Descargar CV",
+      // Navbar CTA. The long form is hero.bookFreeCall.
+      bookCall: "Reservar"
     },
     hero: {
       available: "Disponible para nuevos proyectos",
@@ -854,16 +975,67 @@ export const translations = {
       contactMe: "Contáctame",
       moreOnGithub: "Más proyectos en GitHub",
       
-      fedroProjectDesc: "Sistema completo de orquestación para adquisición de archivos de audio, transcripción mediante IA, análisis NLP, indexación de texto completo y visualización de datos con dashboards personalizables por inquilino.",
-      expediaProjectDesc: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
-      posProjectDesc: "Solución completa para gestión de pagos POS con integración bancaria en tiempo real y sistema de reportes avanzado.",
-      portfolioProjectDesc: "Portfolio web moderno con animaciones fluidas, modo oscuro, visualizaciones de datos interactivas y diseño responsivo.",
+      // Copy for the portfolioData.projects entries, keyed by project id.
+      //
+      // It lives here rather than in portfolio-data.ts because that module is
+      // imported by client components: an `{ it, en, es }` field there would ship
+      // all three locales to every visitor, while the dictionary crosses the
+      // server -> client boundary one locale at a time (see LanguageContext.tsx).
+      projectItems: {
+        sprocket: {
+          title: "SPRocket - AI Call Analytics Platform",
+          description: "Plataforma enterprise para el análisis inteligente de conversaciones telefónicas mediante IA",
+          longDescription: "Sistema completo de orquestación para adquisición de archivos de audio, transcripción mediante IA, análisis NLP, indexación de texto completo y visualización de datos con dashboards personalizables por inquilino. Construido desde cero sobre ABP.io con despliegue en producción en 3 meses.",
+          features: [
+            "Clean Architecture, DDD, CQRS sobre ABP.io",
+            "Multi-tenant con aislamiento de datos y RBAC granular",
+            "IA provider-agnostic (Azure, Assembly.AI, OpenAI)",
+            "Dashboard Angular con KPIs en tiempo real",
+            "Motor de búsqueda fulltext con Elasticsearch",
+            "Sistema de retry policies y circuit breaker"
+          ]
+        },
+        "expedia-components": {
+          title: "Expedia Group - Frontend Components",
+          description: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
+          longDescription: "Desarrollo de componentes React reutilizables siguiendo el design system empresarial, con UI pixel-perfect desde especificaciones Figma. Codebase enterprise sirviendo a 100.000+ usuarios.",
+          features: [
+            "Carrusel \"Suggested Homes\" para recomendaciones personalizadas",
+            "Widget meteorológico interactivo con pronóstico",
+            "UI pixel-perfect responsive",
+            "Workflow Agile con equipo distribuido"
+          ]
+        },
+        "pos-system": {
+          title: "Sistema POS para Comedores Universitarios",
+          description: "Solución completa para gestión de pagos POS con integración bancaria en tiempo real y sistema de reportes avanzado.",
+          longDescription: "Diseño y desarrollo desde cero de un sistema POS embebido integrado en máquinas expendedoras para la emisión de vales de comida universitarios. Cliente: ERSU Cagliari.",
+          features: [
+            "Arquitectura del software POS desde cero",
+            "Integración de pagos multi-circuito (Visa, Mastercard)",
+            "WebServices en tiempo real con el backend",
+            "Documentación técnica y manuales operativos"
+          ]
+        },
+        "react-portfolio": {
+          title: "Interactive React Portfolio",
+          description: "Portfolio personal con animaciones avanzadas y visualizaciones interactivas",
+          longDescription: "Portfolio web moderno con animaciones fluidas, modo oscuro, visualizaciones de datos interactivas y diseño responsivo.",
+          features: [
+            "Animaciones fluidas",
+            "Gráficos interactivos con Recharts",
+            "Dark/Light mode toggle",
+            "Fully responsive design",
+            "Performance optimized"
+          ]
+        }
+      },
       
-      fedroMetrics: [
-        "reducción código legacy",
-        "tiempo activo",
-        "transcripciones/hora",
-        "inquilinos gestionados"
+      sprocketMetrics: [
+        "horas de llamadas/mes",
+        "uptime",
+        "archivos de audio en paralelo",
+        "inquilinos enterprise"
       ],
       expediaMetrics: [
         "reducción latencia API",
@@ -880,10 +1052,9 @@ export const translations = {
       title: "Sobre Mí",
       available: "Disponible",
       expertiseAreas: "Áreas de Experiencia",
-      bio1: "¡Hola! Soy Riccardo, un Desarrollador Full Stack con más de 7 años de experiencia en el diseño e implementación de soluciones empresariales escalables.",
-      bio2: "Actualmente soy Lead Developer en FEDRO Software, donde lidero el desarrollo de una plataforma impulsada por IA para análisis de llamadas que procesa más de 1000 transcripciones por hora. Reduje el 85% del código legacy mediante refactorización estratégica e implementé un sistema de orquestación que gestiona el procesamiento paralelo de cientos de archivos de audio.",
-      bio3: "Mi experiencia abarca desde frontend con React y Angular, hasta backend con .NET 9 y Node.js, hasta la integración de servicios de IA como OpenAI GPT y Azure Cognitive Services. He trabajado con equipos internacionales para clientes como Expedia, desarrollando componentes utilizados por millones de usuarios.",
-      bio4: "Soy apasionado de Clean Architecture, patrones DDD y CQRS, y creo firmemente en la importancia del testing (logrando regularmente cobertura superior al 80%). En mi tiempo libre, continúo estudiando las últimas tecnologías, completando recientemente la Especialización en Machine Learning de Stanford.",
+      // About.tsx <h2>, rendered around the name: prefix + name + suffix.
+      greetingPrefix: "Hola, soy ",
+      greetingSuffix: ". Encantado de conocerte.",
       languages: "Idiomas",
       italian: "Italiano",
       english: "Inglés",
@@ -891,6 +1062,7 @@ export const translations = {
       native: "Nativo",
       professional: "Profesional",
       intermediate: "Intermedio",
+      levelB2: "B2 - Intermedio alto",
       downloadFullCV: "Descargar CV Completo",
       contactMe: "Contáctame",
       yearsExperience: "años experiencia",
@@ -907,6 +1079,7 @@ export const translations = {
       softSkillsTitle: "Competencias Transversales",
       softSkillCommunicationTitle: "Comunicación Técnica",
       softSkillCommunicationDesc: "Gestión de stakeholders, referente técnico para clientes no técnicos. Capacidad de traducir requisitos de negocio en soluciones técnicas.",
+      softSkillOwnershipTitle: "Ownership & Delivery",
       softSkillOwnershipDesc: "Historial de proyectos llevados de cero a producción en tiempos rápidos (3 meses para plataforma enterprise SPRocket).",
       softSkillTeamsTitle: "Equipos Internacionales",
       softSkillTeamsDesc: "2 años en equipo distribuido de 10+ desarrolladores para Expedia Group, metodología Agile.",
@@ -940,7 +1113,13 @@ export const translations = {
       send: "Enviar Mensaje",
       thankYou: "¡Gracias por tu mensaje! Responderé lo antes posible.",
       phone: "Teléfono",
-      location: "Ubicación"
+      location: "Ubicación",
+      // Calendly CTA card and the "prefer to write?" card
+      calendlyPitch: "Hablemos de tu proyecto y de cómo puedo ayudarte a hacer realidad tus ideas. Reserva una llamada gratuita de 30 minutos sin compromiso.",
+      bookOnCalendly: "Reserva ahora en Calendly",
+      freeConsultation: "Consultoría gratuita",
+      preferWriting: "¿Prefieres escribir?",
+      preferWritingDesc: "Puedes contactarme directamente por correo electrónico o LinkedIn para cualquier pregunta o propuesta."
     },
     footer: {
       tagline: "Full Stack Developer con 7+ años de experiencia en el desarrollo de soluciones enterprise escalables.",

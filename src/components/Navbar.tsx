@@ -76,7 +76,7 @@ const Navbar = () => {
               asChild
             >
               <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
-                Prenota
+                {t.nav.bookCall}
               </a>
             </Button>
 
@@ -114,7 +114,7 @@ const Navbar = () => {
                 asChild
               >
                 <a href="https://calendly.com/riccardo-perniciano/free-call" target="_blank" rel="noopener noreferrer">
-                  Prenota una call gratuita
+                  {t.hero.bookFreeCall}
                 </a>
               </Button>
             </div>

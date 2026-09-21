@@ -16,8 +16,9 @@ const About = () => {
           {/* Section Title */}
           <AnimatedSection animation="fade-in-up" className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold">
-              Ciao, sono <span className="text-purple-600 dark:text-purple-400">{portfolioData.personal.name}</span>.
-              Piacere di conoscerti.
+              {t.about.greetingPrefix}
+              <span className="text-purple-600 dark:text-purple-400">{portfolioData.personal.name}</span>
+              {t.about.greetingSuffix}
             </h2>
           </AnimatedSection>
 
@@ -84,7 +85,9 @@ const About = () => {
 
               {/* Ownership & Delivery */}
               <div className="space-y-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">Ownership & Delivery</h4>
+                <h4 className="font-bold text-lg text-purple-600 dark:text-purple-400">
+                  {t.about.softSkillOwnershipTitle}
+                </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {t.about.softSkillOwnershipDesc}
                 </p>
@@ -118,16 +121,16 @@ const About = () => {
               </h3>
               <div className="flex flex-wrap justify-center gap-6">
                 <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                  <span className="font-bold text-purple-600 dark:text-purple-400">Italiano:</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">Madrelingua</span>
+                  <span className="font-bold text-purple-600 dark:text-purple-400">{t.about.italian}:</span>
+                  <span className="ml-2 text-gray-700 dark:text-gray-300">{t.about.native}</span>
                 </div>
                 <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                  <span className="font-bold text-purple-600 dark:text-purple-400">Inglese:</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">B2 - Intermedio superiore</span>
+                  <span className="font-bold text-purple-600 dark:text-purple-400">{t.about.english}:</span>
+                  <span className="ml-2 text-gray-700 dark:text-gray-300">{t.about.levelB2}</span>
                 </div>
                 <div className="px-6 py-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                  <span className="font-bold text-purple-600 dark:text-purple-400">Spagnolo:</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">B2 - Intermedio superiore</span>
+                  <span className="font-bold text-purple-600 dark:text-purple-400">{t.about.spanish}:</span>
+                  <span className="ml-2 text-gray-700 dark:text-gray-300">{t.about.levelB2}</span>
                 </div>
               </div>
             </AnimatedSection>

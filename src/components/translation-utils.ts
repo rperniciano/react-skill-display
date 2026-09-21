@@ -19,13 +19,9 @@ export const getMonthTranslation = (month: string, language: 'it' | 'en' | 'es')
 };
 
 export const formatPeriod = (period: string, language: 'it' | 'en' | 'es', t: any): string => {
-  // Handle "Presente" / "Present" / "Presente"
-  if (period.includes('Presente') || period.includes('Present')) {
-    const present = language === 'it' ? 'Presente' : language === 'en' ? 'Present' : 'Presente';
-    return period.replace(/Presente|Present/, present);
-  }
-  
-  // Handle month translations
+  // Month translations first. They used to run *after* the "Presente" branch
+  // below, which returns early - so "Gennaio 2025 - Presente" kept its Italian
+  // month on /en ("Gennaio 2025 - Present") and on /es.
   let translatedPeriod = period;
   const monthsIt = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 
                     'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
@@ -35,6 +31,12 @@ export const formatPeriod = (period: string, language: 'it' | 'en' | 'es', t: an
       translatedPeriod = translatedPeriod.replace(month, getMonthTranslation(month, language));
     }
   });
+  
+  // Handle "Presente" / "Present" / "Presente"
+  if (translatedPeriod.includes('Presente') || translatedPeriod.includes('Present')) {
+    const present = language === 'it' ? 'Presente' : language === 'en' ? 'Present' : 'Presente';
+    return translatedPeriod.replace(/Presente|Present/, present);
+  }
   
   return translatedPeriod;
 };
@@ -65,27 +67,16 @@ export const getJobDescription = (jobId: string, t: any): string[] => {
   }
 };
 
-// Export helper for project descriptions
-export const getProjectDescription = (projectId: string, t: any): string => {
-  switch(projectId) {
-    case 'fedro':
-      return t.projects.fedroProjectDesc;
-    case 'expedia':
-      return t.projects.expediaProjectDesc;
-    case 'pos':
-      return t.projects.posProjectDesc;
-    case 'portfolio':
-      return t.projects.portfolioProjectDesc;
-    default:
-      return '';
-  }
-};
-
+// Metric labels per project. `metrics` carries the figure and its Italian
+// label ("2.000+ ore di chiamate/mese"); the figure is kept and the label is
+// swapped for the active locale. Keyed by the full project id: the old
+// `id.split('-')[0]` key resolved to 'sprocket' for the featured project and
+// matched no entry, so its four figures kept their Italian labels everywhere.
 export const getProjectMetrics = (projectId: string, metrics: string[], t: any): string[] => {
   const metricTranslations: Record<string, string[]> = {
-    'fedro': t.projects.fedroMetrics,
-    'expedia': t.projects.expediaMetrics,
-    'pos': t.projects.posMetrics
+    'sprocket': t.projects.sprocketMetrics,
+    'expedia-components': t.projects.expediaMetrics,
+    'pos-system': t.projects.posMetrics
   };
   
   const translations = metricTranslations[projectId];

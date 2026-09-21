@@ -14,19 +14,27 @@ import {
 } from "@/components/ui/card";
 import { portfolioData } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
-import { getProjectDescription, getProjectMetrics } from "./translation-utils";
+import { getProjectMetrics } from "./translation-utils";
 import { AnimatedSection } from "./AnimatedSection";
 import { StaggeredGrid } from "./StaggeredGrid";
 
 const Projects = () => {
   const { t, language } = useLanguage();
   
-  // Map project data with translations
-  const projectsWithTranslations = portfolioData.projects.map(project => ({
-    ...project,
-    description: getProjectDescription(project.id.split('-')[0], t) || project.description,
-    metrics: project.metrics ? getProjectMetrics(project.id.split('-')[0], project.metrics, t) : project.metrics
-  }));
+  // Map project data with translations. Title, description and features are
+  // copy, so they come from the dictionary keyed by project id; portfolio-data
+  // only carries locale-independent data (image, technologies, links, year).
+  const projectsWithTranslations = portfolioData.projects.map(project => {
+    const copy = t.projects.projectItems[project.id as keyof typeof t.projects.projectItems];
+
+    return {
+      ...project,
+      title: copy.title,
+      description: copy.description,
+      features: copy.features,
+      metrics: project.metrics ? getProjectMetrics(project.id, project.metrics, t) : project.metrics
+    };
+  });
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">

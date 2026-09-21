@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { portfolioData } from '../portfolio-data';
 import { translations } from '../translations';
 
 // The dictionary is typed as `typeof translations.it`, so TypeScript already
@@ -156,5 +157,52 @@ describe('translations dictionaries', () => {
       'Azure OpenAI, Anthropic Claude, Assembly.AI, ElevenLabs',
     );
     expect(translations.es.skills.aiSpeechDesc).toBe(translations.it.skills.aiSpeechDesc);
+  });
+
+  it('covers the copy that was hardcoded Italian with no ternary at all', () => {
+    // These rendered Italian on /en and /es because nothing ever branched on
+    // the language - there was no ternary to lift, just a literal in the JSX
+    // (or, for the project entries, a literal in portfolio-data.ts).
+    const lifted = [
+      'nav.bookCall',
+      'about.greetingPrefix',
+      'about.greetingSuffix',
+      'about.levelB2',
+      'about.softSkillOwnershipTitle',
+      'contact.calendlyPitch',
+      'contact.bookOnCalendly',
+      'contact.freeConsultation',
+      'contact.preferWriting',
+      'contact.preferWritingDesc',
+      'projects.sprocketMetrics',
+      'projects.projectItems.sprocket.title',
+      'projects.projectItems.sprocket.description',
+      'projects.projectItems.sprocket.features',
+      'projects.projectItems.pos-system.title',
+      'projects.projectItems.react-portfolio.description',
+    ];
+
+    for (const path of lifted) {
+      expect(paths.it, path).toContain(path);
+    }
+  });
+
+  it('has retired the dead about.bio* paragraphs', () => {
+    // Nothing rendered them since About.tsx moved to profile1-profile4, and
+    // they still described an outdated role.
+    for (const language of LANGUAGES) {
+      expect(paths[language].filter((path) => /^about\.bio\d$/.test(path))).toEqual([]);
+    }
+  });
+
+  it('carries copy for every portfolioData project, keyed by id', () => {
+    // Projects.tsx looks the copy up by `project.id`, so a project without an
+    // entry here (or a renamed id) would render `undefined` rather than fail
+    // to compile.
+    const ids = portfolioData.projects.map((project) => project.id);
+
+    for (const language of LANGUAGES) {
+      expect(Object.keys(translations[language].projects.projectItems)).toEqual(ids);
+    }
   });
 });
