@@ -23,6 +23,13 @@ export const translations = {
       about: "Chi Sono",
       contact: "Contatti",
       solutions: "Soluzioni",
+      // Navbar entry for /servizi, rendered only when language === 'it'
+      // (Navbar.tsx) because the hub and its two children don't exist under
+      // /en or /es. The key exists in all three locales anyway - the
+      // symmetry test in translations.test.ts requires it, and this is a
+      // label, not a page body, so it isn't the "dead copy" case that keeps
+      // full page copy out of this dictionary.
+      servizi: "Servizi",
       downloadCV: "Scarica CV",
       // Navbar CTA. The long form is hero.bookFreeCall.
       bookCall: "Prenota"
@@ -438,6 +445,9 @@ export const translations = {
       about: "About",
       contact: "Contact",
       solutions: "Solutions",
+      // See the Italian block above: rendered only when language === 'it',
+      // kept here for the dictionary symmetry test.
+      servizi: "Services",
       downloadCV: "Download CV",
       // Navbar CTA. The long form is hero.bookFreeCall.
       bookCall: "Book a call"
@@ -840,6 +850,9 @@ export const translations = {
       about: "Sobre Mí",
       contact: "Contacto",
       solutions: "Soluciones",
+      // See the Italian block above: rendered only when language === 'it',
+      // kept here for the dictionary symmetry test.
+      servizi: "Servicios",
       downloadCV: "Descargar CV",
       // Navbar CTA. The long form is hero.bookFreeCall.
       bookCall: "Reservar"

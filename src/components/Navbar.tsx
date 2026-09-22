@@ -21,14 +21,30 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Every anchor below is a section id that only exists on the locale home
+  // page (app/[lang]/page.tsx). Prefixing each with `/${language}` - instead
+  // of leaving a bare "#hero" - means these links still resolve correctly
+  // when Navbar is mounted somewhere that isn't the home page (the two
+  // /servizi pages, and the /servizi hub): next/link takes the visitor back
+  // to the home page and the browser scrolls to the section once it loads.
+  // On the home page itself this is still an in-place hash navigation, same
+  // as before.
+  const homeHref = (hash: string) => `/${language}${hash}`;
+
   const navItems = [
-    { href: "#hero", label: t.nav.home },
-    { href: "#about", label: t.nav.about },
-    { href: "#skills", label: t.nav.skills },
-    { href: "#solutions", label: t.nav.solutions },
-    { href: "#experience", label: t.nav.experience },
-    { href: "#projects", label: t.nav.projects },
-    { href: "#contact", label: t.nav.contact },
+    { href: homeHref("#hero"), label: t.nav.home },
+    { href: homeHref("#about"), label: t.nav.about },
+    { href: homeHref("#skills"), label: t.nav.skills },
+    { href: homeHref("#solutions"), label: t.nav.solutions },
+    // Route link, not a section anchor - and Italian-only, because /servizi
+    // and its two children don't exist under /en or /es (see CLAUDE.md).
+    // Gating on `language` rather than always rendering it keeps an English
+    // or Spanish visitor's navbar exactly as it was before this page existed
+    // - no dead link, no 404 behind the menu.
+    ...(language === "it" ? [{ href: "/it/servizi", label: t.nav.servizi }] : []),
+    { href: homeHref("#experience"), label: t.nav.experience },
+    { href: homeHref("#projects"), label: t.nav.projects },
+    { href: homeHref("#contact"), label: t.nav.contact },
   ];
 
   return (
@@ -55,13 +71,13 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -100,14 +116,14 @@ const Navbar = () => {
           <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
               <Button 
                 className="w-full bg-purple-600 hover:bg-purple-700 text-white mt-4"
