@@ -258,6 +258,7 @@ export const translations = {
       code: "Codice",
       demo: "Demo",
       enterprise: "Enterprise",
+      startup: "Startup",
       personal: "Personale",
       proprietary: "Proprietario",
       interestedCollab: "Interessato a collaborare?",
@@ -308,6 +309,18 @@ export const translations = {
             "Aggiornamenti push via WebSocket verso pannello operatore e vista supervisore per il monitoraggio live",
             "Riproduzione di chiamate registrate per testare il comportamento del sistema senza chiamate reali",
             "Deployment modulare: trascrizione, agenti e registrazione abilitabili come moduli indipendenti"
+          ]
+        },
+        studiapp: {
+          title: "StudIApp - Tutor AI per Esami STEM Universitari",
+          description: "Piattaforma AI che aiuta gli studenti universitari italiani a superare gli esami STEM, a partire da Analisi 1: test diagnostico adattivo, piano di studio personalizzato e simulazioni d'esame a tempo con feedback in tempo reale.",
+          longDescription: "Prodotto personale, live su studiapp.it. Metodologia in tre fasi - test diagnostico adattivo per individuare punti di forza e lacune, piano di studio personalizzato sui contenuti rilevanti per l'esame, simulazioni d'esame a tempo con feedback immediato - affiancata da un tutor AI in chat in tempo reale. Frontend Next.js, gateway Node.js e backend Python per la logica AI, dati su PostgreSQL, containerizzato con Docker.",
+          features: [
+            "Test diagnostico adattivo per individuare punti di forza e aree di miglioramento",
+            "Piano di studio personalizzato sui contenuti rilevanti per l'esame",
+            "Simulazioni d'esame a tempo con punteggio e feedback immediato",
+            "Tutor AI in chat in tempo reale per rispondere alle domande di studio",
+            "Focus iniziale su Analisi 1, primo grande scoglio degli esami STEM universitari"
           ]
         },
         virtuard: {
@@ -703,6 +716,7 @@ export const translations = {
       code: "Code",
       demo: "Demo",
       enterprise: "Enterprise",
+      startup: "Startup",
       personal: "Personal",
       proprietary: "Proprietary",
       interestedCollab: "Interested in collaborating?",
@@ -753,6 +767,18 @@ export const translations = {
             "WebSocket push updates to the operator panel and a supervisor view for live monitoring",
             "Replay of recorded calls to test system behaviour without live calls",
             "Modular deployment: transcription, agents and recording as independently toggleable modules"
+          ]
+        },
+        studiapp: {
+          title: "StudIApp - AI Tutor for University STEM Exams",
+          description: "AI platform that helps Italian university students pass STEM exams, starting with Calculus 1 (Analisi 1): adaptive diagnostic test, personalized study plan and timed exam simulations with real-time feedback.",
+          longDescription: "Personal product, live at studiapp.it. Three-stage methodology - an adaptive diagnostic test to identify strengths and gaps, a personalized study plan built on the exam-relevant content, timed exam simulations with instant feedback - alongside a real-time AI chat tutor. Next.js frontend, Node.js gateway and a Python backend for the AI logic, PostgreSQL for data, containerized with Docker.",
+          features: [
+            "Adaptive diagnostic test to identify strengths and areas for improvement",
+            "Personalized study plan built on exam-relevant content",
+            "Timed exam simulations with scoring and instant feedback",
+            "Real-time AI chat tutor for study questions",
+            "Initial focus on Calculus 1 (Analisi 1), the first major hurdle of university STEM exams"
           ]
         },
         virtuard: {
@@ -1139,6 +1165,7 @@ export const translations = {
       code: "Código",
       demo: "Demo",
       enterprise: "Empresarial",
+      startup: "Startup",
       personal: "Personal",
       proprietary: "Propietario",
       interestedCollab: "¿Interesado en colaborar?",
@@ -1189,6 +1216,18 @@ export const translations = {
             "Actualizaciones push vía WebSocket hacia el panel del operador y una vista de supervisor para monitoreo en vivo",
             "Reproducción de llamadas grabadas para probar el comportamiento del sistema sin llamadas reales",
             "Despliegue modular: transcripción, agentes y grabación como módulos activables de forma independiente"
+          ]
+        },
+        studiapp: {
+          title: "StudIApp - Tutor de IA para Exámenes STEM Universitarios",
+          description: "Plataforma de IA que ayuda a los estudiantes universitarios italianos a aprobar los exámenes STEM, empezando por Análisis 1 (Cálculo 1): test diagnóstico adaptativo, plan de estudio personalizado y simulaciones de examen cronometradas con feedback en tiempo real.",
+          longDescription: "Producto personal, en producción en studiapp.it. Metodología en tres fases - un test diagnóstico adaptativo para identificar fortalezas y lagunas, un plan de estudio personalizado sobre el contenido relevante para el examen, simulaciones de examen cronometradas con feedback inmediato - junto con un tutor de IA por chat en tiempo real. Frontend en Next.js, gateway en Node.js y backend en Python para la lógica de IA, datos en PostgreSQL, containerizado con Docker.",
+          features: [
+            "Test diagnóstico adaptativo para identificar fortalezas y áreas de mejora",
+            "Plan de estudio personalizado sobre el contenido relevante para el examen",
+            "Simulaciones de examen cronometradas con puntuación y feedback inmediato",
+            "Tutor de IA por chat en tiempo real para resolver dudas de estudio",
+            "Enfoque inicial en Análisis 1 (Cálculo 1), el primer gran escollo de los exámenes STEM universitarios"
           ]
         },
         virtuard: {

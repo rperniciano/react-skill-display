@@ -8,12 +8,14 @@
  * literals, and while it does add each literal's *missing siblings* back as
  * optional (which is why `client` resolves), a key that no literal carries at
  * all is absent from the union entirely. `Projects.tsx` reads `project.client`,
- * `project.github` and `project.demo`, so those keys need to exist on the
- * declared type - and since the portfolio project was removed from the list,
- * `github` and `demo` are carried by no literal at all and exist *only*
- * because of the annotation below. They stay on the type on purpose: the
- * "Code" / "Demo" buttons in Projects.tsx are still there, waiting for the
- * next project that has something public to link.
+ * `project.github` and `project.demo` - `github` is still carried by no
+ * literal at all (no project has a public repo of his own to link) and exists
+ * *only* because of the annotation below. `demo` used to be in the same boat;
+ * it now has two real literals (`virtuard`, `studiapp`), but stays on the
+ * declared type regardless since annotating the array is what makes a key
+ * carried by *some* but not *all* literals resolve on every project. The
+ * "Code" button in Projects.tsx is still there, waiting for the next project
+ * that has a public repo.
  *
  * Optional members mirror the inferred union exactly; nothing here narrows a
  * property the inference had widened.
@@ -29,13 +31,26 @@
  * ("1.000.000+ utenti serviti") with only the label swapped per locale, so the
  * figure kept Italian digit grouping on /en. The whole chip now lives in the
  * dictionary, one string per locale.
+ *
+ * `year` used to live here too, rendered as a badge on both the featured card
+ * and the grid. The owner asked for no dates on project cards at all, so it
+ * is gone rather than kept around as unrendered ordering metadata - the array
+ * order below *is* the ordering mechanism now, arranged deliberately (most
+ * significant work first; see the per-entry comments) instead of derived from
+ * a field nothing reads any more.
+ *
+ * `type` is a closed union, not the loose `string` it used to be: Projects.tsx
+ * looks the badge label up by `type` in a `Record<ProjectType, string>`, so an
+ * unlisted value is now a compile error instead of silently falling through to
+ * the "personal" label.
  */
+export type ProjectType = "enterprise" | "startup" | "personal";
+
 export interface PortfolioProject {
   id: string;
   image: string;
   technologies: string[];
-  type: string;
-  year: number;
+  type: ProjectType;
   github?: string;
   demo?: string;
   client?: string;
@@ -46,13 +61,13 @@ const projects: PortfolioProject[] = [
     id: "sprocket",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
     technologies: ["ABP.io", ".NET 9", "Angular", "Azure Cognitive Services", "OpenAI GPT", "Assembly.AI", "Elasticsearch", "Hangfire", "Docker"],
-    type: "enterprise",
-    year: 2025
+    type: "enterprise"
   },
   {
     // Second position on purpose: Projects.tsx renders `projects[0]` as the
-    // featured card with a hardcoded "2025" badge, so the featured slot has to
-    // stay on `sprocket`. This is the first card of the grid below it.
+    // featured card, so the featured slot has to stay on `sprocket`. This is
+    // the first card of the grid below it - most significant work first:
+    // current, largest-scope enterprise engagement.
     //
     // No `github` / `demo`: the client repository is private (it holds
     // contractual and commercial material), so there is nothing public to link.
@@ -64,41 +79,58 @@ const projects: PortfolioProject[] = [
     image: "https://images.unsplash.com/photo-1583521214690-73421a1829a9?auto=format&fit=crop&w=1000&q=80",
     technologies: ["ABP Framework", ".NET 10", "C#", "Angular 22", "PostgreSQL 17", "EF Core 10", "MCP", "Hangfire", "Docker"],
     type: "enterprise",
-    year: 2026,
     client: "C.I.S.A."
   },
   {
     // No `github` / `demo` / `client` / `metrics`: SprocketLive is a module of
-    // the FEDRO Software platform, same as `sprocket` above.
+    // the FEDRO Software platform, same as `sprocket` above. Ordered right
+    // after it: current work, same platform family.
     id: "sprocketlive",
     image: "https://images.unsplash.com/photo-1786540601422-31b8d2de983a?auto=format&fit=crop&w=1000&q=80",
     technologies: ["ABP.io", ".NET 9", "Angular", "MassTransit", "SignalR", "Azure OpenAI", "AssemblyAI", "Azure Speech", "Hangfire"],
-    type: "enterprise",
-    year: 2026
+    type: "enterprise"
   },
   {
-    // No `github` / `demo`: the current work is an ongoing collaboration, not
-    // a repo of his own to link. virtuard.com is deliberately not linked
-    // either - today's site is a product far beyond his contribution.
+    // His own product, not client work - live and public, so it gets a real
+    // `demo` link. No `github`: the repos behind it (StudIApp_FE_MonoRepo,
+    // Studiapp_BE_Gateway, StudIApp_NEXTJS_MonoRepo, studiapp) are all
+    // private. No metric chips: studiapp.it states figures about the
+    // addressable market (Italian STEM exam failure/dropout rates), not about
+    // the product's own traction, so there is nothing to cite here without
+    // implying a claim the site itself doesn't make. Ordered after the two
+    // current FEDRO engagements: also current, and entirely his own build.
+    id: "studiapp",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["Next.js", "Node.js", "TypeScript", "Python", "PostgreSQL", "Docker"],
+    type: "startup",
+    demo: "https://studiapp.it"
+  },
+  {
+    // No `github`: the current work is an ongoing collaboration, not a repo
+    // of his own to link. `demo` now points at virtuard.com - it used to be
+    // deliberately unlinked because today's site is a product far beyond his
+    // 2018 contribution, but the owner overrode that: he is collaborating
+    // with them again now and wants the site linked. Ordered after the
+    // current owned work above: also current, but a smaller-scope
+    // collaboration rather than a platform he leads or a product he owns.
     id: "virtuard",
     image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1000&q=80",
     technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering", "AI"],
     type: "enterprise",
-    year: 2026
+    demo: "https://virtuard.com"
   },
   {
+    // Past client work from here down, most recent first.
     id: "expedia-components",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
     technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],
-    type: "enterprise",
-    year: 2022
+    type: "enterprise"
   },
   {
     id: "pos-system",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80",
     technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"],
-    type: "enterprise",
-    year: 2020
+    type: "enterprise"
   }
 ];
 

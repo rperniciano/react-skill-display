@@ -23,12 +23,23 @@ describe('Projects Component', () => {
 
   it('renders featured project (FEDRO) with special styling', () => {
     renderWithProviders(<Projects />);
-    
+
     // Check for the role badge
     expect(screen.getByText('Solution Architect & Technical Lead')).toBeInTheDocument();
-    
-    // Check for year badge
-    expect(screen.getByText('2025')).toBeInTheDocument();
+  });
+
+  it('renders no year badge anywhere in the section, because the owner asked for dates off project cards', () => {
+    // This used to assert the opposite: the featured card carried a
+    // hardcoded "2025" badge and every grid card showed `project.year` next
+    // to its type badge. Both are gone - portfolio-data.ts no longer even has
+    // a `year` field (see the note there). A standalone year node (the old
+    // badge/span shape) is what this guards against; prose that legitimately
+    // narrates a date as content (e.g. virtuard's "since 2018") is a
+    // different thing and is out of scope here.
+    renderWithProviders(<Projects />);
+
+    expect(screen.queryByText('2025')).not.toBeInTheDocument();
+    expect(screen.queryByText(/^(19|20)\d{2}$/)).not.toBeInTheDocument();
   });
 
   it('displays project metrics correctly', () => {
@@ -70,23 +81,24 @@ describe('Projects Component', () => {
     expect(screen.getAllByText('Enterprise').length).toBeGreaterThan(0);
   });
 
-  it('renders no GitHub or demo link, because no project carries one', () => {
+  it('renders demo links only for the projects that carry one, and no GitHub link at all', () => {
     renderWithProviders(<Projects />);
-    
-    // This test used to assert the opposite. The only entry with `github`
-    // and `demo` was the portfolio itself ("Interactive React Portfolio"),
-    // which the owner removed from the Projects section - the visitor is
-    // already looking at it.
-    //
-    // The buttons are deliberately still in Projects.tsx and the fields are
-    // still on `PortfolioProject`: the branch is dead data-wise, not dead
-    // code, and the next project with something public to link brings it
-    // back. Until then every card takes the "Proprietario" fallback.
+
+    // This test used to assert that neither button ever rendered. That held
+    // while every entry lacked both `github` and `demo` - true from the point
+    // the portfolio itself ("Interactive React Portfolio") was removed from
+    // the Projects section, until `virtuard` and `studiapp` picked up real
+    // `demo` links (see portfolio-data.ts). `github` is still carried by no
+    // project (every repo behind these entries is private or a client's), so
+    // "Codice" stays unreachable and every grid card still falls back to the
+    // "Proprietario" badge.
     expect(screen.queryByText('Codice')).not.toBeInTheDocument();
-    expect(screen.queryByText('Demo')).not.toBeInTheDocument();
-    
+
     const cards = portfolioData.projects.slice(1); // projects[0] is the featured card
+    const cardsWithDemo = cards.filter((project) => project.demo);
+
     expect(screen.getAllByText('Proprietario')).toHaveLength(cards.length);
+    expect(screen.getAllByText('Demo')).toHaveLength(cardsWithDemo.length);
   });
 
   it('displays proprietary projects with clock icon', () => {

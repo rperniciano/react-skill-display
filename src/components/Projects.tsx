@@ -12,14 +12,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { portfolioData } from "./portfolio-data";
+import { portfolioData, PortfolioProject } from "./portfolio-data";
 import { useLanguage } from "./LanguageContext";
 import { AnimatedSection } from "./AnimatedSection";
 import { StaggeredGrid } from "./StaggeredGrid";
 
 const Projects = () => {
   const { t, language } = useLanguage();
-  
+
   // Metric chips per project id. The dictionary carries the whole chip, figure
   // included ("1.000.000+ utenti serviti" / "1,000,000+ users served"), so every
   // locale groups its own digits. Only these three projects have chips.
@@ -29,10 +29,19 @@ const Projects = () => {
     "pos-system": t.projects.posMetrics
   };
 
+  // Label per `project.type`, keyed on the closed `ProjectType` union so an
+  // unhandled type is a compile error instead of a silent ternary fallback.
+  const projectTypeLabels: Record<PortfolioProject["type"], string> = {
+    enterprise: t.projects.enterprise,
+    startup: t.projects.startup,
+    personal: t.projects.personal
+  };
+
   // Map project data with translations. Title, description, features and
   // metrics are copy, so they come from the dictionary keyed by project id;
   // portfolio-data only carries locale-independent data (image, technologies,
-  // links, year).
+  // links). No date badge is rendered anywhere in this section any more, so
+  // portfolio-data.ts carries no `year` either - see the note there.
   const projectsWithTranslations = portfolioData.projects.map(project => {
     const copy = t.projects.projectItems[project.id as keyof typeof t.projects.projectItems];
 
@@ -83,7 +92,6 @@ const Projects = () => {
                 <div className="md:w-3/5 p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <Badge className="bg-purple-600 text-white">{t.projects.leadDeveloper}</Badge>
-                    <Badge variant="outline">2025</Badge>
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{projectsWithTranslations[0].title}</h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -146,9 +154,8 @@ const Projects = () => {
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant={project.type === "enterprise" ? "default" : "secondary"}>
-                      {project.type === "enterprise" ? t.projects.enterprise : t.projects.personal}
+                      {projectTypeLabels[project.type]}
                     </Badge>
-                    <span className="text-sm text-gray-500">{project.year}</span>
                   </div>
                   <CardTitle className="text-lg">{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
