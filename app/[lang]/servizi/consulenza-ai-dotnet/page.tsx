@@ -12,6 +12,10 @@ import { serviceJsonLd } from '../../../json-ld';
 import JsonLd from '../../../JsonLd';
 
 const PATH = '/servizi/consulenza-ai-dotnet';
+// Italian-only page - see generateStaticParams below. Shared by
+// generateMetadata's `locales` and <Navbar>'s so both agree on what this
+// page's real locale coverage is.
+const LOCALES = ['it'] as const;
 
 /**
  * Italian-only commercial page - see the same note in
@@ -40,7 +44,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   return pageMetadata({
     language: 'it',
     path: PATH,
-    locales: ['it'],
+    locales: LOCALES,
     title: 'Consulenza AI e .NET per sistemi in produzione | Riccardo Perniciano',
     description:
       'Consulenza AI e .NET per portare funzionalità AI in produzione: architettura, integrazione LLM, resilienza. Caso reale: SPRocket, FEDRO Software, 99.9% uptime.',
@@ -65,7 +69,7 @@ export default async function AiDotnetConsultingPage({ params }: ServicePageProp
           path: PATH,
         })}
       />
-      <Navbar />
+      <Navbar locales={LOCALES} />
       <main>
         <section className="pb-20 pt-32">
           <div className="container mx-auto px-4">

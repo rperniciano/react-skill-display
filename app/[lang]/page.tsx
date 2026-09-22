@@ -55,7 +55,7 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <JsonLd data={personJsonLd(lang)} />
-      <Navbar />
+      <Navbar locales={LANGUAGES} />
       <main>
         <Hero />
         <Skills />

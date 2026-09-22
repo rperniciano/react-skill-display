@@ -56,7 +56,7 @@ export default async function BlogIndexPage({ params }: BlogIndexProps) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <Navbar />
+      <Navbar locales={LANGUAGES} />
       <main className="container mx-auto max-w-3xl px-4 pb-20 pt-32">
         <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-gray-100">
           {dictionary.blog.title}

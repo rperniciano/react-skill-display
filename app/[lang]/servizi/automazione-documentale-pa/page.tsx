@@ -12,6 +12,10 @@ import { serviceJsonLd } from '../../../json-ld';
 import JsonLd from '../../../JsonLd';
 
 const PATH = '/servizi/automazione-documentale-pa';
+// Italian-only page - see generateStaticParams below. Shared by
+// generateMetadata's `locales` and <Navbar>'s so both agree on what this
+// page's real locale coverage is.
+const LOCALES = ['it'] as const;
 
 /**
  * Italian-only commercial page. Unlike the home page (all three locales) or a
@@ -45,7 +49,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     path: PATH,
     // Italian only - see the note on generateStaticParams above. Passing
     // anything wider here would advertise an hreflang alternate that 404s.
-    locales: ['it'],
+    locales: LOCALES,
     title: 'Automazione documentale e AI per la PA | Riccardo Perniciano',
     description:
       "Automazione documentale e AI per enti pubblici e consorzi: backend on-premise, MCP con accesso controllato, conformità AI Act. Caso reale: C.I.S.A., fase 1.",
@@ -70,7 +74,7 @@ export default async function DocumentAutomationPaPage({ params }: ServicePagePr
           path: PATH,
         })}
       />
-      <Navbar />
+      <Navbar locales={LOCALES} />
       <main>
         <section className="pb-20 pt-32">
           <div className="container mx-auto px-4">

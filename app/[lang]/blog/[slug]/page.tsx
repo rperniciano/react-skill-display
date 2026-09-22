@@ -90,7 +90,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <JsonLd data={blogPostingJsonLd(article, url)} />
-      <Navbar />
+      {/* Same source generateMetadata() uses for its hreflang set - this
+          article's real locale coverage, not the full LANGUAGES list, so the
+          selector never links to a translation that doesn't exist. */}
+      <Navbar locales={localesForSlug(slug)} />
       <main className="pb-20 pt-32">
         <article className="prose prose-gray mx-auto max-w-3xl px-4 dark:prose-invert">
           <p>

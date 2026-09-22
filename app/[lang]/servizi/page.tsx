@@ -9,6 +9,10 @@ import Footer from '@/components/Footer';
 import { pageMetadata } from '../../seo';
 
 const PATH = '/servizi';
+// Italian-only hub - see generateStaticParams below. Shared by
+// generateMetadata's `locales` and <Navbar>'s so both agree on what this
+// page's real locale coverage is.
+const LOCALES = ['it'] as const;
 
 /**
  * Italian-only hub for the two commercial service pages under /servizi/*.
@@ -39,7 +43,7 @@ export async function generateMetadata({ params }: ServiziPageProps): Promise<Me
     language: 'it',
     path: PATH,
     // Italian only - see the note on generateStaticParams above.
-    locales: ['it'],
+    locales: LOCALES,
     title: 'Servizi: automazione documentale e consulenza AI/.NET | Riccardo Perniciano',
     description:
       'I due servizi che offro come libero professionista: automazione documentale con AI per la PA, e consulenza AI e .NET per sistemi in produzione.',
@@ -55,7 +59,7 @@ export default async function ServiziPage({ params }: ServiziPageProps) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <Navbar />
+      <Navbar locales={LOCALES} />
       <main>
         <section className="pb-20 pt-32">
           <div className="container mx-auto px-4">

@@ -158,6 +158,31 @@ describe('LanguageSelector Component', () => {
     expect(links.map((link) => link.getAttribute('hreflang'))).toEqual(['it', 'en', 'es']);
   });
 
+  // A blog article or /servizi page published in a subset of locales - the
+  // bug this component was fixing: it used to build en/es links by prefixing
+  // the current path regardless of whether a translation existed, which 404s
+  // for e.g. /it/blog/ai-on-premise-pa.
+  it('falls back to the locale home page, without hreflang, when this page does not exist there', () => {
+    const { container } = renderWithProviders(<LanguageSelector locales={['it']} />);
+
+    const nav = container.querySelector('nav[aria-label="Language"]');
+    expect(nav).toBeInTheDocument();
+
+    const links = Array.from(nav!.querySelectorAll('a'));
+    expect(links).toHaveLength(3);
+
+    // Still three links - the option to switch is never dropped - but only
+    // the Italian one is a real translation of this page; en/es go to that
+    // locale's home page instead of a 404.
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(['/it', '/en', '/es']);
+
+    // hreflang appears only on the link that is actually a translation of
+    // this page - the fallback links must not claim this document exists in
+    // en/es (that would repeat, in the body, the exact bug already fixed in
+    // the <head> via app/i18n.ts's alternateLanguages()).
+    expect(links.map((link) => link.getAttribute('hreflang'))).toEqual(['it', null, null]);
+  });
+
   it('keeps the locale links out of the visual layout', () => {
     const { container } = renderWithProviders(<LanguageSelector />);
 

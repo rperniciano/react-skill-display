@@ -4,11 +4,23 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "./LanguageContext";
+import { useLanguage, type Language } from "./LanguageContext";
 import LanguageSelector from "./LanguageSelector";
 import ThemeToggle from "./ThemeToggle";
 
-const Navbar = () => {
+interface NavbarProps {
+  /**
+   * Locales the current page exists in, forwarded straight through to
+   * <LanguageSelector/> - see the prop doc there for why this is a prop and
+   * not context. Every page that mounts <Navbar/> already computes this same
+   * list for its own `pageMetadata({ locales })` call, so each call site just
+   * passes that same value again; omitted, both components default to "all
+   * three", which is correct for a page that never had to think about it.
+   */
+  locales?: readonly Language[];
+}
+
+const Navbar = ({ locales }: NavbarProps = {}) => {
   const { t, language } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -83,7 +95,7 @@ const Navbar = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
-            <LanguageSelector />
+            <LanguageSelector locales={locales} />
             <ThemeToggle />
             
             {/* CTA Button - Desktop */}

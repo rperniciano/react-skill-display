@@ -78,8 +78,14 @@ export function languageHref(pathname: string | null | undefined, language: Lang
  * in the vitest render helper (src/test/utils.tsx). It is a single `useContext`
  * call, so the hook count stays stable whether it returns or throws, and the
  * provider can degrade to a plain document navigation.
+ *
+ * Exported so <LanguageSelector /> can reuse the same degrade-to-`window.location`
+ * behaviour for the locale-fallback links it computes itself (a target locale
+ * the current page doesn't exist in), instead of going through `setLanguage`,
+ * which always swaps the path and has no notion of "this locale isn't
+ * available here".
  */
-function useOptionalRouter(): ReturnType<typeof useRouter> | null {
+export function useOptionalRouter(): ReturnType<typeof useRouter> | null {
   try {
     return useRouter();
   } catch {
