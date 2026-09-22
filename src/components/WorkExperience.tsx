@@ -60,6 +60,21 @@ const WorkExperience = () => {
     },
     {
       id: 3,
+      jobId: 'virtuard-current',
+      // Invented title, not sourced from any existing copy - flagged for the
+      // owner to confirm or replace, same as the C.I.S.A. title was.
+      title: "AI & 3D RECONSTRUCTION CONSULTANT",
+      organization: t.experience.cisaOrganization,
+      client: "Virtuard",
+      period: "2026 - Presente",
+      location: "Cagliari",
+      description: getJobDescription('virtuard-current', t),
+      type: "work",
+      technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering", "AI"],
+      current: true
+    },
+    {
+      id: 4,
       jobId: 'alten',
       title: "FRONTEND DEVELOPER",
       organization: "ALTEN Italia",
@@ -72,7 +87,7 @@ const WorkExperience = () => {
       highlight: false
     },
     {
-      id: 4,
+      id: 5,
       jobId: 'softwarelab',
       title: t.experience.softwarelabTitle,
       organization: "SOFTWARELAB",
@@ -84,7 +99,7 @@ const WorkExperience = () => {
       technologies: ["C#", "MySQL", "REST APIs", "Embedded Systems", "Integrazione POS"]
     },
     {
-      id: 5,
+      id: 6,
       jobId: 'virtuard',
       title: t.experience.virtuardTitle,
       organization: "Virtuard LTD",
@@ -95,7 +110,7 @@ const WorkExperience = () => {
       technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering"]
     },
     {
-      id: 6,
+      id: 7,
       jobId: 'epicode',
       title: "COMPUTER ENGINEERING",
       organization: "Epicode Institute of Technology",
@@ -106,7 +121,7 @@ const WorkExperience = () => {
       current: true
     },
     {
-      id: 7,
+      id: 8,
       jobId: 'react-course',
       title: "REACT ADVANCED + REDUX",
       organization: "Udemy",
@@ -116,7 +131,7 @@ const WorkExperience = () => {
       type: "education"
     },
     {
-      id: 8,
+      id: 9,
       jobId: 'css-course',
       title: "ADVANCED CSS AND SASS",
       organization: "Udemy",
@@ -126,7 +141,7 @@ const WorkExperience = () => {
       type: "education"
     },
     {
-      id: 9,
+      id: 10,
       jobId: 'typescript-course',
       title: "TYPESCRIPT FOR REACT",
       organization: "Udemy",
@@ -136,7 +151,7 @@ const WorkExperience = () => {
       type: "education"
     },
     {
-      id: 10,
+      id: 11,
       jobId: 'diploma',
       title: t.experience.diplomaTitle,
       organization: "ITIS GIUA",

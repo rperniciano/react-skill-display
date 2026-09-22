@@ -68,6 +68,25 @@ const projects: PortfolioProject[] = [
     client: "C.I.S.A."
   },
   {
+    // No `github` / `demo` / `client` / `metrics`: SprocketLive is a module of
+    // the FEDRO Software platform, same as `sprocket` above.
+    id: "sprocketlive",
+    image: "https://images.unsplash.com/photo-1786540601422-31b8d2de983a?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["ABP.io", ".NET 9", "Angular", "MassTransit", "SignalR", "Azure OpenAI", "AssemblyAI", "Azure Speech", "Hangfire"],
+    type: "enterprise",
+    year: 2026
+  },
+  {
+    // No `github` / `demo`: the current work is an ongoing collaboration, not
+    // a repo of his own to link. virtuard.com is deliberately not linked
+    // either - today's site is a product far beyond his contribution.
+    id: "virtuard",
+    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1000&q=80",
+    technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering", "AI"],
+    type: "enterprise",
+    year: 2026
+  },
+  {
     id: "expedia-components",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
     technologies: ["React", "TypeScript", "GraphQL", "Jest", "Cypress", "Figma"],

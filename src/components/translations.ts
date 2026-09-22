@@ -180,6 +180,11 @@ export const translations = {
         "Server MCP stdio distribuito come singolo eseguibile, che legge le share con l'identità dell'utente loggato: le ACL NTFS le applica il file server, non il codice applicativo",
         "Infrastruttura interamente on-premise e impianto di governance EU AI Act: policy, registro dei sistemi AI e piano di formazione art. 4"
       ],
+      virtuardCurrentDesc: [
+        "Collaborazione in corso con Virtuard per rendere i virtual tour \"walkable\": ricostruzione di un ambiente 3D navigabile a partire da immagini, anziché punti di vista fissi a 360°",
+        "Sviluppo di un'app mobile companion per l'acquisizione di immagini 3D",
+        "Pipeline di ricostruzione basata su AI, progetto in corso"
+      ],
       altenDesc: [
         "Sviluppatore frontend in team internazionale di 10+ sviluppatori per Expedia Group",
         "Sviluppo componente carosello \"Suggested Homes\" per raccomandazioni personalizzate agli utenti",
@@ -292,6 +297,32 @@ export const translations = {
             "Infrastruttura on-premise e governance EU AI Act (policy, registro dei sistemi AI e piano di formazione art. 4)"
           ]
         },
+        sprocketlive: {
+          title: "SprocketLive - Assistente AI in Tempo Reale per Call Center",
+          description: "Modulo in tempo reale della piattaforma SPRocket: trascrive la chiamata mentre è in corso e genera suggerimenti AI per l'operatore attimo per attimo.",
+          longDescription: "Distinto da SPRocket (analisi batch sulle registrazioni): SprocketLive cattura l'audio dal centralino telefonico, lo trascrive in tempo reale e usa un modello AI per decidere, mentre la conversazione procede, se e quando suggerire qualcosa all'operatore. Architettura a eventi con bus di messaggistica interno e aggiornamenti push via WebSocket verso il pannello operatore; più agenti AI configurabili possono lavorare in parallelo sulla stessa chiamata (es. vendita e compliance), con un agente di validazione opzionale che rivede i suggerimenti prima che raggiungano l'operatore.",
+          features: [
+            "Trascrizione live con provider intercambiabili (AssemblyAI, Azure Speech)",
+            "Motore di suggerimenti AI event-driven, con più agenti configurabili in parallelo per chiamata",
+            "Agente di validazione (Evaluator) opzionale come controllo qualità prima della consegna",
+            "Aggiornamenti push via WebSocket verso pannello operatore e vista supervisore per il monitoraggio live",
+            "Riproduzione di chiamate registrate per testare il comportamento del sistema senza chiamate reali",
+            "Deployment modulare: trascrizione, agenti e registrazione abilitabili come moduli indipendenti"
+          ]
+        },
+        virtuard: {
+          title: "Virtuard - Virtual Tour Immersivi e Ricostruzione 3D",
+          description: "Collaborazione con la proptech Virtuard, dal 2018: prima lo sviluppo dell'app VR mobile per virtual tour immobiliari, oggi il lavoro in corso per rendere i tour \"walkable\" con ricostruzione 3D da immagini e una app di acquisizione.",
+          longDescription: "Due fasi distinte della stessa collaborazione. 2018: co-sviluppo da zero, in team di 3, dell'app VR mobile della piattaforma di virtual tour immobiliare, con navigazione gesture-based tramite giroscopio e accelerometro, rendering 3D ottimizzato a 60 FPS stabili su mobile e supporto multi-device per Oculus, Google Cardboard e visori generici. 2026: collaborazione in corso per rendere i virtual tour \"walkable\" — ricostruzione di un ambiente 3D navigabile a partire da immagini, anziché punti di vista fissi a 360° — insieme a un'app companion per smartphone per l'acquisizione delle immagini 3D. Lavoro costruito con AI, ancora in corso.",
+          features: [
+            "2018: co-sviluppo dell'app VR mobile da zero in team di 3",
+            "2018: navigazione gesture-based tramite giroscopio e accelerometro",
+            "2018: rendering 3D ottimizzato a 60 FPS stabili, multi-device (Oculus, Google Cardboard, visori generici)",
+            "2026: tour \"walkable\" — ricostruzione di un ambiente 3D navigabile a partire da immagini, anziché punti di vista fissi a 360°",
+            "2026: app companion per l'acquisizione di immagini 3D da smartphone",
+            "2026: pipeline costruita con AI, progetto in corso"
+          ]
+        },
         "expedia-components": {
           title: "Expedia Group - Frontend Components",
           description: "Sistema di design components riutilizzabili con documentazione Storybook, testing completo e ottimizzazioni performance per milioni di utenti.",
@@ -315,7 +346,7 @@ export const translations = {
           ]
         }
       },
-      
+
       // Metric chips, rendered by Projects.tsx. The whole string lives here -
       // figure included - so every locale groups its own digits: it/es write
       // "1.000.000+", en writes "1,000,000+". The figure used to sit in
@@ -595,6 +626,11 @@ export const translations = {
         "Separate stdio MCP server shipped as a single executable, reading the shares as the logged-in user: NTFS ACLs enforced by the file server, not by application code",
         "Fully on-premise infrastructure and EU AI Act governance: policy, AI systems register and an Article 4 training plan"
       ],
+      virtuardCurrentDesc: [
+        "Ongoing collaboration with Virtuard to make virtual tours \"walkable\": reconstructing a navigable 3D environment from images, instead of fixed 360° viewpoints",
+        "Development of a companion mobile app for capturing 3D images",
+        "AI-based reconstruction pipeline, work in progress"
+      ],
       altenDesc: [
         "Frontend developer in international team of 10+ developers for Expedia Group",
         "Development of \"Suggested Homes\" carousel component for personalized user recommendations",
@@ -706,6 +742,32 @@ export const translations = {
             "On-premise infrastructure and EU AI Act governance (policy, AI systems register and an Article 4 training plan)"
           ]
         },
+        sprocketlive: {
+          title: "SprocketLive - Real-Time AI Call Assistant",
+          description: "Real-time module of the SPRocket platform: transcribes the call as it happens and generates AI suggestions for the operator on the fly.",
+          longDescription: "Distinct from SPRocket (batch analysis of recordings): SprocketLive captures audio from the phone switchboard, transcribes it in real time, and uses an AI model to decide, as the conversation unfolds, whether and when to suggest something to the operator. Event-driven architecture with an internal message bus and WebSocket push updates to the operator panel; multiple configurable AI agents can run in parallel on the same call (e.g. sales and compliance), with an optional validation agent that reviews suggestions before they reach the operator.",
+          features: [
+            "Live transcription with interchangeable providers (AssemblyAI, Azure Speech)",
+            "Event-driven AI suggestion engine, with multiple configurable agents running in parallel per call",
+            "Optional validation agent (Evaluator) as a quality gate before delivery",
+            "WebSocket push updates to the operator panel and a supervisor view for live monitoring",
+            "Replay of recorded calls to test system behaviour without live calls",
+            "Modular deployment: transcription, agents and recording as independently toggleable modules"
+          ]
+        },
+        virtuard: {
+          title: "Virtuard - Immersive Virtual Tours & 3D Reconstruction",
+          description: "Collaboration with the proptech Virtuard, since 2018: first the VR mobile app for real-estate virtual tours, today the ongoing work to make tours \"walkable\" through 3D reconstruction from images and a capture app.",
+          longDescription: "Two distinct phases of the same collaboration. 2018: co-developed the VR mobile app for the real-estate virtual tour platform from scratch, in a team of 3, with gesture-based navigation via gyroscope and accelerometer, 3D rendering optimised to a stable 60 FPS on mobile, and multi-device support for Oculus, Google Cardboard and generic headsets. 2026: ongoing collaboration to make virtual tours \"walkable\" — reconstructing a navigable 3D environment from images, instead of fixed 360° viewpoints — together with a companion smartphone app for capturing 3D images. Built with AI, still in progress.",
+          features: [
+            "2018: co-developed the VR mobile app from scratch in a team of 3",
+            "2018: gesture-based navigation via gyroscope and accelerometer",
+            "2018: 3D rendering optimised to a stable 60 FPS, multi-device support for Oculus, Google Cardboard and generic headsets",
+            "2026: walkable tours — reconstructing a navigable 3D environment from images instead of fixed 360° viewpoints",
+            "2026: companion smartphone app for capturing 3D images",
+            "2026: AI-built pipeline, work in progress"
+          ]
+        },
         "expedia-components": {
           title: "Expedia Group - Frontend Components",
           description: "Reusable design component system with Storybook documentation, complete testing and performance optimizations for millions of users.",
@@ -729,7 +791,7 @@ export const translations = {
           ]
         }
       },
-      
+
       // See the note on `it.projects.sprocketMetrics`.
       sprocketMetrics: [
         "2,000+ hours of calls/month",
@@ -1000,6 +1062,11 @@ export const translations = {
         "Servidor MCP stdio distribuido como un único ejecutable, que lee los recursos compartidos con la identidad del usuario conectado: las ACL NTFS las aplica el servidor de archivos, no el código de aplicación",
         "Infraestructura íntegramente on-premise y gobernanza del EU AI Act: política, registro de sistemas de IA y plan de formación art. 4"
       ],
+      virtuardCurrentDesc: [
+        "Colaboración en curso con Virtuard para hacer que los virtual tours sean \"walkable\": reconstrucción de un entorno 3D navegable a partir de imágenes, en lugar de puntos de vista fijos a 360°",
+        "Desarrollo de una app móvil complementaria para la captura de imágenes 3D",
+        "Pipeline de reconstrucción basado en IA, proyecto en curso"
+      ],
       altenDesc: [
         "Desarrollador frontend en equipo internacional de 10+ desarrolladores para Expedia Group",
         "Desarrollo del componente carrusel \"Suggested Homes\" para recomendaciones personalizadas a usuarios",
@@ -1111,6 +1178,32 @@ export const translations = {
             "Infraestructura on-premise y gobernanza del EU AI Act (política, registro de sistemas de IA y plan de formación art. 4)"
           ]
         },
+        sprocketlive: {
+          title: "SprocketLive - Asistente de IA en Tiempo Real para Call Center",
+          description: "Módulo en tiempo real de la plataforma SPRocket: transcribe la llamada mientras está en curso y genera sugerencias de IA para el operador momento a momento.",
+          longDescription: "A diferencia de SPRocket (análisis batch sobre las grabaciones): SprocketLive captura el audio desde la centralita telefónica, lo transcribe en tiempo real y usa un modelo de IA para decidir, mientras la conversación avanza, si y cuándo sugerir algo al operador. Arquitectura basada en eventos con un bus de mensajería interno y actualizaciones push vía WebSocket hacia el panel del operador; varios agentes de IA configurables pueden trabajar en paralelo sobre la misma llamada (p. ej. ventas y compliance), con un agente de validación opcional que revisa las sugerencias antes de que lleguen al operador.",
+          features: [
+            "Transcripción en vivo con proveedores intercambiables (AssemblyAI, Azure Speech)",
+            "Motor de sugerencias de IA event-driven, con varios agentes configurables en paralelo por llamada",
+            "Agente de validación (Evaluator) opcional como control de calidad antes de la entrega",
+            "Actualizaciones push vía WebSocket hacia el panel del operador y una vista de supervisor para monitoreo en vivo",
+            "Reproducción de llamadas grabadas para probar el comportamiento del sistema sin llamadas reales",
+            "Despliegue modular: transcripción, agentes y grabación como módulos activables de forma independiente"
+          ]
+        },
+        virtuard: {
+          title: "Virtuard - Tours Virtuales Inmersivos y Reconstrucción 3D",
+          description: "Colaboración con la proptech Virtuard, desde 2018: primero la app VR móvil para virtual tours inmobiliarios, hoy el trabajo en curso para hacer que los tours sean \"walkable\" mediante reconstrucción 3D a partir de imágenes y una app de captura.",
+          longDescription: "Dos fases distintas de la misma colaboración. 2018: co-desarrollo desde cero, en equipo de 3, de la app VR móvil de la plataforma de virtual tours inmobiliarios, con navegación gesture-based mediante giroscopio y acelerómetro, renderizado 3D optimizado a 60 FPS estables en móvil y compatibilidad multi-device con Oculus, Google Cardboard y visores genéricos. 2026: colaboración en curso para hacer que los virtual tours sean \"walkable\" — reconstrucción de un entorno 3D navegable a partir de imágenes, en lugar de puntos de vista fijos a 360° — junto con una app complementaria para smartphone para la captura de imágenes 3D. Construido con IA, todavía en curso.",
+          features: [
+            "2018: co-desarrollo de la app VR móvil desde cero en un equipo de 3",
+            "2018: navegación gesture-based mediante giroscopio y acelerómetro",
+            "2018: renderizado 3D optimizado a 60 FPS estables, compatibilidad multi-device con Oculus, Google Cardboard y visores genéricos",
+            "2026: tours \"walkable\" — reconstrucción de un entorno 3D navegable a partir de imágenes, en lugar de puntos de vista fijos a 360°",
+            "2026: app complementaria para smartphone para la captura de imágenes 3D",
+            "2026: pipeline construido con IA, proyecto en curso"
+          ]
+        },
         "expedia-components": {
           title: "Expedia Group - Frontend Components",
           description: "Sistema de componentes de diseño reutilizables con documentación Storybook, testing completo y optimizaciones de rendimiento para millones de usuarios.",
@@ -1134,7 +1227,7 @@ export const translations = {
           ]
         }
       },
-      
+
       // See the note on `it.projects.sprocketMetrics`.
       sprocketMetrics: [
         "2.000+ horas de llamadas/mes",

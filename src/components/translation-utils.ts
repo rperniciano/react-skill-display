@@ -48,6 +48,8 @@ export const getJobDescription = (jobId: string, t: any): string[] => {
       return t.experience.fedroDesc;
     case 'cisa':
       return t.experience.cisaDesc;
+    case 'virtuard-current':
+      return t.experience.virtuardCurrentDesc;
     case 'alten':
       return t.experience.altenDesc;
     case 'softwarelab':
