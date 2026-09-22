@@ -372,7 +372,7 @@ export const translations = {
       sprocketMetrics: [
         "4.000+ ore di chiamate/mese",
         "99.9% uptime",
-        "100+ file audio in parallelo",
+        "500+ file audio in parallelo",
         "2 tenant enterprise"
       ],
       expediaMetrics: [
@@ -828,7 +828,7 @@ export const translations = {
       sprocketMetrics: [
         "4,000+ hours of calls/month",
         "99.9% uptime",
-        "100+ audio files in parallel",
+        "500+ audio files in parallel",
         "2 enterprise tenants"
       ],
       expediaMetrics: [
@@ -1280,7 +1280,7 @@ export const translations = {
       sprocketMetrics: [
         "4.000+ horas de llamadas/mes",
         "99.9% uptime",
-        "100+ archivos de audio en paralelo",
+        "500+ archivos de audio en paralelo",
         "2 inquilinos enterprise"
       ],
       expediaMetrics: [

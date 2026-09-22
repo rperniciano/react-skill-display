@@ -156,7 +156,7 @@ export const portfolioData = {
   achievements: [
     { metric: "4.000+", label: "Hours/month", description: "Ore di chiamate processate mensilmente" },
     { metric: "99.9%", label: "Uptime", description: "Sistema mission-critical" },
-    { metric: "100+", label: "Parallel Files", description: "File audio gestiti in parallelo" },
+    { metric: "500+", label: "Parallel Files", description: "File audio gestiti in parallelo" },
     { metric: "2", label: "Enterprise Tenants", description: "Tenant attivi in produzione" },
     { metric: "10k+", label: "Transactions/year", description: "Transazioni POS gestite" },
     { metric: "+50%", label: "Performance", description: "Ottimizzazione con caching e query tuning" }
@@ -189,7 +189,7 @@ export const portfolioData = {
         hoursProcessed: "4.000+",
         tenants: 2,
         uptime: "99.9%",
-        parallelFiles: "100+"
+        parallelFiles: "500+"
       },
       technologies: ["ABP.io", ".NET 9", "C#", "Angular", "TypeScript", "SQL Server", "Elasticsearch", "Hangfire", "Azure Cognitive Services", "OpenAI GPT", "Assembly.AI", "Docker", "Apache2"]
     },
