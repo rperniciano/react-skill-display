@@ -19,10 +19,13 @@ describe('selectPublished (draft exclusion, independent of NODE_ENV)', () => {
     const result = selectPublished(ARTICLES, { includeDrafts: false });
 
     expect(result.some((article) => article.draft)).toBe(false);
-    // The only fixture article today is a draft, so filtering it out leaves
-    // nothing published at all - this is the state the production build
-    // ships in.
-    expect(result).toHaveLength(0);
+    // The English fixture is still a draft; the two Italian articles are not
+    // - this is the state the production build ships in.
+    expect(result).toHaveLength(2);
+    expect(result.map((article) => article.slug).sort()).toEqual([
+      'ai-act-articolo-4-testo-aggiornato',
+      'ai-on-premise-pa',
+    ]);
   });
 
   it('keeps drafts when includeDrafts is true', () => {

@@ -1,0 +1,130 @@
+Un ente pubblico che vuole automatizzare il protocollo, l'archivio o la
+contabilità con l'IA arriva quasi sempre alla stessa domanda, prima o poi:
+dove girano i documenti? Per un consorzio come C.I.S.A., con cui sto
+lavorando alla fase 1 - studio di fattibilità e piano operativo, non ancora un
+sistema in produzione - la risposta condiziona l'intera architettura più di
+qualsiasi scelta sul modello di IA da usare.
+
+## Non è (solo) una questione di modello
+
+È facile ridurre "IA per la PA" alla domanda "quale modello uso". Nella
+pratica, per un ente pubblico, la domanda che conta di più è un'altra: dove
+vivono i documenti, e chi può leggerli. Un modello linguistico ospitato
+altrove, per quanto capace, è un dettaglio implementativo rispetto al vincolo
+reale, che è di residenza e controllo dei dati. Questo è quello che spinge
+verso un'infrastruttura interamente on-premise: non un'ideologia sull'IA
+"sicura", ma la conseguenza diretta di un vincolo che in un ente pubblico
+normalmente non è negoziabile.
+
+## Il database resta l'unica fonte di verità
+
+La prima decisione architetturale, e la più importante, è che il modello
+linguistico non è mai la fonte di verità di nulla. Il backend - nel caso di
+C.I.S.A., proprietario, su ABP Framework in .NET, con PostgreSQL - resta
+l'unico posto dove lo stato del sistema esiste davvero. Il modello legge
+quello che il backend gli espone e propone azioni; non tiene stato proprio,
+non "ricorda" fuori dal contesto della singola conversazione, e soprattutto
+non scrive mai direttamente sul database. È una scelta ovvia detta così, ma
+vale la pena dirla esplicitamente perché è facile, quando si prototipa in
+fretta, lasciare che un agente scriva query SQL generate al volo "tanto per
+velocizzare" - ed è esattamente lì che si perde il controllo su cosa il
+sistema ha effettivamente fatto.
+
+## Un server MCP di dominio, non una query libera
+
+L'accesso dell'IA al backend passa attraverso un server MCP (Model Context
+Protocol) di dominio: un insieme di tool esplicitamente definiti, ciascuno con
+uno schema di input, un permesso associato, e una singola responsabilità -
+"smista questo protocollo al referente X", non "esegui questa query". L'AI
+non ha mai un canale per emettere SQL diretto verso il database: può solo
+chiamare i tool che il backend ha deciso di esporle, con i permessi che il
+backend ha deciso di darle. Se un'operazione non ha un tool dedicato, l'AI non
+può farla, punto - anche se saprebbe scrivere la query giusta.
+
+Questo ha un costo: ogni nuova capacità che si vuole dare all'AI richiede un
+tool nuovo, disegnato, autorizzato e testato lato backend. Non è la
+scorciatoia di un endpoint generico "esegui SQL" dietro un layer di prompt che
+filtra le richieste pericolose - quel layer, prima o poi, si buca. È più lento
+da costruire. È anche l'unico modo che conosco per poter dire, con certezza,
+cosa un'AI può e non può fare in un sistema che tratta documenti
+amministrativi.
+
+## Un secondo server MCP per i file, con permessi che non scrivo io
+
+Le condivisioni file di un ente pubblico hanno quasi sempre anni di ACL NTFS
+già stratificate: chi può vedere l'archivio di un certo ufficio, chi no, chi
+ha accesso in sola lettura. Reimplementare quella logica di permessi nel
+codice applicativo - anche solo per farla rispettare a un'AI che deve
+indicizzare l'archivio - è un lavoro enorme e, soprattutto, una nuova fonte di
+errore: due sistemi di permessi che devono restare sincronizzati sono due
+sistemi di permessi che prima o poi divergono.
+
+Per questo la lettura dei file passa da un secondo server MCP, separato dal
+primo, che non implementa un proprio modello di permessi: gira con l'identità
+dell'utente loggato, e lascia che sia il file server - con le ACL che ha già -
+a decidere cosa quell'utente può leggere. L'AI non vede mai più di quanto
+vedrebbe la persona per conto della quale sta agendo. È una separazione
+deliberata dei due canali: il server di dominio parla con il database
+attraverso tool autorizzati per permesso applicativo, il server file parla con
+lo storage attraverso permessi di sistema operativo. Superfici di fiducia
+diverse, meccanismi di applicazione diversi, nessuno dei due che si sostituisce
+all'altro.
+
+## Cosa lascio al modello, e cosa no
+
+Non tutto quello che un'automazione documentale deve fare è lavoro per un
+modello linguistico. Estrarre un numero di protocollo da un PDF, validare una
+scadenza, calcolare una riconciliazione tra fattura e pagamento: sono
+operazioni deterministiche, e le faccio fare al backend con codice
+deterministico, non a un modello che potrebbe - anche con probabilità bassa -
+sbagliare un carattere in un numero di conto. Il modello entra dove il lavoro
+è davvero interpretativo: leggere il contenuto libero di una PEC e capire a
+quale procedimento si riferisce, proporre a quale referente instradare un
+compito, riassumere un fascicolo. La regola pratica che uso è: se un output
+sbagliato è facile da verificare con una regola, lo genera il backend; se
+richiede giudizio, lo propone il modello, e una persona lo conferma.
+
+## Ogni decisione registra la propria origine
+
+Ogni decisione che il sistema persiste - uno smistamento, una classificazione,
+una riconciliazione - porta con sé un campo che dice se è stata generata
+dall'AI o da un operatore umano, e se e quando un umano l'ha confermata. Non è
+solo tracciabilità per il gusto della tracciabilità: è la condizione che rende
+vera, e non solo dichiarata, la responsabilità umana che la Legge 132/2025
+richiede esplicitamente all'articolo 14, comma 2 - l'IA in funzione
+strumentale e di supporto, la persona che resta l'unica responsabile della
+decisione. Se il sistema non registra da dove viene ogni decisione, quella
+responsabilità è un'affermazione di principio senza un modo per verificarla a
+posteriori.
+
+## Il prezzo dell'on-premise
+
+Tutto questo ha un costo, e lo dico esplicitamente perché un articolo che lo
+tacesse sarebbe marketing, non un resoconto. On-premise vuol dire che non hai
+la scalabilità elastica di un servizio cloud gestito: la capacità di calcolo
+che serve, la devi dimensionare e mantenere tu, o l'ente per cui lavori. Vuol
+dire più lavoro operativo per chi gestisce l'infrastruttura - patching,
+backup, aggiornamenti - che altrove sarebbe delegato a un fornitore cloud.
+Vuol dire che integrare un modello linguistico di terze parti, se non lo
+ospiti anche tu localmente, richiede comunque un canale verso l'esterno per
+quella parte specifica, disegnato con la stessa attenzione con cui si disegna
+il resto: cosa esce, in che forma, verso chi. Non è una scelta "gratis" fatta
+per principio; è una scelta che si giustifica quando il vincolo sulla
+residenza dei dati è reale, come lo è quasi sempre in un ente pubblico, e che
+altrimenti aggiunge complessità senza un beneficio corrispondente.
+
+## Dove siamo, davvero
+
+Per essere chiaro su cosa sto descrivendo: con C.I.S.A. sono nella fase 1,
+studio di fattibilità e piano operativo, su cinque automazioni. È il momento
+in cui questa architettura si disegna e si verifica sulla carta e su
+prototipi mirati, non quello in cui è già in produzione servendo il lavoro
+quotidiano del consorzio. Lo dico perché la distanza tra "un'architettura ben
+disegnata" e "un sistema che ha retto mesi di uso reale" è reale, e vale la
+pena nominarla piuttosto che lasciarla implicita.
+
+Se ti riconosci nello stesso problema - documenti che non possono uscire dai
+tuoi sistemi, un'AI che deve restare dentro permessi che già esistono - la
+pagina su
+[automazione documentale e AI per la pubblica amministrazione](/it/servizi/automazione-documentale-pa)
+entra nel dettaglio di cosa consegno e con quali vincoli.

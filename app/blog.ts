@@ -70,6 +70,30 @@ const SOURCES: ArticleSource[] = [
     },
     Content: () => import('../content/blog/en/model-context-protocol-a-practical-primer.mdx'),
   },
+  {
+    meta: {
+      slug: 'ai-act-articolo-4-testo-aggiornato',
+      locale: 'it',
+      title: "Articolo 4 dell'AI Act: il testo è cambiato il 27 luglio 2026",
+      description:
+        "L'articolo 4 dell'AI Act sull'alfabetizzazione in materia di IA è cambiato il 27 luglio 2026 con il Digital Omnibus. Cosa dice oggi il testo, da quando si applica davvero e cosa serve in pratica per dimostrare le misure adottate.",
+      date: '2026-09-22',
+      draft: false,
+    },
+    Content: () => import('../content/blog/it/ai-act-articolo-4-testo-aggiornato.mdx'),
+  },
+  {
+    meta: {
+      slug: 'ai-on-premise-pa',
+      locale: 'it',
+      title: "Perché un'AI per la pubblica amministrazione deve girare on-premise",
+      description:
+        "Perché un ente pubblico che automatizza documenti con l'IA finisce per aver bisogno di un'infrastruttura on-premise, un server MCP di dominio senza SQL diretto, un secondo server MCP per i file con permessi NTFS, e cosa costa davvero quella scelta.",
+      date: '2026-09-22',
+      draft: false,
+    },
+    Content: () => import('../content/blog/it/ai-on-premise-pa.mdx'),
+  },
 ];
 
 /** The full catalogue, drafts included, metadata-validated at import time. */

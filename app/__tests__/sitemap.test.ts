@@ -16,15 +16,26 @@ describe('sitemap', () => {
 
   it('gives a blog article route only the hreflang set for the locale(s) it is published in', () => {
     // Under vitest's NODE_ENV (not 'production'), publishedArticles()
-    // includes the draft fixture - same as `next dev` - so its URL is
-    // expected to show up here. The production build excludes it entirely
-    // (see app/__tests__/blog.test.ts for the draft-exclusion logic itself,
-    // and the task's curl verification for the real production sitemap).
+    // includes the draft fixture - same as `next dev` - alongside the two
+    // published Italian articles, so all three URLs are expected to show up
+    // here. The production build excludes the draft entirely (see
+    // app/__tests__/blog.test.ts for the draft-exclusion logic itself, and
+    // the task's curl verification for the real production sitemap).
     const entries = sitemap();
     const articleEntries = entries.filter((entry) => entry.url.includes('/blog/'));
 
-    expect(articleEntries).toHaveLength(1);
-    expect(articleEntries[0].url).toBe(`${SITE_URL}/en/blog/model-context-protocol-a-practical-primer`);
-    expect(Object.keys(articleEntries[0].alternates!.languages!).sort()).toEqual(['en', 'x-default']);
+    expect(articleEntries).toHaveLength(3);
+
+    const draftEntry = articleEntries.find((entry) =>
+      entry.url.endsWith('/blog/model-context-protocol-a-practical-primer'),
+    );
+    expect(draftEntry?.url).toBe(`${SITE_URL}/en/blog/model-context-protocol-a-practical-primer`);
+    expect(Object.keys(draftEntry!.alternates!.languages!).sort()).toEqual(['en', 'x-default']);
+
+    for (const slug of ['ai-act-articolo-4-testo-aggiornato', 'ai-on-premise-pa']) {
+      const entry = articleEntries.find((item) => item.url.endsWith(`/blog/${slug}`));
+      expect(entry?.url).toBe(`${SITE_URL}/it/blog/${slug}`);
+      expect(Object.keys(entry!.alternates!.languages!).sort()).toEqual(['it', 'x-default']);
+    }
   });
 });
