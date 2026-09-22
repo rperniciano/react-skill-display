@@ -70,7 +70,7 @@ const WorkExperience = () => {
       location: "Cagliari",
       description: getJobDescription('virtuard-current', t),
       type: "work",
-      technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering", "AI"],
+      technologies: ["3D Reconstruction", "Computer Vision", "AI", "3D Rendering"],
       current: true
     },
     {

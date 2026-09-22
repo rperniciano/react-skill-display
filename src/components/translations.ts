@@ -181,9 +181,12 @@ export const translations = {
         "Infrastruttura interamente on-premise e impianto di governance EU AI Act: policy, registro dei sistemi AI e piano di formazione art. 4"
       ],
       virtuardCurrentDesc: [
-        "Collaborazione in corso con Virtuard per rendere i virtual tour \"walkable\": ricostruzione di un ambiente 3D navigabile a partire da immagini, anziché punti di vista fissi a 360°",
-        "Sviluppo di un'app mobile companion per l'acquisizione di immagini 3D",
-        "Pipeline di ricostruzione basata su AI, progetto in corso"
+        "Pilota tecnico su quattro approcci per rendere i tour \"walkable\": depth estimation monoculare, Gaussian splatting da video walk-through, ricostruzione generativa, fusione multi-vista",
+        "Approccio scelto, idea propria: fondere le panoramiche già esistenti dello stesso ambiente riprese da punti diversi, per ricostruire geometria realmente fotografata",
+        "Area non ricostruita scesa dal 26.6% al 2.7% a 4.2 m dal punto di ripresa (dal 19.2% al 6.9% a 2.1 m), qualità di allineamento da 0.056 a 0.321",
+        "Pipeline che confronta due stime di scala indipendenti e segnala il risultato come inaffidabile quando divergono, invece di restituire in silenzio una stanza sbagliata",
+        "Ricostruzione generativa valutata e scartata: introduce geometrie mai fotografate e ha vincoli di licenza sui modelli disponibili",
+        "Scala metrica assoluta non ricavabile dalle sole panoramiche: servono planimetrie reali, raccolte tramite un'interfaccia di calibrazione scala/planimetria integrata in piattaforma"
       ],
       altenDesc: [
         "Sviluppatore frontend in team internazionale di 10+ sviluppatori per Expedia Group",
@@ -325,15 +328,15 @@ export const translations = {
         },
         virtuard: {
           title: "Virtuard - Virtual Tour Immersivi e Ricostruzione 3D",
-          description: "Collaborazione con la proptech Virtuard, dal 2018: prima lo sviluppo dell'app VR mobile per virtual tour immobiliari, oggi il lavoro in corso per rendere i tour \"walkable\" con ricostruzione 3D da immagini e una app di acquisizione.",
-          longDescription: "Due fasi distinte della stessa collaborazione. 2018: co-sviluppo da zero, in team di 3, dell'app VR mobile della piattaforma di virtual tour immobiliare, con navigazione gesture-based tramite giroscopio e accelerometro, rendering 3D ottimizzato a 60 FPS stabili su mobile e supporto multi-device per Oculus, Google Cardboard e visori generici. 2026: collaborazione in corso per rendere i virtual tour \"walkable\" — ricostruzione di un ambiente 3D navigabile a partire da immagini, anziché punti di vista fissi a 360° — insieme a un'app companion per smartphone per l'acquisizione delle immagini 3D. Lavoro costruito con AI, ancora in corso.",
+          description: "Collaborazione con la proptech Virtuard, dal 2018: prima l'app VR mobile per virtual tour immobiliari, oggi un pilota R&D che ricostruisce gli ambienti in 3D dalle panoramiche già esistenti dei tour.",
+          longDescription: "Due fasi della stessa collaborazione. 2018: co-sviluppo da zero, in team di 3, dell'app VR mobile per virtual tour immobiliari a 360°, con rendering a 60 FPS multi-device. 2026: pilota tecnico per rendere i tour esplorabili in 3D. Su quattro approcci di ricostruzione valutati, ho scelto un'idea propria: fondere le panoramiche già esistenti dello stesso ambiente riprese da punti diversi, per ricostruire geometria realmente fotografata. R&D in corso, non ancora rivolta ai visitatori del sito.",
           features: [
-            "2018: co-sviluppo dell'app VR mobile da zero in team di 3",
-            "2018: navigazione gesture-based tramite giroscopio e accelerometro",
-            "2018: rendering 3D ottimizzato a 60 FPS stabili, multi-device (Oculus, Google Cardboard, visori generici)",
-            "2026: tour \"walkable\" — ricostruzione di un ambiente 3D navigabile a partire da immagini, anziché punti di vista fissi a 360°",
-            "2026: app companion per l'acquisizione di immagini 3D da smartphone",
-            "2026: pipeline costruita con AI, progetto in corso"
+            "2018: co-sviluppo dell'app VR mobile da zero in team di 3, navigazione gesture-based e rendering a 60 FPS multi-device (Oculus, Google Cardboard, visori generici)",
+            "2026: quattro tecniche di ricostruzione valutate — depth estimation monoculare da singola panoramica, Gaussian splatting da video walk-through, ricostruzione generativa, fusione multi-vista",
+            "2026: approccio scelto, idea propria — fondere le panoramiche già esistenti dello stesso ambiente da punti diversi, ogni scatto copre i punti ciechi dell'altro",
+            "2026: area non ricostruita scesa dal 26.6% al 2.7% a 4.2 m dal punto di ripresa (dal 19.2% al 6.9% a 2.1 m), qualità di allineamento da 0.056 a 0.321",
+            "2026: la pipeline confronta due stime di scala indipendenti e segnala il risultato come inaffidabile quando divergono, invece di restituire in silenzio una stanza sbagliata — stessa logica del progetto C.I.S.A.",
+            "2026: ricostruzione generativa scartata — geometrie mai fotografate e vincoli di licenza; serve una scala metrica reale (planimetrie), raccolta ora tramite un'interfaccia di calibrazione in piattaforma"
           ]
         },
         "expedia-components": {
@@ -367,7 +370,7 @@ export const translations = {
       // Italian grouping to /en ("1.000.000+ users served") and, where a chip
       // opened with a word instead of a number, shifted the labels by one.
       sprocketMetrics: [
-        "2.000+ ore di chiamate/mese",
+        "4.000+ ore di chiamate/mese",
         "99.9% uptime",
         "100+ file audio in parallelo",
         "2 tenant enterprise"
@@ -406,7 +409,7 @@ export const translations = {
       aiProcessing: "AI Processing",
       // Bio paragraphs rendered by About.tsx
       profile1: "Senior .NET Developer & Solution Architect con 7+ anni di esperienza nella progettazione di soluzioni enterprise scalabili, oggi specializzato in AI in produzione: architetture multi-agente, integrazione LLM (Azure OpenAI, Anthropic Claude), pipeline real-time e RAG.",
-      profile2: "Come Solution Architect & Technical Lead in FEDRO Software ho progettato e portato in produzione SPRocket e SprocketLive (analisi AI e assistenza live per call center): 2.000+ ore audio/mese, multi-tenant, 99.9% uptime, da zero a produzione in 3 mesi. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile2: "Come Solution Architect & Technical Lead in FEDRO Software ho progettato e portato in produzione SPRocket e SprocketLive (analisi AI e assistenza live per call center): 4.000+ ore audio/mese, multi-tenant, 99.9% uptime, da zero a produzione in 3 mesi. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
       profile3: "Ho ridotto l'85% del codice legacy attraverso refactoring strategico e implementato un sistema di orchestrazione che gestisce il processing parallelo di centinaia di file audio.",
       profile4: "Ho lavorato con team internazionali per clienti come Expedia, sviluppando componenti utilizzati da milioni di utenti. Il mio approccio combina competenze tecniche con una visione strategica per creare soluzioni che risolvono problemi reali.",
       // Soft skills grid
@@ -640,9 +643,12 @@ export const translations = {
         "Fully on-premise infrastructure and EU AI Act governance: policy, AI systems register and an Article 4 training plan"
       ],
       virtuardCurrentDesc: [
-        "Ongoing collaboration with Virtuard to make virtual tours \"walkable\": reconstructing a navigable 3D environment from images, instead of fixed 360° viewpoints",
-        "Development of a companion mobile app for capturing 3D images",
-        "AI-based reconstruction pipeline, work in progress"
+        "Technical pilot across four approaches to make tours walkable: monocular depth estimation, Gaussian splatting from walk-through video, generative reconstruction, multi-view fusion",
+        "Chosen approach, my own idea: fusing the panoramas the tours already have of the same room, shot from different points, to reconstruct geometry that was genuinely photographed",
+        "Unreconstructed area down from 26.6% to 2.7% at 4.2 m from the shooting point (from 19.2% to 6.9% at 2.1 m), alignment quality from 0.056 to 0.321",
+        "Pipeline that compares two independent scale estimates and flags the result as unreliable when they diverge, instead of silently returning the wrong room",
+        "Generative reconstruction evaluated and set aside: it invents geometry never photographed and carries licensing constraints on the available models",
+        "Absolute metric scale not recoverable from the panoramas alone: real floor plans are needed, now collected through a scale/floor-plan calibration interface built into the platform"
       ],
       altenDesc: [
         "Frontend developer in international team of 10+ developers for Expedia Group",
@@ -783,15 +789,15 @@ export const translations = {
         },
         virtuard: {
           title: "Virtuard - Immersive Virtual Tours & 3D Reconstruction",
-          description: "Collaboration with the proptech Virtuard, since 2018: first the VR mobile app for real-estate virtual tours, today the ongoing work to make tours \"walkable\" through 3D reconstruction from images and a capture app.",
-          longDescription: "Two distinct phases of the same collaboration. 2018: co-developed the VR mobile app for the real-estate virtual tour platform from scratch, in a team of 3, with gesture-based navigation via gyroscope and accelerometer, 3D rendering optimised to a stable 60 FPS on mobile, and multi-device support for Oculus, Google Cardboard and generic headsets. 2026: ongoing collaboration to make virtual tours \"walkable\" — reconstructing a navigable 3D environment from images, instead of fixed 360° viewpoints — together with a companion smartphone app for capturing 3D images. Built with AI, still in progress.",
+          description: "Collaboration with the proptech Virtuard, since 2018: first the VR mobile app for real-estate virtual tours, today an R&D pilot that reconstructs the rooms in 3D from the panoramas the tours already have.",
+          longDescription: "Two phases of the same collaboration. 2018: co-developed the VR mobile app for real-estate virtual tours from scratch, in a team of 3, with 60 FPS multi-device rendering. 2026: a technical pilot to make tours explorable in 3D. Out of four reconstruction approaches evaluated, I chose an idea of my own: fusing the panoramas the tours already have of the same room, shot from different points, to reconstruct geometry that was genuinely photographed. R&D in progress, not yet facing site visitors.",
           features: [
-            "2018: co-developed the VR mobile app from scratch in a team of 3",
-            "2018: gesture-based navigation via gyroscope and accelerometer",
-            "2018: 3D rendering optimised to a stable 60 FPS, multi-device support for Oculus, Google Cardboard and generic headsets",
-            "2026: walkable tours — reconstructing a navigable 3D environment from images instead of fixed 360° viewpoints",
-            "2026: companion smartphone app for capturing 3D images",
-            "2026: AI-built pipeline, work in progress"
+            "2018: co-developed the VR mobile app from scratch in a team of 3, with gesture-based navigation and 60 FPS multi-device rendering (Oculus, Google Cardboard, generic headsets)",
+            "2026: four reconstruction techniques evaluated — monocular depth estimation from a single panorama, Gaussian splatting from walk-through video, generative reconstruction, multi-view fusion",
+            "2026: chosen approach, my own idea — fusing the panoramas the tours already have of the same room from different points, each shot filling the other's blind spots",
+            "2026: unreconstructed area down from 26.6% to 2.7% at 4.2 m from the shooting point (from 19.2% to 6.9% at 2.1 m), alignment quality from 0.056 to 0.321",
+            "2026: the pipeline compares two independent scale estimates and flags the result as unreliable when they diverge, instead of silently returning the wrong room — same provenance logic as the C.I.S.A. project",
+            "2026: generative reconstruction set aside — it invents geometry never photographed, plus licensing constraints on the available models; real metric scale needs floor plans, now collected through a calibration interface built into the platform"
           ]
         },
         "expedia-components": {
@@ -820,7 +826,7 @@ export const translations = {
 
       // See the note on `it.projects.sprocketMetrics`.
       sprocketMetrics: [
-        "2,000+ hours of calls/month",
+        "4,000+ hours of calls/month",
         "99.9% uptime",
         "100+ audio files in parallel",
         "2 enterprise tenants"
@@ -859,7 +865,7 @@ export const translations = {
       aiProcessing: "AI Processing",
       // Bio paragraphs rendered by About.tsx
       profile1: "Senior .NET Developer & Solution Architect with 7+ years of experience designing scalable enterprise solutions, today specialized in production AI: multi-agent architectures, LLM integration (Azure OpenAI, Anthropic Claude), real-time pipelines and RAG.",
-      profile2: "As Solution Architect & Technical Lead at FEDRO Software I designed and took to production SPRocket and SprocketLive (AI analysis and live assistance for call centers): 2,000+ audio hours/month, multi-tenant, 99.9% uptime, from zero to production in 3 months. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile2: "As Solution Architect & Technical Lead at FEDRO Software I designed and took to production SPRocket and SprocketLive (AI analysis and live assistance for call centers): 4,000+ audio hours/month, multi-tenant, 99.9% uptime, from zero to production in 3 months. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
       profile3: "I reduced 85% of legacy code through strategic refactoring and implemented an orchestration system that manages parallel processing of hundreds of audio files.",
       profile4: "I've worked with international teams for clients like Expedia, developing components used by millions of users. My approach combines technical skills with a strategic vision to create solutions that solve real problems.",
       // Soft skills grid
@@ -1089,9 +1095,12 @@ export const translations = {
         "Infraestructura íntegramente on-premise y gobernanza del EU AI Act: política, registro de sistemas de IA y plan de formación art. 4"
       ],
       virtuardCurrentDesc: [
-        "Colaboración en curso con Virtuard para hacer que los virtual tours sean \"walkable\": reconstrucción de un entorno 3D navegable a partir de imágenes, en lugar de puntos de vista fijos a 360°",
-        "Desarrollo de una app móvil complementaria para la captura de imágenes 3D",
-        "Pipeline de reconstrucción basado en IA, proyecto en curso"
+        "Piloto técnico sobre cuatro enfoques para hacer los tours \"walkable\": depth estimation monocular, Gaussian splatting a partir de video walk-through, reconstrucción generativa, fusión multi-vista",
+        "Enfoque elegido, idea propia: fusionar las panorámicas que ya existen del mismo ambiente, tomadas desde puntos distintos, para reconstruir una geometría realmente fotografiada",
+        "Área no reconstruida bajó del 26.6% al 2.7% a 4.2 m del punto de toma (del 19.2% al 6.9% a 2.1 m), calidad de alineación de 0.056 a 0.321",
+        "Pipeline que compara dos estimaciones de escala independientes y marca el resultado como no confiable cuando divergen, en lugar de devolver en silencio una habitación equivocada",
+        "Reconstrucción generativa evaluada y descartada: introduce geometrías nunca fotografiadas y tiene restricciones de licencia sobre los modelos disponibles",
+        "Escala métrica absoluta no recuperable solo de las panorámicas: se necesitan planos reales, recopilados ahora mediante una interfaz de calibración de escala/plano integrada en la plataforma"
       ],
       altenDesc: [
         "Desarrollador frontend en equipo internacional de 10+ desarrolladores para Expedia Group",
@@ -1232,15 +1241,15 @@ export const translations = {
         },
         virtuard: {
           title: "Virtuard - Tours Virtuales Inmersivos y Reconstrucción 3D",
-          description: "Colaboración con la proptech Virtuard, desde 2018: primero la app VR móvil para virtual tours inmobiliarios, hoy el trabajo en curso para hacer que los tours sean \"walkable\" mediante reconstrucción 3D a partir de imágenes y una app de captura.",
-          longDescription: "Dos fases distintas de la misma colaboración. 2018: co-desarrollo desde cero, en equipo de 3, de la app VR móvil de la plataforma de virtual tours inmobiliarios, con navegación gesture-based mediante giroscopio y acelerómetro, renderizado 3D optimizado a 60 FPS estables en móvil y compatibilidad multi-device con Oculus, Google Cardboard y visores genéricos. 2026: colaboración en curso para hacer que los virtual tours sean \"walkable\" — reconstrucción de un entorno 3D navegable a partir de imágenes, en lugar de puntos de vista fijos a 360° — junto con una app complementaria para smartphone para la captura de imágenes 3D. Construido con IA, todavía en curso.",
+          description: "Colaboración con la proptech Virtuard, desde 2018: primero la app VR móvil para virtual tours inmobiliarios, hoy un piloto de I+D que reconstruye los ambientes en 3D a partir de las panorámicas que los tours ya tienen.",
+          longDescription: "Dos fases de la misma colaboración. 2018: co-desarrollo desde cero, en equipo de 3, de la app VR móvil para virtual tours inmobiliarios a 360°, con renderizado a 60 FPS multi-dispositivo. 2026: piloto técnico para hacer que los tours sean explorables en 3D. De cuatro enfoques de reconstrucción evaluados, elegí una idea propia: fusionar las panorámicas que los tours ya tienen del mismo ambiente, tomadas desde puntos distintos, para reconstruir una geometría realmente fotografiada. I+D en curso, todavía no dirigida a los visitantes del sitio.",
           features: [
-            "2018: co-desarrollo de la app VR móvil desde cero en un equipo de 3",
-            "2018: navegación gesture-based mediante giroscopio y acelerómetro",
-            "2018: renderizado 3D optimizado a 60 FPS estables, compatibilidad multi-device con Oculus, Google Cardboard y visores genéricos",
-            "2026: tours \"walkable\" — reconstrucción de un entorno 3D navegable a partir de imágenes, en lugar de puntos de vista fijos a 360°",
-            "2026: app complementaria para smartphone para la captura de imágenes 3D",
-            "2026: pipeline construido con IA, proyecto en curso"
+            "2018: co-desarrollo de la app VR móvil desde cero en equipo de 3, con navegación gesture-based y renderizado a 60 FPS multi-dispositivo (Oculus, Google Cardboard, visores genéricos)",
+            "2026: cuatro técnicas de reconstrucción evaluadas — depth estimation monocular desde una sola panorámica, Gaussian splatting a partir de video walk-through, reconstrucción generativa, fusión multi-vista",
+            "2026: enfoque elegido, idea propia — fusionar las panorámicas que ya existen del mismo ambiente tomadas desde puntos distintos, cada toma cubre los puntos ciegos de la otra",
+            "2026: área no reconstruida bajó del 26.6% al 2.7% a 4.2 m del punto de toma (del 19.2% al 6.9% a 2.1 m), calidad de alineación de 0.056 a 0.321",
+            "2026: la pipeline compara dos estimaciones de escala independientes y marca el resultado como no confiable cuando divergen, en lugar de devolver en silencio una habitación equivocada — misma lógica de procedencia que el proyecto C.I.S.A.",
+            "2026: reconstrucción generativa descartada — introduce geometrías nunca fotografiadas y tiene restricciones de licencia; la escala métrica real necesita planos con medidas, recopilados ahora mediante una interfaz de calibración integrada en la plataforma"
           ]
         },
         "expedia-components": {
@@ -1269,7 +1278,7 @@ export const translations = {
 
       // See the note on `it.projects.sprocketMetrics`.
       sprocketMetrics: [
-        "2.000+ horas de llamadas/mes",
+        "4.000+ horas de llamadas/mes",
         "99.9% uptime",
         "100+ archivos de audio en paralelo",
         "2 inquilinos enterprise"
@@ -1308,7 +1317,7 @@ export const translations = {
       aiProcessing: "Procesamiento IA",
       // Bio paragraphs rendered by About.tsx
       profile1: "Senior .NET Developer & Solution Architect con 7+ años de experiencia en el diseño de soluciones enterprise escalables, hoy especializado en IA en producción: arquitecturas multiagente, integración LLM (Azure OpenAI, Anthropic Claude), pipelines real-time y RAG.",
-      profile2: "Como Solution Architect & Technical Lead en FEDRO Software he diseñado y llevado a producción SPRocket y SprocketLive (análisis con IA y asistencia live para call centers): 2.000+ horas de audio/mes, multi-tenant, 99.9% uptime, de cero a producción en 3 meses. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
+      profile2: "Como Solution Architect & Technical Lead en FEDRO Software he diseñado y llevado a producción SPRocket y SprocketLive (análisis con IA y asistencia live para call centers): 4.000+ horas de audio/mes, multi-tenant, 99.9% uptime, de cero a producción en 3 meses. Stack: .NET 9 · ABP.io (Clean Architecture, DDD, CQRS) · Angular · SignalR.",
       profile3: "He reducido el 85% del código legacy mediante refactoring estratégico e implementado un sistema de orquestación que gestiona el procesamiento paralelo de cientos de archivos de audio.",
       profile4: "He trabajado con equipos internacionales para clientes como Expedia, desarrollando componentes utilizados por millones de usuarios. Mi enfoque combina competencias técnicas con una visión estratégica para crear soluciones que resuelven problemas reales.",
       // Soft skills grid

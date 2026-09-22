@@ -115,7 +115,11 @@ const projects: PortfolioProject[] = [
     // collaboration rather than a platform he leads or a product he owns.
     id: "virtuard",
     image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1000&q=80",
-    technologies: ["Unity", "C#", "Google VR SDK", "3D Rendering", "AI"],
+    // Only the first 4 render as visible tags on the grid card (Projects.tsx
+    // slices to 4, the rest collapse into a "+N" badge) - ordered so the
+    // current 3D-reconstruction work surfaces alongside the 2018 stack
+    // instead of hiding behind the count.
+    technologies: ["Unity", "C#", "3D Reconstruction", "Computer Vision", "Google VR SDK", "3D Rendering", "AI"],
     type: "enterprise",
     demo: "https://virtuard.com"
   },
@@ -150,7 +154,7 @@ export const portfolioData = {
   },
 
   achievements: [
-    { metric: "2.000+", label: "Hours/month", description: "Ore di chiamate processate mensilmente" },
+    { metric: "4.000+", label: "Hours/month", description: "Ore di chiamate processate mensilmente" },
     { metric: "99.9%", label: "Uptime", description: "Sistema mission-critical" },
     { metric: "100+", label: "Parallel Files", description: "File audio gestiti in parallelo" },
     { metric: "2", label: "Enterprise Tenants", description: "Tenant attivi in produzione" },
@@ -182,7 +186,7 @@ export const portfolioData = {
         "Sistema di retry policies e circuit breaker per resilienza"
       ],
       metrics: {
-        hoursProcessed: "2.000+",
+        hoursProcessed: "4.000+",
         tenants: 2,
         uptime: "99.9%",
         parallelFiles: "100+"

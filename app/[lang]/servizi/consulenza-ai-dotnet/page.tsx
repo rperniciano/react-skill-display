@@ -156,7 +156,7 @@ export default async function AiDotnetConsultingPage({ params }: ServicePageProp
                   Con SPRocket e SprocketLive, in FEDRO Software, sono passato da zero a
                   produzione in 3 mesi: una piattaforma per l&apos;analisi AI e
                   l&apos;assistenza live nei call center, costruita da zero su ABP.io. Oggi
-                  gestisce 2.000+ ore di audio al mese, è multi-tenant, lavora al 99.9% di
+                  gestisce 4.000+ ore di audio al mese, è multi-tenant, lavora al 99.9% di
                   uptime e processa 100+ file audio in parallelo. Stack: .NET 9, ABP.io (Clean
                   Architecture, DDD, CQRS), Angular, Elasticsearch, Hangfire, Azure Cognitive
                   Services, Azure OpenAI, Anthropic Claude, Assembly.AI, Docker.

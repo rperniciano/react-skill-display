@@ -248,7 +248,7 @@ export default async function DocumentAutomationPaPage({ params }: ServicePagePr
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-4">
                   Per un riferimento su cosa intendo per &laquo;portato in produzione davvero&raquo;:
                   con SPRocket, in FEDRO Software, sono passato da zero a produzione in 3 mesi,
-                  con un sistema che oggi gestisce 2.000+ ore di audio al mese al 99.9% di
+                  con un sistema che oggi gestisce 4.000+ ore di audio al mese al 99.9% di
                   uptime.
                 </p>
               </section>
