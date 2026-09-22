@@ -63,7 +63,7 @@ const WorkExperience = () => {
       jobId: 'virtuard-current',
       // Invented title, not sourced from any existing copy - flagged for the
       // owner to confirm or replace, same as the C.I.S.A. title was.
-      title: "AI & 3D RECONSTRUCTION CONSULTANT",
+      title: "AI & 3D DEVELOPER",
       organization: t.experience.cisaOrganization,
       client: "Virtuard",
       period: "2026 - Presente",

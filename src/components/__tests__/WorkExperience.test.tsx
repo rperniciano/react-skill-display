@@ -31,7 +31,7 @@ describe('WorkExperience Component', () => {
     expect(screen.getAllByText('Attività in proprio')).toHaveLength(2);
     expect(screen.getByText('SOLUTION ARCHITECT & FULL-STACK DEVELOPER')).toBeInTheDocument();
     expect(screen.getByText(/C\.I\.S\.A\./)).toBeInTheDocument();
-    expect(screen.getByText('AI & 3D RECONSTRUCTION CONSULTANT')).toBeInTheDocument();
+    expect(screen.getByText('AI & 3D DEVELOPER')).toBeInTheDocument();
 
     // Check that timeline shows current positions (FEDRO and Epicode are both current)
     const presenteElements = screen.getAllByText(/Presente/);
