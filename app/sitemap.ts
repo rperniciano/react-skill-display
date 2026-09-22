@@ -23,6 +23,22 @@ type LocalisedRoute = {
 const ROUTES: LocalisedRoute[] = [
   // The locale home pages.
   { path: '', locales: LANGUAGES, changeFrequency: 'monthly', priority: 1 },
+  // Commercial service pages. Italian only by design - see CLAUDE.md - so
+  // `locales` is `['it']`, not `LANGUAGES`: the same guard that keeps a
+  // locale-restricted blog article from advertising an hreflang alternate
+  // that 404s applies here too.
+  {
+    path: '/servizi/automazione-documentale-pa',
+    locales: ['it'],
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    path: '/servizi/consulenza-ai-dotnet',
+    locales: ['it'],
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
 ];
 
 /**

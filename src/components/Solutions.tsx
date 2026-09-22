@@ -1,31 +1,45 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Brain, Lock, BarChart, Globe, Settings } from "lucide-react";
+import { ShoppingCart, Brain, Lock, BarChart, Globe, Settings, ArrowRight } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 import { AnimatedSection } from "./AnimatedSection";
 import { StaggeredGrid } from "./StaggeredGrid";
 
 const Solutions = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  // Contextual links into the two Italian-only /servizi pages (see
+  // CLAUDE.md). Only populated for 'it': those pages don't exist under /en
+  // or /es, so an English or Spanish visitor sees these cards exactly as
+  // before - no dead link, no surprise language switch.
+  const isItalian = language === 'it';
 
   const solutions = [
     {
       icon: <ShoppingCart className="h-8 w-8" />,
       title: t.solutions.enterpriseTitle,
-      description: t.solutions.enterpriseDesc
+      description: t.solutions.enterpriseDesc,
+      link: isItalian
+        ? { href: '/it/servizi/automazione-documentale-pa', label: 'Automazione documentale per la PA' }
+        : undefined
     },
     {
       icon: <Brain className="h-8 w-8" />,
       title: t.solutions.aiTitle,
-      description: t.solutions.aiDesc
+      description: t.solutions.aiDesc,
+      link: isItalian
+        ? { href: '/it/servizi/consulenza-ai-dotnet', label: 'Consulenza AI e .NET' }
+        : undefined
     },
     {
       icon: <Lock className="h-8 w-8" />,
       title: t.solutions.missionCriticalTitle,
-      description: t.solutions.missionCriticalDesc
+      description: t.solutions.missionCriticalDesc,
+      link: undefined as { href: string; label: string } | undefined
     }
   ];
 
@@ -67,6 +81,15 @@ const Solutions = () => {
                   <p className="text-gray-600 dark:text-gray-400 text-center text-sm leading-relaxed">
                     {solution.description}
                   </p>
+                  {solution.link && (
+                    <Link
+                      href={solution.link.href}
+                      className="mt-4 flex items-center justify-center gap-1 text-sm font-medium text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
+                    >
+                      {solution.link.label}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             ))}

@@ -33,6 +33,44 @@ export function personJsonLd(language: Language) {
   };
 }
 
+/**
+ * `Service`, rendered on each Italian-only commercial page under
+ * /it/servizi/<slug>. Built only from facts already written on that page -
+ * no price, no `Offer`, no `AggregateRating`: nothing about pricing or
+ * commercial terms is published anywhere else on the site either, so there
+ * is nothing sourced to put here.
+ *
+ * `language` is not a parameter: every page this is called from exists in
+ * Italian only (see CLAUDE.md's "who this is for" section), so the URL and
+ * the provider link are always built against 'it'.
+ */
+export function serviceJsonLd({
+  name,
+  description,
+  serviceType,
+  path,
+}: {
+  name: string;
+  description: string;
+  serviceType: string;
+  path: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description,
+    serviceType,
+    url: localeUrl('it', path),
+    provider: {
+      '@type': 'Person',
+      name: portfolioData.personal.name,
+      url: localeUrl('it'),
+    },
+    areaServed: 'IT',
+  };
+}
+
 /** `BlogPosting`, rendered on each article page. */
 export function blogPostingJsonLd(
   article: Pick<Article, 'title' | 'description' | 'date' | 'modifiedDate' | 'locale'>,
