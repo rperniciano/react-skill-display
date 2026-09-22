@@ -19,6 +19,16 @@ const nextConfig: NextConfig = {
 // content/blog/ - compiles to a React component. No plugin options: the
 // article body is plain Markdown-in-JSX (headings, tables, code fences,
 // paragraphs); nothing here needs remark/rehype plugins yet.
-const withMDX = createMDX({});
+// remark-gfm is named as a STRING, not imported as a function. Turbopack runs
+// the MDX pipeline in Rust and cannot receive a JavaScript function, so the
+// widely documented remarkPlugins: [remarkGfm] form does not apply here - see
+// node_modules/next/dist/docs/01-app/02-guides/mdx.md, "Using Plugins with
+// Turbopack". Without gfm, a pipe-syntax Markdown table in an article renders
+// as literal text, with no error and no warning.
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: ['remark-gfm'],
+  },
+});
 
 export default withMDX(nextConfig);
