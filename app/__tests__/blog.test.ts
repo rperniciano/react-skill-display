@@ -19,12 +19,14 @@ describe('selectPublished (draft exclusion, independent of NODE_ENV)', () => {
     const result = selectPublished(ARTICLES, { includeDrafts: false });
 
     expect(result.some((article) => article.draft)).toBe(false);
-    // The English fixture is still a draft; the two Italian articles are not
-    // - this is the state the production build ships in.
-    expect(result).toHaveLength(2);
+    // The English fixture is still a draft; the two Italian articles and the
+    // English multi-view-fusion article are not - this is the state the
+    // production build ships in.
+    expect(result).toHaveLength(3);
     expect(result.map((article) => article.slug).sort()).toEqual([
       'ai-act-articolo-4-testo-aggiornato',
       'ai-on-premise-pa',
+      'fusing-360-panoramas-into-walkable-3d-space',
     ]);
   });
 

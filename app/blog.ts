@@ -94,6 +94,18 @@ const SOURCES: ArticleSource[] = [
     },
     Content: () => import('../content/blog/it/ai-on-premise-pa.mdx'),
   },
+  {
+    meta: {
+      slug: 'fusing-360-panoramas-into-walkable-3d-space',
+      locale: 'en',
+      title: 'Reconstructing a Walkable 3D Space From 360° Panoramas, Without Inventing Geometry',
+      description:
+        'Filling the blind spots of a single 360° panorama by fusing it with a second one of the same room: verifying the match with dense feature matching and MAGSAC, then aligning with RANSAC, Umeyama and ICP - real photographed geometry, not invented, with measured results.',
+      date: '2026-09-22',
+      draft: false,
+    },
+    Content: () => import('../content/blog/en/fusing-360-panoramas-into-walkable-3d-space.mdx'),
+  },
 ];
 
 /** The full catalogue, drafts included, metadata-validated at import time. */

@@ -1,0 +1,244 @@
+A single 360° panorama lets a viewer stand in one spot and look anywhere; it
+does not let them walk toward the window or step past the sofa. That's the
+whole limitation of a virtual tour built from panoramas - one shot per room,
+and the room stops being explorable at the doorway. I've been developing a way
+past that limitation for Virtuard, a villa-rental platform whose listings are
+built entirely from 360° tours: one panorama per room, so a viewer can rotate
+from the shooting point but not move through the space.
+
+The obvious fix is monocular depth estimation: feed the panorama through a
+model that predicts a depth value for every pixel, and you get a 3D surface
+instead of a flat image. It works, it's fast, and it invents nothing that
+wasn't photographed - but it only gets you so far. Move the virtual camera
+more than about a metre from where the photograph was actually taken and you
+start hitting black holes: areas the original camera never saw, because they
+were behind a sofa, around a corner, or simply outside its field of view from
+that one point. A single viewpoint only ever describes what was visible from
+that viewpoint.
+
+## The insight hiding in the data
+
+The fix I ended up building doesn't start from a smarter depth model. It
+starts from something already sitting in the data: tours frequently already
+contain more than one panorama of the same room, shot from different points,
+because whoever captured the tour walked in, took a shot, moved a few metres,
+and took another - a "Living Room" and a "Living Room 2". Each of those
+panoramas sees exactly what the other one can't. The corner that's a black
+hole in the first shot is often plainly visible from the second. If I can work
+out that two panoramas belong to the same physical room and align them
+correctly, I can fuse them, and the blind spots get filled with geometry that
+was genuinely photographed - not guessed.
+
+That's the core idea: multi-view fusion. Everything else in this piece is
+either the case for choosing it over the alternatives, or the mechanics of
+making it actually work.
+
+## Four ways to fill in a room, and why I picked one
+
+I evaluated four approaches before settling on multi-view fusion, and each has
+a real trade-off worth stating plainly rather than glossing over.
+
+**Monocular depth from a single panorama** is fast and invents nothing beyond
+what the depth model infers from a single image, but it tops out at roughly a
+metre of usable movement before the black holes dominate.
+
+**Gaussian splatting from a walk-through video** produces by far the best
+quality of the four - it's the closest thing to an actual 3D capture of the
+room. But it needs a dedicated video walk-through shot for every property,
+which doesn't scale against an existing catalogue of tours that were never
+filmed that way.
+
+**Generative 3D reconstruction** - feeding the existing panorama into a model
+that hallucinates plausible 3D structure for the parts it can't see - reuses
+the photos that already exist and produces results that look excellent at
+first glance. I set it aside for two reasons, both worth stating rather than
+hand-waving. First, it invents things: rooms, windows, even a pool that isn't
+there. That's disqualifying on a rental listing, where the person booking is
+deciding based on what they believe they saw - showing them square footage or
+a view that doesn't exist isn't a rendering quirk, it's a promise the property
+can't keep. Second, the leading open generative pipelines for this kind of
+reconstruction lean on components released under non-commercial licences,
+which rules them out of a commercial product without negotiating a separate
+agreement - a real constraint, independent of how good the output looks.
+
+**Multi-view fusion** - my own approach, and the subject of the rest of this
+piece - reuses the panoramas that already exist, same as the generative
+approach, but instead of inventing what it can't see, it looks for a second
+real photograph that already saw it.
+
+## Stage one: do these two panoramas actually show the same room?
+
+Two panoramas named "Living Room" and "Living Room 2" are not necessarily the
+same room - and even when they are, fusing two panoramas of different rooms
+produces geometry that's confidently wrong rather than honestly incomplete. So
+before any alignment happens, the pipeline has to answer a narrower question:
+do these two images actually show the same physical space?
+
+I project each panorama onto the six faces of a cube - the standard way to
+turn a spherical image into something a conventional 2D feature matcher can
+operate on - and run a learned dense feature matcher between the corresponding
+faces of the two panoramas. That gives a set of candidate correspondences:
+points the matcher believes show the same physical location in both images.
+Candidate correspondences are cheap and frequently wrong, so the next step is
+a robust geometric filter - fundamental-matrix estimation verified with
+MAGSAC - that keeps only the correspondences consistent with a single,
+physically coherent camera geometry between the two shots. The number of
+matches that survive this filter is the score for the pair; below a
+threshold, I reject it.
+
+That score is doing real work. One living-room pair I measured scored 598
+surviving matches - unambiguously the same room. A pair of entrance panoramas,
+despite the similar names an operator had given them, scored 13 to 39 matches
+across three attempts and was correctly rejected. Same naming pattern,
+opposite answer, and the geometry is what tells them apart, not the label.
+
+One detail that surprised me enough to note it: feature-matcher weights
+trained on outdoor scenes outperformed the indoor-trained weights on these
+villa interiors. I don't have a tidy explanation for that beyond noting that
+it's the kind of assumption - "indoor weights for indoor scenes" - that's
+worth actually testing rather than taking for granted.
+
+## Stage two: align and fuse
+
+Once a pair passes verification, the second stage turns the shared
+correspondences into an actual merge. I re-render the two views at angles
+chosen so each correspondence lands on a well-conditioned 3D point - feature
+matches taken at a glancing angle produce noisy depth, so the re-rendering
+step exists purely to give the alignment better-conditioned geometry to work
+with. From there I recover scale, rotation and translation between the two
+point clouds in one shot with a robust estimator - RANSAC combined with
+Umeyama's method - and refine the result with ICP (Iterative Closest Point)
+against the overlapping surfaces.
+
+The last step is the one that actually matters for output quality: I only add
+points from the second panorama that are more than 10 cm away from a surface
+the first panorama already covers. That threshold is what keeps the merge
+additive rather than destructive - it contributes genuinely new geometry from
+the blind spots, and it never lets the second panorama's noisier
+reconstruction overwrite or duplicate a surface the first one already
+resolved cleanly.
+
+## Why scale is the hard part
+
+Everything above sounds mechanical once it's laid out, but the actual hard
+problem underneath it is scale, and it's worth explaining why.
+
+Monocular depth estimation is scale-invariant by construction: the model
+predicts relative depth, and every panorama comes out at its own arbitrary
+size, unrelated to metres, unrelated to any other panorama's scale. Two
+panoramas of the same living room can - and in practice do - come out of the
+depth model at two different, internally-consistent-but-mutually-incompatible
+scales. Recovering the true metric scale during alignment isn't a
+nice-to-have; without it, ICP will happily converge two point clouds into a
+geometrically plausible but physically wrong merge.
+
+It gets worse than "the model doesn't tell you the scale." I worked out that
+once the per-face depth maps for a single panorama are merged into one
+coherent spherical depth map, the absolute scale becomes mathematically
+unrecoverable from that panorama alone - the merge step solves a system
+defined over log-depth gradients between adjacent faces, and a global scale
+factor is exactly the kind of quantity that leaves no trace in a system of
+gradients: multiply every depth by the same constant and every gradient in the
+system is unchanged. The scale has to come from outside that panorama - from
+cross-referencing it against something else, which is exactly what the
+two-panorama fusion, and ultimately a real floor plan with real measurements,
+provides. That's why a floor-plan and scale-calibration interface - a way for
+the platform to collect real, measured floor plans per property - is worth
+building even though it lives outside the reconstruction pipeline itself: it's
+the one input that can give this whole approach an anchor to true metric
+scale.
+
+## What fusing two panoramas actually buys you
+
+On one living room, fusing two panoramas against the single-panorama
+baseline:
+
+<table>
+<thead>
+<tr><th></th><th>before</th><th>after</th></tr>
+</thead>
+<tbody>
+<tr><td>ICP fitness</td><td>0.056</td><td>0.321</td></tr>
+<tr><td>new 3D points added</td><td>83,505</td><td>227,438</td></tr>
+<tr><td>unreconstructed area at 2.1 m</td><td>19.2%</td><td>6.9%</td></tr>
+<tr><td>unreconstructed area at 4.2 m</td><td>26.6%</td><td>2.7%</td></tr>
+</tbody>
+</table>
+
+ICP fitness - roughly, the fraction of the two point clouds that end up in
+mutual correspondence - goes up almost sixfold. The unreconstructed area,
+measured at two different distances from the original shooting point, drops
+from a fifth of the visible surface to well under a tenth at close range, and
+from over a quarter to under three percent further out, which is exactly
+where a single panorama's black holes are worst. The fused version also shows
+a swimming pool that simply isn't there in the single-panorama reconstruction
+- it was outside the first panorama's field of view entirely, and only the
+second panorama's vantage point had ever photographed it. Typical residual
+misalignment on the surfaces the two panoramas share, after ICP refinement,
+is about 8 cm.
+
+## Knowing when not to trust itself
+
+The part of this I'd defend hardest isn't the fusion - it's that the pipeline
+checks its own work. It computes two independent estimates of the scale
+factor between a panorama pair and compares them, because if the two
+estimates disagree, that disagreement is real information about how much to
+trust the merge, not noise to average away.
+
+On the living room above, the two estimates agreed within 3% - a reliable
+merge. On one hallway pair, they diverged by 25%; the fusion still measurably
+improved the unreconstructed area, from 32% down to 23%, but with real
+uncertainty attached to the result, and the pipeline reports that uncertainty
+rather than presenting the number as clean. On a guest-room pair, the two
+estimates diverged by 42%, computed from only 48 matched correspondence pairs
+against 250 in the reliable living-room case - and there the pipeline flags
+the merge as not reliable, rather than silently returning a plausible-looking
+room that might be wrong. For a listing that someone is going to book a stay
+from, a method that knows and states when its own answer is shaky is worth
+more, to me, than one that always returns a confident-looking number.
+
+## Four bugs worth mentioning
+
+Every one of these produced output that looked fine at a glance and was
+wrong, which is the worst kind of bug in a reconstruction pipeline - nothing
+crashes, nothing throws, the point cloud just isn't what it claims to be. I'm
+listing them because "it looked plausible" turned out to be a genuinely
+unreliable signal, and I'd rather be explicit about that than let this piece
+imply the method worked cleanly the first time.
+
+- An inverted colour-channel order left the point cloud mirrored -
+  geometrically fine, but a left-right flip of the actual room.
+- The floor detector could latch onto a wall instead of the floor, which is a
+  silent failure: the reconstruction still "worked", it just oriented
+  everything against the wrong plane.
+- The initial rotation estimate that seeds the alignment was off by 167° on
+  one pair - close enough to 180° that alignment never converged, because the
+  optimiser was starting from almost the exact opposite of the right answer.
+- Scale, for a stretch, simply wasn't being estimated at all - the pipeline
+  was fusing point clouds at whatever arbitrary scale the depth model
+  happened to produce for each one, which is the bug that motivated the
+  two-estimate cross-check described above.
+
+## What's still missing
+
+The honest limit of the current method: each panorama is deformed
+individually by the depth model - different distortions in different parts of
+the same room - so no single rigid transform (rotation, translation, uniform
+scale) can fully remove the alignment error. The roughly 8 cm of residual
+misalignment on shared surfaces, mentioned above, is close to the floor of
+what a rigid transform can achieve here. Getting past it means moving from one
+rigid alignment per panorama pair to something piecewise, or genuinely
+non-rigid - deforming different regions of the merged surface by different
+amounts. That's the next piece of work, not a solved problem.
+
+I want to be clear about where this sits: it's R&D. None of the four
+approaches I've described - including this one - is anything I'd put in front
+of a person deciding whether to book a villa, not yet. What I have is a
+method that fills in real blind spots with real photographed geometry, tells
+you when it isn't sure, and a clear list of what has to happen before it's
+more than that.
+
+If you're working on a related problem - spatial reconstruction from
+incomplete, opportunistic multi-view capture, rather than a purpose-built
+scanning rig - I'd genuinely like to hear from you. You can find how to reach
+me on [the English side of my site](/en).
