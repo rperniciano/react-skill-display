@@ -106,6 +106,18 @@ const SOURCES: ArticleSource[] = [
     },
     Content: () => import('../content/blog/en/fusing-360-panoramas-into-walkable-3d-space.mdx'),
   },
+  {
+    meta: {
+      slug: 'fusing-360-panoramas-into-walkable-3d-space',
+      locale: 'it',
+      title: 'Ricostruire uno spazio 3D esplorabile da panoramiche a 360°, senza inventare geometria',
+      description:
+        "Riempire i punti ciechi di una panoramica a 360° fondendola con una seconda panoramica della stessa stanza: verifico la corrispondenza con feature matching denso e MAGSAC, poi allineo con RANSAC, Umeyama e ICP - geometria realmente fotografata, non inventata, con risultati misurati.",
+      date: '2026-09-22',
+      draft: false,
+    },
+    Content: () => import('../content/blog/it/fusing-360-panoramas-into-walkable-3d-space.mdx'),
+  },
 ];
 
 /** The full catalogue, drafts included, metadata-validated at import time. */

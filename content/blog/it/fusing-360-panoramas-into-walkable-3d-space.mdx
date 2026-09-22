@@ -1,0 +1,262 @@
+Una panoramica a 360° permette a chi guarda di stare fermo in un punto e
+girarsi in ogni direzione; non gli permette di camminare verso la finestra o
+di superare il divano. È il limite intrinseco di un virtual tour costruito da
+panoramiche - uno scatto per stanza, e la stanza smette di essere esplorabile
+sulla soglia. Sto sviluppando un modo per superare questo limite per Virtuard,
+una piattaforma di affitto ville i cui annunci sono costruiti interamente da
+tour a 360°: una panoramica per stanza, quindi chi guarda può ruotare dal
+punto di scatto ma non muoversi nello spazio.
+
+La soluzione ovvia è la depth estimation monoculare: si passa la panoramica
+in un modello che predice un valore di profondità per ogni pixel, e si ottiene
+una superficie 3D al posto di un'immagine piatta. Funziona, è veloce e non
+inventa nulla che non sia stato fotografato - ma arriva fino a un certo punto
+e non oltre. Sposta la telecamera virtuale più di un metro dal punto in cui è
+stata scattata la foto originale e cominci a incontrare buchi neri: aree che
+la telecamera originale non ha mai visto, perché erano dietro un divano,
+dietro un angolo, o semplicemente fuori dal suo campo visivo da quel punto. Un
+solo punto di vista descrive solo quello che era visibile da quel punto di
+vista, non un metro di più.
+
+## L'idea che era già nei dati
+
+Il metodo a cui sono arrivato non parte da un modello di depth estimation più
+intelligente. Parte da qualcosa che è già nei dati: i tour contengono spesso
+più di una panoramica della stessa stanza, scattate da punti diversi, perché
+chi ha realizzato il tour è entrato, ha scattato, si è spostato di qualche
+metro e ha scattato di nuovo - un "Soggiorno" e un "Soggiorno 2". Ognuna di
+quelle panoramiche vede esattamente quello che l'altra non può vedere.
+L'angolo che è un buco nero nel primo scatto è spesso perfettamente visibile
+dal secondo. Se riesco a stabilire che due panoramiche appartengono alla
+stessa stanza fisica e ad allinearle correttamente, posso fonderle, e i punti
+ciechi si riempiono con geometria realmente fotografata - non indovinata.
+
+Questa è l'idea centrale: la multi-view fusion. Tutto il resto di questo
+articolo è o la ragione per cui l'ho preferita alle alternative, o la
+meccanica di come farla funzionare davvero.
+
+## Quattro modi per riempire una stanza, e perché ne ho scelto uno
+
+Prima di stabilirmi sulla multi-view fusion ho valutato quattro approcci, e
+ognuno ha un compromesso reale che vale la pena dichiarare esplicitamente
+invece di passarci sopra.
+
+La **depth estimation monoculare da una singola panoramica** è veloce e non
+inventa nulla oltre quello che il modello di profondità inferisce da
+un'immagine sola, ma satura a circa un metro di movimento utile prima che i
+buchi neri diventino dominanti.
+
+Il **Gaussian splatting da un video girato camminando nell'ambiente** produce
+di gran lunga la qualità migliore delle quattro - è la cosa più vicina a una
+vera cattura 3D della stanza. Ma richiede un video dedicato girato per ogni
+proprietà, il che non scala su un catalogo esistente di tour che non sono mai
+stati filmati in quel modo.
+
+La **ricostruzione 3D generativa** - passare la panoramica esistente in un
+modello che allucina una struttura 3D plausibile per le parti che non può
+vedere - riusa le foto che già esistono e produce risultati che a un primo
+sguardo sembrano ottimi. L'ho scartata per due motivi, entrambi da dichiarare
+esplicitamente piuttosto che liquidare con una frase. Il primo: inventa cose -
+stanze, finestre, persino una piscina che non esiste. Questo è squalificante
+su un annuncio di affitto, dove chi prenota decide in base a quello che crede
+di aver visto - mostrare una metratura o una vista che non esiste non è un
+difetto di rendering, è una promessa che la proprietà non può mantenere. Il
+secondo: le pipeline generative open più avanzate per questo tipo di
+ricostruzione si appoggiano a componenti rilasciati con licenze non
+commerciali, il che le esclude da un prodotto commerciale senza negoziare un
+accordo a parte - un vincolo reale, indipendente da quanto sia buono l'output
+a vederlo.
+
+La **multi-view fusion** - il mio approccio, ed è l'oggetto del resto di
+questo articolo - riusa le panoramiche che già esistono, come l'approccio
+generativo, ma invece di inventare quello che non vede, cerca una seconda
+fotografia reale che l'ha già vista.
+
+## Primo passaggio: le due panoramiche mostrano davvero la stessa stanza?
+
+Due panoramiche chiamate "Soggiorno" e "Soggiorno 2" non sono necessariamente
+la stessa stanza - e anche quando lo sono, fondere due panoramiche di stanze
+diverse produce geometria sbagliata con sicurezza, non onestamente
+incompleta. Quindi prima di qualsiasi allineamento la pipeline deve rispondere
+a una domanda più stretta: queste due immagini mostrano davvero lo stesso
+spazio fisico?
+
+Proietto ogni panoramica sulle sei facce di un cubo - il modo standard per
+trasformare un'immagine sferica in qualcosa che un feature matcher 2D
+convenzionale può elaborare - ed eseguo un feature matcher denso e addestrato
+tra le facce corrispondenti delle due panoramiche. Questo restituisce un
+insieme di corrispondenze candidate: punti che il matcher ritiene mostrino la
+stessa posizione fisica in entrambe le immagini. Le corrispondenze candidate
+sono economiche da calcolare e spesso sbagliate, quindi il passaggio
+successivo è un filtro geometrico robusto - la stima della fundamental
+matrix, verificata con MAGSAC - che mantiene solo le corrispondenze coerenti
+con un'unica geometria di camera fisicamente coerente tra i due scatti. Il
+numero di corrispondenze che sopravvive a questo filtro è il punteggio della
+coppia; sotto una certa soglia, la scarto.
+
+Quel punteggio fa un lavoro reale. Una coppia di panoramiche di soggiorno che
+ho misurato ha ottenuto 598 corrispondenze sopravvissute - inequivocabilmente
+la stessa stanza. Una coppia di panoramiche dell'ingresso, nonostante i nomi
+simili che un operatore gli aveva dato, ha ottenuto tra 13 e 39
+corrispondenze in tre tentativi, ed è stata correttamente scartata. Stessa
+convenzione di nomi, risposta opposta, ed è la geometria a distinguerle, non
+l'etichetta.
+
+Un dettaglio che mi ha sorpreso abbastanza da meritare una nota: i pesi del
+feature matcher addestrati su scene esterne hanno funzionato meglio dei pesi
+addestrati su scene interne, proprio su questi interni di ville. Non ho una
+spiegazione ordinata oltre a notare che è il tipo di assunzione - "pesi per
+interni per scene interne" - che vale la pena testare davvero invece di darla
+per scontata.
+
+## Secondo passaggio: allineare e fondere
+
+Una volta che una coppia supera la verifica, il secondo passaggio trasforma le
+corrispondenze condivise in una vera fusione. Ri-renderizzo le due viste ad
+angolazioni scelte in modo che ogni corrispondenza cada su un punto 3D ben
+condizionato - le corrispondenze prese ad angolo radente producono una
+profondità rumorosa, e il ri-rendering esiste proprio per dare
+all'allineamento una geometria meglio condizionata su cui lavorare. Da lì
+recupero scala, rotazione e traslazione tra le due point cloud in un solo
+passaggio con uno stimatore robusto - RANSAC combinato con il metodo di
+Umeyama - e raffino il risultato con ICP (Iterative Closest Point) sulle
+superfici in comune.
+
+L'ultimo passaggio è quello che conta davvero per la qualità dell'output:
+aggiungo solo i punti della seconda panoramica che distano più di 10 cm da
+una superficie già coperta dalla prima panoramica. Questa soglia è quello che
+mantiene la fusione additiva invece che distruttiva - contribuisce geometria
+genuinamente nuova dai punti ciechi, e non lascia mai che la ricostruzione
+più rumorosa della seconda panoramica sovrascriva o duplichi una superficie
+che la prima aveva già risolto in modo pulito.
+
+## Perché la scala è la parte difficile
+
+Tutto quello che ho descritto finora sembra meccanico una volta messo in
+fila, ma il problema difficile che c'è sotto è la scala, e vale la pena
+spiegare perché.
+
+La depth estimation monoculare è scale-invariant per costruzione: il modello
+predice una profondità relativa, e ogni panoramica esce a una propria scala
+arbitraria, scollegata dai metri e scollegata dalla scala di qualsiasi altra
+panoramica. Due panoramiche dello stesso soggiorno possono uscire - e nella
+pratica escono - dal modello di profondità a due scale diverse, ciascuna
+internamente coerente ma incompatibile con l'altra. Recuperare la vera scala
+metrica durante l'allineamento non è un dettaglio opzionale: senza di essa,
+ICP converge volentieri due point cloud in una fusione geometricamente
+plausibile ma fisicamente sbagliata.
+
+E la cosa è peggiore di "il modello non ti dice la scala". Ho verificato che
+una volta che le mappe di profondità per-faccia di una singola panoramica
+vengono fuse in un'unica mappa di profondità sferica coerente, la scala
+assoluta diventa matematicamente irrecuperabile da quella panoramica presa da
+sola - il passaggio di fusione risolve un sistema definito sui gradienti
+logaritmici di profondità tra facce adiacenti, e un fattore di scala globale
+è esattamente il tipo di quantità che non lascia traccia in un sistema di
+gradienti: moltiplica ogni profondità per la stessa costante e ogni gradiente
+del sistema resta invariato. La scala deve arrivare da fuori quella
+panoramica - da un confronto incrociato con qualcos'altro, che è esattamente
+quello che offre la fusione tra due panoramiche, e in ultima analisi una
+vera planimetria con misure reali. È per questo che un'interfaccia di
+calibrazione scala e planimetria - un modo perché la piattaforma raccolga
+planimetrie reali e misurate per ogni proprietà - vale la pena costruirla
+anche se vive fuori dalla pipeline di ricostruzione vera e propria: è l'unico
+input che può dare a tutto questo approccio un ancoraggio alla vera scala
+metrica.
+
+## Cosa si guadagna davvero fondendo due panoramiche
+
+Su un soggiorno, fondendo due panoramiche contro la baseline a singola
+panoramica:
+
+| | prima | dopo |
+| --- | --- | --- |
+| ICP fitness | 0,056 | 0,321 |
+| nuovi punti 3D aggiunti | 83.505 | 227.438 |
+| area non ricostruita a 2,1 m | 19,2% | 6,9% |
+| area non ricostruita a 4,2 m | 26,6% | 2,7% |
+
+L'ICP fitness - grosso modo, la frazione delle due point cloud che finisce in
+corrispondenza reciproca - sale di quasi sei volte. L'area non ricostruita,
+misurata a due distanze diverse dal punto di scatto originale, scende da un
+quinto della superficie visibile a ben sotto un decimo a distanza ravvicinata,
+e da oltre un quarto a meno del tre percento più lontano, proprio dove i
+buchi neri di una singola panoramica sono peggiori. La versione fusa mostra
+anche una piscina che semplicemente non c'è nella ricostruzione a singola
+panoramica - era completamente fuori dal campo visivo della prima panoramica,
+e solo il punto di vista della seconda l'aveva fotografata. Il disallineamento
+residuo tipico sulle superfici condivise dalle due panoramiche, dopo il
+raffinamento ICP, è di circa 8 cm.
+
+## Sapere quando non fidarsi di se stessa
+
+La parte di questo lavoro che difenderei con più convinzione non è la fusione
+in sé - è che la pipeline verifica il proprio lavoro. Calcola due stime
+indipendenti del fattore di scala tra una coppia di panoramiche e le
+confronta, perché se le due stime non sono d'accordo, quel disaccordo è
+un'informazione reale su quanto fidarsi della fusione, non rumore da
+mediare via.
+
+Sul soggiorno di cui sopra, le due stime concordavano entro il 3% - una
+fusione affidabile. Su una coppia di corridoio, divergevano del 25%; la
+fusione ha comunque migliorato in modo misurabile l'area non ricostruita, dal
+32% al 23%, ma con un'incertezza reale associata al risultato, e la pipeline
+riporta quell'incertezza invece di presentare il numero come pulito. Su una
+coppia di camera per gli ospiti, le due stime divergevano del 42%, calcolate
+da appena 48 coppie di corrispondenze contro le 250 del caso affidabile del
+soggiorno - e lì la pipeline segnala la fusione come non affidabile, invece
+di restituire in silenzio una stanza dall'aspetto plausibile che potrebbe
+essere sbagliata. Per un annuncio da cui qualcuno prenoterà un soggiorno, un
+metodo che sa e dichiara quando la propria risposta è incerta vale, per me,
+più di uno che restituisce sempre un numero dall'aspetto sicuro.
+
+## Quattro bug degni di nota
+
+Ognuno di questi bug ha prodotto un output che a un primo sguardo sembrava a
+posto ed era sbagliato, che è il peggior tipo di bug in una pipeline di
+ricostruzione - niente va in crash, niente solleva un'eccezione, la point
+cloud semplicemente non è quello che dichiara di essere. Li elenco perché
+"sembrava plausibile" si è rivelato un segnale genuinamente inaffidabile, e
+preferisco dichiararlo esplicitamente piuttosto che lasciar intendere che il
+metodo abbia funzionato in modo pulito fin dal primo tentativo.
+
+- Un ordine invertito dei canali colore lasciava la point cloud
+  specchiata - geometricamente corretta, ma con un ribaltamento
+  sinistra-destra della stanza reale.
+- Il rilevatore del pavimento poteva agganciarsi a una parete invece che al
+  pavimento, un fallimento silenzioso: la ricostruzione "funzionava" comunque,
+  aveva solo orientato tutto sul piano sbagliato.
+- La stima iniziale di rotazione che innesca l'allineamento era sbagliata di
+  167° su una coppia - abbastanza vicina ai 180° che l'allineamento non
+  convergeva mai, perché l'ottimizzatore partiva da quasi l'esatto opposto
+  della risposta corretta.
+- Per un periodo la scala semplicemente non veniva stimata affatto - la
+  pipeline fondeva le point cloud alla scala arbitraria che il modello di
+  profondità aveva prodotto per ciascuna, il bug che ha motivato il controllo
+  incrociato a due stime descritto sopra.
+
+## Cosa manca ancora
+
+Il limite onesto del metodo attuale: ogni panoramica viene deformata
+individualmente dal modello di profondità - distorsioni diverse in parti
+diverse della stessa stanza - quindi nessuna singola trasformazione rigida
+(rotazione, traslazione, scala uniforme) può rimuovere del tutto l'errore di
+allineamento. Gli 8 cm circa di disallineamento residuo sulle superfici
+condivise, citati sopra, sono vicini al limite di quanto può ottenere qui una
+trasformazione rigida. Andare oltre significa passare da un allineamento
+rigido per coppia di panoramiche a qualcosa di piecewise, o genuinamente
+non rigido - deformare regioni diverse della superficie fusa di quantità
+diverse. È il prossimo pezzo di lavoro, non un problema risolto.
+
+Voglio essere chiaro su dove siamo: è R&D. Nessuno dei quattro approcci che
+ho descritto - questo incluso - è qualcosa che metterei oggi davanti a una
+persona che deve decidere se prenotare una villa. Quello che ho è un metodo
+che riempie punti ciechi reali con geometria realmente fotografata, dichiara
+quando non è sicuro di sé, e una lista chiara di cosa deve succedere prima che
+diventi qualcosa di più.
+
+Se stai portando in produzione funzionalità AI di questo tipo - non solo
+ricostruzione spaziale, ma in generale il lavoro di far reggere a un sistema
+reale una pipeline che in un notebook funzionava - la pagina su
+[consulenza AI e .NET per sistemi in produzione](/it/servizi/consulenza-ai-dotnet)
+descrive come lo affronto.
