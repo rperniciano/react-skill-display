@@ -82,14 +82,41 @@ export function pageMetadata({
     // Built from the profile photo. One image for all three locales: it
     // carries the name and the English job title, which the dictionaries
     // already share across it/en/es.
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Riccardo Perniciano — Solution Architect & .NET Developer',
-      },
-    ],
+    //
+    // A blog article (`article` present) is the one case that omits this key
+    // entirely, rather than setting it to some other value - not the same
+    // thing, and the difference is the whole mechanism. Next's metadata
+    // resolver only lets a co-located opengraph-image.tsx (the file
+    // convention, see app/[lang]/blog/[slug]/opengraph-image.tsx) supply
+    // `openGraph.images` when this segment's own metadata has no *own*
+    // `images` property at all - `hasOwnProperty`, checked before this
+    // object is even merged with anything else (mergeStaticMetadata in
+    // node_modules/next/dist/lib/metadata/resolve-metadata.js). Setting
+    // `images: undefined` would still count as "has the property" and the
+    // static file would silently lose to nothing; only leaving the key out
+    // lets the per-article generated image through. Every non-article page
+    // keeps the static card explicitly, exactly as before.
+    //
+    // twitter.images is never set anywhere in this file (see the returned
+    // `twitter` object below), for any page - so Next's own metadata
+    // resolver (the "inherit from openGraph" step in postProcessMetadata,
+    // same file) copies the *final* resolved openGraph.images into
+    // twitter.images afterwards. That already made twitter:image mirror the
+    // static og:image on every page before this change; now it's what makes
+    // twitter:image mirror the per-article generated image too, with no
+    // separate twitter-image.tsx needed.
+    ...(article
+      ? {}
+      : {
+          images: [
+            {
+              url: '/og-image.png',
+              width: 1200,
+              height: 630,
+              alt: 'Riccardo Perniciano — Solution Architect & .NET Developer',
+            },
+          ],
+        }),
   };
 
   return {
